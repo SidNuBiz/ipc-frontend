@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Maven Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media print {                /* Hide print links */
+    @page {margin: 20px; }
+    @page {width: 1920px;}
+    body  {margin: 20px;}
+  }
+
+  .light-calender-picker::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Animation */
+
+  @keyframes crossfade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+    
+  .animate-crossfade {
+    animation: crossfade 0.5s ease-in-out;
+  }
+
+  /* Carousel */
+
+  .carousel .control-dots .dot{
+    background-color: rgba(224, 224, 224, 0.788) !important;
+  }
+
+  .carousel .control-dots .dot.selected {
+    background-color: rgb(0, 153, 255) !important;
+    box-shadow: none;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+
+
+  
