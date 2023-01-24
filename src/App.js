@@ -34,6 +34,8 @@ import CheckoutPage from './pages/Store/CheckoutPage.jsx';
 import ProfilePage from './pages/User/ProfilePage.jsx';
 import MyAccountPage from './pages/User/MyAccountPage.jsx';
 import OrderView from './components/User/MyAccountPage/OrderView.jsx';
+import AdminHomePage from './pages/Admin/AdminHomePage.jsx';
+import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
 
 
 function App() {
@@ -53,6 +55,15 @@ function App() {
 
       <Routes>
 
+        {/* Admin Routes */}
+
+        <Route path="/IPC-admin-portal" element={<AdminHomePage />} />
+
+        <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
+
+
+        {/* Protected Routes */}
+
         <Route element={<ProtectedRoute />}>
              
           {/* User Dropdown */}
@@ -66,6 +77,8 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
 
         </Route>
+
+        {/* Public Routes */}
 
         <Route path="/" element={<HomePage />} />
 
@@ -129,6 +142,9 @@ function App() {
         <Route path="/services/agriculture" element={<ServiceAgriculturePage />} />
 
       </Routes>
+
+      
+
 
       
     </BrowserRouter>
