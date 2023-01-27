@@ -93,7 +93,7 @@ const SideBar = () => {
                             <ul className="text-lg">
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
-                                    <NavLink to="/projects">
+                                    <NavLink to="/IPC-admin-portal">
                                         <img
                                             src="https://img.icons8.com/windows/40/ffffff/home-page.png"
                                             alt="projects-icon"
@@ -115,7 +115,7 @@ const SideBar = () => {
                                 </li>
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
-                                    <NavLink to="/">
+                                    <NavLink to="/IPC-admin-portal/services">
                                         <img
                                             src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/40/ffffff/external-lab-alternative-medicine-flatart-icons-outline-flatarticons.png"
                                             alt="activities-icon"

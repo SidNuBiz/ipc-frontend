@@ -36,6 +36,8 @@ import MyAccountPage from './pages/User/MyAccountPage.jsx';
 import OrderView from './components/User/MyAccountPage/OrderView.jsx';
 import AdminHomePage from './pages/Admin/AdminHomePage.jsx';
 import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
+import AdminServicesPage from './pages/Admin/AdminServices/AdminServicesPage.jsx';
+import AdminServiceEditPage from './pages/Admin/AdminServices/AdminServiceEditPage';
 
 
 function App() {
@@ -58,6 +60,10 @@ function App() {
         {/* Admin Routes */}
 
         <Route path="/IPC-admin-portal" element={<AdminHomePage />} />
+
+        <Route path="/IPC-admin-portal/services" element={<AdminServicesPage />} />
+
+        <Route path="/IPC-admin-portal/services/:id" element={<AdminServiceEditPage />} />
 
         <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
 
