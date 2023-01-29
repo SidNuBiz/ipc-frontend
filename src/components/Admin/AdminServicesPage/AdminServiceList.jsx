@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const AdminServiceList = ({ services }) => {
     return (
         <div>
-            {services.map((service, index) => (
-                <div key={index}>
+            {services.map((service) => (
+                <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
 
@@ -14,7 +14,7 @@ const AdminServiceList = ({ services }) => {
 
                         <div className=" lg:col-span-1 md:col-span-2 sm:col-span-3">
                             <div className=" lg:h-32 md:h-32 sm:h-full w-full">
-                                <img src={service.img} alt="" className="h-full w-full object-cover" />
+                                <img src={service.image.url} alt="" className="h-full w-full object-cover" />
                             </div>
                         </div>
 
@@ -35,7 +35,7 @@ const AdminServiceList = ({ services }) => {
                                 {/* Edit Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <Link to={`/IPC-admin-portal/services/${service.id}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
+                                    <Link to={`/IPC-admin-portal/services/${service._id}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
                                 </div>
 
                                 {/* Delete Button */}
