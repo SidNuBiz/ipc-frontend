@@ -1,16 +1,14 @@
 import React, { useState ,Fragment} from 'react'
 import { testingServices } from "../../../data/siteContent";
 import { useParams } from "react-router-dom";
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { updateProduct,getProduct } from "../../../actions/productAction";
+import { updateProduct,addImage } from "../../../actions/productAction";
 import RichTextEditor from '../Misc/RichTextEditor';
 import Loader from "../../../pages/Loader";
 
 
-const AdminServiceEditSection = () => {
+const AdminServiceEditSection = ({thisService}) => {
 
-    const serviceId = useParams();
     const dispatch = useDispatch();
 
     const[newTurnaroundTitle,setNewTrunaorundTitle] = useState('')
@@ -20,19 +18,11 @@ const AdminServiceEditSection = () => {
     const[newStrainsTitle,setNewStrainsTitle] = useState('')
     const[newStrainsAddonPrice,setNewStrainsAddonPrice] = useState('')
 
-
-    const {products,loading} = useSelector(
-      (state) => state.products
-    );
-
-    let thisService = products.find(service => service._id.toString() === serviceId.id);
-
     const[name,setName] = useState(thisService.name)
     const[price,setPrice] = useState(thisService.price)
     const[description,setDescription] = useState(thisService.description)
     let [turnaroundTypes,setTurnaroundTypes] = useState(thisService.turnaroundTypes)
     let [strains,setStrains] = useState(thisService.strains)
-
 
     // Reset add New Turnaround Fields
 
@@ -100,16 +90,13 @@ const AdminServiceEditSection = () => {
       dispatch(updateProduct(thisService._id,{name,price,description,turnaroundTypes,strains}))
     }
 
-    useEffect(()=>{
-      if(products.length > 0){
-        dispatch(getProduct())
-      }
-    },[dispatch])
+    const addProductImage = (e) =>{
+      dispatch(addImage(e.target.files[0],thisService._id))
+    }
+
 
   return (
 
-    <Fragment>{loading ? <Loader /> : 
-      <Fragment>
 
       <div>
 
@@ -137,7 +124,7 @@ const AdminServiceEditSection = () => {
             {/* Image */}
 
             <div className='block relative h-fit group'>
-              <img src={thisService.image.url} alt={thisService.name} className=" relative w-full h-64 object-cover rounded-xl" />
+              <img src={thisService.image && thisService.image.url} alt={thisService.image &&  thisService.name} className=" relative w-full h-64 object-cover rounded-xl" />
 
               {/* Image Upload Button */}
 
@@ -147,7 +134,7 @@ const AdminServiceEditSection = () => {
             {/* Image Upload reference input for Button */}
 
             <div>
-              <input id='service-img-upload' type="file" className='hidden' />
+              <input id='service-img-upload' type="file" className='hidden' accept="image/*" onChange={addProductImage}/>
             </div>
 
           </div>
@@ -231,7 +218,7 @@ const AdminServiceEditSection = () => {
                   <tbody>
 
                     {
-                      turnaroundTypes.map((turnaround, index) => {
+                      turnaroundTypes && turnaroundTypes.map((turnaround, index) => {
                         return (
                           <tr key={turnaround._id} className=''>
 
@@ -342,7 +329,7 @@ const AdminServiceEditSection = () => {
                   <tbody>
 
                     {
-                      strains.map((strain,index) => {
+                      strains && strains.map((strain,index) => {
                         return (
                           <tr key={strain._id} className=''>
 
@@ -420,8 +407,7 @@ const AdminServiceEditSection = () => {
         </div>
 
       </div>
-      </Fragment> 
-    }</Fragment>
+
 
   )
 }

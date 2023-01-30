@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 
 
 const AdminServiceList = ({ services }) => {
+
     return (
         <div>
-            {services.map((service) => (
+            {services && services.map((service) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">

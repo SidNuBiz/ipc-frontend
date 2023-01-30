@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Cookies from 'js-cookie'
 import {
   ALL_PRODUCT_FAIL,
   ALL_PRODUCT_REQUEST,
@@ -19,17 +19,9 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_SUCCESS,
-  NEW_REVIEW_REQUEST,
-  NEW_REVIEW_SUCCESS,
-  NEW_REVIEW_FAIL,
-  ALL_REVIEW_REQUEST,
-  ALL_REVIEW_SUCCESS,
-  ALL_REVIEW_FAIL,
-  DELETE_REVIEW_REQUEST,
-  DELETE_REVIEW_SUCCESS,
-  DELETE_REVIEW_FAIL,
   CLEAR_ERRORS,
 } from "../constants/productConstants";
+
 
 
 export const getProduct = ()=>async (dispatch)=>{
@@ -124,8 +116,10 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
-
-    const { data } = await axios.delete(`/api/v1/admin/product/${id}`);
+    const config = {
+      headers: { "Content-Type": "application/json" },
+    };
+    const { data } = await axios.delete(`/api/v1/admin/product/${id}`,id,config);
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
@@ -143,10 +137,11 @@ export const deleteProduct = (id) => async (dispatch) => {
 // Get Products Details
 export const getProductDetails = (id) => async (dispatch) => {
     try {
+
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
-  
-      const { data } = await axios.get(`/api/v1/product/${id}`);
-  
+
+      const { data } = await axios.get(`http://localhost:8080/api/v1/product/details/${id}`);
+
       dispatch({
         type: PRODUCT_DETAILS_SUCCESS,
         payload: data.product,
@@ -158,6 +153,25 @@ export const getProductDetails = (id) => async (dispatch) => {
       });
     }
   };
+
+//Add Image
+export const addImage = (file,id) => async (dispatch) => {
+  try{
+    let fileData = new FormData()
+    fileData.append('image',file)
+    const token = Cookies.get('token')
+    const config = { headers:{"Content-Type":"multipart/form-data" ,  'Authorization': `Bearer ${token}` }}
+    // const {data} = await axios.post('http://54.190.127.181:8080/api/v1/product/image',fileData,config)
+    const {data} = await axios.post(`http://localhost:8080/api/v1/product/image/${id}`,fileData,config)
+    dispatch({
+      type: PRODUCT_DETAILS_SUCCESS,
+      payload: data.product,
+    });
+  }catch (error) {
+    console.log(error)
+  }
+   
+}
 
 
 //Clearing Errors
