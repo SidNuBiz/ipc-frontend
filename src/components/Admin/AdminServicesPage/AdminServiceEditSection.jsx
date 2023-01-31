@@ -280,7 +280,7 @@ const AdminServiceEditSection = ({thisService}) => {
                         </td>
 
                         <td>
-                          <button type='button' onClick={() => resetNewTurnaround()} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
+                          <button type='button' onClick={() => resetNewTurnaround()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
                         </td>
 
                       </tr>
@@ -381,7 +381,7 @@ const AdminServiceEditSection = ({thisService}) => {
                         </td>
 
                         <td>
-                        <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
+                          <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
                         </td>
 
                       </tr>
