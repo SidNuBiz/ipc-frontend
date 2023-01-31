@@ -4,10 +4,8 @@ import {myOrders} from "../../../actions/orderAction"
 import {useDispatch,useSelector} from "react-redux"
 import {useEffect,Fragment} from "react"
 
-
 const MyAccountSection = () => {
 
-  
   const dispatch = useDispatch()
 
   const { loading } = useSelector(

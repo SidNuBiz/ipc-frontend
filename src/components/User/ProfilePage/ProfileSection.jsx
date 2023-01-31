@@ -1,8 +1,7 @@
-import { useState, useEffect , Fragment } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {updateProfile,loadUser,addImage} from "../../../actions/userAction"
 import {UPDATE_PROFILE_RESET} from "../../../constants/userConstatns"
-import Loader from "../../../pages/Loader";
 
 const ProfileSection = ({user}) => {
 

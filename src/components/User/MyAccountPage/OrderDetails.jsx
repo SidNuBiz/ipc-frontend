@@ -1,6 +1,3 @@
-
-
-
 const OrderDetails = ({order}) => {
 
   function printInvoice(divName) {

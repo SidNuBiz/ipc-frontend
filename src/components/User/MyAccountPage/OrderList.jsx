@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import {useSelector} from "react-redux"
 
-
 const OrderList = () => {
-
 
     const { orders } = useSelector(
         (state) => state.myOrders

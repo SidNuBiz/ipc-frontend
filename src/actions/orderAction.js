@@ -98,11 +98,6 @@ import {
           "Content-Type": "application/json",
         },
       };
-      // const { data } = await axios.put(
-      //   `/api/v1/admin/order/${id}`,
-      //   order,
-      //   config
-      // );
 
       const { data } = await axios.put(
         `/api/v1/admin/order/${id}`,

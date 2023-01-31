@@ -6,8 +6,6 @@ import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
 import { useDispatch } from "react-redux";
 
-
-
 const ServiceView = () => {
 
     const dispatch = useDispatch()
@@ -29,44 +27,27 @@ const ServiceView = () => {
         setStrainsType([])
     }
 
-
     const onTurnaroundValueChange = (e) => {
-
-
         setTurnaround(e.target.value);
         setTurnaroundType(e.target.selectedOptions[0].innerText)
-
-
     }
-
 
     const onStrainValueChange = (e) => {
 
-
         if (e.target.checked) {
-
             setStrains(strains + parseFloat(e.target.value));
             strainsType.push({title:e.target.id,addOnPrice:parseFloat(e.target.value)})
-
-
         } else {
-
             setStrains(strains - parseFloat(e.target.value));
             let filtered = strainsType.filter(function(value){ 
                 return value.title != e.target.id;
             });
             setStrainsType(filtered)
-
-
         }
-
-
     }
 
 
     var calculatedPrice = thisService.price + parseFloat(turnaround) + parseFloat(strains);
-
-    
 
     if (parseFloat(calculatedPrice) <= 0) {                 // Disable Add to Cart Button if price is 0 or less
 
@@ -78,8 +59,6 @@ const ServiceView = () => {
         // 👇️ scroll to top on page load
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
-
-   
 
     return (
 
