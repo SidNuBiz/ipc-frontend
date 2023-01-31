@@ -109,7 +109,7 @@ const AdminServiceCreateSection = () => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Save Changes</button>
+            <button className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
         </div>
 
 
@@ -286,7 +286,7 @@ const AdminServiceCreateSection = () => {
                         </td>
 
                         <td>
-                          <button type='button' onClick={() => resetNewTurnaround()} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
+                          <button type='button' onClick={() => resetNewTurnaround()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
                         </td>
 
                       </tr>
@@ -395,7 +395,7 @@ const AdminServiceCreateSection = () => {
                         </td>
 
                         <td>
-                            <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
+                            <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
                         </td>
 
                       </tr>
