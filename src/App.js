@@ -39,6 +39,7 @@ import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
 import AdminServicesPage from './pages/Admin/AdminServices/AdminServicesPage.jsx';
 import AdminServiceEditPage from './pages/Admin/AdminServices/AdminServiceEditPage';
 import AdminServiceCreatePage from './pages/Admin/AdminServices/AdminServiceCreatePage';
+import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 
 
 function App() {
@@ -67,6 +68,8 @@ function App() {
         <Route path="/IPC-admin-portal/services/create" element={<AdminServiceCreatePage />} />
 
         <Route path="/IPC-admin-portal/services/:id" element={<AdminServiceEditPage />} />
+
+        <Route path="/IPC-admin-portal/orders" element={<AdminOrdersPage />} />
 
         <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
 
