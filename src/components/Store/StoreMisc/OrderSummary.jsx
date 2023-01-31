@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 
 
 const OrderSummary = () => {
 
-    const [subTotalPrice,setSubTotalPrice] =  useState(0)
     const [shippingPrice,setShippingPrice] = useState(0)
     const [taxPrice,setTaxPrice] = useState(0)
  

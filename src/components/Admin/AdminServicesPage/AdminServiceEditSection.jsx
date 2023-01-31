@@ -1,10 +1,8 @@
-import React, { useState ,Fragment} from 'react'
-import { testingServices } from "../../../data/siteContent";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from 'react'
+import { useDispatch } from "react-redux";
 import { updateProduct,addImage } from "../../../actions/productAction";
 import RichTextEditor from '../Misc/RichTextEditor';
-import Loader from "../../../pages/Loader";
+
 
 
 const AdminServiceEditSection = ({thisService}) => {
