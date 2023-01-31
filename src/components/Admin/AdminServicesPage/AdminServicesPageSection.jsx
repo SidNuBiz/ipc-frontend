@@ -1,4 +1,5 @@
-import { Fragment, useEffect } from "react"
+import { Fragment, useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import AdminServiceList from "./AdminServiceList"
 import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../../actions/productAction";
@@ -46,7 +47,11 @@ const AdminServicesSection = () => {
 
               <div className="lg:col-span-1 md:col-span-1 sm:col-span-3 ">
 
-                <button className="bg-[#397f77] hover:bg-[#18debb] text-white shadow-lg rounded-2xl p-3 w-full duration-300">Create Service</button>
+                <Link to="/IPC-admin-portal/services/create">
+
+                  <button className="bg-[#397f77] hover:bg-[#18debb] text-white shadow-lg rounded-2xl p-3 w-full duration-300">Create Service</button>
+
+                </Link>
 
               </div>
 

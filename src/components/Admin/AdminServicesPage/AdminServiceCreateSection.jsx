@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
-import { useDispatch } from "react-redux";
-import { updateProduct,addImage } from "../../../actions/productAction";
-import RichTextEditor from '../Misc/RichTextEditor';
+import React from 'react'
+import noImg from '../../../assets/no-img.jpg'
+import { useState } from 'react'
+import RichTextEditor from '../Misc/RichTextEditor'
+
+const AdminServiceCreateSection = () => {
+
+    var newService = {
+
+        name: '',
+        img: '',
+        price: '',
+        description: '',
+        turnaroundTypes: [],
+        strains: []
 
 
-
-const AdminServiceEditSection = ({thisService}) => {
-
-    const dispatch = useDispatch();
+    }
 
     const[newTurnaroundTitle,setNewTrunaorundTitle] = useState('')
     const[newTurnaroundTurnaround,setNewTrunaorundTurnaround] = useState('')
@@ -16,92 +24,84 @@ const AdminServiceEditSection = ({thisService}) => {
     const[newStrainsTitle,setNewStrainsTitle] = useState('')
     const[newStrainsAddonPrice,setNewStrainsAddonPrice] = useState('')
 
-    const[name,setName] = useState(thisService.name)
-    const[price,setPrice] = useState(thisService.price)
-    const[description,setDescription] = useState(thisService.description)
-    let [turnaroundTypes,setTurnaroundTypes] = useState(thisService.turnaroundTypes)
-    let [strains,setStrains] = useState(thisService.strains)
+    const[name,setName] = useState(newService.name)
+    const[price,setPrice] = useState(newService.price)
+    const[description,setDescription] = useState(newService.description)
+    let [turnaroundTypes,setTurnaroundTypes] = useState(newService.turnaroundTypes)
+    let [strains,setStrains] = useState(newService.strains)
+
 
     // Reset add New Turnaround Fields
 
     const resetNewTurnaround = () => {
 
-      document.getElementById("new-turnaround-title").value = "";
-      document.getElementById("new-turnaround-turnaround").value = "";
-      document.getElementById("new-turnaround-addonprice").value = "";
+        document.getElementById("new-turnaround-title").value = "";
+        document.getElementById("new-turnaround-turnaround").value = "";
+        document.getElementById("new-turnaround-addonprice").value = "";
+  
+      }
+  
+      // Reset add New Strain Fields
+  
+      const resetNewStrain = () => {
+  
+        document.getElementById("new-strain-title").value = "";
+        document.getElementById("new-strain-addonprice").value = "";
+  
+      }
 
-    }
 
-    // Reset add New Strain Fields
+      const addNewTurnaroundType = () => {
 
-    const resetNewStrain = () => {
-
-      document.getElementById("new-strain-title").value = "";
-      document.getElementById("new-strain-addonprice").value = "";
-
-    }
-
-    const addNewTurnaroundType = () => {
-
-      setTurnaroundTypes([...turnaroundTypes,{
-        title:newTurnaroundTitle,
-        turnaround:newTurnaroundTurnaround,
-        addOnPrice:newTurnaroundAddonPrice
-      }])
-
-    }
-
-    const addNewStrains = () => {
-      setStrains([...strains,{
-        title:newStrainsTitle,
-        addOnPrice:newStrainsAddonPrice
-      }])
-    }
-
-    const editTurnaroundTypes = (idx,value,type) => {
-      let editedTurnaroundTypes = turnaroundTypes
-      editedTurnaroundTypes[idx][type] = value
-      setTurnaroundTypes(editedTurnaroundTypes)
-      console.log(turnaroundTypes)
-    }
-
-    const editStrains = (idx,value,type) => {
-      let editedStrains = strains
-      editedStrains[idx][type] = value
-      setStrains(editedStrains)
-      console.log(strains)
-    }
-
-    const deleteTurnaroundType = (id) => {
-      setTurnaroundTypes(
-        turnaroundTypes.filter((item) => item._id !== id)
-      )
-    }
-
-    const deleteStrains = (id) => {
-      setStrains(
-        strains.filter((item) => item._id !== id)
-      );
-    }
-
-    const updateThisProduct = () => {
-      dispatch(updateProduct(thisService._id,{name,price,description,turnaroundTypes,strains}))
-    }
-
-    const addProductImage = (e) =>{
-      dispatch(addImage(e.target.files[0],thisService._id))
-    }
-
+        setTurnaroundTypes([...turnaroundTypes,{
+          title:newTurnaroundTitle,
+          turnaround:newTurnaroundTurnaround,
+          addOnPrice:newTurnaroundAddonPrice
+        }])
+  
+      }
+  
+      const addNewStrains = () => {
+        setStrains([...strains,{
+          title:newStrainsTitle,
+          addOnPrice:newStrainsAddonPrice
+        }])
+      }
+  
+      const editTurnaroundTypes = (idx,value,type) => {
+        let editedTurnaroundTypes = turnaroundTypes
+        editedTurnaroundTypes[idx][type] = value
+        setTurnaroundTypes(editedTurnaroundTypes)
+        console.log(turnaroundTypes)
+      }
+  
+      const editStrains = (idx,value,type) => {
+        let editedStrains = strains
+        editedStrains[idx][type] = value
+        setStrains(editedStrains)
+        console.log(strains)
+      }
+  
+      const deleteTurnaroundType = (id) => {
+        setTurnaroundTypes(
+          turnaroundTypes.filter((item) => item._id !== id)
+        )
+      }
+  
+      const deleteStrains = (id) => {
+        setStrains(
+          strains.filter((item) => item._id !== id)
+        );
+      }
 
   return (
 
-
-      <div>
+    <div>
 
         {/* Heading */}
 
         <div className="mb-5 pb-5 border-b-[1px] border-b-slate-300">
-            <h2 className=" text-4xl font-semibold text-gray-600">Service Details</h2>
+            <h2 className=" text-4xl font-semibold text-gray-600">Create New Service</h2>
         </div>
 
         {/* Go Back Button */}
@@ -109,7 +109,7 @@ const AdminServiceEditSection = ({thisService}) => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button onClick={() => {updateThisProduct()}} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Save Changes</button>
+            <button className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
         </div>
 
 
@@ -122,7 +122,7 @@ const AdminServiceEditSection = ({thisService}) => {
             {/* Image */}
 
             <div className='block relative h-fit group'>
-              <img src={thisService.image && thisService.image.url} alt={thisService.image &&  thisService.name} className=" relative w-full h-64 object-cover rounded-xl" />
+              <img src={noImg} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
 
               {/* Image Upload Button */}
 
@@ -132,7 +132,7 @@ const AdminServiceEditSection = ({thisService}) => {
             {/* Image Upload reference input for Button */}
 
             <div>
-              <input id='service-img-upload' type="file" className='hidden' accept="image/*" onChange={addProductImage}/>
+              <input id='service-img-upload' type="file" className='hidden' accept="image/*" />
             </div>
 
           </div>
@@ -201,21 +201,29 @@ const AdminServiceEditSection = ({thisService}) => {
 
                   <thead >
 
-                    <tr className='text-gray-600 font-semibold'>
+                    {
 
-                      <th className='text-left'>Title</th>
+                        newService.turnaroundTypes.length > 0 && (
 
-                      <th className='text-left'>Turnaround</th>
+                            <tr className='text-gray-600 font-semibold'>
 
-                      <th className='text-left'>(C$) Add On Price</th>
+                                <th className='text-left'>Title</th>
 
-                    </tr>
+                                <th className='text-left'>Turnaround</th>
+
+                                <th className='text-left'>(C$) Add On Price</th>
+
+                            </tr>
+
+                        )
+
+                    }
 
                   </thead>
 
                   <tbody>
 
-                    {
+                    {/* {
                       turnaroundTypes && turnaroundTypes.map((turnaround, index) => {
                         return (
                           <tr key={turnaround._id} className=''>
@@ -239,7 +247,7 @@ const AdminServiceEditSection = ({thisService}) => {
                           </tr>
                         )
                       })
-                    }
+                    } */}
 
                   </tbody>
 
@@ -314,19 +322,27 @@ const AdminServiceEditSection = ({thisService}) => {
 
                   <thead >
 
-                    <tr className='text-gray-600 font-semibold'>
+                    {
 
-                      <th className='text-left'>Title</th>
+                        newService.strains.length > 0 && (
 
-                      <th className='text-left'>(C$) Add On Price</th>
+                            <tr className='text-gray-600 font-semibold'>
 
-                    </tr>
+                                <th className='text-left'>Title</th>
+
+                                <th className='text-left'>(C$) Add On Price</th>
+
+                            </tr>
+
+                        )
+
+                    }
 
                   </thead>
 
                   <tbody>
 
-                    {
+                    {/* {
                       strains && strains.map((strain,index) => {
                         return (
                           <tr key={strain._id} className=''>
@@ -346,7 +362,7 @@ const AdminServiceEditSection = ({thisService}) => {
                           </tr>
                         )
                       })
-                    }
+                    } */}
 
                   </tbody>
 
@@ -379,7 +395,7 @@ const AdminServiceEditSection = ({thisService}) => {
                         </td>
 
                         <td>
-                          <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
+                            <button type='button' onClick={() => resetNewStrain()} className="text-white rounded-lg h-full w-full"><img src="https://img.icons8.com/ios-filled/28/397f77/update-left-rotation.png" alt="" className='h-[28px] w-[28px] m-3 hover:rotate-180 duration-300'/></button>
                         </td>
 
                       </tr>
@@ -406,8 +422,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
       </div>
 
-
   )
 }
 
-export default AdminServiceEditSection
+export default AdminServiceCreateSection
