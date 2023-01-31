@@ -126,7 +126,7 @@ const SideBar = () => {
                                 </li>
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
-                                    <NavLink to="/profile">
+                                    <NavLink to="/IPC-admin-portal/orders">
                                         <img
                                             src="https://img.icons8.com/fluency-systems-regular/40/ffffff/shopping-basket-success.png"
                                             alt="profile-icon"
