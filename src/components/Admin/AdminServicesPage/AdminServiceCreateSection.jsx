@@ -1,34 +1,39 @@
 import React from 'react'
 import noImg from '../../../assets/no-img.jpg'
 import { useState } from 'react'
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createProduct } from "../../../actions/productAction";
 import RichTextEditor from '../Misc/RichTextEditor'
 
 const AdminServiceCreateSection = () => {
 
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     var newService = {
-
-        name: '',
-        img: '',
-        price: '',
-        description: '',
-        turnaroundTypes: [],
-        strains: []
-
-
+      name: '',
+      image: '',
+      price: '',
+      description: '',
+      turnaroundTypes: [],
+      strains: []
     }
 
     const[newTurnaroundTitle,setNewTrunaorundTitle] = useState('')
     const[newTurnaroundTurnaround,setNewTrunaorundTurnaround] = useState('')
-    const[newTurnaroundAddonPrice,setNewTrunaorundAddonPrice] = useState('')
+    const[newTurnaroundAddonPrice,setNewTrunaorundAddonPrice] = useState(0)
 
     const[newStrainsTitle,setNewStrainsTitle] = useState('')
-    const[newStrainsAddonPrice,setNewStrainsAddonPrice] = useState('')
+    const[newStrainsAddonPrice,setNewStrainsAddonPrice] = useState(0)
 
-    const[name,setName] = useState(newService.name)
-    const[price,setPrice] = useState(newService.price)
-    const[description,setDescription] = useState(newService.description)
-    let [turnaroundTypes,setTurnaroundTypes] = useState(newService.turnaroundTypes)
-    let [strains,setStrains] = useState(newService.strains)
+    const[name,setName] = useState('')
+    const[image,setImage] = useState()
+    const[previewImage,setPreviewImage] = useState('')
+    const[price,setPrice] = useState(0)
+    const[description,setDescription] = useState('')
+    let [turnaroundTypes,setTurnaroundTypes] = useState([])
+    let [strains,setStrains] = useState([])
 
 
     // Reset add New Turnaround Fields
@@ -37,7 +42,7 @@ const AdminServiceCreateSection = () => {
 
         document.getElementById("new-turnaround-title").value = "";
         document.getElementById("new-turnaround-turnaround").value = "";
-        document.getElementById("new-turnaround-addonprice").value = "";
+        document.getElementById("new-turnaround-addonprice").value = 0;
   
       }
   
@@ -46,52 +51,90 @@ const AdminServiceCreateSection = () => {
       const resetNewStrain = () => {
   
         document.getElementById("new-strain-title").value = "";
-        document.getElementById("new-strain-addonprice").value = "";
+        document.getElementById("new-strain-addonprice").value = 0;
   
       }
 
 
       const addNewTurnaroundType = () => {
-
-        setTurnaroundTypes([...turnaroundTypes,{
-          title:newTurnaroundTitle,
-          turnaround:newTurnaroundTurnaround,
-          addOnPrice:newTurnaroundAddonPrice
-        }])
+        if(turnaroundTypes.length === 0){
+          setTurnaroundTypes([...turnaroundTypes,{
+            title:newTurnaroundTitle,
+            turnaround:newTurnaroundTurnaround,
+            addOnPrice:newTurnaroundAddonPrice
+          }])
+        }
+        if(turnaroundTypes.some(item => item.title === newTurnaroundTitle)){
+          console.log('Same name can not be added twice')
   
+        }else{
+          setTurnaroundTypes([...turnaroundTypes,{
+            title:newTurnaroundTitle,
+            turnaround:newTurnaroundTurnaround,
+            addOnPrice:newTurnaroundAddonPrice
+          }])
+          
+        }
       }
   
       const addNewStrains = () => {
-        setStrains([...strains,{
+        if(strains.length === 0){
+          setStrains([...strains,{
+            title:newStrainsTitle,
+            addOnPrice:newStrainsAddonPrice
+          }])
+        }
+
+        if(strains.some(item => item.title === newStrainsTitle)){
+          console.log('Same name can not be added twice')
+        }else{
+                  setStrains([...strains,{
           title:newStrainsTitle,
           addOnPrice:newStrainsAddonPrice
         }])
+        }
       }
   
       const editTurnaroundTypes = (idx,value,type) => {
         let editedTurnaroundTypes = turnaroundTypes
         editedTurnaroundTypes[idx][type] = value
         setTurnaroundTypes(editedTurnaroundTypes)
-        console.log(turnaroundTypes)
       }
   
       const editStrains = (idx,value,type) => {
         let editedStrains = strains
         editedStrains[idx][type] = value
         setStrains(editedStrains)
-        console.log(strains)
       }
   
-      const deleteTurnaroundType = (id) => {
+      const deleteTurnaroundType = (title) => {
         setTurnaroundTypes(
-          turnaroundTypes.filter((item) => item._id !== id)
+          turnaroundTypes.filter((item) => item.title !== title)
         )
       }
   
-      const deleteStrains = (id) => {
+      const deleteStrains = (title) => {
         setStrains(
-          strains.filter((item) => item._id !== id)
+          strains.filter((item) => item.title !== title)
         );
+      }
+
+      const addProductImage = (e) =>{
+        const files = Array.from(e.target.files);
+        setPreviewImage('');
+        setImage(files[0]);
+        const reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setPreviewImage( reader.result);
+          }
+        };
+      }
+
+      const addThisProduct = () => {
+        dispatch(createProduct({name,price,description,turnaroundTypes,strains},image))
+        navigate("/IPC-admin-portal/services")
       }
 
   return (
@@ -109,7 +152,7 @@ const AdminServiceCreateSection = () => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
+            <button onClick={addThisProduct} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
         </div>
 
 
@@ -122,7 +165,7 @@ const AdminServiceCreateSection = () => {
             {/* Image */}
 
             <div className='block relative h-fit group'>
-              <img src={noImg} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+              <img src={previewImage !== '' ? previewImage : noImg} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
 
               {/* Image Upload Button */}
 
@@ -132,7 +175,7 @@ const AdminServiceCreateSection = () => {
             {/* Image Upload reference input for Button */}
 
             <div>
-              <input id='service-img-upload' type="file" className='hidden' accept="image/*" />
+              <input id='service-img-upload' type="file" className='hidden' accept="image/*" onChange={addProductImage}/>
             </div>
 
           </div>
@@ -155,7 +198,7 @@ const AdminServiceCreateSection = () => {
               
               <label htmlFor="service-price" className='text-2xl text-[#397f77] font-semibold'>Price(C$)</label>
 
-              <input id='service-price' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={price} onChange={(e)=>setPrice(e.target.value)} required/>
+              <input id='service-price' type="number" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={price} onChange={(e)=>setPrice(e.target.value)} required/>
 
             </div>
 
@@ -174,7 +217,7 @@ const AdminServiceCreateSection = () => {
             <label htmlFor="service-description" className='text-2xl text-[#397f77] font-semibold'>Description</label>
 
             <div className='mt-5'>
-              <RichTextEditor value={description} onChange={(e)=>setDescription(e.target.value)} required/>
+              <RichTextEditor value={description} setValue={setDescription} required/>
             </div>
 
           </div>
@@ -203,7 +246,7 @@ const AdminServiceCreateSection = () => {
 
                     {
 
-                        newService.turnaroundTypes.length > 0 && (
+                        turnaroundTypes.length > 0 && (
 
                             <tr className='text-gray-600 font-semibold'>
 
@@ -223,10 +266,10 @@ const AdminServiceCreateSection = () => {
 
                   <tbody>
 
-                    {/* {
-                      turnaroundTypes && turnaroundTypes.map((turnaround, index) => {
+                    {
+                      turnaroundTypes.map((turnaround, index) => {
                         return (
-                          <tr key={turnaround._id} className=''>
+                          <tr key={turnaround.title} className=''>
 
                             <td>
                               <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editTurnaroundTypes(index,e.target.value,'title')} defaultValue={turnaround.title} required />
@@ -237,17 +280,17 @@ const AdminServiceCreateSection = () => {
                             </td>
 
                             <td>
-                              <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editTurnaroundTypes(index,e.target.value,'addOnPrice')} defaultValue={turnaround.addOnPrice} required />
+                              <input type="number" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editTurnaroundTypes(index,e.target.value,'addOnPrice')} defaultValue={turnaround.addOnPrice} required />
                             </td>
 
                             <td>
-                              <button onClick={() => deleteTurnaroundType(turnaround._id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
+                              <button onClick={() => deleteTurnaroundType(turnaround.title)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-3'/></button>
                             </td>
 
                           </tr>
                         )
                       })
-                    } */}
+                    }
 
                   </tbody>
 
@@ -281,7 +324,7 @@ const AdminServiceCreateSection = () => {
 
                         <td>
 
-                          <input id='new-turnaround-addonprice' type="text" className='new-turnaround mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setNewTrunaorundAddonPrice(e.target.value)}} placeholder='(C$) Add On Price' required />
+                          <input id='new-turnaround-addonprice' type="number" className='new-turnaround mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setNewTrunaorundAddonPrice(e.target.value)}} placeholder='(C$) Add On Price' required />
 
                         </td>
 
@@ -324,7 +367,7 @@ const AdminServiceCreateSection = () => {
 
                     {
 
-                        newService.strains.length > 0 && (
+                        strains.length > 0 && (
 
                             <tr className='text-gray-600 font-semibold'>
 
@@ -342,27 +385,27 @@ const AdminServiceCreateSection = () => {
 
                   <tbody>
 
-                    {/* {
-                      strains && strains.map((strain,index) => {
+                    {
+                      strains.map((strain,index) => {
                         return (
-                          <tr key={strain._id} className=''>
+                          <tr key={strain.title} className=''>
 
                             <td>
                               <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editStrains(index,e.target.value,'title')}  defaultValue={strain.title} required />
                             </td>
 
                             <td>
-                              <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editStrains(index,e.target.value,'addOnPrice')}  defaultValue={strain.addOnPrice} required />
+                              <input type="number" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editStrains(index,e.target.value,'addOnPrice')}  defaultValue={strain.addOnPrice} required />
                             </td>
 
                             <td className='h-full'>
-                              <button onClick={() => deleteStrains(strain._id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
+                              <button onClick={() => deleteStrains(strain.title)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
                             </td>
 
                           </tr>
                         )
                       })
-                    } */}
+                    } 
 
                   </tbody>
 
@@ -390,7 +433,7 @@ const AdminServiceCreateSection = () => {
 
                         <td>
 
-                          <input id='new-strain-addonprice' type="text" className='new-turnaround mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setNewStrainsAddonPrice(e.target.value)}} placeholder='(C$) Add On Price' required />
+                          <input id='new-strain-addonprice' type="number" className='new-turnaround mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setNewStrainsAddonPrice(e.target.value)}} placeholder='(C$) Add On Price' required />
 
                         </td>
 

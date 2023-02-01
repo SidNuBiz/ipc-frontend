@@ -62,14 +62,12 @@ const AdminServiceEditSection = ({thisService}) => {
       let editedTurnaroundTypes = turnaroundTypes
       editedTurnaroundTypes[idx][type] = value
       setTurnaroundTypes(editedTurnaroundTypes)
-      console.log(turnaroundTypes)
     }
 
     const editStrains = (idx,value,type) => {
       let editedStrains = strains
       editedStrains[idx][type] = value
       setStrains(editedStrains)
-      console.log(strains)
     }
 
     const deleteTurnaroundType = (id) => {
@@ -86,7 +84,6 @@ const AdminServiceEditSection = ({thisService}) => {
 
     const updateThisProduct = () => {
       dispatch(updateProduct(thisService._id,{name,price,description,turnaroundTypes,strains}))
-      console.log(description)
       navigate("/IPC-admin-portal/services")
     }
 
