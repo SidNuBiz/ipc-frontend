@@ -1,8 +1,74 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const AdminOrderList = (orders) => {
+const AdminOrderList = ({orders}) => {
+
   return (
-    <div>AdminOrderList</div>
+    <div>
+
+      {/* Order List */}
+
+      <div className="w-full mb-10">
+                {/* Order 1 */}
+
+                <ul>
+                    {orders && orders.map((order, index) => (
+                        <li
+                            key={index}
+                            className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
+                        >
+                            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5">
+
+                                {/* OrderId */}
+
+                                <div className="mb-3 px-5">
+
+                                    <div className="">
+                                        <b>Order ID</b> <br />
+                                        {order.id}
+                                    </div>
+
+                                </div>
+
+                                {/* Order Date */}
+
+                                <div className=" italic px-5">
+                                    <b className=" not-italic">Date</b> <br />
+                                    {`${order.date.month}/${order.date.day}/${order.date.year}`}
+                                </div>
+
+                                {/* Order Status */}
+
+                                <div className=" px-5">
+                                    <div className="mb-3">
+                                        <b>Status</b> <br />
+                                        {order.status}
+                                    </div>
+                                </div>
+
+                                {/* Order Total */}
+
+                                <div className="text-left px-5">
+                                    <div className="mb-3">
+                                        <b>Total</b> <br />
+                                        C${order.total}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* View Details Button */}
+
+                            <div className="w-fit mt-3 ml-auto">
+                                <Link to={`/IPC-admin-portal/orders/${order.id}`} className="inline-block">
+                                    <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
+                                </Link>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+    </div>
   )
 }
 

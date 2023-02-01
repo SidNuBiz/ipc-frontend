@@ -14,7 +14,7 @@ const AdminOrdersPageSection = () => {
 
             {/* search & create services */}
 
-            <div className=" mb-20">
+            <div className=" mb-10">
 
               {/* Search Box */}
 

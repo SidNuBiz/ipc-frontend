@@ -92,6 +92,8 @@ const LineChart = () => {
 
             y: {
 
+              min: 0,
+
               ticks: {
 
                 beginAtZero: true,
