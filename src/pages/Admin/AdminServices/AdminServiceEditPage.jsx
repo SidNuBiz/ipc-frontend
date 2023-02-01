@@ -17,7 +17,7 @@ const AdminServiceEditPage = () => {
   const {product,loading} = useSelector(
     (state) => state.productDetails
   );
-
+ 
   useEffect(() => {
     dispatch(getProductDetails(serviceId.id))
     // 👇️ scroll to top on page load
@@ -40,7 +40,7 @@ const AdminServiceEditPage = () => {
 
               <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
 
-                <AdminServiceEditSection thisService = {product}/>
+               <AdminServiceEditSection thisService = {product}/>
 
               </div>
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { updateProduct,addImage } from "../../../actions/productAction";
 import RichTextEditor from '../Misc/RichTextEditor';
 
-
-
 const AdminServiceEditSection = ({thisService}) => {
-
+ 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const[newTurnaroundTitle,setNewTrunaorundTitle] = useState('')
     const[newTurnaroundTurnaround,setNewTrunaorundTurnaround] = useState('')
@@ -86,10 +86,13 @@ const AdminServiceEditSection = ({thisService}) => {
 
     const updateThisProduct = () => {
       dispatch(updateProduct(thisService._id,{name,price,description,turnaroundTypes,strains}))
+      console.log(description)
+      navigate("/IPC-admin-portal/services")
     }
 
     const addProductImage = (e) =>{
       dispatch(addImage(e.target.files[0],thisService._id))
+      // navigate("/IPC-admin-portal/services")
     }
 
 
@@ -174,7 +177,7 @@ const AdminServiceEditSection = ({thisService}) => {
             <label htmlFor="service-description" className='text-2xl text-[#397f77] font-semibold'>Description</label>
 
             <div className='mt-5'>
-              <RichTextEditor value={description} onChange={(e)=>setDescription(e.target.value)} required/>
+              <RichTextEditor value={description} setValue={setDescription} required/>
             </div>
 
           </div>
