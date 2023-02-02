@@ -41,6 +41,7 @@ import AdminServiceEditPage from './pages/Admin/AdminServices/AdminServiceEditPa
 import AdminServiceCreatePage from './pages/Admin/AdminServices/AdminServiceCreatePage';
 import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
+import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
 
 
 function App() {
@@ -73,6 +74,8 @@ function App() {
         <Route path="/IPC-admin-portal/orders" element={<AdminOrdersPage />} />
 
         <Route path="/IPC-admin-portal/orders/:id" element={<AdminOrderView />} />
+
+        <Route path="/IPC-admin-portal/members" element={<AdminMembersPage />} />
 
         <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
 

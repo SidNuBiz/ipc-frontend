@@ -2039,6 +2039,103 @@
     ]
 
 
+    // Members
+
+    export const members = [
+
+        {
+
+            id: "1",
+
+            img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+
+            firstName: "John",
+
+            lastName: "Doe",
+
+            email: "example@example.com",
+
+            password: "",
+
+            phone: "1234567890",
+
+            addressInfo: {
+
+                address: "1234 Example St.",
+
+                country: "Example Country",
+
+                city: "Example City",
+
+                zip: "12345",
+
+            }
+
+        },
+
+        {
+
+            id: "2",
+
+            img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+
+            firstName: "John",
+
+            lastName: "Carter",
+
+            email: "example@example.com",
+
+            password: "",
+
+            phone: "1234567890",
+
+            addressInfo: {
+
+                address: "1234 Example St.",
+
+                country: "Example Country",
+
+                city: "Example City",
+
+                zip: "12345",
+
+            }
+
+        },
+
+        {
+
+            id: "3",
+
+            img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+
+            firstName: "John",
+
+            lastName: "Wick",
+
+            email: "example@example.com",
+
+            password: "",
+
+            phone: "1234567890",
+
+            addressInfo: {
+
+                address: "1234 Example St.",
+
+                country: "Example Country",
+
+                city: "Example City",
+
+                zip: "12345",
+
+            }
+
+        },
+
+    ]
+
+
 
 
 
