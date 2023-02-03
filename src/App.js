@@ -42,6 +42,7 @@ import AdminServiceCreatePage from './pages/Admin/AdminServices/AdminServiceCrea
 import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
 import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
+import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotificationsPage';
 
 
 function App() {
@@ -64,6 +65,8 @@ function App() {
         {/* Admin Routes */}
 
         <Route path="/IPC-admin-portal" element={<AdminHomePage />} />
+
+        <Route path="/IPC-admin-portal/notifications" element={<AdminNotificationsPage />} />
 
         <Route path="/IPC-admin-portal/services" element={<AdminServicesPage />} />
 

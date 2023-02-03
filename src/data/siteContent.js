@@ -2136,6 +2136,85 @@
     ]
 
 
+    // Notifications
+
+    export const notifications = [
+
+        {
+
+            id: "1",
+
+            title: "New Order",
+
+            message: "You have a new order from John Doe",
+
+            link: "/IPC-admin-portal/orders/123456789123",
+
+            date: {
+
+                day: "5" ,
+
+                month: "2",
+
+                year: "2023",
+
+            },
+
+            read: false,
+            
+        },
+
+        {
+
+            id: "2",
+
+            title: "New Order",
+
+            message: "You have a new order from John Carter",
+
+            link: "/IPC-admin-portal/orders/123456789123",
+
+            date: {
+
+                day: "5" ,
+
+                month: "2",
+
+                year: "2023",
+
+            },
+
+            read: true,
+            
+        },
+
+        {
+
+            id: "3",
+
+            title: "New Order",
+
+            message: "You have a new order from John Wick",
+
+            link: "/IPC-admin-portal/orders/123456789123",
+
+            date: {
+
+                day: "5" ,
+
+                month: "2",
+
+                year: "2023",
+
+            },
+
+            read: false,
+            
+        },
+
+    ]
+
+
 
 
 
