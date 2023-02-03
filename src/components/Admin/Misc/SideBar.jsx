@@ -148,7 +148,7 @@ const SideBar = () => {
                                 </li>
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
-                                    <NavLink to="/team-members">
+                                    <NavLink to="/IPC-admin-portal/members">
                                         <img
                                             src="https://img.icons8.com/windows/40/ffffff/groups.png"
                                             alt="team-member-icon"
