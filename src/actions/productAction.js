@@ -61,26 +61,35 @@ export const getAdminProduct = () => async (dispatch) => {
 export const createProduct = (productData,image) => async (dispatch) => {
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
-
+    console.log(image)
     const config = {
       headers: { "Content-Type":"multipart/form-data" },
     };
     let fileData = new FormData()
     fileData.append('image',image)
-   
-    // const {data} = await axios.post('http://54.190.127.181:8080/api/v1/product/image',fileData,config)
-    const {data} = await axios.post(`http://localhost:8080/api/v1/product/create`,productData,config)
-    const {data:newProductData} = await axios.post(`http://localhost:8080/api/v1/product/image/${data.result._id}`,fileData,config)
 
-    dispatch({
-      type: NEW_PRODUCT_SUCCESS,
-      payload: newProductData,
-    })
+
+    // const {data} = await axios.post('http://54.190.127.181:8080/api/v1/product/image',fileData,config)
+   
+    if(image){
+      const {data} = await axios.post(`http://localhost:8080/api/v1/product/create`,productData,config)
+      const {data:newProductData} = await axios.post(`http://localhost:8080/api/v1/product/image/${data.result._id}`,fileData,config)
+      dispatch({
+        type: NEW_PRODUCT_SUCCESS,
+        payload: newProductData 
+      })
+    }else{
+      const {data} = await axios.post(`http://localhost:8080/api/v1/product/create`,productData,config)
+      dispatch({
+        type: NEW_PRODUCT_SUCCESS,
+        payload:  data,
+      })
+    }
 
   } catch (error) {
     dispatch({
       type: NEW_PRODUCT_FAIL,
-      payload: error.response.data.message,
+      payload: error
     });
   }
 };
