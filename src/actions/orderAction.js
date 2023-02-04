@@ -35,7 +35,7 @@ import {
         },
       };
       // const { data } = await axios.post("http://localhost:8080/api/v1/order/create", order, config);
-      const { data } = await axios.post("http://54.190.127.181:8080/api/v1/order/create", order, config);
+      const { data } = await axios.post("http://localhost:8080/api/v1/order/create", order, config);
   
       dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
       dispatch({
@@ -61,7 +61,7 @@ import {
         },
       };
       // const { data } = await axios.get("http://localhost:8080/api/v1/orders/me",config);
-      const { data } = await axios.get("http://54.190.127.181:8080/api/v1/orders/me",config);
+      const { data } = await axios.get("http://localhost:8080/api/v1/orders/me",config);
       dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {
       dispatch({
@@ -77,7 +77,7 @@ import {
       dispatch({ type: ALL_ORDERS_REQUEST });
   
       // const { data } = await axios.get("/api/v1/admin/orders");
-      const { data } = await axios.get("/api/v1/admin/orders");
+      const { data } = await axios.get("http://localhost:8080/api/v1/admin/orders");
   
       dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {

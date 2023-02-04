@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const AdminOrderDetails = ({ order }) => {
     function printInvoice(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -47,7 +48,7 @@ const AdminOrderDetails = ({ order }) => {
                 <div className="mb-10">
                     <h2 className=" text-xl">
                         <b>Order #</b>
-                        {order.id}
+                        {order._id}
                     </h2>
                 </div>
 
@@ -67,7 +68,8 @@ const AdminOrderDetails = ({ order }) => {
 
                         <div className="mb-3">
                             <h2 className=" text-md">
-                                <b>Order Date:</b> {`${order.date.month}/${order.date.day}/${order.date.year}`}
+                                {/* <b>Order Date:</b> {`${order.date.month}/${order.date.day}/${order.date.year}`} */}
+                                {order.created}
                             </h2>
                         </div>
 
@@ -94,7 +96,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="mb-3">
                             <h2 className=" text-md">
                                 <b>Client Name: </b>
-                                {order.clientName}
+                                {order.firstname}
                             </h2>
                         </div>
 
@@ -103,7 +105,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div>
                             <h2 className=" text-md">
                                 <b>Client Email: </b>
-                                {order.clientEmail}
+                                {order.email}
                             </h2>
                         </div>
                     </div>
@@ -126,7 +128,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="">
                             <div className="">
                                 <b>Address</b> <br />
-                                {order.shipping.address}
+                                {order.shippingAddress.shippingDetails}
                             </div>
                         </div>
 
@@ -135,7 +137,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="">
                             <div className="">
                                 <b>Country</b> <br />
-                                {order.shipping.country}
+                                {order.shippingAddress.shippingCountry}
                             </div>
                         </div>
 
@@ -144,7 +146,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="">
                             <div className="">
                                 <b>City</b> <br />
-                                {order.shipping.city}
+                                {order.shippingAddress.shippingCity}
                             </div>
                         </div>
 
@@ -153,7 +155,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="">
                             <div className="">
                                 <b>Zip</b> <br />
-                                {order.shipping.zip}
+                                {order.shippingAddress.shippingZip}
                             </div>
                         </div>
                     </div>
@@ -171,7 +173,7 @@ const AdminOrderDetails = ({ order }) => {
                     {/* Items */}
 
                     <div className="">
-                        {order.items.map((item, index) => (
+                        {order.products.map((item, index) => (
                             <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-gray-200">
                                 {/* Item Name */}
 
@@ -198,14 +200,14 @@ const AdminOrderDetails = ({ order }) => {
 
                                     <div>
                                         <h2 className=" text-md">
-                                            <b>Turnaround Type:</b> <br /> {item.orderedTurnaround.title}
+                                            <b>Turnaround Type:</b> <br /> {item.turnaroundType.title}
                                         </h2>
                                     </div>
 
                                     {/* Price */}
 
                                     <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C${item.orderedTurnaround.addOnPrice}</h2>
+                                        <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
                                     </div>
                                 </div>
 
@@ -219,7 +221,7 @@ const AdminOrderDetails = ({ order }) => {
                                     {/* Strains */}
 
                                     <div>
-                                        {item.orderedStrains.map((strain, index) => (
+                                        {item.strainsType.map((strain, index) => (
                                             <div key={index} className="grid grid-cols-2 gap-5">
                                                 {/* Name */}
 
@@ -248,7 +250,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="grid grid-cols-2 gap-5">
                             <h2 className=" text-md font-bold">Subtotal:</h2>
 
-                            <h2 className=" text-md text-right font-bold">C${order.subtotal}</h2>
+                            <h2 className=" text-md text-right font-bold">C${order.subTotalPrice}</h2>
                         </div>
 
                         {/* Shipping */}
@@ -264,7 +266,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="grid grid-cols-2 gap-5 mb-5 pb-5 border-b-[1px] border-b-gray-200">
                             <h2 className=" text-md font-bold">Tax:</h2>
 
-                            <h2 className=" text-md text-right font-bold">C${order.tax}</h2>
+                            <h2 className=" text-md text-right font-bold">C${order.taxPrice}</h2>
                         </div>
 
                         {/* Total */}
@@ -272,7 +274,7 @@ const AdminOrderDetails = ({ order }) => {
                         <div className="grid grid-cols-2 gap-5 mt-5">
                             <h2 className=" text-xl font-bold">Total:</h2>
 
-                            <h2 className=" text-xl text-right font-bold">C${order.total}</h2>
+                            <h2 className=" text-xl text-right font-bold">C${order.totalPrice}</h2>
                         </div>
                     </div>
                 </div>

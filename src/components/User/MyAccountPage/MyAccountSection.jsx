@@ -9,7 +9,7 @@ const MyAccountSection = () => {
   const dispatch = useDispatch()
 
   const { loading } = useSelector(
-      (state) => state.myOrders
+      (state) => state.allOrders
   );
 
   useEffect(()=>{

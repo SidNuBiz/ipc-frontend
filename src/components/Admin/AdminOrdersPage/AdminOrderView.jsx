@@ -1,16 +1,19 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,Fragment } from "react";
 import { useParams } from "react-router-dom";
+import {useSelector} from "react-redux"
 import { orders } from "../../../data/siteContent";
-
+import Loader from "../../../pages/Loader";
 import SideBar from "../Misc/SideBar";
 import AdminOrderDetails from "./AdminOrderDetails";
 
 const AdminOrderView = () => {
 
-  const orderId = useParams().id;
+    const { orders,loading } = useSelector(
+        (state) => state.allOrders
+    );
 
-  const thisOrder = orders.find((order) => order.id === orderId);
+    const orderId = useParams().id;
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -19,15 +22,23 @@ const AdminOrderView = () => {
     }, []);
 
     return (
-        <div className="lg:grid lg:grid-cols-5">
-            <div className=" col-span-1 z-50 relative">
-                <SideBar />
-            </div>
+    <Fragment>
+        {loading ? (
+          <Loader />
+        ) : (
+        <Fragment>
+            <div className="lg:grid lg:grid-cols-5">
+                <div className=" col-span-1 z-50 relative">
+                    <SideBar />
+                </div>
 
-            <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
-                <AdminOrderDetails order = {thisOrder} />
+                <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
+                    <AdminOrderDetails order = {orders[orderId]} />
+                </div>
             </div>
-        </div>
+        </Fragment>
+      )}
+    </Fragment>
     );
 };
 

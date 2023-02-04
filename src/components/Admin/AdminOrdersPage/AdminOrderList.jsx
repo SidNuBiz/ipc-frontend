@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {useSelector} from "react-redux"
 
-const AdminOrderList = ({orders}) => {
+const AdminOrderList = () => {
+
+    const { orders } = useSelector(
+        (state) => state.allOrders
+    );
 
   return (
     <div>
@@ -25,7 +30,7 @@ const AdminOrderList = ({orders}) => {
 
                                     <div className="">
                                         <b>Order ID</b> <br />
-                                        {order.id}
+                                        {order._id}
                                     </div>
 
                                 </div>
@@ -34,7 +39,8 @@ const AdminOrderList = ({orders}) => {
 
                                 <div className=" italic px-5">
                                     <b className=" not-italic">Date</b> <br />
-                                    {`${order.date.month}/${order.date.day}/${order.date.year}`}
+                                    {/* {`${order.date.month}/${order.date.day}/${order.date.year}`} */}
+                                    {order.created}
                                 </div>
 
                                 {/* Order Status */}
@@ -59,7 +65,7 @@ const AdminOrderList = ({orders}) => {
                             {/* View Details Button */}
 
                             <div className="w-fit mt-3 ml-auto">
-                                <Link to={`/IPC-admin-portal/orders/${order.id}`} className="inline-block">
+                                <Link to={`/IPC-admin-portal/orders/${index}`} className="inline-block">
                                     <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                 </Link>
                             </div>

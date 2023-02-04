@@ -13,15 +13,18 @@ const AdminServicesSection = () => {
   const {products,loading} = useSelector(
     (state) => state.products
   );
+  const {loading:newProductLoading} = useSelector(
+    (state) => state.newProduct
+  );
 
   useEffect(()=>{
     dispatch(getProduct())
-  },[dispatch])
+  },[dispatch,newProductLoading])
 
 
   return (
 
-    <Fragment>{loading ? <Loader /> : 
+    <Fragment>{loading || newProductLoading? <Loader /> : 
         <Fragment>
           <div>
 

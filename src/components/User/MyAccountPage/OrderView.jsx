@@ -19,9 +19,6 @@ const OrderView = () => {
 
     const {orderId} = useParams();
 
-    const thisOrder = orders[orderId]
-    console.log(thisOrder)
-
   return (
     <Fragment>
     {loading ? (

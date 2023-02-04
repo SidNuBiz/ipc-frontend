@@ -1,17 +1,27 @@
-
+import {useState} from "react"
 import { Link } from "react-router-dom";
-import {useDispatch} from "react-redux"
+import {useDispatch,useSelector} from "react-redux"
 import { deleteProduct } from "../../../actions/productAction";
 
-const AdminServiceList = ({ services }) => {
+const AdminServiceList = () => {
     const dispatch = useDispatch()
-    const deleteThisProduct = (productId) => {
+
+    const {products,loading} = useSelector(
+        (state) => state.products
+    );
+
+    const [services,setServices] = useState(products)
+
+    const deleteThisProduct = (productId,idx) => {
         dispatch(deleteProduct(productId))
+        services.splice(idx, 1)
+        setServices(services)
+        dispatch({type:'ALL_PRODUCT_SUCCESS',payload:services})
     }
 
     return (
         <div>
-            {services && services.map((service) => (
+            {services && services.map((service,idx) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
@@ -47,7 +57,7 @@ const AdminServiceList = ({ services }) => {
                                 {/* Delete Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <button onClick={() => deleteThisProduct(service._id)} className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
+                                    <button onClick={() => deleteThisProduct(service._id,idx)} className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
                                 </div>
                             </div>
                         </div>

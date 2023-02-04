@@ -19,17 +19,17 @@ const ServiceView = () => {
     const [strains, setStrains] = useState(0);
 
     const [strainsType,setStrainsType] = useState([])
-    const [turnaroundTitle,setTurnaroundType] = useState({title:"Standard (7 buisness days)",addOnPrice:0})
+    const [turnaroundTitle,setTurnaroundTitle] = useState("Standard (7 buisness days)")
 
     const addToCart = ()=>{
         dispatch(addItemsToCart({thisService,strainsType,turnaroundType:{title:turnaroundTitle,addOnPrice:turnaround},calculatedPrice,productPrice:thisService.price}))
-        setTurnaroundType({title:"Standard (7 buisness days)",addOnPrice:0})
+        setTurnaroundTitle("Standard (7 buisness days)")
         setStrainsType([])
     }
 
     const onTurnaroundValueChange = (e) => {
         setTurnaround(e.target.value);
-        setTurnaroundType(e.target.selectedOptions[0].innerText)
+        setTurnaroundTitle(e.target.selectedOptions[0].innerText)
     }
 
     const onStrainValueChange = (e) => {
