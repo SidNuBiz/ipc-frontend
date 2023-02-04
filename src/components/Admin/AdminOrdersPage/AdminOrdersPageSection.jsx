@@ -4,11 +4,13 @@ import { orders } from '../../../data/siteContent'
 import Loader from "../../../pages/Loader";
 import {getAllOrders} from "../../../actions/orderAction"
 import {useDispatch,useSelector} from "react-redux"
-import {useEffect,Fragment} from "react"
+import {useEffect,Fragment,useState} from "react"
 
 const AdminOrdersPageSection = () => {
 
   const dispatch = useDispatch()
+
+  const[searchKey,setSearchKey] = useState('')
 
   const { loading } = useSelector(
       (state) => state.allOrders
@@ -39,7 +41,7 @@ const AdminOrdersPageSection = () => {
 
               <div className="">
 
-                <input type="text" placeholder="Search Orders" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" />
+                <input type="text" placeholder="Search Orders" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)}/>
 
               </div>
 
@@ -48,7 +50,7 @@ const AdminOrdersPageSection = () => {
             {/* Services */}
 
             <div className="">
-              <AdminOrderList />
+              <AdminOrderList  searchKey = {searchKey} />
             </div>
           </div>
         </Fragment>

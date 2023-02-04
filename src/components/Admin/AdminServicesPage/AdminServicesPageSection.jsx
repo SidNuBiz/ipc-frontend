@@ -9,6 +9,7 @@ import Loader from "../../../pages/Loader";
 const AdminServicesSection = () => {
   const dispatch = useDispatch()
 
+  const[searchKey,setSearchKey] = useState('')
 
   const {products,loading} = useSelector(
     (state) => state.products
@@ -16,6 +17,8 @@ const AdminServicesSection = () => {
   const {loading:newProductLoading} = useSelector(
     (state) => state.newProduct
   );
+
+  
 
   useEffect(()=>{
     dispatch(getProduct())
@@ -42,7 +45,7 @@ const AdminServicesSection = () => {
 
               <div className="col-span-3 sm:order-2">
 
-                <input type="text" placeholder="Search Services" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" />
+                <input type="text" placeholder="Search Services" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
 
               </div>
 
@@ -63,7 +66,7 @@ const AdminServicesSection = () => {
             {/* Services */}
 
             <div className="">
-              <AdminServiceList services = {products} />
+              <AdminServiceList  searchKey = {searchKey} />
             </div>
           </div>
 

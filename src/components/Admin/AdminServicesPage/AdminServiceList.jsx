@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import { deleteProduct } from "../../../actions/productAction";
 
-const AdminServiceList = () => {
+const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
 
-    const {products,loading} = useSelector(
+    const {products} = useSelector(
         (state) => state.products
     );
-
+    
     const [services,setServices] = useState(products)
-
+    
     const deleteThisProduct = (productId,idx) => {
         dispatch(deleteProduct(productId))
         services.splice(idx, 1)
@@ -21,7 +21,7 @@ const AdminServiceList = () => {
 
     return (
         <div>
-            {services && services.map((service,idx) => (
+            {services && services.filter( service => service.name.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">

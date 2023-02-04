@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {useSelector} from "react-redux"
 
-const AdminOrderList = () => {
+const AdminOrderList = ({searchKey}) => {
 
     const { orders } = useSelector(
         (state) => state.allOrders
@@ -17,7 +17,7 @@ const AdminOrderList = () => {
                 {/* Order 1 */}
 
                 <ul>
-                    {orders && orders.map((order, index) => (
+                    {orders && orders.filter( order => order.firstname.toLowerCase().includes(searchKey.toLowerCase())).map((order, index) => (
                         <li
                             key={index}
                             className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
