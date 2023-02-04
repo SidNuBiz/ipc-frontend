@@ -1,8 +1,13 @@
 
 import { Link } from "react-router-dom";
-
+import {useDispatch} from "react-redux"
+import { deleteProduct } from "../../../actions/productAction";
 
 const AdminServiceList = ({ services }) => {
+    const dispatch = useDispatch()
+    const deleteThisProduct = (productId) => {
+        dispatch(deleteProduct(productId))
+    }
 
     return (
         <div>
@@ -42,7 +47,7 @@ const AdminServiceList = ({ services }) => {
                                 {/* Delete Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
+                                    <button onClick={() => deleteThisProduct(service._id)} className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
                                 </div>
                             </div>
                         </div>

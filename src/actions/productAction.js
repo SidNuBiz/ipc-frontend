@@ -118,7 +118,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     const config = {
       headers: { "Content-Type": "application/json" },
     };
-    const { data } = await axios.delete(`/api/v1/admin/product/${id}`,id,config);
+    const { data } = await axios.delete(`http://localhost:8080/api/v1/product/delete/${id}`,id,config);
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
