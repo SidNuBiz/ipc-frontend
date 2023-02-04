@@ -104,7 +104,7 @@ const SideBar = () => {
                                 </li>
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
-                                    <NavLink to="/">
+                                    <NavLink to="/IPC-admin-portal/notifications">
                                         <img
                                             src="https://img.icons8.com/fluency-systems-regular/40/ffffff/appointment-reminders--v1.png"
                                             alt="activities-icon"
