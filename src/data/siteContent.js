@@ -2148,7 +2148,7 @@
 
             message: "You have a new order from John Doe",
 
-            link: "/IPC-admin-portal/orders/123456789123",
+            link: "/IPC-admin-portal/orders/0",
 
             date: {
 
@@ -2172,7 +2172,7 @@
 
             message: "You have a new order from John Carter",
 
-            link: "/IPC-admin-portal/orders/123456789123",
+            link: "/IPC-admin-portal/orders/0",
 
             date: {
 
@@ -2196,7 +2196,7 @@
 
             message: "You have a new order from John Wick",
 
-            link: "/IPC-admin-portal/orders/123456789123",
+            link: "/IPC-admin-portal/orders/0",
 
             date: {
 
