@@ -5,12 +5,30 @@ import { notifications } from "../../../data/siteContent";
 import AdminNotificationList from "../AdminNotificationsPage/AdminNotificationList";
 import { Link } from "react-router-dom";
 import AdminServiceList from "../AdminServicesPage/AdminServiceList";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AdminOrderList from "../AdminOrdersPage/AdminOrderList";
+
+import { useSelector, useDispatch } from "react-redux";
+import {getAllOrders} from "../../../actions/orderAction.js"
+import { getProduct } from "../../../actions/productAction.js";
+
 
 
 const AdminHomePageSection = () => {
 
-    const[searchKey,setSearchKey] = useState('')
+    const dispatch = useDispatch()
+
+    const[serviceSearchKey,setSearchKey] = useState('');
+
+    const[orderSearchKey,setOrderSearchKey] = useState('');
+
+
+    useEffect(()=>{
+        dispatch(getAllOrders())
+
+        dispatch(getProduct())
+
+      },[dispatch])
 
 
   return (
@@ -109,6 +127,34 @@ const AdminHomePageSection = () => {
 
         </div>
 
+        {/* Order List */}
+
+        <div className="mb-10 p-5 bg-white rounded-xl shadow-lg ">
+
+            {/* Heading */}
+
+            <div className="flex justify-between mb-10">
+
+                <h2 className="inline-block align-middle w-fit text-2xl font-semibold text-gray-600">Orders</h2>
+
+                {/* See all Button */}
+
+                <Link to="/IPC-admin-portal/orders">
+
+                    <button className="inline-block align-middle w-fit text-[#397f77] text-md font-bold hover:underline">See all</button>
+
+                </Link>
+
+            </div>
+
+            {/* Service List */}
+
+            <div className="min-h-[200px] max-h-[300px] overflow-y-auto w-full">
+                <AdminOrderList searchKey = {orderSearchKey} />
+            </div>
+
+        </div>
+
         {/* Service List */}
 
         <div className="p-5 bg-white rounded-xl shadow-lg ">
@@ -132,7 +178,7 @@ const AdminHomePageSection = () => {
             {/* Service List */}
 
             <div className="min-h-[200px] max-h-[300px] overflow-y-auto w-full">
-                <AdminServiceList searchKey = {searchKey} />
+                <AdminServiceList searchKey = {serviceSearchKey} />
             </div>
 
         </div>

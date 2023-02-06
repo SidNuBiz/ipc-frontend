@@ -1,9 +1,15 @@
 import AdminHomePageSection from "../../components/Admin/AdminHomePage/AdminHomePageSection";
 import SideBar from "../../components/Admin/Misc/SideBar";
-
+import { useEffect } from "react";
 
 
 const AdminHomePage = () => {
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+
+  }, []);
 
   return (
 
