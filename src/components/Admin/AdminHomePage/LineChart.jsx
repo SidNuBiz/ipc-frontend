@@ -13,7 +13,7 @@ const LineChart = () => {
 
   const daysFetched = useRef(false)
 
-  const numDays = new Date(new Date().getFullYear() , new Date().getMonth(), 0).getDate();
+  const numDays = new Date(new Date().getFullYear() , new Date().getMonth() + 1, 0).getDate();
 
     const days=[];
     const values=[];

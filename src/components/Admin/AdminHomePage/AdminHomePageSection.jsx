@@ -1,9 +1,16 @@
 // import { useState } from "react";
 import LineChart from "./LineChart";
 import { orders } from "../../../data/siteContent";
+import { notifications } from "../../../data/siteContent";
+import AdminNotificationList from "../AdminNotificationsPage/AdminNotificationList";
+import { Link } from "react-router-dom";
+import AdminServiceList from "../AdminServicesPage/AdminServiceList";
+import { useState } from "react";
 
 
 const AdminHomePageSection = () => {
+
+    const[searchKey,setSearchKey] = useState('')
 
 
   return (
@@ -16,15 +23,10 @@ const AdminHomePageSection = () => {
             <h2 className=" text-4xl font-semibold text-gray-600">Overview</h2>
         </div>
 
-        {/* Orders Chart */}
-
-        <div className="mb-10">
-            <LineChart  />
-        </div>
 
         {/* Status boxes */}
 
-        <div className=" grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10">
+        <div className="mb-10 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10">
 
             {/* Total Orders */}
 
@@ -67,6 +69,74 @@ const AdminHomePageSection = () => {
             </div>
 
         </div>
+
+
+        {/* Orders Chart and Notification List */}
+
+        <div className="grid lg:grid-cols-2 gap-10 mb-10 w-full">
+
+            {/* Orders Chart */}
+
+            <div className=" min-w-[250px] h-full">
+                <LineChart  />
+            </div>
+
+            {/* Notification List */}
+
+            <div className="p-5 bg-white rounded-xl shadow-lg ">
+                {/* Heading */}
+
+                <div className="flex justify-between mb-10">
+
+                    <h2 className="inline-block align-middle w-fit text-2xl font-semibold text-gray-600">Notifications</h2>
+
+                    {/* See all Button */}
+
+                    <Link to="/IPC-admin-portal/notifications">
+
+                        <button className="inline-block align-middle w-fit text-[#397f77] text-md font-bold hover:underline">See all</button>
+
+                    </Link>  
+
+                </div>
+
+                <div className=" min-h-[200px] max-h-[300px] overflow-y-auto w-full">
+                    <AdminNotificationList notifications={notifications} />
+                </div>
+
+                
+            </div>
+
+        </div>
+
+        {/* Service List */}
+
+        <div className="p-5 bg-white rounded-xl shadow-lg ">
+
+            {/* Heading */}
+
+            <div className="flex justify-between mb-10">
+
+                <h2 className="inline-block align-middle w-fit text-2xl font-semibold text-gray-600">Services</h2>
+
+                {/* See all Button */}
+
+                <Link to="/IPC-admin-portal/services">
+
+                    <button className="inline-block align-middle w-fit text-[#397f77] text-md font-bold hover:underline">See all</button>
+
+                </Link>
+
+            </div>
+
+            {/* Service List */}
+
+            <div className="min-h-[200px] max-h-[300px] overflow-y-auto w-full">
+                <AdminServiceList searchKey = {searchKey} />
+            </div>
+
+        </div>
+
 
     </div>
 
