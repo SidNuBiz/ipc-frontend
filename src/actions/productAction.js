@@ -26,7 +26,7 @@ import {
 export const getProduct = ()=>async (dispatch)=>{
     try{
         dispatch({type:ALL_PRODUCT_REQUEST})
-
+     
         const {data} = await axios.get('http://localhost:8080/api/v1/product/all')
 
         dispatch({type:ALL_PRODUCT_SUCCESS,payload:data})
@@ -42,9 +42,8 @@ export const getProduct = ()=>async (dispatch)=>{
 export const getAdminProduct = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
-
+    
     const { data } = await axios.get("/api/v1/admin/products");
-
     dispatch({
       type: ADMIN_PRODUCT_SUCCESS,
       payload: data.products,

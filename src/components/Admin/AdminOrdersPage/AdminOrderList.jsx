@@ -57,7 +57,7 @@ const AdminOrderList = ({searchKey}) => {
                                 <div className="text-left px-5">
                                     <div className="mb-3">
                                         <b>Total</b> <br />
-                                        C${order.total}
+                                        C${order.totalPrice}
                                     </div>
                                 </div>
                             </div>

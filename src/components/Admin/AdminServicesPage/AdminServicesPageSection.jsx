@@ -18,12 +18,9 @@ const AdminServicesSection = () => {
     (state) => state.newProduct
   );
 
-  
-
   useEffect(()=>{
     dispatch(getProduct())
   },[dispatch,newProductLoading])
-
 
   return (
 

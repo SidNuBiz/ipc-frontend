@@ -28,7 +28,7 @@ const AdminHomePageSection = () => {
 
         dispatch(getProduct())
 
-      },[dispatch])
+    },[dispatch])
 
 
   return (

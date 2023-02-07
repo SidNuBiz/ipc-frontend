@@ -1,12 +1,13 @@
-import {useState} from "react"
+import {useState,Fragment,useEffect} from "react"
 import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import { deleteProduct } from "../../../actions/productAction";
+import Loader from "../../../pages/Loader";
 
 const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
 
-    const {products} = useSelector(
+    const {products,loading} = useSelector(
         (state) => state.products
     );
     
@@ -19,9 +20,14 @@ const AdminServiceList = ({searchKey}) => {
         dispatch({type:'ALL_PRODUCT_SUCCESS',payload:services})
     }
 
+    useEffect(()=>{
+        setServices(products)
+    },[products])
+
     return (
+        
         <div>
-            {services && services.filter( service => service.name.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
+            {services.length > 0 && services.filter( service => service.name.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
@@ -65,6 +71,7 @@ const AdminServiceList = ({searchKey}) => {
                 </div>
             ))}
         </div>
+
     );
 };
 
