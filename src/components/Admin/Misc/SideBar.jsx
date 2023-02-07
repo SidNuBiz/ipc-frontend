@@ -136,7 +136,7 @@ const SideBar = () => {
                                     </NavLink>
                                 </li>
                                 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                {/* <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
                                     <NavLink to="/clients">
                                         <img
                                             src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/40/ffffff/external-contents-product-management-smashingstocks-mixed-smashing-stocks.png"
@@ -145,7 +145,7 @@ const SideBar = () => {
                                         />
                                         Site Content
                                     </NavLink>
-                                </li>
+                                </li> */}
 
                                 <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
                                     <NavLink to="/IPC-admin-portal/members">
