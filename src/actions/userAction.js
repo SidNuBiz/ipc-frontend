@@ -153,3 +153,16 @@ export const addImage = (file) => async (dispatch) => {
   }
    
 }
+
+// get All Users
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    console.log("game")
+    dispatch({ type: ALL_USERS_REQUEST });
+    const { data } = await axios.get(`http://localhost:8080/api/v1/users/all`);
+    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    console.log(error)
+    dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.error });
+  }
+};

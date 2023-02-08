@@ -1,17 +1,25 @@
 import React from "react";
 import { useState } from "react";
+import {useSelector} from "react-redux"
 
-const AdminMemberList = ({ members }) => {
+const AdminMemberList = ({ searchKey }) => {
+
+    const { users } = useSelector(
+        (state) => state.allUsers
+    );
+
     var [thisMember, setThisMember] = useState({
 
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
-        img: "",
-        addressInfo: {
+        avatar:{
+            url:""
+        },
+        address: {
 
-            address: "",
+            details: "",
             city: "",
             country: "",
             zip: "",
@@ -25,20 +33,20 @@ const AdminMemberList = ({ members }) => {
         <div className="h-full">
             <div className="">
                 <ul className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-10">
-                    {members.map((member, index) => (
+                    {users && users.filter( member => member.firstname.toLowerCase().includes(searchKey.toLowerCase())).map((member, index) => (
                         <li key={index} onClick={() => {setThisMember(member); setShowModal(true)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
                             <div className="p-5 text-center text-white" >
 
                                 {/* Member Image */}
 
                                 <div className="w-fit mx-auto mb-3">
-                                    <img src={member.img} alt="" className="h-24 w-24 rounded-full object-cover" />
+                                    <img src={member.avatar.url} alt="" className="h-24 w-24 rounded-full object-cover" />
                                 </div>
 
                                 {/* Member Name */}
 
                                 <div>
-                                    <p className=" font-semibold mb-2 " >{`${member.firstName} ${member.lastName}`}</p>
+                                    <p className=" font-semibold mb-2 " >{`${member.firstname} ${member.lastname}`}</p>
                                 </div>
 
                                 {/* Member Email */}
@@ -61,15 +69,15 @@ const AdminMemberList = ({ members }) => {
                     {/* Close Button */}
 
                     <div className=" w-fit ml-auto mr-5">
-                        <button onClick={() => setShowModal(false)} className="text-white text-3xl font-semibold py-2 px-3 border-transparent border-2 hover:border-white duration-300 ">X</button>
+                        <button onClick={() => setShowModal(false)} className="text-white text-3xl font-semibold py-2 pxmember-transparent border-2 hover:border-white duration-300 ">X</button>
                     </div>
 
                     <div className="grid lg:grid-cols-3 gap-10 mx-5 ">
                         {/* Member Image */}
 
-                        <div className="lg:col-span-1 w-fit mx-auto h-fit my-auto">
-                            <img src={thisMember.img} alt="" className="h-52 w-52 mx-auto rounded-full object-cover" />
-                        </div>
+                        {/* <div className="lg:col-span-1 w-fit mx-auto h-fit my-auto">
+                            <img src={thisMember.avatar.url} alt="" className="h-52 w-52 mx-auto rounded-full object-cover" />
+                        </div> */}
 
                         <div className=" lg:col-span-2 md:col-span-1 sm:col-span-1 ">
                             {/* Heading */}
@@ -86,7 +94,7 @@ const AdminMemberList = ({ members }) => {
 
                                     {/* Name */}
 
-                                    <p className="text-white">{thisMember.firstName}</p>
+                                    <p className="text-white">{thisMember.firstname}</p>
                                 </div>
 
                                 {/* Last Name */}
@@ -98,7 +106,7 @@ const AdminMemberList = ({ members }) => {
 
                                     {/* Name */}
 
-                                    <p className="text-white">{thisMember.lastName}</p>
+                                    <p className="text-white">{thisMember.lastname}</p>
                                 </div>
 
                                 {/* Email */}
@@ -122,7 +130,7 @@ const AdminMemberList = ({ members }) => {
 
                                     {/* Email */}
 
-                                    <p className="text-white">{thisMember.phone}</p>
+                                    <p className="text-white">{thisMember.phone == ""? "Not Provided" : thisMember.phone }</p>
                                 </div>
                             </div>
 
@@ -145,7 +153,7 @@ const AdminMemberList = ({ members }) => {
 
                                         {/* Address */}
 
-                                        <p className="text-white">{thisMember.addressInfo.address}</p>
+                                        <p className="text-white">{thisMember.address.details == ""? "Not Provided" : thisMember.address.details}</p>
                                     </div>
 
                                     {/* Country */}
@@ -157,7 +165,7 @@ const AdminMemberList = ({ members }) => {
 
                                         {/* Country */}
 
-                                        <p className="text-white">{thisMember.addressInfo.country}</p>
+                                        <p className="text-white">{thisMember.address.country == ""? "Not Provided" : thisMember.address.details}</p>
                                     </div>
 
                                     {/* City */}
@@ -169,7 +177,7 @@ const AdminMemberList = ({ members }) => {
 
                                         {/* Address */}
 
-                                        <p className="text-white">{thisMember.addressInfo.city}</p>
+                                        <p className="text-white">{thisMember.address.city == ""? "Not Provided" : thisMember.address.city}</p>
                                     </div>
 
                                     {/* Zip */}
@@ -181,7 +189,7 @@ const AdminMemberList = ({ members }) => {
 
                                         {/* Country */}
 
-                                        <p className="text-white">{thisMember.addressInfo.zip}</p>
+                                        <p className="text-white">{thisMember.address.zip == ""? "Not Provided" : thisMember.address.zip}</p>
                                     </div>
                                 </div>
                             </div>
