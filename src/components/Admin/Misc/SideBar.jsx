@@ -89,72 +89,84 @@ const SideBar = () => {
                     <div className="mt-10 w-52 mx-auto">
                         {/* Menu */}
 
-                        <div className="border-white">
+                        <div className="">
                             <ul className="text-lg">
 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/IPC-admin-portal">
-                                        <img
-                                            src="https://img.icons8.com/windows/40/ffffff/home-page.png"
-                                            alt="projects-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Home
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/windows/40/ffffff/home-page.png"
+                                                alt="projects-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Home
+                                        </div>
                                     </NavLink>
                                 </li>
 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/IPC-admin-portal/notifications">
-                                        <img
-                                            src="https://img.icons8.com/fluency-systems-regular/40/ffffff/appointment-reminders--v1.png"
-                                            alt="activities-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Notifications
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/fluency-systems-regular/40/ffffff/appointment-reminders--v1.png"
+                                                alt="activities-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Notifications
+                                        </div>
                                     </NavLink>
                                 </li>
 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/IPC-admin-portal/services">
-                                        <img
-                                            src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/40/ffffff/external-lab-alternative-medicine-flatart-icons-outline-flatarticons.png"
-                                            alt="activities-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Services
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/40/ffffff/external-lab-alternative-medicine-flatart-icons-outline-flatarticons.png"
+                                                alt="activities-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Services
+                                        </div>
                                     </NavLink>
                                 </li>
 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/IPC-admin-portal/orders">
-                                        <img
-                                            src="https://img.icons8.com/fluency-systems-regular/40/ffffff/shopping-basket-success.png"
-                                            alt="profile-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Orders
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/fluency-systems-regular/40/ffffff/shopping-basket-success.png"
+                                                alt="profile-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Orders
+                                        </div>
                                     </NavLink>
                                 </li>
                                 
-                                {/* <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                {/* <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/clients">
-                                        <img
-                                            src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/40/ffffff/external-contents-product-management-smashingstocks-mixed-smashing-stocks.png"
-                                            alt="clients-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Site Content
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/40/ffffff/external-contents-product-management-smashingstocks-mixed-smashing-stocks.png"
+                                                alt="clients-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Site Content
+                                        </div>
                                     </NavLink>
                                 </li> */}
 
-                                <li className="w-full pb-2 mb-5 hover:border-b-2 duration-100">
+                                <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                     <NavLink to="/IPC-admin-portal/members">
-                                        <img
-                                            src="https://img.icons8.com/windows/40/ffffff/groups.png"
-                                            alt="team-member-icon"
-                                            className="inline-block mr-4 w-fit mx-auto"
-                                        />
-                                        Members
+                                        <div className="pb-2">
+                                            <img
+                                                src="https://img.icons8.com/windows/40/ffffff/groups.png"
+                                                alt="team-member-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                            Members
+                                        </div>
                                     </NavLink>
                                 </li>
 
