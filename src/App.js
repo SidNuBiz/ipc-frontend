@@ -5,7 +5,6 @@ import "aos/dist/aos.css";
 import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
-import { getProduct } from "./actions/productAction"
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -65,28 +64,13 @@ function App() {
 
         {/* Admin Routes */}
 
-        <Route path="/IPC-admin-portal" element={<AdminHomePage />} />
-
-        <Route path="/IPC-admin-portal/notifications" element={<AdminNotificationsPage />} />
-
-        <Route path="/IPC-admin-portal/services" element={<AdminServicesPage />} />
-
-        <Route path="/IPC-admin-portal/services/create" element={<AdminServiceCreatePage />} />
-
-        <Route path="/IPC-admin-portal/services/:id" element={<AdminServiceEditPage />} />
-
-        <Route path="/IPC-admin-portal/orders" element={<AdminOrdersPage />} />
-
-        <Route path="/IPC-admin-portal/orders/:id" element={<AdminOrderView />} />
-
-        <Route path="/IPC-admin-portal/members" element={<AdminMembersPage />} />
-
+       
         <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
 
 
         {/* Protected Routes */}
 
-        <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute  />}>
              
           {/* User Dropdown */}
 
@@ -97,6 +81,27 @@ function App() {
           <Route path="user/account/orders/:orderId" element={<OrderView />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
+        </Route>
+
+        <Route element={<ProtectedRoute isAdmin={true} />}>
+          {/* Admin Routes */}
+
+          <Route path="/IPC-admin-portal"  element={<AdminHomePage  />} />
+
+          <Route path="/IPC-admin-portal/notifications"  element={<AdminNotificationsPage  />} />
+
+          <Route path="/IPC-admin-portal/services"  element={<AdminServicesPage  />} />
+
+          <Route path="/IPC-admin-portal/services/create"  element={<AdminServiceCreatePage  />} />
+
+          <Route path="/IPC-admin-portal/services/:id"  element={<AdminServiceEditPage  />} />
+
+          <Route path="/IPC-admin-portal/orders"  element={<AdminOrdersPage  />} />
+
+          <Route path="/IPC-admin-portal/orders/:id"  element={<AdminOrderView  />} />
+
+          <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage  />} />
+
 
         </Route>
 
@@ -164,10 +169,6 @@ function App() {
         <Route path="/services/agriculture" element={<ServiceAgriculturePage />} />
 
       </Routes>
-
-      
-
-
       
     </BrowserRouter>
     

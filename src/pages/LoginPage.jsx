@@ -15,10 +15,7 @@ const LoginPage = () => {
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-    useEffect(() => {
-        // 👇️ scroll to top on page load
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, []);
+
 
     const loginUser = (e) => {
         e.preventDefault()

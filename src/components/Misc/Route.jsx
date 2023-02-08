@@ -7,6 +7,7 @@ import { Outlet, Navigate } from "react-router-dom";
 const ProtectedRoute = ({isAdmin}) => {
 
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
+  console.log(isAdmin)
 
   return (
     <Fragment>

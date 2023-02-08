@@ -1,16 +1,46 @@
 // import { Link } from "react-router-dom";
 import Logo from "../../assets/header-logo.png";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login } from "../../actions/userAction";
+import {useNavigate} from "react-router-dom"
 
 
 const AdminLoginPage = () => {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+
+    const { error, loading, isAuthenticated } = useSelector(
+        (state) => state.user
+    );
+
+    const [forgotPassword, setForgotPassword] = useState(false);
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
 
     useEffect(() => {
         // 👇️ scroll to top on page load
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
 
-    const [forgotPassword, setForgotPassword] = useState(false);
+    const loginUser = (e) => {
+        e.preventDefault()
+        dispatch(login({email,password}));
+    }
+
+    
+    useEffect(() => {
+        if (error) {
+            console.log(error)
+        }
+      
+        if (isAuthenticated) {
+            navigate(`/IPC-admin-portal`);
+        }
+        // 👇️ scroll to top on page load
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, [dispatch, error, navigate, isAuthenticated]);
 
     return (
 
@@ -26,7 +56,7 @@ const AdminLoginPage = () => {
 
             <div className={"bg-white w-fit mx-auto p-10 shadow-xl rounded-2xl " + (forgotPassword ? "translate-x-[2000px] duration-500 h-0 " : " translate-x-0 duration-500 ")}>
 
-                <form action="">
+                <form  onSubmit={loginUser} >
 
                     {/* Heading */}
 
@@ -34,11 +64,12 @@ const AdminLoginPage = () => {
 
                     {/* Email */}
 
+         
                     <div className="mt-10">
 
                         <label htmlFor="email" className="block text-2xl mb-3">Email</label>
 
-                        <input type="email" name="email" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="example@example.com" />
+                        <input type="email" name="email" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="example@example.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
                     </div>
 
@@ -48,14 +79,14 @@ const AdminLoginPage = () => {
 
                         <label htmlFor="password" className="block text-2xl mb-3">Password</label>
 
-                        <input type="password" name="password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="********" />
+                        <input type="password" name="password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="********" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
                     </div>
 
                     {/* Login Button */}
 
                     <div className="mt-10 w-fit mx-auto">
-                        <button className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300">Login</button>
+                        <button type="submit" className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300">Login</button>
                     </div>
 
                     {/* Forgot Password Button */}
