@@ -101,7 +101,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Members</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{members && members.length}</h2>
+                <h2 className="text-4xl text-[#397f77]">{users && users.length}</h2>
 
             </div>
 
