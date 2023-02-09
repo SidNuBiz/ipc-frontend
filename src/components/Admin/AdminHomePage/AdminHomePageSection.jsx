@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import LineChart from "./LineChart";
-import { orders } from "../../../data/siteContent";
+import { members, orders } from "../../../data/siteContent";
 import { notifications } from "../../../data/siteContent";
 import AdminNotificationList from "../AdminNotificationsPage/AdminNotificationList";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import AdminOrderList from "../AdminOrdersPage/AdminOrderList";
 import { useSelector, useDispatch } from "react-redux";
 import {getAllOrders} from "../../../actions/orderAction.js"
 import { getProduct } from "../../../actions/productAction.js";
+import {getAllUsers} from "../../../actions/userAction"
 
 
 
@@ -22,10 +23,27 @@ const AdminHomePageSection = () => {
 
     const[orderSearchKey,setOrderSearchKey] = useState('');
 
+    let totalSale = 0
+
+    const {products} = useSelector(
+        (state) => state.products
+    );
+
+    const { orders } = useSelector(
+        (state) => state.allOrders
+    );
+
+    const { users } = useSelector(
+        (state) => state.allUsers
+    );
+
+    orders && orders.forEach(order => {
+        totalSale = totalSale + order.totalPrice
+    });
 
     useEffect(()=>{
         dispatch(getAllOrders())
-
+        dispatch(getAllUsers())
         dispatch(getProduct())
 
     },[dispatch])
@@ -52,7 +70,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Orders</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{orders.length}</h2>
+                <h2 className="text-4xl text-[#397f77]">{orders && orders.length}</h2>
 
             </div>
 
@@ -62,7 +80,8 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Sales</h2>
 
-                <h2 className="text-4xl text-[#397f77]">C$35500</h2>
+                {/* <h2 className="text-4xl text-[#397f77]">C${orders && orders.map(order =>(totalSale = totalSale + (+order.totalPrice)) )}</h2> */}
+                <h2 className="text-4xl text-[#397f77]">C${totalSale}</h2>
 
             </div>
 
@@ -72,7 +91,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Services</h2>
 
-                <h2 className="text-4xl text-[#397f77]">8</h2>
+                <h2 className="text-4xl text-[#397f77]">{products && products.length}</h2>
 
             </div>
 
@@ -82,7 +101,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Members</h2>
 
-                <h2 className="text-4xl text-[#397f77]">100</h2>
+                <h2 className="text-4xl text-[#397f77]">{members && members.length}</h2>
 
             </div>
 

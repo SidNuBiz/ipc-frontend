@@ -13,7 +13,7 @@ const AdminMembersPageSection = () => {
 
     const[searchKey,setSearchKey] = useState('')
   
-    const { users,loading } = useSelector(
+    const {loading } = useSelector(
         (state) => state.allUsers
     );
 
