@@ -138,7 +138,7 @@ const AdminHomePageSection = () => {
                 </div>
 
                 <div className=" min-h-[200px] max-h-[300px] overflow-y-auto w-full">
-                    <AdminNotificationList notifications={notifications} />
+                    <AdminNotificationList notifications={orders} />
                 </div>
 
                 
