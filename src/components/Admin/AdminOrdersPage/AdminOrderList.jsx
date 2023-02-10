@@ -8,6 +8,9 @@ const AdminOrderList = ({searchKey}) => {
         (state) => state.allOrders
     );
 
+
+    console.log(new Date().getMonth())
+
   return (
     <div>
 
@@ -39,8 +42,7 @@ const AdminOrderList = ({searchKey}) => {
 
                                 <div className=" italic px-5">
                                     <b className=" not-italic">Date</b> <br />
-                                    {/* {`${order.date.month}/${order.date.day}/${order.date.year}`} */}
-                                    {order.created}
+                                    {`${new Date(order.created).getDate()}-${new Date(order.created).getMonth()+1}-${new Date(order.created).getFullYear()}`}
                                 </div>
 
                                 {/* Order Status */}
