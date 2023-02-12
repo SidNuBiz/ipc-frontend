@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
+import { getProduct } from "./actions/productAction";
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -50,6 +51,7 @@ function App() {
   useEffect ( () => {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
+    store.dispatch(getProduct());
     Aos.init({duration: 1500});
 
   }, [])

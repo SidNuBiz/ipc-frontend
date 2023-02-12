@@ -16,7 +16,7 @@ const TestingService = ({ service }) => {
             {/* Image */}
 
             <div className="h-[400px] w-full overflow-hidden">
-                <img src={service.img} alt="" className="h-full w-full object-cover group-hover:scale-110 duration-500 " />
+                <img src={service.image.url} alt="" className="h-full w-full object-cover group-hover:scale-110 duration-500 " />
             </div>
 
             {/* Name */}
