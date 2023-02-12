@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/header-logo.png";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login } from "../actions/userAction";
+import { clearErrors, login, forgotPasswordRecover } from "../actions/userAction";
 import {useNavigate} from "react-router-dom"
+
 
 const LoginPage = () => {
     const dispatch = useDispatch();
@@ -16,10 +17,16 @@ const LoginPage = () => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
+    const [forgetEmail, setForgetEmail] = useState("")
 
     const loginUser = (e) => {
         e.preventDefault()
         dispatch(login({email,password}));
+    }
+
+    const forgetPassword = (e)=>{
+        e.preventDefault()
+        dispatch(forgotPasswordRecover(forgetEmail))
     }
 
     const [forgotPassword, setForgotPassword] = useState(false);
@@ -109,7 +116,7 @@ const LoginPage = () => {
 
             <div className={"bg-white w-fit mx-auto p-10 shadow-xl rounded-2xl " + (forgotPassword ? " translate-x-0 duration-500 " : " -translate-x-[2000px] duration-500 h-0 ")}>
 
-                <form action="">
+                <form onSubmit={forgetPassword} >
 
                     {/* Heading */}
 
@@ -123,22 +130,19 @@ const LoginPage = () => {
 
                         <label htmlFor="email" className="block text-2xl mb-3">Email</label>
 
-                        <input type="email" name="email" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="example@example.com" />
+                        <input type="email" name="email" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="example@example.com" value={forgetEmail} onChange={(e)=>{setForgetEmail(e.target.value)}} />
 
                     </div>
 
                     {/* Submit Button */}
 
                     <div className="mt-10 w-fit mx-auto">
-                        <button className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300">Submit</button>
+                        <button type="submit" className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300"  >Submit</button>
                     </div>
 
                     {/* Return Button */}
 
                     <button onClick={() => {setForgotPassword(false)}} type="button" className="mt-10 text-[#397f77] font-semibold w-full text-center text-xl hover:-translate-x-5 duration-300">&#x2190; Go Back</button>
-
-                    
-
 
                 </form>
                 

@@ -115,7 +115,7 @@ function App() {
 
         <Route path="/signup" element={<SignUpPage />} />
 
-        <Route path="/reset-pass" element={<ResetPassPage />} />
+        <Route path="/reset-pass/:token" element={<ResetPassPage />} />
 
         <Route path="/cart" element={<CartPage />} />
 

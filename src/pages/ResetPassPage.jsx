@@ -1,14 +1,48 @@
 import Logo from "../assets/header-logo.png";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link , useNavigate,useParams} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPassword } from "../actions/userAction";
 
 
 const ResetPassPage = () => {
+    const navigate = useNavigate()
+    const {token} = useParams()
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        // 👇️ scroll to top on page load
+    const { error,success, loading } = useSelector(
+        (state) => state.forgotPassword
+    );
+
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const resetPasswordSubmit = (e) => {
+        e.preventDefault();
+    
+        const myForm = new FormData();
+    
+        myForm.set("password", password);
+        myForm.set("confirmPassword", confirmPassword);
+    
+        dispatch(resetPassword(token, myForm));
+      };
+    
+      useEffect(() => {
+        if (error) {
+          console.log(error);
+        }
+    
+        if (success) {
+          console.log("Password Updated Successfully");
+    
+          navigate("/login");
+        }
+
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, []);
+
+      }, [dispatch, error, navigate, success]);
+
 
     return (
 
@@ -24,7 +58,7 @@ const ResetPassPage = () => {
 
             <div className=" bg-white w-fit mx-auto p-10 shadow-xl rounded-2xl">
 
-                <form action="">
+                <form onSubmit={resetPasswordSubmit}>
 
                     {/* Heading */}
 
@@ -47,7 +81,7 @@ const ResetPassPage = () => {
 
                         <label htmlFor="new-password" className="block text-2xl mb-3">New Password</label>
 
-                        <input type="password" name="new-password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="********" />
+                        <input type="password" name="new-password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="********" />
 
                     </div>
 
@@ -58,14 +92,14 @@ const ResetPassPage = () => {
 
                         <label htmlFor="re-password" className="block text-2xl mb-3">Confirm Password</label>
 
-                        <input type="password" name="re-password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" placeholder="********" />
+                        <input type="password" name="re-password" className="block bg-[#18debb] bg-opacity-20 w-96 rounded-xl px-3 py-2 focus:outline-none placeholder:text-gray-400" value={confirmPassword} onChange={(e)=>setConfirmPassword(e.target.value)} placeholder="********" />
 
                     </div>
 
                     {/* Register Button */}
 
                     <div className="mt-10 w-fit mx-auto">
-                        <button className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300">Reset</button>
+                        <button type="submit" className="px-16 py-2 rounded-2xl border-2 border-[#397f77] text-[#397f77] text-2xl hover:border-white hover:text-white hover:bg-[#18debb] duration-300">Reset</button>
                     </div>
 
                     {/* Login Page Link */}
