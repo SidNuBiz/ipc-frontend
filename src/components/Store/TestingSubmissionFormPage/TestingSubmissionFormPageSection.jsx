@@ -5,11 +5,17 @@ import SignatureCanvas from "react-signature-canvas";
 import { useState } from "react";
 
 const TestingSubmissionFormPageSection = () => {
+
+    const [sampleList,setSampleList]=useState([<div className="mb-10"><SampleSubmissionFormSection /></div>])
     const [signature, setSignature] = useState(null);
 
     const clearSignature = () => {
         signature.clear();
     };
+
+    const addSample = () => {
+        setSampleList([...sampleList,<div className="mb-10"><SampleSubmissionFormSection /></div>])
+    }
 
     return (
         <div className="text-gray-600">
@@ -36,16 +42,16 @@ const TestingSubmissionFormPageSection = () => {
                 <div className="w-full mb-5">
                     <h2 className="w-full border-b-2 border-b-gray-200 text-2xl text-gray-600 font-semibold pb-3">Samples</h2>
                 </div>
-
-                <div className="mb-10">
-                    <SampleSubmissionFormSection />
-                </div>
+                {sampleList.map((item)=>(
+                    item
+                ))}
+             
             </div>
 
             {/* Add Sample Button */}
 
             <div className="mb-10">
-                <button className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-3 py-2 duration-300">Add Sample</button>
+                <button onClick={addSample} className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-3 py-2 duration-300">Add Sample</button>
             </div>
 
             {/* Comments/​Additional Notes */}

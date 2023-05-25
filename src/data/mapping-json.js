@@ -1181,7 +1181,7 @@ let mapping = [
   }
 ]
 
-let newMap = mapping.map(data => {
+export const newMap = mapping.map(data => {
   if(data.Type2 != undefined){
     let editType =data.Type2.split(", ")
     data.Type2 = editType
@@ -1195,22 +1195,34 @@ let newMap = mapping.map(data => {
 
 })
 
-// console.log(newMap)
+// function removeDuplicate(arr) {
+//   let outputArray = arr.filter(function(v, i, self){
+//     return i == self.indexOf(v);
+//   });
 
-// console.log(newMap)
+//   return outputArray;
+// }
 
-// const typeTests = newMap.filter(data => data.Type2 != undefined ? data.Type2.includes("NHP"):false)
-// const cannabisTests = newMap.filter(data => data.Type2 != undefined ? data.Type2.includes("Cannabis"):false)
-// const cosmeticsTests = newMap.filter(data => data.Type2 != undefined ? data.Type2.includes("Cosmetics"):false)
-// const enviromentalTests = newMap.filter(data => data.Type2 != undefined ? data.Type2.includes("Environmental"):false)
-// const foodTests = newMap.filter(data => data.Type2 != undefined ? data.Type2.includes("Food"):false)
+// let matrixArr = []
+// let categoriesArr = []
+// let testNameArr = []
+// const typeTests = newMap.filter(data => (data.Type2 != undefined ? data.Type2.includes("Environmental"):false))
+// typeTests.forEach(data => data.MatrixForm != undefined ? matrixArr.push(...data.MatrixForm):false)
+// let distinctMatrixArr = removeDuplicate(matrixArr)
+// console.log(distinctMatrixArr)
 
-const typeTests = newMap.filter(data => (data.Type2 != undefined ? data.Type2.includes("Environmental"):false))
-// console.log(typeTests)
-const matrixFormTests = typeTests.filter(data => data.MatrixForm != undefined ? data.MatrixForm.includes("Crude Oil"):false)
-// console.log(matrixFormTests.length)
-const categoriesTests = matrixFormTests.filter(data => data.Categories == "Analytical")
-// console.log(categoriesTests)
-const nameTests = categoriesTests.filter(data => data.Name == "Total Alkali")
-console.log(nameTests)
+// const matrixFormTests = typeTests.filter(data => data.MatrixForm != undefined ? data.MatrixForm.includes("Crude Oil"):false)
+// matrixFormTests.forEach(data => data.MatrixForm != undefined ? categoriesArr.push(data.Categories):false)
+// let distinctCategoriesArr = removeDuplicate(categoriesArr)
+// console.log(distinctCategoriesArr)
+
+// const categoriesTests = matrixFormTests.filter(data => data.Categories == "Analytical")
+// categoriesTests.forEach(data => data.Name != undefined ? testNameArr.push(data.Name):false)
+// let distinctTestNameArr = removeDuplicate(testNameArr)
+// console.log(distinctTestNameArr)
+
+// const nameTests = categoriesTests.filter(data => data.Name == "Total Alkali")
+// console.log(nameTests)
+
+
 

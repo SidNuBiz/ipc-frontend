@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 const SampleSubmissionFormSection = () => {
 
+    const [testList,setTestList] = useState([<div className='mb-5'><TestingSelectionForm/></div>])
+
     const selectCustomStyles = {
 
         control: (provided, state) => ({
@@ -35,6 +37,10 @@ const SampleSubmissionFormSection = () => {
         {label:"Standard", value: "standard"},
         {label:"Rushed", value: "rushed"},
     ]
+
+    const addTest = ()=>{       
+        setTestList([...testList,<TestingSelectionForm/>])
+    }
 
   return (
     <div className='border-[1px] border-gray-300 p-5 text-gray-600 rounded-xl'>
@@ -101,16 +107,16 @@ const SampleSubmissionFormSection = () => {
 
         {/* Tests */}
 
-        <div className='mb-5'>
 
-            <TestingSelectionForm />
-
-        </div>
+        {testList.map((item)=>(
+            item
+        ))}
+     
 
         {/* Add Test Button */}
 
         <div className='mb-10'>
-            <button className='bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-3 py-2 duration-300'>Add Test</button>
+            <button onClick={addTest} className='bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-3 py-2 duration-300'>Add Test</button>
         </div>
 
         {/* Additional Testing Information */}
