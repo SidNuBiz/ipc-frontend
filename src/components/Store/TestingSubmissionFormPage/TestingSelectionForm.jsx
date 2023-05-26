@@ -38,7 +38,12 @@ const TestingSelectionForm = () => {
     const[categoryList, setCategoryList] = useState(null)
     const [testNameList, setTestNameList] = useState(null) 
 
+
+
     function handleTypeChange(e) {
+
+        setMatrixForm(null);
+
         setType(e.value)
         let matrixArr = []
         typeTests = newMap.filter(data => (data.Type2 != undefined ? data.Type2.includes(e.value):false))
@@ -146,14 +151,14 @@ const TestingSelectionForm = () => {
                 <div>
                     {/* <button onClick={() => {console.log(type)}}>show type</button> */}
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type</label>
-                    <Select options={tests} onChange={handleTypeChange} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Matrix */}
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form</label>
-                    <Select options={matrixFormList} onChange={handleMatrixChange} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Category */}
