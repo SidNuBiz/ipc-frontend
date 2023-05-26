@@ -44,6 +44,8 @@ import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
 import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
 import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotificationsPage';
+// import NotificationPopup from './components/Misc/NotificationPopup';
+import TestingSubmissionFormPage from './pages/Store/TestingSubmissionFormPage';
 
 
 function App() {
@@ -59,6 +61,12 @@ function App() {
   return (
 
     <BrowserRouter>
+
+      {/* Notification popup
+
+      <div>
+        <NotificationPopup />
+      </div> */}
 
       {/* Routes */}
 
@@ -118,6 +126,8 @@ function App() {
         <Route path="/reset-pass/:token" element={<ResetPassPage />} />
 
         <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
 
         {/* About Dropdown Pages */}
 
