@@ -3,9 +3,9 @@ import TestingSelectionForm from './TestingSelectionForm'
 import Select from 'react-select'
 import { useState } from 'react'
 
-const SampleSubmissionFormSection = () => {
+const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
-    const [testList,setTestList] = useState([<div className='mb-5'><TestingSelectionForm/></div>])
+    const [testList,setTestList] = useState([{id:new Date().getTime(),content:<TestingSelectionForm/>}])
 
     const selectCustomStyles = {
 
@@ -38,8 +38,10 @@ const SampleSubmissionFormSection = () => {
         {label:"Rushed", value: "rushed"},
     ]
 
-    const addTest = ()=>{       
-        setTestList([...testList,<TestingSelectionForm/>])
+    const addTest = ()=>{     
+
+        setTestList([...testList,{id:new Date().getTime(),content:<TestingSelectionForm/>}])
+        console.log(testList)
     }
 
   return (
@@ -48,13 +50,17 @@ const SampleSubmissionFormSection = () => {
         {/* Heading */}
 
         <div className='mb-5'>
-
-            {/* Delete Sample Button */}
-
-            <span className='inline-block mr-3'>
-                <button className='py-[2px] px-[9px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
+        <span className='inline-block mr-3'>
+                <button
+                onClick={() => {
+                    setSampleList(
+                        sampleList.filter(sampleItem =>
+                            sampleItem.id !== id
+                        )
+                    );
+                }}  
+                className='py-[2px] px-[9px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
             </span>
-
             {/* Sample Count */}
 
             <span className=' inline-block'>
@@ -62,6 +68,8 @@ const SampleSubmissionFormSection = () => {
             </span>
 
         </div>
+
+ 
 
         {/* Sample Form */}
 
@@ -109,7 +117,23 @@ const SampleSubmissionFormSection = () => {
 
 
         {testList.map((item)=>(
-            item
+            <div key={item.id} className='mb-5'>
+                {/* Delete Test Button */}
+                <span className='block float-right ml-3'>
+                    <button onClick={() => {
+                    setTestList(
+                        testList.filter(testItem =>
+                        testItem.id !== item.id
+                        )
+                    );
+                    }} 
+                    className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>
+                    X
+                    </button>
+                </span>
+
+                {item.content}
+            </div>
         ))}
      
 

@@ -134,12 +134,6 @@ const TestingSelectionForm = () => {
   return (
     <div className='text-gray-600 bg-gray-50 p-3 rounded-md'>
 
-        {/* Delete Test Button */}
-
-        <span className='block float-right ml-3'>
-            <button className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
-        </span>
-
         {/* Testing selection Form */}
 
         <span className='block '>

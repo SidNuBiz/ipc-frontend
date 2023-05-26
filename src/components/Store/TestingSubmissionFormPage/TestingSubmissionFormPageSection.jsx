@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const TestingSubmissionFormPageSection = () => {
 
-    const [sampleList,setSampleList]=useState([<div className="mb-10"><SampleSubmissionFormSection /></div>])
+    const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
     const [signature, setSignature] = useState(null);
 
     const clearSignature = () => {
@@ -14,7 +14,7 @@ const TestingSubmissionFormPageSection = () => {
     };
 
     const addSample = () => {
-        setSampleList([...sampleList,<div className="mb-10"><SampleSubmissionFormSection /></div>])
+        setSampleList([...sampleList,{id:new Date().getTime(),content:SampleSubmissionFormSection }])
     }
 
     return (
@@ -43,7 +43,11 @@ const TestingSubmissionFormPageSection = () => {
                     <h2 className="w-full border-b-2 border-b-gray-200 text-2xl text-gray-600 font-semibold pb-3">Samples</h2>
                 </div>
                 {sampleList.map((item)=>(
-                    item
+                    <div key={item.id} className="mb-10">
+                        {/* Delete Sample Button */}
+
+                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} />}
+                    </div>
                 ))}
              
             </div>
