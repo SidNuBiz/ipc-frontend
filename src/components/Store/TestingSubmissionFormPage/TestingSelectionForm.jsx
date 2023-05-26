@@ -17,15 +17,6 @@ const TestingSelectionForm = () => {
         return outputArray;
     }
       
-
-    // var selectedValue = {
-
-    //     type: '',
-    //     matrixForm: '',
-    //     category: '',
-    //     testName: '',
-    // }
-
     const [type, setType] = useState(null)
     const [matrixForm, setMatrixForm] = useState(null)
     const [category, setCategory] = useState(null)
@@ -43,6 +34,11 @@ const TestingSelectionForm = () => {
     function handleTypeChange(e) {
 
         setMatrixForm(null);
+        setCategory(null)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
 
         setType(e.value)
         let matrixArr = []
@@ -56,7 +52,11 @@ const TestingSelectionForm = () => {
     }
 
     function handleMatrixChange(e) {
-        setMatrixForm(e.value)
+        setCategory(null)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.MatrixForm != undefined ? data.MatrixForm.includes(e.value):false)
         matrixFormTests.forEach(data => data.MatrixForm != undefined ? categoriesArr.push(data.Categories):false)
@@ -68,7 +68,10 @@ const TestingSelectionForm = () => {
     }
 
     function handleCategoryChange(e) {
-        setCategory(e.value)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
         let testNameArr = []
         categoriesTests = matrixFormTests.filter(data => data.Categories == e.value)
         categoriesTests.forEach(data => data.Name != undefined ? testNameArr.push(data.Name):false)
@@ -79,6 +82,9 @@ const TestingSelectionForm = () => {
     }
 
     function handleTestNameChange(e) {
+        setDescription('')
+        setAmount('')
+        setUnit('')
         const nameTests = categoriesTests.filter(data => data.Name == e.value)
         console.log(nameTests)
         setDescription(nameTests[0].Description)
@@ -159,14 +165,14 @@ const TestingSelectionForm = () => {
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Categories</label>
-                    <Select options={categoryList}  onChange={handleCategoryChange} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={categoryList} value={category}  onChange={(e) => {handleCategoryChange(e); setCategory(e)}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Name */}
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Test Name</label>
-                    <Select options={testNameList}  onChange={handleTestNameChange} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={testNameList} value={testName}  onChange={(e)=>{handleTestNameChange(e);setTestName(e)}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 <div>

@@ -4,7 +4,7 @@ import Select from 'react-select'
 import { useState } from 'react'
 
 const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
-
+  
     const [testList,setTestList] = useState([{id:new Date().getTime(),content:<TestingSelectionForm/>}])
 
     const selectCustomStyles = {
@@ -41,7 +41,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const addTest = ()=>{     
 
         setTestList([...testList,{id:new Date().getTime(),content:<TestingSelectionForm/>}])
-        console.log(testList)
+       
     }
 
   return (
@@ -64,7 +64,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
             {/* Sample Count */}
 
             <span className=' inline-block'>
-                <p className='font-semibold text-xl'>Sample 1</p>
+                <p className='font-semibold text-xl'>Sample Submission</p>
             </span>
 
         </div>
