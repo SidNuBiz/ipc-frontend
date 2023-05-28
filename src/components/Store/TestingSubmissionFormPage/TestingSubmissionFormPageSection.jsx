@@ -3,8 +3,11 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import SampleSubmissionFormSection from "./SampleSubmissionFormSection";
 import SignatureCanvas from "react-signature-canvas";
 import { useState } from "react";
+import {useDispatch} from "react-redux"
+import {createSamples} from "../../../actions/limsAction"
 
 const TestingSubmissionFormPageSection = () => {
+    const dispatch = useDispatch()
     const [sampleFormData,setSampleFormData] = useState([])
     const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
     const [signature, setSignature] = useState(null);
@@ -20,12 +23,13 @@ const TestingSubmissionFormPageSection = () => {
     }
 
     const submit = ()=>{
-       console.log({
-        sampleFormData,
-        signature,
-        additionalInfo,
-        acknowledgementCheck
-       })
+        dispatch(createSamples({
+            sampleFormData,
+            // signature,
+            additionalInfo,
+            acknowledgementCheck
+        }))
+       
     }
 
     return (
@@ -56,7 +60,6 @@ const TestingSubmissionFormPageSection = () => {
                 {sampleList.map((item)=>(
                     <div key={item.id} className="mb-10">
                         {/* Delete Sample Button */}
-
                         {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />}
                     </div>
                 ))}
@@ -88,9 +91,7 @@ const TestingSubmissionFormPageSection = () => {
                     onChange={(e)=>setAdditionalInfo(e.target.value)}
                     value={additionalInfo}
                     >
-                    
 
-                
                 </textarea>
             </div>
 
