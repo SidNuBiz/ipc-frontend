@@ -5,9 +5,11 @@ import SignatureCanvas from "react-signature-canvas";
 import { useState } from "react";
 
 const TestingSubmissionFormPageSection = () => {
-
+    const [sampleFormData,setSampleFormData] = useState([])
     const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
     const [signature, setSignature] = useState(null);
+    const [additionalInfo,setAdditionalInfo] = useState('')
+    const [acknowledgementCheck,setAcknowledgementCheck] = useState(false)
 
     const clearSignature = () => {
         signature.clear();
@@ -15,6 +17,15 @@ const TestingSubmissionFormPageSection = () => {
 
     const addSample = () => {
         setSampleList([...sampleList,{id:new Date().getTime(),content:SampleSubmissionFormSection }])
+    }
+
+    const submit = ()=>{
+       console.log({
+        sampleFormData,
+        signature,
+        additionalInfo,
+        acknowledgementCheck
+       })
     }
 
     return (
@@ -46,7 +57,7 @@ const TestingSubmissionFormPageSection = () => {
                     <div key={item.id} className="mb-10">
                         {/* Delete Sample Button */}
 
-                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} />}
+                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />}
                     </div>
                 ))}
              
@@ -73,7 +84,14 @@ const TestingSubmissionFormPageSection = () => {
                     name=""
                     id=""
                     rows="3"
-                    className="w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none"></textarea>
+                    className="w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none"
+                    onChange={(e)=>setAdditionalInfo(e.target.value)}
+                    value={additionalInfo}
+                    >
+                    
+
+                
+                </textarea>
             </div>
 
             {/* Notes */}
@@ -126,6 +144,7 @@ const TestingSubmissionFormPageSection = () => {
                             type="checkbox"
                             name="acknowledgement"
                             id="acknowledgement"
+                            onChange={(e)=>{setAcknowledgementCheck(e.target.checked)}}
                         />
                         <label htmlFor="acknowledgement"> Acknowledgement</label>
                     </div>
@@ -152,7 +171,7 @@ const TestingSubmissionFormPageSection = () => {
             {/* Submit Button */}
 
             <div className="mt-10 w-fit ml-auto">
-                <button className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-5 py-3 duration-300">Submit</button>
+                <button onClick={submit} className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-5 py-3 duration-300">Submit</button>
             </div>
         </div>
     );

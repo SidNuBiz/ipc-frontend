@@ -7,7 +7,7 @@ let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = () => {
+const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -29,10 +29,8 @@ const TestingSelectionForm = () => {
     const[categoryList, setCategoryList] = useState(null)
     const [testNameList, setTestNameList] = useState(null) 
 
-
-
     function handleTypeChange(e) {
-
+        
         setMatrixForm(null);
         setCategory(null)
         setTestName(null)
@@ -64,7 +62,7 @@ const TestingSelectionForm = () => {
             return {label:data,value:data}
         })
         setCategoryList(selectCategoriesArr)
-       
+        
     }
 
     function handleCategoryChange(e) {
@@ -81,14 +79,20 @@ const TestingSelectionForm = () => {
         setTestNameList(selectTestNameArr)
     }
 
-    function handleTestNameChange(e) {
+    const handleTestNameChange =  (e) => {
         setDescription('')
         setAmount('')
         setUnit('')
         const nameTests = categoriesTests.filter(data => data.Name == e.value)
-        console.log(nameTests)
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
+        setTestFormData([...testFormData,{
+            type:type.value,
+            matrixForm:matrixForm.value,
+            category:category.value,
+            test:nameTests[0]
+        }])
+        sampleDataMerged()
     }
     const selectCustomStyles = {
 
@@ -149,7 +153,6 @@ const TestingSelectionForm = () => {
                 {/* Test Type */}
 
                 <div>
-                    {/* <button onClick={() => {console.log(type)}}>show type</button> */}
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type</label>
                     <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
@@ -171,18 +174,18 @@ const TestingSelectionForm = () => {
                 {/* Test Name */}
 
                 <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Test Name</label>
+                    <label htmlFor='testName' className='block mb-2 text-sm font-semibold'>Test Name</label>
                     <Select options={testNameList} value={testName}  onChange={(e)=>{handleTestNameChange(e);setTestName(e)}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 <div>
                     <label htmlFor='description' className='block mb-2 text-sm font-semibold'>Description</label>
-                    <input type='text' value={description} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    <input type='text' value={description} name='description' id='description' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
                 <div>
-                    <label htmlFor='description' className='block mb-2 text-sm font-semibold'>Amount REQ'D</label>
-                    <input type='text' value={amount + ' ' + unit} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    <label htmlFor='amount' className='block mb-2 text-sm font-semibold'>Amount REQ'D</label>
+                    <input type='text' value={amount + ' ' + unit} name='amount' id='amount' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
             </div>
