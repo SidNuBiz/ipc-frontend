@@ -7,7 +7,7 @@ let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged}) => {
+const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,testDataId}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -87,6 +87,7 @@ const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged}) =
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
         setTestFormData([...testFormData,{
+            id:testDataId,
             type:type.value,
             matrixForm:matrixForm.value,
             category:category.value,

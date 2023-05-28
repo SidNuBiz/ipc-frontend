@@ -3,7 +3,6 @@ import TestingSelectionForm from './TestingSelectionForm'
 import Select from 'react-select'
 import { useState,useEffect,useId } from 'react'
 
-
 const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData,setSampleFormData}) => {
 
     const [testFormData,setTestFormData] = useState([])
@@ -111,6 +110,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
     const addTest = ()=>{     
 
         setTestList([...testList,{id:new Date().getTime(),content:TestingSelectionForm}])
+        sampleDataMerged()
        
     }
 
@@ -132,6 +132,13 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                             sampleItem.id !== id
                         )
                     );
+                    console.log(sampleData.id)
+                    setSampleFormData(
+                        sampleFormData.filter(sample=>
+                            sample.id !== sampleData.id
+                        )
+                    )
+                    console.log(sampleFormData)
                 }}  
                 className='py-[2px] px-[9px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
             </span>
@@ -199,6 +206,11 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                         testItem.id !== item.id
                         )
                     );
+                    setTestFormData(
+                        testFormData.filter(testData => 
+                            testData.id !== item.id
+                        )
+                    )
                     sampleDataMerged()
                     }} 
                     className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>
@@ -206,7 +218,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                     </button>
                 </span>
 
-                {<item.content testFormData={testFormData} setTestFormData={setTestFormData} sampleDataMerged={sampleDataMerged}/>}
+                {<item.content testFormData={testFormData} setTestFormData={setTestFormData} sampleDataMerged={sampleDataMerged} testDataId = {item.id}/>}
             </div>
         ))}
      
