@@ -86,7 +86,7 @@ const SideBar = () => {
 
                                 {/* Profile Link */}
 
-                                <Link to="/admin/profile">
+                                <Link to="/user/profile">
 
                                     <div className="inline-block align-middle mr-3 px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
                                         Profile

@@ -91,6 +91,9 @@ function App() {
           <Route path="user/account/orders/:orderId" element={<OrderView />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
+
+          <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
+          
         </Route>
 
         <Route element={<ProtectedRoute isAdmin={true} />}>
@@ -127,7 +130,7 @@ function App() {
 
         <Route path="/cart" element={<CartPage />} />
 
-        <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
+        
 
         {/* About Dropdown Pages */}
 

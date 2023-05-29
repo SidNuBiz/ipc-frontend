@@ -52,6 +52,19 @@ const NavBar = () => {
 
                     <div className=" flex lg:col-span-4 lg:block md:hidden sm:hidden h-fit my-auto w-fit mx-auto">
                         <ul className="block font-medium">
+
+                            {/* Dashboard */}
+
+                            {isAuthenticated && user.role == 'admin' &&
+                            <li className=" inline-block mr-8">
+                                <Link to="/IPC-admin-portal">
+                                    <button className="text-xl">Dashboard</button>
+                                </Link>
+                            </li>
+                            
+                            }
+
+                            {/* Home */}
                             <li className=" inline-block mr-8">
                                 <Link to="/">
                                     <button className="text-xl">Home</button>
@@ -396,7 +409,16 @@ const NavBar = () => {
                     <div className="mt-10 ">
 
                         <ul>
+                            {/* Dashboard */}
 
+                            {isAuthenticated && user.role == 'admin' &&
+                            <li className=" block mb-10">
+                                <Link to="/IPC-admin-portal">
+                                    <button className="text-2xl font-semibold ml-20">Dashboard</button>
+                                </Link>
+                            </li>
+                            
+                            }
                             {/* Home */}
 
                             <li className="block mb-10">

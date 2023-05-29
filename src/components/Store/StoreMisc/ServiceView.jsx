@@ -1,6 +1,6 @@
 import NavBar from "../../Misc/NavBar.jsx";
 import Footer from "../../Misc/Footer.jsx";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
@@ -114,6 +114,11 @@ const ServiceView = () => {
                             {/* Description */}
 
                             <p className="lg:text-lg md:text-lg sm:text-base text-gray-600 mt-10">{thisService && thisService.description}</p>
+                            <Link to="/testing-submission">
+                                <div className="mt-10">
+                                    <button id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Submit a Sample</button>
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Selection Column */}
@@ -121,7 +126,7 @@ const ServiceView = () => {
                         <div className="w-fit lg:mx-auto md:mx-auto ">
 
                             {/* Turnaround */}
-
+{/* 
                             <div className="mb-10">
 
                                 <label htmlFor="turnaround" className="block text-xl font-semibold mb-10">Type</label>
@@ -139,10 +144,10 @@ const ServiceView = () => {
 
                                 </select>
 
-                            </div>
+                            </div> */}
 
                             {/* Strains Check boxes */}
-                            
+{/*                             
                             <div>
 
 
@@ -161,13 +166,16 @@ const ServiceView = () => {
                                     ))
                                 }
 
-                            </div>
+                            </div> */}
 
                             {/* Add to Cart Button */}
 
-                            <div className="mt-10">
+                            {/* <div className="mt-10">
                                 <button onClick={addToCart} id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Add to Cart</button>
-                            </div>
+                            </div> */}
+                    
+                          
+
 
                         </div>
 
