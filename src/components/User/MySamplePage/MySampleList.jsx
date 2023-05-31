@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
+import {samples} from "../../../data/sampleResult"
 import Loader from "../../../pages/Loader";
 import {mySample} from "../../../actions/limsAction"
 import {useDispatch,useSelector} from "react-redux"
 import {useEffect,Fragment} from "react"
 
 const SampleList = () => {
+    const loading = false
     const dispatch = useDispatch()
-    const { samples,loading } = useSelector(
-        (state) => state.mySample
-    );
+    // const { samples,loading } = useSelector(
+    //     (state) => state.mySample
+    // );
 
-    useEffect(()=>{
-        dispatch(mySample())
-    },[])
+    // useEffect(()=>{
+    //     dispatch(mySample())
+    // },[])
 
     return (
 
