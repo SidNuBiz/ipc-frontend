@@ -1,3 +1,15 @@
+
+
+import {
+
+  MY_SAMPLE_REQUEST,
+  MY_SAMPLE_SUCCESS,
+  MY_SAMPLE_FAIL,
+
+} from "../constants/limsConstants";
+
+
+
 import axios from "axios";
 import Cookies from 'js-cookie'
 
@@ -29,3 +41,26 @@ export const createSamples = (samples) => async (dispatch) => {
         console.log(error)
     }
   };
+
+
+// My Sample
+export const mySample = () => async (dispatch) => {
+  try {
+    dispatch({ type: MY_SAMPLE_REQUEST });
+    const token = Cookies.get('token')
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}` 
+      },
+    };
+    
+    const { data } = await axios.get("http://localhost:8080/api/v1/lims/samples",config);
+    console.log(data)
+    dispatch({ type: MY_SAMPLE_SUCCESS, payload: data.data });
+  } catch (error) {
+    dispatch({
+      type: MY_SAMPLE_FAIL,
+      payload: error.response.data.error,
+    });
+  }
+};

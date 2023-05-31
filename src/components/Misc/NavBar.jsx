@@ -247,6 +247,9 @@ const NavBar = () => {
                                             <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <Link to="/user/account"><h2 className="px-5 py-3">Account</h2></Link>
                                             </li>
+                                            <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
+                                                <Link to="/user/sample"><h2 className="px-5 py-3">Samples</h2></Link>
+                                            </li>
 
                                             <li className=" block  hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <button className="px-5 py-3" onClick={logoutUser} >Logout</button>
@@ -340,6 +343,16 @@ const NavBar = () => {
 
                                             <div className="inline-block align-middle px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
                                                 Account
+                                            </div>
+
+                                        </Link>
+
+                                        {/* My Sample Link */}
+
+                                        <Link to="/user/sample">
+
+                                            <div className="inline-block align-middle px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
+                                                Sample
                                             </div>
 
                                         </Link>

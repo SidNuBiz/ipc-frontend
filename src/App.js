@@ -34,6 +34,7 @@ import CartPage from './pages/Store/CartPage.jsx';
 import CheckoutPage from './pages/Store/CheckoutPage.jsx';
 import ProfilePage from './pages/User/ProfilePage.jsx';
 import MyAccountPage from './pages/User/MyAccountPage.jsx';
+import MySamplePage from './pages/User/MySamplePage';
 import OrderView from './components/User/MyAccountPage/OrderView.jsx';
 import AdminHomePage from './pages/Admin/AdminHomePage.jsx';
 import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
@@ -87,6 +88,8 @@ function App() {
           <Route path="/user/profile" element={<ProfilePage />} />
 
           <Route path="/user/account" element={<MyAccountPage />} />
+
+          <Route path='/user/sample' element={<MySamplePage />} />
 
           <Route path="user/account/orders/:orderId" element={<OrderView />} />
 
