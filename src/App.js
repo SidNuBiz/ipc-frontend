@@ -47,6 +47,7 @@ import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
 import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotificationsPage';
 // import NotificationPopup from './components/Misc/NotificationPopup';
 import TestingSubmissionFormPage from './pages/Store/TestingSubmissionFormPage';
+import SampleView from './components/User/MySamplePage/SampleView';
 
 
 function App() {
@@ -89,7 +90,9 @@ function App() {
 
           <Route path="/user/account" element={<MyAccountPage />} />
 
-          <Route path='/user/sample' element={<MySamplePage />} />
+          <Route path='/user/samples' element={<MySamplePage />} />
+
+          <Route path="user/samples/sample/:sampleId" element={<SampleView />} />
 
           <Route path="user/account/orders/:orderId" element={<OrderView />} />
 

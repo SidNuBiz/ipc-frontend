@@ -75,12 +75,12 @@ const SampleList = () => {
                                 </div>
 
                                 {/* View Details Button */}
-{/* 
+
                                 <div className="w-fit mt-5 ml-auto">
-                                    <Link to={`orders/${index}`} className="inline-block">
+                                    <Link to={`sample/${sample.id_text}`} className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                     </Link>
-                                </div> */}
+                                </div>
                             </li>
                         ))}
                     </ul>
