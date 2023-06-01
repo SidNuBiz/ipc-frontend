@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
 import { useDispatch } from "react-redux";
+import NotificationPopup from "../../Misc/NotificationPopup.jsx";
 
 const ServiceView = () => {
 
@@ -21,10 +22,15 @@ const ServiceView = () => {
     const [strainsType,setStrainsType] = useState([])
     const [turnaroundTitle,setTurnaroundTitle] = useState("Standard (7 buisness days)")
 
+    const [notification,setNotification] = useState({trigger:false,notificationMessage:""})
+
     const addToCart = ()=>{
         dispatch(addItemsToCart({thisService,strainsType,turnaroundType:{title:turnaroundTitle,addOnPrice:turnaround},calculatedPrice,productPrice:thisService.price}))
         setTurnaroundTitle("Standard (7 buisness days)")
         setStrainsType([])
+
+        setNotification({trigger:true,notificationMessage:"Item added to cart!"})
+        // triggerNotification({trigger:true,notificationMessage:"Item added to cart!"})
     }
 
     const onTurnaroundValueChange = (e) => {
@@ -63,6 +69,10 @@ const ServiceView = () => {
     return (
 
         <div className="bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen">
+
+            {/* Notification Popup */}
+
+            <NotificationPopup notification={notification}/>
 
             {/* NavBar */}
 
