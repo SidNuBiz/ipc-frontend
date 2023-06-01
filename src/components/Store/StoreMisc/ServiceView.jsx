@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
 import { useSelector,useDispatch } from "react-redux";
-import { useDispatch } from "react-redux";
 import NotificationPopup from "../../Misc/NotificationPopup.jsx";
 
 const ServiceView = () => {
