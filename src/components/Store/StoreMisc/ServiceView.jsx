@@ -1,9 +1,10 @@
 import NavBar from "../../Misc/NavBar.jsx";
 import Footer from "../../Misc/Footer.jsx";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
+import { useSelector,useDispatch } from "react-redux";
 import { useDispatch } from "react-redux";
 import NotificationPopup from "../../Misc/NotificationPopup.jsx";
 
@@ -13,9 +14,13 @@ const ServiceView = () => {
 
     const {serviceId} = useParams();
 
-    const thisService = testingServices.find(service => service.id.toString() === serviceId);
+    const {products,loading} = useSelector(
+        (state) => state.products
+    );
 
-    const [turnaround, setTurnaround] = useState(thisService.turnaroundTypes[0].addOnPrice);
+    const thisService = products && products.find(service => service._id.toString() === serviceId);
+
+    const [turnaround, setTurnaround] = useState(thisService && thisService.turnaroundTypes[0].addOnPrice);
 
     const [strains, setStrains] = useState(0);
 
@@ -36,6 +41,7 @@ const ServiceView = () => {
     const onTurnaroundValueChange = (e) => {
         setTurnaround(e.target.value);
         setTurnaroundTitle(e.target.selectedOptions[0].innerText)
+    
     }
 
     const onStrainValueChange = (e) => {
@@ -50,21 +56,23 @@ const ServiceView = () => {
             });
             setStrainsType(filtered)
         }
+
     }
 
+    let calculatedPrice = thisService && thisService.price + parseFloat(turnaround) + parseFloat(strains)
 
-    var calculatedPrice = thisService.price + parseFloat(turnaround) + parseFloat(strains);
 
-    if (parseFloat(calculatedPrice) <= 0) {                 // Disable Add to Cart Button if price is 0 or less
+    if (parseFloat(calculatedPrice) < 0) {                 // Disable Add to Cart Button if price is 0 or less
 
         document.getElementById("add-to-cart-btn").disabled = true;
 
     }
 
     useEffect(() => {
+        setTurnaround(thisService && thisService.turnaroundTypes[0].addOnPrice)
         // 👇️ scroll to top on page load
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, []);
+        // window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, [thisService]);
 
     return (
 
@@ -93,7 +101,7 @@ const ServiceView = () => {
                 {/* Service Image */}
 
                 <div className="w-full h-[250px]">
-                    <img src={thisService.img} alt="" className="h-full w-full object-cover object-center" />
+                    <img src={thisService && thisService.image.url} alt="" className="h-full w-full object-cover object-center" />
                 </div>
 
                 {/* Service Name */}
@@ -108,15 +116,20 @@ const ServiceView = () => {
 
                             {/* Name */}
 
-                            <h2 className="lg:text-5xl md:text-5xl sm:text-3xl text-gray-600 font font-semibold">{thisService.name}</h2>
+                            <h2 className="lg:text-5xl md:text-5xl sm:text-3xl text-gray-600 font font-semibold">{thisService && thisService.name}</h2>
 
                             {/* Price */}
 
-                            <h2 className="lg:text-3xl md:text-3xl sm:text-2xl text-gray-600 mt-5">C${calculatedPrice}</h2>
+                            <h2 className="lg:text-3xl md:text-3xl sm:text-2xl text-gray-600 mt-5">C${ calculatedPrice}</h2>
 
                             {/* Description */}
 
-                            <p className="lg:text-lg md:text-lg sm:text-base text-gray-600 mt-10">{thisService.description}</p>
+                            <p className="lg:text-lg md:text-lg sm:text-base text-gray-600 mt-10">{thisService && thisService.description}</p>
+                            <Link to="/testing-submission">
+                                <div className="mt-10">
+                                    <button id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Submit a Sample</button>
+                                </div>
+                            </Link>
                         </div>
 
                         {/* Selection Column */}
@@ -124,7 +137,7 @@ const ServiceView = () => {
                         <div className="w-fit lg:mx-auto md:mx-auto ">
 
                             {/* Turnaround */}
-
+{/* 
                             <div className="mb-10">
 
                                 <label htmlFor="turnaround" className="block text-xl font-semibold mb-10">Type</label>
@@ -132,7 +145,7 @@ const ServiceView = () => {
                                 <select name="turnaround" id="turnaround" value={turnaround} onChange={(e) => onTurnaroundValueChange(e)} className="p-3 text-lg focus:outline-none">
 
                                     {
-                                        thisService.turnaroundTypes.map((turnaroundType, index) => (
+                                        thisService && thisService.turnaroundTypes.map((turnaroundType, index) => (
 
                                             <option key={index} value={turnaroundType.addOnPrice} className="text-lg">{turnaroundType.title} ({turnaroundType.turnaround})</option>
 
@@ -142,17 +155,17 @@ const ServiceView = () => {
 
                                 </select>
 
-                            </div>
+                            </div> */}
 
                             {/* Strains Check boxes */}
-                            
+{/*                             
                             <div>
 
 
                                 <label htmlFor="strains" className="block text-xl font-semibold mb-10">Additional Strains</label>
 
                                 {
-                                    thisService.strains.map((strain, index) => (
+                                    thisService && thisService.strains.map((strain, index) => (
 
                                         <div key={index} className="flex items-center mb-5">
 
@@ -164,13 +177,16 @@ const ServiceView = () => {
                                     ))
                                 }
 
-                            </div>
+                            </div> */}
 
                             {/* Add to Cart Button */}
 
-                            <div className="mt-10">
+                            {/* <div className="mt-10">
                                 <button onClick={addToCart} id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Add to Cart</button>
-                            </div>
+                            </div> */}
+                    
+                          
+
 
                         </div>
 

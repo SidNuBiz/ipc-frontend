@@ -7,7 +7,7 @@ let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = () => {
+const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,testDataId}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -17,15 +17,6 @@ const TestingSelectionForm = () => {
         return outputArray;
     }
       
-
-    // var selectedValue = {
-
-    //     type: '',
-    //     matrixForm: '',
-    //     category: '',
-    //     testName: '',
-    // }
-
     const [type, setType] = useState(null)
     const [matrixForm, setMatrixForm] = useState(null)
     const [category, setCategory] = useState(null)
@@ -38,11 +29,14 @@ const TestingSelectionForm = () => {
     const[categoryList, setCategoryList] = useState(null)
     const [testNameList, setTestNameList] = useState(null) 
 
-
-
     function handleTypeChange(e) {
-
+        
         setMatrixForm(null);
+        setCategory(null)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
 
         setType(e.value)
         let matrixArr = []
@@ -56,7 +50,11 @@ const TestingSelectionForm = () => {
     }
 
     function handleMatrixChange(e) {
-        setMatrixForm(e.value)
+        setCategory(null)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.MatrixForm != undefined ? data.MatrixForm.includes(e.value):false)
         matrixFormTests.forEach(data => data.MatrixForm != undefined ? categoriesArr.push(data.Categories):false)
@@ -64,11 +62,14 @@ const TestingSelectionForm = () => {
             return {label:data,value:data}
         })
         setCategoryList(selectCategoriesArr)
-       
+        
     }
 
     function handleCategoryChange(e) {
-        setCategory(e.value)
+        setTestName(null)
+        setDescription('')
+        setAmount('')
+        setUnit('')
         let testNameArr = []
         categoriesTests = matrixFormTests.filter(data => data.Categories == e.value)
         categoriesTests.forEach(data => data.Name != undefined ? testNameArr.push(data.Name):false)
@@ -78,11 +79,21 @@ const TestingSelectionForm = () => {
         setTestNameList(selectTestNameArr)
     }
 
-    function handleTestNameChange(e) {
+    const handleTestNameChange =  (e) => {
+        setDescription('')
+        setAmount('')
+        setUnit('')
         const nameTests = categoriesTests.filter(data => data.Name == e.value)
-        console.log(nameTests)
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
+        setTestFormData([...testFormData,{
+            id:testDataId,
+            type:type.value,
+            matrixForm:matrixForm.value,
+            category:category.value,
+            test:nameTests[0]
+        }])
+        sampleDataMerged()
     }
     const selectCustomStyles = {
 
@@ -134,12 +145,6 @@ const TestingSelectionForm = () => {
   return (
     <div className='text-gray-600 bg-gray-50 p-3 rounded-md'>
 
-        {/* Delete Test Button */}
-
-        <span className='block float-right ml-3'>
-            <button className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
-        </span>
-
         {/* Testing selection Form */}
 
         <span className='block '>
@@ -149,7 +154,6 @@ const TestingSelectionForm = () => {
                 {/* Test Type */}
 
                 <div>
-                    {/* <button onClick={() => {console.log(type)}}>show type</button> */}
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type</label>
                     <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
@@ -165,24 +169,24 @@ const TestingSelectionForm = () => {
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Categories</label>
-                    <Select options={categoryList}  onChange={handleCategoryChange} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={categoryList} value={category}  onChange={(e) => {handleCategoryChange(e); setCategory(e)}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Name */}
 
                 <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Test Name</label>
-                    <Select options={testNameList}  onChange={handleTestNameChange} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <label htmlFor='testName' className='block mb-2 text-sm font-semibold'>Test Name</label>
+                    <Select options={testNameList} value={testName}  onChange={(e)=>{handleTestNameChange(e);setTestName(e)}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 <div>
                     <label htmlFor='description' className='block mb-2 text-sm font-semibold'>Description</label>
-                    <input type='text' value={description} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    <input type='text' value={description} name='description' id='description' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
                 <div>
-                    <label htmlFor='description' className='block mb-2 text-sm font-semibold'>Amount REQ'D</label>
-                    <input type='text' value={amount + ' ' + unit} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    <label htmlFor='amount' className='block mb-2 text-sm font-semibold'>Amount REQ'D</label>
+                    <input type='text' value={amount + ' ' + unit} name='amount' id='amount' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
             </div>

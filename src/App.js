@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
+import { getProduct } from "./actions/productAction";
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -33,6 +34,7 @@ import CartPage from './pages/Store/CartPage.jsx';
 import CheckoutPage from './pages/Store/CheckoutPage.jsx';
 import ProfilePage from './pages/User/ProfilePage.jsx';
 import MyAccountPage from './pages/User/MyAccountPage.jsx';
+import MySamplePage from './pages/User/MySamplePage';
 import OrderView from './components/User/MyAccountPage/OrderView.jsx';
 import AdminHomePage from './pages/Admin/AdminHomePage.jsx';
 import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
@@ -52,6 +54,7 @@ function App() {
   useEffect ( () => {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
+    store.dispatch(getProduct());
     Aos.init({duration: 1500});
 
   }, [])
@@ -86,9 +89,14 @@ function App() {
 
           <Route path="/user/account" element={<MyAccountPage />} />
 
+          <Route path='/user/sample' element={<MySamplePage />} />
+
           <Route path="user/account/orders/:orderId" element={<OrderView />} />
 
           <Route path="/checkout" element={<CheckoutPage />} />
+
+          <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
+          
         </Route>
 
         <Route element={<ProtectedRoute isAdmin={true} />}>
@@ -121,11 +129,11 @@ function App() {
 
         <Route path="/signup" element={<SignUpPage />} />
 
-        <Route path="/reset-pass" element={<ResetPassPage />} />
+        <Route path="/reset-pass/:token" element={<ResetPassPage />} />
 
         <Route path="/cart" element={<CartPage />} />
 
-        <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
+        
 
         {/* About Dropdown Pages */}
 

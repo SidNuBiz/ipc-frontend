@@ -67,9 +67,8 @@ const AdminOrderDetails = ({ order }) => {
                         {/* Order Date */}
 
                         <div className="mb-3">
-                            <h2 className=" text-md">
-                                {/* <b>Order Date:</b> {`${order.date.month}/${order.date.day}/${order.date.year}`} */}
-                                {order.created}
+                            <h2 className=" text-md">                                
+                                <b>Order Date:</b> {`${new Date(order.created).getDate()}-${new Date(order.created).getMonth()+1}-${new Date(order.created).getFullYear()}`}
                             </h2>
                         </div>
 

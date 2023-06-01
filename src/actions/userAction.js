@@ -166,3 +166,44 @@ export const getAllUsers = () => async (dispatch) => {
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.error });
   }
 };
+
+// Forgot Password
+export const forgotPasswordRecover = (email) => async (dispatch) => {
+
+  try {
+    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.post(`http://localhost:8080/api/v1/password/forgot`, {email}, config);
+
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.error });
+  } catch (error) {
+    dispatch({
+      type: FORGOT_PASSWORD_FAIL,
+      payload: error.response.data.error,
+    });
+  }
+};
+
+// Reset Password
+export const resetPassword = (token, passwords) => async (dispatch) => {
+  try {
+    dispatch({ type: RESET_PASSWORD_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:8080/api/v1/password/reset/${token}`,
+      passwords,
+      config
+    );
+
+    dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: RESET_PASSWORD_FAIL,
+      payload: error.response.data.error,
+    });
+  }
+};

@@ -8,6 +8,9 @@ const AdminOrderList = ({searchKey}) => {
         (state) => state.allOrders
     );
 
+
+    console.log(new Date().getMonth())
+
   return (
     <div>
 
@@ -17,7 +20,7 @@ const AdminOrderList = ({searchKey}) => {
                 {/* Order 1 */}
 
                 <ul>
-                    {orders && orders.filter( order => order.firstname.toLowerCase().includes(searchKey.toLowerCase())).map((order, index) => (
+                    {orders && orders.filter( order => order._id.toLowerCase().includes(searchKey.toLowerCase())).map((order, index) => (
                         <li
                             key={index}
                             className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
@@ -39,8 +42,7 @@ const AdminOrderList = ({searchKey}) => {
 
                                 <div className=" italic px-5">
                                     <b className=" not-italic">Date</b> <br />
-                                    {/* {`${order.date.month}/${order.date.day}/${order.date.year}`} */}
-                                    {order.created}
+                                    {`${new Date(order.created).getDate()}-${new Date(order.created).getMonth()+1}-${new Date(order.created).getFullYear()}`}
                                 </div>
 
                                 {/* Order Status */}

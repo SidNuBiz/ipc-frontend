@@ -33,7 +33,7 @@ const AdminMemberList = ({ searchKey }) => {
         <div className="h-full">
             <div className="">
                 <ul className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-10">
-                    {users && users.filter( member => member.firstname.toLowerCase().includes(searchKey.toLowerCase())).map((member, index) => (
+                    {users && users.filter( member => member.firstname.toLowerCase().includes(searchKey.toLowerCase()) || member.lastname.toLowerCase().includes(searchKey.toLowerCase())).map((member, index) => (
                         <li key={index} onClick={() => {setThisMember(member); setShowModal(true)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
                             <div className="p-5 text-center text-white" >
 

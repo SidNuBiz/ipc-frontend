@@ -16,7 +16,7 @@ import {
         product: data.thisService.id,
         name: data.thisService.name,
         price: data.calculatedPrice,
-        image: data.thisService.img,
+        image: data.thisService.image.url,
         strainsType:data.strainsType,
         turnaroundType:data.turnaroundType
       },

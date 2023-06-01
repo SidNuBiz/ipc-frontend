@@ -52,6 +52,19 @@ const NavBar = () => {
 
                     <div className=" flex lg:col-span-4 lg:block md:hidden sm:hidden h-fit my-auto w-fit mx-auto">
                         <ul className="block font-medium">
+
+                            {/* Dashboard */}
+
+                            {isAuthenticated && user.role == 'admin' &&
+                            <li className=" inline-block mr-8">
+                                <Link to="/IPC-admin-portal">
+                                    <button className="text-xl">Dashboard</button>
+                                </Link>
+                            </li>
+                            
+                            }
+
+                            {/* Home */}
                             <li className=" inline-block mr-8">
                                 <Link to="/">
                                     <button className="text-xl">Home</button>
@@ -234,6 +247,9 @@ const NavBar = () => {
                                             <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <Link to="/user/account"><h2 className="px-5 py-3">Account</h2></Link>
                                             </li>
+                                            <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
+                                                <Link to="/user/sample"><h2 className="px-5 py-3">Samples</h2></Link>
+                                            </li>
 
                                             <li className=" block  hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <button className="px-5 py-3" onClick={logoutUser} >Logout</button>
@@ -331,6 +347,16 @@ const NavBar = () => {
 
                                         </Link>
 
+                                        {/* My Sample Link */}
+
+                                        <Link to="/user/sample">
+
+                                            <div className="inline-block align-middle px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
+                                                Sample
+                                            </div>
+
+                                        </Link>
+
                                     </div>
 
                                     {/* Logout Button */}
@@ -396,7 +422,16 @@ const NavBar = () => {
                     <div className="mt-10 ">
 
                         <ul>
+                            {/* Dashboard */}
 
+                            {isAuthenticated && user.role == 'admin' &&
+                            <li className=" block mb-10">
+                                <Link to="/IPC-admin-portal">
+                                    <button className="text-2xl font-semibold ml-20">Dashboard</button>
+                                </Link>
+                            </li>
+                            
+                            }
                             {/* Home */}
 
                             <li className="block mb-10">
