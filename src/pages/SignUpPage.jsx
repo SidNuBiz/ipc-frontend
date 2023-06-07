@@ -5,10 +5,13 @@ import { useEffect , Fragment, useState, } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../actions/userAction";
 import {useNavigate} from "react-router-dom"
+import { useAlert } from "react-alert";
+
 
 const SignUpPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const alert = useAlert()
 
     const [firstname,setFirstName] = useState("")
     const [lastname,setLastName] = useState("")
@@ -25,15 +28,16 @@ const SignUpPage = () => {
         if(password === confirmPasswword){
             dispatch(register({firstname,lastname,email,password}));
         }else{
-            //alert("Your Pasword Does Not Match") 
+            alert.error("Password and confirm password did not mathc") 
+        
         }
         
     }
 
-
     useEffect(() => {
         if (error) {
-            console.log(error)
+            alert.error(error);
+            dispatch(clearErrors());
         }
       
         if (isAuthenticated) {

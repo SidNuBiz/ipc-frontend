@@ -5,15 +5,13 @@ import NavBar from "../../Misc/NavBar.jsx";
 import Footer from "../../Misc/Footer.jsx";
 import SampleDetails from "./SampleDetails.jsx";
 import Loader from "../../../pages/Loader";
-import {samples} from "../../../data/sampleResult.js"
+// import {samples} from "../../../data/sampleResult.js"
 
 const OrderView = () => {
 
-    // const { orders,loading } = useSelector(
-    //     (state) => state.myOrders
-    // );
-
-    const loading = false
+    const { samples,loading } = useSelector(
+      (state) => state.mySample
+    );
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -24,7 +22,7 @@ const OrderView = () => {
 
     const {sampleId} = useParams();
 
-    const sample = samples.find(sample => sample.id_text === sampleId);
+    // const sample = samples.find(sample => sample.id_text === sampleId);
 
   return (
     <Fragment>
@@ -43,7 +41,7 @@ const OrderView = () => {
                 {/* Page Section */}
 
                 <div className="animate-crossfade lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto pt-40">
-                    <SampleDetails sample={sample} />
+                    <SampleDetails sample={samples[sampleId]} />
                 </div>
 
                 {/* Footer */}

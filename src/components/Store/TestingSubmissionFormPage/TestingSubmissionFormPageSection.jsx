@@ -2,9 +2,11 @@ import React from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
 import SampleSubmissionFormSection from "./SampleSubmissionFormSection";
 import SignatureCanvas from "react-signature-canvas";
-import { useState } from "react";
+import { useState} from "react";
 import {useDispatch} from "react-redux"
 import {createSamples} from "../../../actions/limsAction"
+
+
 
 const TestingSubmissionFormPageSection = () => {
     const dispatch = useDispatch()
@@ -13,6 +15,7 @@ const TestingSubmissionFormPageSection = () => {
     const [signature, setSignature] = useState(null);
     const [additionalInfo,setAdditionalInfo] = useState('')
     const [acknowledgementCheck,setAcknowledgementCheck] = useState(false)
+
 
     const clearSignature = () => {
         signature.clear();
@@ -32,7 +35,11 @@ const TestingSubmissionFormPageSection = () => {
        
     }
 
+
+
     return (
+     
+
         <div className="text-gray-600">
             {/* Heading */}
 
@@ -63,7 +70,7 @@ const TestingSubmissionFormPageSection = () => {
                         {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />}
                     </div>
                 ))}
-             
+            
             </div>
 
             {/* Add Sample Button */}
@@ -175,6 +182,7 @@ const TestingSubmissionFormPageSection = () => {
                 <button onClick={submit} className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-5 py-3 duration-300">Submit</button>
             </div>
         </div>
+    
     );
 };
 

@@ -38,6 +38,7 @@ import {
 } from "../constants/userConstatns"
 import Cookies from 'js-cookie'
 import axios from "axios";
+
 const options = {
     expires:new Date(
         Date.now() + 5 * 24*60*60*1000
@@ -91,7 +92,7 @@ export const loadUser = () => async (dispatch) => {
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
+        // dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
     }
     };
 
@@ -135,6 +136,7 @@ export const updateProfile = (userData,isAddress) => async (dispatch) => {
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.UD.error,
     });
+
   }
 };
 
@@ -176,8 +178,9 @@ export const forgotPasswordRecover = (email) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(`http://localhost:8080/api/v1/password/forgot`, {email}, config);
+    console.log(data)
 
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.error });
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
@@ -207,3 +210,8 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     });
   }
 };
+
+//Cearing Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({type:CLEAR_ERRORS});
+}

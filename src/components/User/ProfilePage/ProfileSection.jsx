@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {updateProfile,loadUser,addImage} from "../../../actions/userAction"
+import {updateProfile,loadUser,addImage,clearErrors} from "../../../actions/userAction"
 import {UPDATE_PROFILE_RESET} from "../../../constants/userConstatns"
+import {useAlert} from "react-alert"
 
 const ProfileSection = ({user}) => {
 
     const dispatch = useDispatch()
+    const alert = useAlert()
 
     const [firstname,setFirstname] = useState('');
     const [lastname,setLastname] = useState('');
@@ -21,7 +23,7 @@ const ProfileSection = ({user}) => {
         (state) => state.user
     );
 
-    const { isUpdated } = useSelector((state) => state.profile);
+    const { isUpdated,error, } = useSelector((state) => state.profile);
 
     const updateProfileSubmit = (e) => {
 
@@ -57,8 +59,13 @@ const ProfileSection = ({user}) => {
             dispatch({
               type: UPDATE_PROFILE_RESET,
             });
-          }
-    },[dispatch,loading])
+            alert.success("Profile updated successfully")
+        }
+        if(error){
+            alert.error(error)
+            dispatch(clearErrors())
+        }
+    },[dispatch,loading,isUpdated,error])
   
     return (
         <div>
