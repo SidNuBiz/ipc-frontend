@@ -115,7 +115,7 @@ const AdminHomePageSection = () => {
             {/* Orders Chart */}
 
             <div className=" min-w-[250px] h-full">
-                <LineChart  />
+                {/* <LineChart  /> */}
             </div>
 
             {/* Notification List */}

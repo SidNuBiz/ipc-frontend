@@ -349,14 +349,7 @@ const NavBar = () => {
 
                                         {/* My Sample Link */}
 
-                                        <Link to="/user/samples">
-
-                                            <div className="inline-block align-middle px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
-                                                Sample
-                                            </div>
-
-                                        </Link>
-
+                     
                                     </div>
 
                                     {/* Logout Button */}
