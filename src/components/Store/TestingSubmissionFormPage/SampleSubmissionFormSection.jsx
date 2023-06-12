@@ -2,8 +2,14 @@ import React from 'react'
 import TestingSelectionForm from './TestingSelectionForm'
 import Select from 'react-select'
 import { useState,useEffect,useId } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
 
-const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData,setSampleFormData}) => {
+// const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData,setSampleFormData}) => {
+const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
+
+    const dispatch = useDispatch()
+
+    const {sampleFormData} = useSelector(state => state.sampleFormSubmit)
 
     const [testFormData,setTestFormData] = useState([])
     const [sampleName,setSampleName] = useState('')
@@ -53,25 +59,29 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
     let sampleData = {
         id:useId()
     }
-    const sampleDataMerged = ()=>{
-
+    const sampleDataMerged = ({td=testFormData,sName=sampleName,sBatch=sampleBatch,sTurnaround=selectedTurnaround}={})=>{
+        setTestFormData(td)
+        setSampleName(sName)
+        setSampleBatch(sBatch)
+        setSelectedTurnaround(sTurnaround)
         const updateSampleData = sampleFormData.map(sample => {
   
             if(sample.id==sampleData.id){
                 return {
                     id:sample.id,
-                    sampleName,
-                    sampleBatch,
-                    selectedTurnaround,
+                    'sampleName':sName,
+                    'sampleBatch':sBatch,
+                    'selectedTurnaround':sTurnaround,
                     storageType,
-                    testFormData
+                    'testFormData':td
                 }
             }else{
                 return sample
             }
         })
         
-        setSampleFormData(updateSampleData)
+        // setSampleFormData(updateSampleData)
+        dispatch({type:'SAMPLE_FORM_DATA',payload:updateSampleData})
 
 
     }
@@ -108,14 +118,14 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
     ]
 
     const addTest = ()=>{     
-
         setTestList([...testList,{id:new Date().getTime(),content:TestingSelectionForm}])
-        sampleDataMerged()
+        sampleDataMerged({td:testFormData})
        
     }
 
     useEffect(()=>{
-        setSampleFormData([...sampleFormData,sampleData])
+        // setSampleFormData([...sampleFormData,sampleData])
+        dispatch({type:'SAMPLE_FORM_DATA',payload:[...sampleFormData,sampleData]})
     },[])
 
   return (
@@ -132,13 +142,17 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                             sampleItem.id !== id
                         )
                     );
-                    console.log(sampleData.id)
-                    setSampleFormData(
+                   
+                    // setSampleFormData(
+                    //     sampleFormData.filter(sample=>
+                    //         sample.id !== sampleData.id
+                    //     )
+                    // )
+                    dispatch({type:'SAMPLE_FORM_DATA',payload:[
                         sampleFormData.filter(sample=>
                             sample.id !== sampleData.id
                         )
-                    )
-                    console.log(sampleFormData)
+                    ]})
                 }}  
                 className='py-[2px] px-[9px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
             </span>
@@ -159,15 +173,15 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
             {/* Sample Name */}
 
             <div>
-                <label htmlFor='sampleName' className='block mb-2 text-lg font-semibold'>Sample Name</label>
-                <input type='text' value={sampleName} onChange={(e)=>{setSampleName(e.target.value);sampleDataMerged()}} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
+                <label htmlFor='sampleName' className='block mb-2 text-lg font-semibold'>Sample Name<span className='text-red-500'>*</span></label>
+                <input type='text' value={sampleName} onChange={(e)=>{sampleDataMerged({sName:e.target.value})}} name='sampleName' id='sampleName' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
             </div>
 
             {/* Sample Batch/Lot # */}
 
             <div>
                 <label htmlFor='sampleBatchLot' className='block mb-2 text-lg font-semibold'>Sample Batch/Lot #</label>
-                <input type='text' value={sampleBatch} onChange={(e)=>{setSampleBatch(e.target.value);sampleDataMerged()}} name='sampleBatchLot' id='sampleBatchLot' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
+                <input type='text' value={sampleBatch} onChange={(e)=>{sampleDataMerged({sBatch:e.target.value})}} name='sampleBatchLot' id='sampleBatchLot' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
             </div>
 
             {/* Sample Date */}
@@ -191,7 +205,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
         {/* Heading */}
 
         <div className='mb-5'>
-            <p className='font-semibold text-xl'>Testing</p>
+            <p className='font-semibold text-xl'>Testing<span className='text-red-500'>*</span></p>
         </div>
 
         {/* Tests */}
@@ -206,19 +220,23 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                         testItem.id !== item.id
                         )
                     );
-                    setTestFormData(
-                        testFormData.filter(testData => 
-                            testData.id !== item.id
-                        )
-                    )
-                    sampleDataMerged()
+                    // dispatch({type:'TEST_FORM_DATA',payload:[
+                    //     testFormData.filter(testData => 
+                    //         testData.id !== item.id
+                    //     )
+                    // ]})
+               
+                    sampleDataMerged( {td:testFormData.filter(testData => 
+                        testData.id !== item.id
+                    )})
                     }} 
                     className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>
                     X
                     </button>
                 </span>
 
-                {<item.content testFormData={testFormData} setTestFormData={setTestFormData} sampleDataMerged={sampleDataMerged} testDataId = {item.id}/>}
+                {/* {<item.content testFormData={testFormData} setTestFormData={setTestFormData} sampleDataMerged={sampleDataMerged} testDataId = {item.id}/>} */}
+                {<item.content  testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
             </div>
         ))}
      
@@ -253,7 +271,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                         <p className='font-semibold text-lg'>Turnaround Time</p>
                     </div>
 
-                    <Select options={turnaroundList} value={selectedTurnaround} onChange={(e)=>{setSelectedTurnaround(e);sampleDataMerged()}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    <Select options={turnaroundList} value={selectedTurnaround} onChange={(e)=>{sampleDataMerged({sTurnaround:e})}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 
                     {/* Notes */}
 
@@ -273,7 +291,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData
                     {/* Heading */}
 
                     <div className='mb-5'>
-                        <p className='font-semibold text-lg'>Special Storage/​Handling Conditions Required</p>
+                        <p className='font-semibold text-lg'>Special Storage/​Handling Conditions Required<span className='text-red-500'>*</span></p>
                     </div>
 
                     {/* Inputs */}

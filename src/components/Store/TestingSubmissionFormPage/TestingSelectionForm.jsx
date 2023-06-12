@@ -2,12 +2,18 @@ import React from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
 import { newMap } from "../../../data/mapping-json";
+import { useSelector,useDispatch } from 'react-redux';
 
 let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,testDataId}) => {
+// const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,testDataId}) => {
+
+    const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
+
+    const dispatch = useDispatch()
+    // const {testFormData} = useSelector(state=>state.sampleFormSubmit)
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -86,14 +92,32 @@ const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,tes
         const nameTests = categoriesTests.filter(data => data.Name == e.value)
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
-        setTestFormData([...testFormData,{
-            id:testDataId,
-            type:type.value,
-            matrixForm:matrixForm.value,
-            category:category.value,
-            test:nameTests[0]
-        }])
-        sampleDataMerged()
+
+        //Reducer system
+        // dispatch({type:'TEST_FORM_DATA',payload:[...testFormData,{
+        //     id:testDataId,
+        //     type:type.value,
+        //     matrixForm:matrixForm.value,
+        //     category:category.value,
+        //     test:nameTests[0]
+        // }]})
+
+        // setTestFormData(t => {t=[...testFormData,{
+        //     id:testDataId,
+        //     type:type.value,
+        //     matrixForm:matrixForm.value,
+        //     category:category.value,
+        //     test:nameTests[0]
+        // }]; sampleDataMerged(t) })
+
+        sampleDataMerged({td:[...testFormData,{
+                id:testDataId,
+                type:type.value,
+                matrixForm:matrixForm.value,
+                category:category.value,
+                test:nameTests[0]
+            }]})
+      
     }
     const selectCustomStyles = {
 
@@ -154,28 +178,28 @@ const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,tes
                 {/* Test Type */}
 
                 <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type</label>
+                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type<span className='text-red-500'>*</span></label>
                     <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Matrix */}
 
                 <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form</label>
+                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form<span className='text-red-500'>*</span></label>
                     <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Category */}
 
                 <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Categories</label>
+                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Categories<span className='text-red-500'>*</span></label>
                     <Select options={categoryList} value={category}  onChange={(e) => {handleCategoryChange(e); setCategory(e)}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 
                 {/* Test Name */}
 
                 <div>
-                    <label htmlFor='testName' className='block mb-2 text-sm font-semibold'>Test Name</label>
+                    <label htmlFor='testName' className='block mb-2 text-sm font-semibold'>Test Name<span className='text-red-500'>*</span></label>
                     <Select options={testNameList} value={testName}  onChange={(e)=>{handleTestNameChange(e);setTestName(e)}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
 

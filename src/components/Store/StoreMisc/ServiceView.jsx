@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import {addItemsToCart} from "../../../actions/cartAction"
 import { testingServices } from "../../../data/siteContent.js";
 import { useSelector,useDispatch } from "react-redux";
-import NotificationPopup from "../../Misc/NotificationPopup.jsx";
+// import NotificationPopup from "../../Misc/NotificationPopup.jsx";
 
 const ServiceView = () => {
 
@@ -19,56 +19,56 @@ const ServiceView = () => {
 
     const thisService = products && products.find(service => service._id.toString() === serviceId);
 
-    const [turnaround, setTurnaround] = useState(thisService && thisService.turnaroundTypes[0].addOnPrice);
+    // const [turnaround, setTurnaround] = useState(thisService && thisService.turnaroundTypes[0].addOnPrice);
 
-    const [strains, setStrains] = useState(0);
+    // const [strains, setStrains] = useState(0);
 
-    const [strainsType,setStrainsType] = useState([])
-    const [turnaroundTitle,setTurnaroundTitle] = useState("Standard (7 buisness days)")
+    // const [strainsType,setStrainsType] = useState([])
+    // const [turnaroundTitle,setTurnaroundTitle] = useState("Standard (7 buisness days)")
 
-    const [notification,setNotification] = useState({trigger:false,notificationMessage:""})
+    // const [notification,setNotification] = useState({trigger:false,notificationMessage:""})
 
-    const addToCart = ()=>{
-        dispatch(addItemsToCart({thisService,strainsType,turnaroundType:{title:turnaroundTitle,addOnPrice:turnaround},calculatedPrice,productPrice:thisService.price}))
-        setTurnaroundTitle("Standard (7 buisness days)")
-        setStrainsType([])
+    // const addToCart = ()=>{
+    //     dispatch(addItemsToCart({thisService,strainsType,turnaroundType:{title:turnaroundTitle,addOnPrice:turnaround},calculatedPrice,productPrice:thisService.price}))
+    //     setTurnaroundTitle("Standard (7 buisness days)")
+    //     setStrainsType([])
 
-        setNotification({trigger:true,notificationMessage:"Item added to cart!"})
+        // setNotification({trigger:true,notificationMessage:"Item added to cart!"})
         // triggerNotification({trigger:true,notificationMessage:"Item added to cart!"})
-    }
+    // }
 
-    const onTurnaroundValueChange = (e) => {
-        setTurnaround(e.target.value);
-        setTurnaroundTitle(e.target.selectedOptions[0].innerText)
+    // const onTurnaroundValueChange = (e) => {
+    //     setTurnaround(e.target.value);
+    //     setTurnaroundTitle(e.target.selectedOptions[0].innerText)
     
-    }
+    // }
 
-    const onStrainValueChange = (e) => {
+    // const onStrainValueChange = (e) => {
 
-        if (e.target.checked) {
-            setStrains(strains + parseFloat(e.target.value));
-            strainsType.push({title:e.target.id,addOnPrice:parseFloat(e.target.value)})
-        } else {
-            setStrains(strains - parseFloat(e.target.value));
-            let filtered = strainsType.filter(function(value){ 
-                return value.title != e.target.id;
-            });
-            setStrainsType(filtered)
-        }
+    //     if (e.target.checked) {
+    //         setStrains(strains + parseFloat(e.target.value));
+    //         strainsType.push({title:e.target.id,addOnPrice:parseFloat(e.target.value)})
+    //     } else {
+    //         setStrains(strains - parseFloat(e.target.value));
+    //         let filtered = strainsType.filter(function(value){ 
+    //             return value.title != e.target.id;
+    //         });
+    //         setStrainsType(filtered)
+    //     }
 
-    }
+    // }
 
-    let calculatedPrice = thisService && thisService.price + parseFloat(turnaround) + parseFloat(strains)
+    // let calculatedPrice = thisService && thisService.price + parseFloat(turnaround) + parseFloat(strains)
 
 
-    if (parseFloat(calculatedPrice) < 0) {                 // Disable Add to Cart Button if price is 0 or less
+    // if (parseFloat(calculatedPrice) < 0) {                 Disable Add to Cart Button if price is 0 or less
 
-        document.getElementById("add-to-cart-btn").disabled = true;
+    //     document.getElementById("add-to-cart-btn").disabled = true;
 
-    }
+    // }
 
     useEffect(() => {
-        setTurnaround(thisService && thisService.turnaroundTypes[0].addOnPrice)
+        // setTurnaround(thisService && thisService.turnaroundTypes[0].addOnPrice)
         // 👇️ scroll to top on page load
         // window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, [thisService]);
@@ -79,7 +79,7 @@ const ServiceView = () => {
 
             {/* Notification Popup */}
 
-            <NotificationPopup notification={notification}/>
+            {/* <NotificationPopup notification={notification}/> */}
 
             {/* NavBar */}
 
@@ -119,7 +119,7 @@ const ServiceView = () => {
 
                             {/* Price */}
 
-                            <h2 className="lg:text-3xl md:text-3xl sm:text-2xl text-gray-600 mt-5">C${ calculatedPrice}</h2>
+                            {/* <h2 className="lg:text-3xl md:text-3xl sm:text-2xl text-gray-600 mt-5">C${ calculatedPrice}</h2> */}
 
                             {/* Description */}
 

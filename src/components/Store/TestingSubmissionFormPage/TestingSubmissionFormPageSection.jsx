@@ -3,14 +3,19 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import SampleSubmissionFormSection from "./SampleSubmissionFormSection";
 import SignatureCanvas from "react-signature-canvas";
 import { useState} from "react";
-import {useDispatch} from "react-redux"
+import {useDispatch,useSelector} from "react-redux"
 import {createSamples} from "../../../actions/limsAction"
+import {useAlert} from "react-alert"
 
 
 
 const TestingSubmissionFormPageSection = () => {
     const dispatch = useDispatch()
-    const [sampleFormData,setSampleFormData] = useState([])
+    const alert = useAlert()
+
+    const {sampleFormData} = useSelector(state=>state.sampleFormSubmit)
+
+    // const [sampleFormData,setSampleFormData] = useState([])
     const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
     const [signature, setSignature] = useState(null);
     const [additionalInfo,setAdditionalInfo] = useState('')
@@ -26,12 +31,41 @@ const TestingSubmissionFormPageSection = () => {
     }
 
     const submit = ()=>{
-        dispatch(createSamples({
-            sampleFormData,
-            // signature,
-            additionalInfo,
-            acknowledgementCheck
-        }))
+       console.log(sampleFormData)
+        sampleFormData.forEach(sample =>{
+          
+            if(sample.sampleName == undefined){
+                alert.error("Please Enter Sample Name")
+            }
+            let check = true
+            for (const key in sample.storageType){
+                
+                if((sample.storageType[key].value || (key == 'others' ? (sample.storageType[key].value !='' ? true : false) : false))){ 
+                    check = false
+                }
+                
+            }
+            if(check){
+                alert.error("Please Select a Storage Type for "+sample.sampleName)
+            }
+            if(sample.testFormData.length == 0){
+                alert.error("Please select atleast 1 test for the "+sample.sampleName)
+            }
+            sample.testFormData.forEach(test =>{
+
+            })
+
+        })
+
+        if(!acknowledgementCheck){
+            alert.error("Acknowledgement Must be Checked")
+        }
+        // dispatch(createSamples({
+        //     sampleFormData,
+        //     // signature,
+        //     additionalInfo,
+        //     acknowledgementCheck
+        // }))
        
     }
 
@@ -67,7 +101,8 @@ const TestingSubmissionFormPageSection = () => {
                 {sampleList.map((item)=>(
                     <div key={item.id} className="mb-10">
                         {/* Delete Sample Button */}
-                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />}
+                        {/* {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />} */}
+                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} />}
                     </div>
                 ))}
             
@@ -154,7 +189,7 @@ const TestingSubmissionFormPageSection = () => {
                             id="acknowledgement"
                             onChange={(e)=>{setAcknowledgementCheck(e.target.checked)}}
                         />
-                        <label htmlFor="acknowledgement"> Acknowledgement</label>
+                        <label htmlFor="acknowledgement"> Acknowledgement<span className='text-red-500'>*</span></label>
                     </div>
 
                     {/* Notes */}

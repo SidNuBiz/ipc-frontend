@@ -42,7 +42,7 @@ import {
     }
   };
 
-export const mySampleReducer = (state = { sample: [] }, action) => {
+export const mySampleReducer = (state = { samples: [] }, action) => {
     switch (action.type) {
       case MY_SAMPLE_REQUEST:
         return {
