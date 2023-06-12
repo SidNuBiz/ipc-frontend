@@ -2,18 +2,12 @@ import React from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
 import { newMap } from "../../../data/mapping-json";
-import { useSelector,useDispatch } from 'react-redux';
 
 let typeTests
 let matrixFormTests
 let categoriesTests
 
-// const TestingSelectionForm = ({testFormData,setTestFormData,sampleDataMerged,testDataId}) => {
-
-    const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
-
-    const dispatch = useDispatch()
-    // const {testFormData} = useSelector(state=>state.sampleFormSubmit)
+const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -93,30 +87,13 @@ let categoriesTests
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
 
-        //Reducer system
-        // dispatch({type:'TEST_FORM_DATA',payload:[...testFormData,{
-        //     id:testDataId,
-        //     type:type.value,
-        //     matrixForm:matrixForm.value,
-        //     category:category.value,
-        //     test:nameTests[0]
-        // }]})
-
-        // setTestFormData(t => {t=[...testFormData,{
-        //     id:testDataId,
-        //     type:type.value,
-        //     matrixForm:matrixForm.value,
-        //     category:category.value,
-        //     test:nameTests[0]
-        // }]; sampleDataMerged(t) })
-
         sampleDataMerged({td:[...testFormData,{
-                id:testDataId,
-                type:type.value,
-                matrixForm:matrixForm.value,
-                category:category.value,
-                test:nameTests[0]
-            }]})
+            id:testDataId,
+            type:type.value,
+            matrixForm:matrixForm.value,
+            category:category.value,
+            test:nameTests[0]
+        }]})
       
     }
     const selectCustomStyles = {

@@ -4,7 +4,6 @@ import Select from 'react-select'
 import { useState,useEffect,useId } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 
-// const SampleSubmissionFormSection = ({id,sampleList,setSampleList,sampleFormData,setSampleFormData}) => {
 const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
     const dispatch = useDispatch()
@@ -15,55 +14,60 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const [sampleName,setSampleName] = useState('')
     const [sampleBatch,setSampleBatch] = useState('')
     const [selectedTurnaround, setSelectedTurnaround] = useState(null);
-    const [storageType,setStorageType] = useState({
-        awayFromLight:{
-            name:'Away From Light',
-            value:false
-        },
-        freezer:{
-            name:'Freezer',
-            value:false
-        },
-        hazardous:{
-            name:'Hazardous',
-            value:false
-        },
-        hygroscopic:{
-            name:'Hygroscopic',
-            value:false
-        },
-        refrigeration:{
-            name:'Refrigeration',
-            value:false
-        },
-        roomTemperature:{
-            name:'Room Temperature',
-            value:false
-        },
-        na:{
-            name:'N/A',
-            value:false
-        },
-        others:{
-            name:'Others',
-            value:''
-        }
-    })
+    const [storageType,setStorageType] = useState({id,awayFromLight:{
+        name:'Away From Light',
+        value:false
+    },
+    freezer:{
+        name:'Freezer',
+        value:false
+    },
+    hazardous:{
+        name:'Hazardous',
+        value:false
+    },
+    hygroscopic:{
+        name:'Hygroscopic',
+        value:false
+    },
+    refrigeration:{
+        name:'Refrigeration',
+        value:false
+    },
+    roomTemperature:{
+        name:'Room Temperature',
+        value:false
+    },
+    na:{
+        name:'N/A',
+        value:false
+    },
+    others:{
+        name:'Others',
+        value:''
+    }})
+
+        
 
     const checkboxData = (e)=>{
-
+       
         storageType[e.target.name].value = e.target.name=='others' ?  e.target.value : e.target.checked
-        sampleDataMerged()
+        // setStorageType({
+        //     ...storageType,
+        //     [e.target.name]:e.target.name=='others' ?  e.target.value : e.target.checked
+        // })
+        sampleDataMerged({sStorageType:storageType})
 
     }
     let sampleData = {
         id:useId()
     }
-    const sampleDataMerged = ({td=testFormData,sName=sampleName,sBatch=sampleBatch,sTurnaround=selectedTurnaround}={})=>{
+    const sampleDataMerged = ({td=testFormData,sName=sampleName,sBatch=sampleBatch,sTurnaround=selectedTurnaround,sStorageType=storageType}={})=>{
         setTestFormData(td)
         setSampleName(sName)
         setSampleBatch(sBatch)
         setSelectedTurnaround(sTurnaround)
+        setStorageType(sStorageType)
         const updateSampleData = sampleFormData.map(sample => {
   
             if(sample.id==sampleData.id){
@@ -72,7 +76,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                     'sampleName':sName,
                     'sampleBatch':sBatch,
                     'selectedTurnaround':sTurnaround,
-                    storageType,
+                    'storageType':sStorageType,
                     'testFormData':td
                 }
             }else{
@@ -80,9 +84,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
             }
         })
         
-        // setSampleFormData(updateSampleData)
         dispatch({type:'SAMPLE_FORM_DATA',payload:updateSampleData})
-
 
     }
 
@@ -120,11 +122,9 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const addTest = ()=>{     
         setTestList([...testList,{id:new Date().getTime(),content:TestingSelectionForm}])
         sampleDataMerged({td:testFormData})
-       
     }
 
     useEffect(()=>{
-        // setSampleFormData([...sampleFormData,sampleData])
         dispatch({type:'SAMPLE_FORM_DATA',payload:[...sampleFormData,sampleData]})
     },[])
 
@@ -142,17 +142,12 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                             sampleItem.id !== id
                         )
                     );
-                   
-                    // setSampleFormData(
-                    //     sampleFormData.filter(sample=>
-                    //         sample.id !== sampleData.id
-                    //     )
-                    // )
-                    dispatch({type:'SAMPLE_FORM_DATA',payload:[
+
+                    dispatch({type:'SAMPLE_FORM_DATA',payload:
                         sampleFormData.filter(sample=>
                             sample.id !== sampleData.id
                         )
-                    ]})
+                    })
                 }}  
                 className='py-[2px] px-[9px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>X</button>
             </span>
@@ -215,27 +210,20 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                 {/* Delete Test Button */}
                 <span className='block float-right ml-3'>
                     <button onClick={() => {
-                    setTestList(
-                        testList.filter(testItem =>
-                        testItem.id !== item.id
-                        )
-                    );
-                    // dispatch({type:'TEST_FORM_DATA',payload:[
-                    //     testFormData.filter(testData => 
-                    //         testData.id !== item.id
-                    //     )
-                    // ]})
-               
-                    sampleDataMerged( {td:testFormData.filter(testData => 
-                        testData.id !== item.id
-                    )})
+                        setTestList(
+                            testList.filter(testItem =>
+                            testItem.id !== item.id
+                            )
+                        );
+                
+                        sampleDataMerged( {td:testFormData.filter(testData => 
+                            testData.id !== item.id
+                        )})
                     }} 
                     className='text-xs py-[2px] px-[7px] rounded-full border-red-500 border-[2px] text-red-500 font-semibold hover:bg-red-500 hover:text-white duration-300'>
                     X
                     </button>
                 </span>
-
-                {/* {<item.content testFormData={testFormData} setTestFormData={setTestFormData} sampleDataMerged={sampleDataMerged} testDataId = {item.id}/>} */}
                 {<item.content  testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
             </div>
         ))}
