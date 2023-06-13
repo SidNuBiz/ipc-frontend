@@ -1,16 +1,16 @@
 import {
-    TEST_FORM_DATA,
+    ALL_FORM_DATA,
     SAMPLE_FORM_DATA,
     MAIN_FORM_DATA
 } from "../constants/sampleSubmitConstant"
 
 
-export const sampleSubmitFormReducer = (state = {testFormData:[],sampleFormData:[]},action) => {
+export const sampleSubmitFormReducer = (state = {mainFormData:{},sampleFormData:[]},action) => {
     switch (action.type) {
-        case TEST_FORM_DATA:
+        case MAIN_FORM_DATA:
             return {
                 ...state,
-                testFormData: action.payload
+                mainFormData: action.payload
             };
         case SAMPLE_FORM_DATA:
             return {

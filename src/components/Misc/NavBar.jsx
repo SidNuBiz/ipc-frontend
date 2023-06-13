@@ -248,7 +248,7 @@ const NavBar = () => {
                                                 <Link to="/user/account"><h2 className="px-5 py-3">Account</h2></Link>
                                             </li>
                                             <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                                <Link to="/user/sample"><h2 className="px-5 py-3">Samples</h2></Link>
+                                                <Link to="/user/samples"><h2 className="px-5 py-3">Samples</h2></Link>
                                             </li>
 
                                             <li className=" block  hover:bg-[#18debb] hover:bg-opacity-30">
@@ -347,8 +347,7 @@ const NavBar = () => {
 
                                         </Link>
 
-                                        {/* My Sample Link */}
-
+                                       
                      
                                     </div>
 

@@ -6,12 +6,14 @@ import { useState} from "react";
 import {useDispatch,useSelector} from "react-redux"
 import {useAlert} from "react-alert"
 import {createSamples} from "../../../actions/limsAction"
+import { useNavigate } from "react-router-dom"
 
 
 
 const TestingSubmissionFormPageSection = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
+    const navigate = useNavigate()
 
     const {sampleFormData} = useSelector(state=>state.sampleFormSubmit)
 
@@ -56,18 +58,28 @@ const TestingSubmissionFormPageSection = () => {
         if(!closeSubmit){
             return null
         }
-        
 
         if(!acknowledgementCheck){
             return alert.error("Acknowledgement Must be Checked")
         }
 
-        dispatch(createSamples({
+        navigate('/checkout')
+
+        dispatch({type:'MAIN_FORM_DATA',payload:{
             sampleFormData,
             // signature,
             additionalInfo,
             acknowledgementCheck
-        }))
+        }})
+
+        // dispatch(createSamples({
+        //     sampleFormData,
+        //     // signature,
+        //     additionalInfo,
+        //     acknowledgementCheck
+        // }))
+
+
        
     }
 
