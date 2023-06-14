@@ -1,10 +1,7 @@
-
-
 import {
   SAMPLE_SUBMIT_SUCCESS,
   SAMPLE_SUBMIT_REQUEST,
   SAMPLE_SUBMIT_FAIL,
-
   MY_SAMPLE_REQUEST,
   MY_SAMPLE_SUCCESS,
   MY_SAMPLE_FAIL,
@@ -12,10 +9,11 @@ import {
 
 } from "../constants/limsConstants";
 
-
-
 import axios from "axios";
 import Cookies from 'js-cookie'
+
+const api = 'http://54.190.127.181:8080'
+// const api = 'http://localhost:8080'
 
 // Create Sample
 export const createSamples = (samples) => async (dispatch) => {
@@ -30,7 +28,7 @@ export const createSamples = (samples) => async (dispatch) => {
         },
       };
  
-      const { data } = await axios.post("http://localhost:8080/api/v1/lims/sample-entry-blank-template-sample",samples,config);
+      const { data } = await axios.post(`${api}/api/v1/lims/sample-entry-blank-template-sample`,samples,config);
   
       dispatch({ type: SAMPLE_SUBMIT_SUCCESS, payload: data.message });
 
@@ -55,7 +53,7 @@ export const mySample = () => async (dispatch) => {
       },
     };
     
-    const { data } = await axios.get("http://localhost:8080/api/v1/lims/samples",config);
+    const { data } = await axios.get(`${api}/api/v1/lims/samples`,config);
     console.log(data)
     dispatch({ type: MY_SAMPLE_SUCCESS, payload: data.data });
   } catch (error) {

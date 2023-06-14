@@ -76,12 +76,12 @@ const TestingSubmissionFormPageSection = () => {
         
         
 
-        dispatch(createSamples({
-            sampleFormData,
-            // signature,
-            additionalInfo,
-            acknowledgementCheck
-        }))
+        // dispatch(createSamples({
+        //     sampleFormData,
+        //     // signature,
+        //     additionalInfo,
+        //     acknowledgementCheck
+        // }))
 
 
        
