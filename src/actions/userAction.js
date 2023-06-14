@@ -211,6 +211,12 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   }
 };
 
+export const submitContactForm = async (contactData)=>{
+  const config = { headers: { "Content-Type": "application/json" } };
+  const {data} = await axios.post(`http://localhost:8080/api/v1/contact`,contactData,config)
+  return data
+}
+
 //Cearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({type:CLEAR_ERRORS});

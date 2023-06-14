@@ -97,7 +97,7 @@ const Footer = () => {
                             </li>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">Legal</Link>
+                                <Link to="/contact/legal">Legal</Link>
                             </li>
 
                         </ul>
