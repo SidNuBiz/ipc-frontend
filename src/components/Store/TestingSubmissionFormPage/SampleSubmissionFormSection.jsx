@@ -289,50 +289,50 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                         {/* Away From Light */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="awayFromLight" id="awayFromLight" />
-                            <label htmlFor="awayFromLight">Away From Light</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={'awayFromLight'+sampleData.id} id={'awayFromLight'+sampleData.id} />
+                            <label htmlFor={"awayFromLight"+sampleData.id}>Away From Light</label>
                         </div>
 
                         {/* Freezer */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="freezer" id="freezer" />
-                            <label htmlFor="freezer"> Freezer</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"freezer"+sampleData.id} id={"freezer"+sampleData.id} />
+                            <label htmlFor={"freezer"+sampleData.id}> Freezer</label>
                         </div>
 
                         {/* Hazardous */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hazardous" id="hazardous" />
-                            <label htmlFor="hazardous"> Hazardous</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"hazardous"+sampleData.id} id={"hazardous"+sampleData.id} />
+                            <label htmlFor={"hazardous"+sampleData.id}> Hazardous</label>
                         </div>
 
                         {/* Hygroscopic */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hygroscopic" id="hygroscopic" />
-                            <label htmlFor="hygroscopic"> Hygroscopic</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"hygroscopic"+sampleData.id} id={"hygroscopic"+sampleData.id} />
+                            <label htmlFor={"hygroscopic"+sampleData.id}> Hygroscopic</label>
                         </div>
 
                         {/* Refrigeration */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="refrigeration" id="refrigeration" />
-                            <label htmlFor="refrigeration"> Refrigeration</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"refrigeration"+sampleData.id} id={"refrigeration"+sampleData.id} />
+                            <label htmlFor={"refrigeration"+sampleData.id}> Refrigeration</label>
                         </div>
 
                         {/* Room Temperature */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="roomTemperature" id="roomTemperature" />
-                            <label htmlFor="roomTemperature">Room Temperature</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"roomTemperature"+sampleData.id} id={"roomTemperature"+sampleData.id} />
+                            <label htmlFor={"roomTemperature"+sampleData.id}>Room Temperature</label>
                         </div>
 
                         {/* N/​A */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="na" id="na" />
-                            <label htmlFor="na"> N/A</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name={"na"+sampleData.id} id={"na"+sampleData.id} />
+                            <label htmlFor={"na"+sampleData.id}> N/A</label>
                         </div>
 
                     </div>

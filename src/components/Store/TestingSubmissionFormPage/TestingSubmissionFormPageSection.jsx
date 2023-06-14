@@ -15,6 +15,8 @@ const TestingSubmissionFormPageSection = () => {
     const alert = useAlert()
     const navigate = useNavigate()
 
+
+
     const {sampleFormData} = useSelector(state=>state.sampleFormSubmit)
 
     const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
@@ -63,7 +65,7 @@ const TestingSubmissionFormPageSection = () => {
             return alert.error("Acknowledgement Must be Checked")
         }
 
-        navigate('/checkout')
+        // navigate('/checkout')
 
         dispatch({type:'MAIN_FORM_DATA',payload:{
             sampleFormData,
@@ -71,13 +73,15 @@ const TestingSubmissionFormPageSection = () => {
             additionalInfo,
             acknowledgementCheck
         }})
+        
+        
 
-        // dispatch(createSamples({
-        //     sampleFormData,
-        //     // signature,
-        //     additionalInfo,
-        //     acknowledgementCheck
-        // }))
+        dispatch(createSamples({
+            sampleFormData,
+            // signature,
+            additionalInfo,
+            acknowledgementCheck
+        }))
 
 
        

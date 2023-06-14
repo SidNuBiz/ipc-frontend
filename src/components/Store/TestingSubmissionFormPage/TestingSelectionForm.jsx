@@ -86,8 +86,12 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         const nameTests = categoriesTests.filter(data => data.Name == e.value)
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
-
-        sampleDataMerged({td:[...testFormData,{
+        console.log(testFormData)
+        const filteredTestFormData = testFormData.filter(test => {
+            return test.id != testDataId
+        })
+     
+        sampleDataMerged({td:[...filteredTestFormData,{
             id:testDataId,
             type:type.value,
             matrixForm:matrixForm.value,
@@ -165,6 +169,13 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form<span className='text-red-500'>*</span></label>
                     <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
                 </div>
+
+                {/* Test Matrix */}
+
+                {/* <div>
+                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Sub Matrix Form<span className='text-red-500'>*</span></label>
+                    <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                </div> */}
 
                 {/* Test Category */}
 
