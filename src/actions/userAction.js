@@ -37,7 +37,11 @@ import {
     CLEAR_ERRORS
 } from "../constants/userConstatns"
 import Cookies from 'js-cookie'
-import axios from "axios";
+import axios from "axios"
+
+const api = 'http://54.190.127.181:8080'
+// const api = 'http://localhost:8080'
+
 const options = {
     expires:new Date(
         Date.now() + 5 * 24*60*60*1000
@@ -48,7 +52,7 @@ export const login = (userData) => async (dispatch) => {
     try{
         dispatch({type:LOGIN_REQUEST})
         const config = {headers : {"Content-Type":"application/json"}};
-        const {data} = await axios.post(`http://54.190.127.181:8080/api/v1/login`,userData,config)
+        const {data} = await axios.post(`${api}/api/v1/login`,userData,config)
         // const {data} = await axios.post(`http://localhost:8080/api/v1/login`,userData,config)
         Cookies.set('token', data.token,options) 
 
@@ -65,7 +69,7 @@ export const register = (userData) => async (dispatch) => {
 
       const config = { headers: { "Content-Type": "multipart/form-data" } };
   
-      const { data } = await axios.post(`http://54.190.127.181:8080/api/v1/register`, userData, config);
+      const { data } = await axios.post(`${api}/api/v1/register`, userData, config);
       // const { data } = await axios.post(`http://localhost:8080/api/v1/register`, userData, config);
       Cookies.set('token', data.token,options) 
   
@@ -86,12 +90,12 @@ export const loadUser = () => async (dispatch) => {
         const token = Cookies.get('token')
 
         const config = { headers:{'Authorization': `Bearer ${token}` }}
-        const { data } = await axios.get(`http://54.190.127.181:8080/api/v1/me`,config);
+        const { data } = await axios.get(`${api}/api/v1/me`,config);
         // const { data } = await axios.get(`http://localhost:8080/api/v1/me`,config);
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
+        // dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
     }
     };
 
@@ -100,7 +104,7 @@ export const logout = () => async (dispatch) => {
     try {
       Cookies.remove("token")
       // await axios.get(`http://localhost:8080/api/v1/logout`);
-      await axios.get(`http://54.190.127.181:8080/api/v1/logout`);
+      await axios.get(`${api}/api/v1/logout`);
   
       dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
@@ -118,11 +122,11 @@ export const updateProfile = (userData,isAddress) => async (dispatch) => {
     let UD
     if (isAddress) {
       // const { data } = await axios.put(`http://localhost:8080/api/v1/me/address/update`,{...userData}, config);
-      const { data } = await axios.put(`http://54.190.127.181:8080/api/v1/me/address/update`,{...userData}, config);
+      const { data } = await axios.put(`${api}/api/v1/me/address/update`,{...userData}, config);
       UD = data
     }else{
       // const { data } = await axios.put(`http://localhost:8080/api/v1/me/update`,{...userData}, config);
-      const { data } = await axios.put(`http://54.190.127.181:8080/api/v1/me/update`,{...userData}, config);
+      const { data } = await axios.put(`${api}/api/v1/me/update`,{...userData}, config);
       UD = data
     }
     
@@ -135,6 +139,7 @@ export const updateProfile = (userData,isAddress) => async (dispatch) => {
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.UD.error,
     });
+
   }
 };
 
@@ -145,7 +150,7 @@ export const addImage = (file) => async (dispatch) => {
     fileData.append('image',file)
     const token = Cookies.get('token')
     const config = { headers:{"Content-Type":"multipart/form-data" ,  'Authorization': `Bearer ${token}` }}
-    const {data} = await axios.post('http://54.190.127.181:8080/api/v1/profile/image',fileData,config)
+    const {data} = await axios.post(`${api}/api/v1/profile/image`,fileData,config)
     // const {data} = await axios.post('http://localhost:8080/api/v1/profile/image',fileData,config)
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   }catch (error) {
@@ -159,7 +164,7 @@ export const getAllUsers = () => async (dispatch) => {
   try {
     console.log("game")
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`http://localhost:8080/api/v1/users/all`);
+    const { data } = await axios.get(`${api}/api/v1/users/all`);
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
     console.log(error)
@@ -175,9 +180,10 @@ export const forgotPasswordRecover = (email) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`http://localhost:8080/api/v1/password/forgot`, {email}, config);
+    const { data } = await axios.post(`${api}/api/v1/password/forgot`, {email}, config);
+    console.log(data)
 
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.error });
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
@@ -194,7 +200,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.put(
-      `http://localhost:8080/api/v1/password/reset/${token}`,
+      `${api}/api/v1/password/reset/${token}`,
       passwords,
       config
     );
@@ -207,3 +213,14 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     });
   }
 };
+
+export const submitContactForm = async (contactData)=>{
+  const config = { headers: { "Content-Type": "application/json" } };
+  const {data} = await axios.post(`${api}/api/v1/contact`,contactData,config)
+  return data
+}
+
+//Cearing Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({type:CLEAR_ERRORS});
+}

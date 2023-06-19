@@ -221,9 +221,9 @@ const NavBar = () => {
                     {/* Cart & Mobile Menu Button */}
                 <div className="flex lg:col-span-3 md:col-span-5 sm:col-span-5">
                     {/* Cart */}
-                    <div className=" inline-block align-middle  lg:mr-0 lg:ml-auto md:mr-10 md:ml-auto sm:mr-10 sm:ml-auto h-fit my-auto w-fit">
+                    {/* <div className=" inline-block align-middle  lg:mr-0 lg:ml-auto md:mr-10 md:ml-auto sm:mr-10 sm:ml-auto h-fit my-auto w-fit">
                         <Link to="/cart"><img src="https://img.icons8.com/material/40/397f77/move-by-trolley--v1.png" alt=""/></Link>
-                    </div>
+                    </div> */}
 
                     {/* Account */}
 
@@ -253,7 +253,7 @@ const NavBar = () => {
                                                 <Link to="/user/account"><h2 className="px-5 py-3">Account</h2></Link>
                                             </li>
                                             <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                                <Link to="/user/sample"><h2 className="px-5 py-3">Samples</h2></Link>
+                                                <Link to="/user/samples"><h2 className="px-5 py-3">Samples</h2></Link>
                                             </li>
 
                                             <li className=" block  hover:bg-[#18debb] hover:bg-opacity-30">
@@ -352,16 +352,8 @@ const NavBar = () => {
 
                                         </Link>
 
-                                        {/* My Sample Link */}
-
-                                        <Link to="/user/sample">
-
-                                            <div className="inline-block align-middle px-5 py-2 text-[#18debb] border-2 border-[#18debb] hover:bg-[#18debb] hover:text-white duration-300 w-fit mx-auto rounded-xl">
-                                                Sample
-                                            </div>
-
-                                        </Link>
-
+                                       
+                     
                                     </div>
 
                                     {/* Logout Button */}

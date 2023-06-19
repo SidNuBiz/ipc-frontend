@@ -63,11 +63,11 @@ const Footer = () => {
                         <ul>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">About</Link>
+                                <Link to="/about/who-we-are">About</Link>
                             </li>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">Services</Link>
+                                <Link to="/services/overview">Services</Link>
                             </li>
 
                             <li className="block text-xl hover:underline mb-3">
@@ -89,15 +89,15 @@ const Footer = () => {
                         <ul>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">FAQs</Link>
+                                <Link to="/store/faq">FAQs</Link>
                             </li>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">Career</Link>
+                                <Link to="/career/now-openning">Career</Link>
                             </li>
 
                             <li className="block text-xl hover:underline mb-3">
-                                <Link to="/">Legal</Link>
+                                <Link to="/contact/legal">Legal</Link>
                             </li>
 
                         </ul>

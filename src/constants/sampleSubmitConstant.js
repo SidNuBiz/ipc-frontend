@@ -1,0 +1,3 @@
+export const ALL_FORM_DATA = 'ALL_FORM_DATA'
+export const SAMPLE_FORM_DATA = 'SAMPLE_FORM_DATA'
+export const MAIN_FORM_DATA = 'MAIN_FORM_DATA'

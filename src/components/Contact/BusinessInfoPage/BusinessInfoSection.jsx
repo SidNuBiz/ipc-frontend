@@ -1,7 +1,30 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 import Select from 'react-select'
+import {submitContactForm} from '../../../actions/userAction'
+import { useAlert } from "react-alert";
 
 const BusinessInfoSection = ({phoneCodes}) => {
+
+    const alert = useAlert()
+
+
+    const handleSubmit = async (event)=>{
+        event.preventDefault();
+      
+        const submitCheck = await submitContactForm({
+            name:event.target[0].value,
+            email:event.target[1].value,
+            phone:event.target[2].value,
+            subject:event.target[3].value,
+            message:event.target[4].value
+        })
+
+        if(submitCheck){
+            alert.success('Your message is submitted')
+        }else{
+            alert.error('Some error occurred ! Please try again')
+        }
+    }
 
     const selectCustomStyles = {
 
@@ -72,13 +95,13 @@ const BusinessInfoSection = ({phoneCodes}) => {
 
                 <div className="w-2/3 mx-auto py-10 text-gray-600 mt-10">
 
-                    <form action="">
+                    <form onSubmit={handleSubmit}>
 
                         {/* Name Label & Input */}
 
                         <div>
 
-                            <label htmlFor="name" className="block text-lg font-semibold mb-2">Name*</label>
+                            <label htmlFor="name" className="block text-lg font-semibold mb-2">Name<span className="text-[red]" >*</span></label>
                             <input type="text" name="name" id="name" className=" bg-transparent w-full px-3 py-2 border-b-2 border-gray-600 focus:outline-none focus:border-[#397f77]" required/>
 
                         </div>
@@ -88,7 +111,7 @@ const BusinessInfoSection = ({phoneCodes}) => {
 
                         <div className="mt-10">
 
-                            <label htmlFor="email" className="block text-lg font-semibold mb-2">Email*</label>
+                            <label htmlFor="email" className="block text-lg font-semibold mb-2">Email<span className="text-[red]" >*</span></label>
                             <input type="email" name="email" id="email" className=" bg-transparent w-full px-3 py-2 border-b-2 border-gray-600 focus:outline-none focus:border-[#397f77]" required />
 
                         </div>
@@ -100,20 +123,20 @@ const BusinessInfoSection = ({phoneCodes}) => {
                             <div className="grid grid-cols-4 gap-3 w-full">
 
                                 {/* Code */}
-
+{/* 
                                 <div className="lg:col-span-1 md:col-span-1 sm:col-span-2 w-full">
 
                                     <label htmlFor="code" className="block text-lg font-semibold mb-[10px]">Code</label>
 
                                     <Select options={phoneCodes} className=" border-b-2 border-gray-600 border-0 text-gray-600" styles={selectCustomStyles}  classNamePrefix />
 
-                                </div>
+                                </div> */}
 
                                 {/* Phone */}
 
                                 <div className=" lg:col-span-3 md:col-span-3 sm:col-span-2">
 
-                                    <label htmlFor="phone" className="block text-lg font-semibold mb-2">Phone</label>
+                                    <label htmlFor="phone" className="block text-lg font-semibold mb-2">Phone<span className="text-[red]" >*</span></label>
 
                                     <input type="tel" name="phone" id="phone" className=" bg-transparent w-full px-3 py-2 border-b-2 border-gray-600 focus:outline-none focus:border-[#397f77]" required />
                                 </div>
@@ -126,7 +149,7 @@ const BusinessInfoSection = ({phoneCodes}) => {
 
                         <div className="mt-10">
 
-                            <label htmlFor="subject" className="block text-lg font-semibold mb-2">Subject*</label>
+                            <label htmlFor="subject" className="block text-lg font-semibold mb-2">Subject<span className="text-[red]" >*</span></label>
                             <input type="text" name="subject" id="subject" className=" bg-transparent w-full px-3 py-2 border-b-2 border-gray-600 focus:outline-none focus:border-[#397f77]" placeholder="Please type the subject" required />
 
                         </div>
@@ -135,7 +158,7 @@ const BusinessInfoSection = ({phoneCodes}) => {
 
                         <div className="mt-10">
 
-                            <label htmlFor="message" className="block text-lg font-semibold mb-2">Message*</label>
+                            <label htmlFor="message" className="block text-lg font-semibold mb-2">Message<span className="text-[red]" >*</span></label>
                             <textarea type="text" name="message" id="message" rows="5" className=" bg-transparent w-full px-3 py-2 border-b-2 border-gray-600 focus:outline-none focus:border-[#397f77]" placeholder="Please type your message here..." required />
 
                         </div>

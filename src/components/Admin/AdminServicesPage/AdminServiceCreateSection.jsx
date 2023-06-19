@@ -14,10 +14,10 @@ const AdminServiceCreateSection = () => {
     var newService = {
       name: '',
       image: '',
-      price: '',
+      // price: '',
       description: '',
-      turnaroundTypes: [],
-      strains: []
+      // turnaroundTypes: [],
+      // strains: []
     }
 
     const[newTurnaroundTitle,setNewTrunaorundTitle] = useState('')
@@ -133,7 +133,7 @@ const AdminServiceCreateSection = () => {
       }
 
       const addThisProduct = () => {
-        dispatch(createProduct({name,price,description,turnaroundTypes,strains},image))
+        dispatch(createProduct({name,description},image))
         navigate("/IPC-admin-portal/services")
       }
 
@@ -193,14 +193,14 @@ const AdminServiceCreateSection = () => {
             </div>
 
             {/* Service Price */}
-
+{/* 
             <div className=''>
               
               <label htmlFor="service-price" className='text-2xl text-[#397f77] font-semibold'>Price(C$)</label>
 
               <input id='service-price' type="number" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={price} onChange={(e)=>setPrice(e.target.value)} required/>
 
-            </div>
+            </div> */}
 
           </div>
 
@@ -222,25 +222,25 @@ const AdminServiceCreateSection = () => {
 
           </div>
 
-          {/* Service Options */}
+       
 
-          <div className='mt-20'>
+          {/* <div className='mt-20'>
 
             <div className='grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-10'>
 
-              {/* Turnaround */}
+     
 
               <div className='mt-5 w-full'>
 
-                {/* Heading */}
+                
                 
                 <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Turnaround</h2>
 
-                {/* list */}
+             
 
                 <table className='w-full'>
 
-                  {/* Table Heading */}
+   
 
                   <thead >
 
@@ -296,11 +296,9 @@ const AdminServiceCreateSection = () => {
 
                 </table>
 
-                {/* New Turnaround input */}
 
                 <div className=' mt-5 '>
 
-                  {/* Heading */}
 
                   <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
 
@@ -340,7 +338,7 @@ const AdminServiceCreateSection = () => {
 
                 </div>
 
-                {/* Add Button */}
+              
 
                 <div className='mt-5 w-full mx-auto'>
                   <button onClick={addNewTurnaroundType} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
@@ -349,20 +347,16 @@ const AdminServiceCreateSection = () => {
               </div>
 
 
-              {/* Strains */}
+          
 
               <div className='mt-5'>
 
-                {/* Heading */}
-                
                 <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Strains</h2>
 
-                {/* list */}
 
                 <table className='w-full'>
 
-                  {/* Table Heading */}
-
+            
                   <thead >
 
                     {
@@ -411,11 +405,10 @@ const AdminServiceCreateSection = () => {
 
                 </table>
 
-                {/* New strain input */}
+           
 
                 <div className=' mt-5 '>
 
-                  {/* Heading */}
 
                   <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
 
@@ -449,7 +442,7 @@ const AdminServiceCreateSection = () => {
 
                 </div>
 
-                {/* Add Button */}
+         
 
                 <div className='mt-5 w-full mx-auto'>
                   <button onClick={addNewStrains} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
@@ -459,7 +452,7 @@ const AdminServiceCreateSection = () => {
 
             </div>
 
-          </div>
+          </div> */}
 
         </div>
 

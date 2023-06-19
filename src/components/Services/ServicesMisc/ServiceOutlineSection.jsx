@@ -1,5 +1,5 @@
 
-
+import {Link} from "react-router-dom"
 
 const ServiceOutlineSection = ({ outline }) => {
 
@@ -81,11 +81,12 @@ const ServiceOutlineSection = ({ outline }) => {
 
             {/* Book Now Button */}
 
-
-            <div className="mt-14">
-                <button className=' bg-[#397f77] text-white text-xl px-20 py-2 hover:bg-[#18debb] duration-300 rounded-full'>Book Now</button>
-            </div>
-
+            <Link to="/testing-submission" >
+                <div className="mt-14">
+                    <button className=' bg-[#397f77] text-white text-xl px-20 py-2 hover:bg-[#18debb] duration-300 rounded-full'>Book Now</button>
+                </div>
+            </Link>
+         
         </div>
 
     );

@@ -4,15 +4,18 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, forgotPasswordRecover } from "../actions/userAction";
 import {useNavigate} from "react-router-dom"
+import { useAlert } from "react-alert";
 
 
 const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    const alert = useAlert()
 
     const { error, loading, isAuthenticated } = useSelector(
         (state) => state.user
     );
+    const {error:FPerror,message,success} = useSelector((state)=>state.forgotPassword)
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
@@ -33,7 +36,19 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (error) {
-            console.log(error)
+      
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+
+        if(FPerror){
+            alert.error(FPerror);
+            dispatch(clearErrors());
+        }
+
+        if(message){
+            alert.success(message);
+            dispatch({ type: 'FORGOT_PASSWORD_SUCCESS', payload: null });
         }
       
         if (isAuthenticated) {
@@ -41,7 +56,7 @@ const LoginPage = () => {
         }
         // 👇️ scroll to top on page load
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, [dispatch, error, navigate, isAuthenticated]);
+    }, [dispatch, error, navigate, isAuthenticated,FPerror,message]);
 
     return (
 

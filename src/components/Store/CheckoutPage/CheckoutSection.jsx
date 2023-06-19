@@ -23,14 +23,25 @@ const CheckoutSection = ({user}) => {
   const [shippingCity,setShippingCity] = useState('');
   const [shippingZip,setShippingZip] = useState('')
 
-  const { cartItems } = useSelector(
-      (state) => state.cart
-  );
+  const {mainFormData} = useSelector(state=>state.sampleFormSubmit)
+
+//   const { cartItems } = useSelector(
+//       (state) => state.cart
+//   );
 
   let subTotalPrice = 0
-  cartItems.map(item =>{
-      subTotalPrice = subTotalPrice + item.price
+  mainFormData.sampleFormData.forEach(sample =>{
+    sample.testFormData.forEach(tests=>{
+        if(sample.selectedTurnaround.value == 'rushed'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricing)
+        }else if(sample.selectedTurnaround.value == 'standard'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricing)
+        }
+    })
   })
+//   cartItems.map(item =>{
+//       subTotalPrice = subTotalPrice + item.price
+//   })
 
 
   const setShipping = () => {
@@ -67,16 +78,16 @@ const CheckoutSection = ({user}) => {
 
   const createOrderSubmit = (e) => {
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:cartItems}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData}))
     navigate('/')
 
   }
 
-  useEffect(()=>{
-    if(cartItems.length == 0){
-      navigate('/store/all')
-    }
-  },[])
+//   useEffect(()=>{
+//     if(cartItems.length == 0){
+//       navigate('/store/all')
+//     }
+//   },[])
 
   return (
 
@@ -311,8 +322,6 @@ const CheckoutSection = ({user}) => {
                             </tbody>
 
                         </table>
-
-                        
 
                     </div>
 

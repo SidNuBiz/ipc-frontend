@@ -1,23 +1,25 @@
-
-
 import {
-
+  SAMPLE_SUBMIT_SUCCESS,
+  SAMPLE_SUBMIT_REQUEST,
+  SAMPLE_SUBMIT_FAIL,
   MY_SAMPLE_REQUEST,
   MY_SAMPLE_SUCCESS,
   MY_SAMPLE_FAIL,
+  CLEAR_ERRORS
 
 } from "../constants/limsConstants";
 
-
-
 import axios from "axios";
 import Cookies from 'js-cookie'
+
+const api = 'http://54.190.127.181:8080'
+// const api = 'http://localhost:8080'
 
 // Create Sample
 export const createSamples = (samples) => async (dispatch) => {
     console.log(samples)
     try {
-    //   dispatch({ type: CREATE_ORDER_REQUEST });
+      dispatch({ type: SAMPLE_SUBMIT_REQUEST });
       const token = Cookies.get('token')
       const config = {
         headers: {
@@ -25,20 +27,17 @@ export const createSamples = (samples) => async (dispatch) => {
           'Authorization': `Bearer ${token}` 
         },
       };
-      // const { data } = await axios.post("http://localhost:8080/api/v1/order/create", order, config);
-      const { data } = await axios.post("http://localhost:8080/api/v1/lims/sample-entry-blank-template-sample",samples,config);
+ 
+      const { data } = await axios.post(`${api}/api/v1/lims/sample-entry-blank-template-sample`,samples,config);
   
-    //   dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
-    //   dispatch({
-    //     type:'REMOVE_ALL_CART_ITEMS'
-    //   })
-    //   localStorage.removeItem("cartItems");
+      dispatch({ type: SAMPLE_SUBMIT_SUCCESS, payload: data.message });
+
     } catch (error) {
-    //   dispatch({
-    //     type: CREATE_ORDER_FAIL,
-    //     payload: error.response.data.error,
-    //   });
-        console.log(error)
+      dispatch({
+        type: SAMPLE_SUBMIT_FAIL,
+        payload: error.response.data.error,
+      });
+       
     }
   };
 
@@ -54,7 +53,7 @@ export const mySample = () => async (dispatch) => {
       },
     };
     
-    const { data } = await axios.get("http://localhost:8080/api/v1/lims/samples",config);
+    const { data } = await axios.get(`${api}/api/v1/lims/samples`,config);
     console.log(data)
     dispatch({ type: MY_SAMPLE_SUCCESS, payload: data.data });
   } catch (error) {
@@ -64,3 +63,8 @@ export const mySample = () => async (dispatch) => {
     });
   }
 };
+
+//Cearing Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({type:CLEAR_ERRORS});
+}

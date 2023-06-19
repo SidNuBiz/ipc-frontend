@@ -151,13 +151,13 @@ const AdminServiceEditSection = ({thisService}) => {
 
             {/* Service Price */}
 
-            <div className=''>
+            {/* <div className=''>
               
               <label htmlFor="service-price" className='text-2xl text-[#397f77] font-semibold'>Price(C$)</label>
 
               <input id='service-price' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={price} onChange={(e)=>setPrice(e.target.value)} required/>
 
-            </div>
+            </div> */}
 
           </div>
 
@@ -179,26 +179,16 @@ const AdminServiceEditSection = ({thisService}) => {
 
           </div>
 
-          {/* Service Options */}
 
-          <div className='mt-20'>
+          {/* <div className='mt-20'>
 
             <div className='grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 gap-10'>
 
-              {/* Turnaround */}
-
               <div className='mt-5 w-full'>
-
-                {/* Heading */}
-                
-                <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Turnaround</h2>
-
-                {/* list */}
 
                 <table className='w-full'>
 
-                  {/* Table Heading */}
-
+       
                   <thead >
 
                     <tr className='text-gray-600 font-semibold'>
@@ -245,11 +235,11 @@ const AdminServiceEditSection = ({thisService}) => {
 
                 </table>
 
-                {/* New Turnaround input */}
+           
 
                 <div className=' mt-5 '>
 
-                  {/* Heading */}
+         
 
                   <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
 
@@ -289,7 +279,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
                 </div>
 
-                {/* Add Button */}
+              
 
                 <div className='mt-5 w-full mx-auto'>
                   <button onClick={addNewTurnaroundType} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
@@ -298,19 +288,12 @@ const AdminServiceEditSection = ({thisService}) => {
               </div>
 
 
-              {/* Strains */}
 
               <div className='mt-5'>
 
-                {/* Heading */}
-                
                 <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Strains</h2>
 
-                {/* list */}
-
                 <table className='w-full'>
-
-                  {/* Table Heading */}
 
                   <thead >
 
@@ -352,11 +335,10 @@ const AdminServiceEditSection = ({thisService}) => {
 
                 </table>
 
-                {/* New strain input */}
 
                 <div className=' mt-5 '>
 
-                  {/* Heading */}
+             
 
                   <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
 
@@ -390,7 +372,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
                 </div>
 
-                {/* Add Button */}
+ 
 
                 <div className='mt-5 w-full mx-auto'>
                   <button onClick={addNewStrains} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
@@ -400,7 +382,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
             </div>
 
-          </div>
+          </div> */}
 
         </div>
 

@@ -2,13 +2,23 @@ import React from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
 import SampleSubmissionFormSection from "./SampleSubmissionFormSection";
 import SignatureCanvas from "react-signature-canvas";
-import { useState } from "react";
-import {useDispatch} from "react-redux"
+import { useState} from "react";
+import {useDispatch,useSelector} from "react-redux"
+import {useAlert} from "react-alert"
 import {createSamples} from "../../../actions/limsAction"
+import { useNavigate } from "react-router-dom"
+
+
 
 const TestingSubmissionFormPageSection = () => {
     const dispatch = useDispatch()
-    const [sampleFormData,setSampleFormData] = useState([])
+    const alert = useAlert()
+    const navigate = useNavigate()
+
+
+
+    const {sampleFormData} = useSelector(state=>state.sampleFormSubmit)
+
     const [sampleList,setSampleList]=useState([{id:new Date().getTime(),content:SampleSubmissionFormSection}])
     const [signature, setSignature] = useState(null);
     const [additionalInfo,setAdditionalInfo] = useState('')
@@ -23,16 +33,63 @@ const TestingSubmissionFormPageSection = () => {
     }
 
     const submit = ()=>{
-        dispatch(createSamples({
+        let closeSubmit = true
+        sampleFormData.forEach(sample =>{
+          
+            if(sample.sampleName == "" || sample.sampleName == undefined ){
+                alert.error("Please Enter Sample Name")
+                closeSubmit = false
+            }
+            let check = true
+            for (const key in sample.storageType){
+                if((sample.storageType[key].value || (key == 'others' ? (sample.storageType[key].value !='' ? true : false) : false))){ 
+                    check = false
+                }
+            }
+            if(check){
+                alert.error("Please Select a Storage Type for "+sample.sampleName)
+                closeSubmit = false
+            }
+            if(sample.testFormData.length == 0){
+                alert.error("Please select atleast 1 test for the "+sample.sampleName)
+                closeSubmit = false
+            }
+
+        })
+
+        if(!closeSubmit){
+            return null
+        }
+
+        if(!acknowledgementCheck){
+            return alert.error("Acknowledgement Must be Checked")
+        }
+
+        // navigate('/checkout')
+
+        dispatch({type:'MAIN_FORM_DATA',payload:{
             sampleFormData,
             // signature,
             additionalInfo,
             acknowledgementCheck
-        }))
+        }})
+        
+        
+
+        // dispatch(createSamples({
+        //     sampleFormData,
+        //     // signature,
+        //     additionalInfo,
+        //     acknowledgementCheck
+        // }))
+
+
        
     }
 
     return (
+     
+
         <div className="text-gray-600">
             {/* Heading */}
 
@@ -60,10 +117,10 @@ const TestingSubmissionFormPageSection = () => {
                 {sampleList.map((item)=>(
                     <div key={item.id} className="mb-10">
                         {/* Delete Sample Button */}
-                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} sampleFormData={sampleFormData} setSampleFormData={setSampleFormData} />}
+                        {<item.content id={item.id} sampleList={sampleList} setSampleList={setSampleList} />}
                     </div>
                 ))}
-             
+            
             </div>
 
             {/* Add Sample Button */}
@@ -147,7 +204,7 @@ const TestingSubmissionFormPageSection = () => {
                             id="acknowledgement"
                             onChange={(e)=>{setAcknowledgementCheck(e.target.checked)}}
                         />
-                        <label htmlFor="acknowledgement"> Acknowledgement</label>
+                        <label htmlFor="acknowledgement"> Acknowledgement<span className='text-red-500'>*</span></label>
                     </div>
 
                     {/* Notes */}
@@ -175,6 +232,7 @@ const TestingSubmissionFormPageSection = () => {
                 <button onClick={submit} className="bg-[#397f77] hover:bg-[#18debb] rounded-md font-semibold text-white px-5 py-3 duration-300">Submit</button>
             </div>
         </div>
+    
     );
 };
 
