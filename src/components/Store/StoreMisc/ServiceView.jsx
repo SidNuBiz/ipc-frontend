@@ -26,14 +26,14 @@ const ServiceView = () => {
     const [strainsType,setStrainsType] = useState([])
     const [turnaroundTitle,setTurnaroundTitle] = useState("Standard (7 buisness days)")
 
-    const [notification,setNotification] = useState({trigger:false,notificationMessage:""})
+    // const [notification,setNotification] = useState({trigger:false,notificationMessage:""})
 
     const addToCart = ()=>{
         dispatch(addItemsToCart({thisService,strainsType,turnaroundType:{title:turnaroundTitle,addOnPrice:turnaround},calculatedPrice,productPrice:thisService.price}))
         setTurnaroundTitle("Standard (7 buisness days)")
         setStrainsType([])
 
-        setNotification({trigger:true,notificationMessage:"Item added to cart!"})
+        // setNotification({trigger:true,notificationMessage:"Item added to cart!"})
         // triggerNotification({trigger:true,notificationMessage:"Item added to cart!"})
     }
 
@@ -79,7 +79,7 @@ const ServiceView = () => {
 
             {/* Notification Popup */}
 
-            <NotificationPopup notification={notification}/>
+            {/* <NotificationPopup notification={notification}/> */}
 
             {/* NavBar */}
 

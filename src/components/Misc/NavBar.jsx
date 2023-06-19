@@ -156,6 +156,11 @@ const NavBar = () => {
                                         <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
                                             <Link to="/store/all"><h2 className="px-5 py-3">All Testing Services</h2></Link>
                                         </li>
+
+                                        <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
+                                            <Link to="/store/packages"><h2 className="px-5 py-3">Packages</h2></Link>
+                                        </li>
+
                                         <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
                                             <Link to="/store/faq"><h2 className="px-5 py-3">FAQ</h2></Link>
                                         </li>

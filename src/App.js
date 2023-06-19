@@ -48,6 +48,8 @@ import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotifi
 // import NotificationPopup from './components/Misc/NotificationPopup';
 import TestingSubmissionFormPage from './pages/Store/TestingSubmissionFormPage';
 import SampleView from './components/User/MySamplePage/SampleView';
+import PackagesPage from './pages/Store/PackagesPage';
+import PackageView from './components/Store/StoreMisc/PackageView';
 
 
 function App() {
@@ -167,6 +169,10 @@ function App() {
         <Route path="/store/all" element={<AllTestingServicesPage />} />
 
         <Route path="/store/all/testing-services/:serviceId" element={<ServiceView />} />
+
+        <Route path="/store/packages" element={<PackagesPage />} />
+
+        <Route path="/store/packages/package/:packageId" element={<PackageView />} />
         
 
         {/* Services Dropdown Pages */}
