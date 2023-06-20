@@ -1814,6 +1814,207 @@
     ]
 
 
+    // Packages
+
+    export const packages = [
+
+        {
+            id: "PK001",
+
+            img: "https://static.wixstatic.com/media/8f1ac17fdd3a4416ae16e1909f77f8e6.jpg/v1/fill/w_500,h_333,al_c,q_85,usm_0.66_1.00_0.01/8f1ac17fdd3a4416ae16e1909f77f8e6.webp",
+
+            name: "Health Canada Required Profile - FLOWER",
+
+            sampleRequired: "20-40g",
+
+            turnaroundTypes: [
+
+                {
+                    title: "Standard",
+                    price: 1502.00,
+                },
+
+                {
+                    title: "Standard2",
+                    price: 3004.00,
+                },
+
+                {
+                    title: "Standard3",
+                    price: 1426.90,
+                },
+
+                {
+                    title: "Rushed",
+                    price: 2853.80,
+                },
+
+                {
+                    title: "Rushed2",
+                    price: 1351.80,
+                },
+
+                {
+                    title: "Rushed3",
+                    price: 2703.60,
+                }
+
+            ],
+
+            // price: {
+
+            //     standard: 1502.00,
+
+            //     standard2: 3004.00,
+
+            //     standard3: 1426.90,
+
+            //     rushed: 2853.80,
+
+            //     rushed2: 1351.80,
+
+            //     rushed3: 2703.60,
+
+            // },
+
+            tests: [
+
+                {
+                    testCode: "ANOO1",
+
+                    name: "Potency - HC",
+
+                    description: "4: CBD, CBDA, A9THC, A9THCA, Total CBD & Total THC",
+
+                    sampleRequired: "3g",
+
+                    price: {
+
+                        standard: 200.00,
+
+                        standard2: 190.00,
+
+                        standard3: 180.00,
+
+                        rushed: 400.00,
+
+                        rushed2: 380.00,
+
+                        rushed3: 360.00,
+
+                    }
+                },
+
+                {
+                    testCode: "ANOO4",
+
+                    name: "Pesticides (Targeted)",
+
+                    description: "Health Canada List of 96",
+
+                    sampleRequired: "3g",
+
+                    price: {
+
+                        standard: 515.00,
+
+                        standard2: 489.25,
+
+                        standard3: 463.50,
+
+                        rushed: 1030.00,
+
+                        rushed2: 978.50,
+
+                        rushed3: 927.00,
+
+                    }
+                },
+
+                {
+                    testCode: "MI001",
+
+                    name: "Microbial Package for Cannabis",
+
+                    description: "Total Yeast & Mold, Aerobic Bacterial Count, Bile tolerant Gram (-)ve bacteria, Escherichia coli, Salmonella, Staphylococcus aureus & Pseudomonas aeruginosa",
+
+                    sampleRequired: "12-30g",
+
+                    price: {
+
+                        standard: 300.00,
+
+                        standard2: 285.25,
+
+                        standard3: 270.50,
+
+                        rushed: 600.00,
+
+                        rushed2: 570.50,
+
+                        rushed3: 540.00,
+
+                    }
+                },
+
+                {
+                    testCode: "AN005",
+
+                    name: "Toxicology",
+
+                    description: "Aflatoxin B1, B2, G1 & G2",
+
+                    sampleRequired: "3g",
+
+                    price: {
+
+                        standard: 400.00,
+
+                        standard2: 380.00,
+
+                        standard3: 360.00,
+
+                        rushed: 800.00,
+
+                        rushed2: 760.00,
+
+                        rushed3: 720.00,
+
+                    }
+                },
+
+                {
+                    testCode: "AN006",
+
+                    name: "Heavy Metals",
+
+                    description: "Arsenic, Cadmium, Lead & Mercury",
+
+                    sampleRequired: "3g",
+
+                    price: {
+
+                        standard: 142.00,
+
+                        standard2: 134.90,
+
+                        standard3: 127.80,
+
+                        rushed: 284.00,
+
+                        rushed2: 269.80,
+
+                        rushed3: 255.60,
+
+                    }
+                },
+
+            ],
+        }
+
+    ]
+
+
     // Orders
 
     export const orders = [
