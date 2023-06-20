@@ -3,7 +3,9 @@ import {
     SAMPLE_SUBMIT_SUCCESS,
     SAMPLE_SUBMIT_REQUEST,
     SAMPLE_SUBMIT_FAIL,
-  
+    MY_SAMPLE_RESULT_REQUEST,
+    MY_SAMPLE_RESULT_SUCCESS,
+    MY_SAMPLE_RESULT_FAIL,
     MY_SAMPLE_REQUEST,
     MY_SAMPLE_SUCCESS,
     MY_SAMPLE_FAIL,
@@ -56,6 +58,36 @@ export const mySampleReducer = (state = { samples: [] }, action) => {
         };
   
       case MY_SAMPLE_FAIL:
+        return {
+          loading: false,
+          error: action.payload,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+  
+      default:
+        return state;
+    }
+  };
+
+
+  export const mySampleResultReducer = (state = { results: [] }, action) => {
+    switch (action.type) {
+      case MY_SAMPLE_RESULT_REQUEST:
+        return {
+          loading: true,
+        };
+  
+      case MY_SAMPLE_RESULT_SUCCESS:
+        return {
+          loading: false,
+          results: action.payload,
+        };
+  
+      case MY_SAMPLE_RESULT_FAIL:
         return {
           loading: false,
           error: action.payload,

@@ -22,8 +22,8 @@ import {
   CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-const api = 'http://54.190.127.181:8080'
-// const api = 'http://localhost:8080'
+// const api = 'http://54.190.127.181:8080'
+const api = 'http://localhost:8080'
 
 export const getProduct = ()=>async (dispatch)=>{
     try{

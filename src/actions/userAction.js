@@ -38,9 +38,9 @@ import {
 } from "../constants/userConstatns"
 import Cookies from 'js-cookie'
 import axios from "axios"
-
-const api = 'http://54.190.127.181:8080'
-// const api = 'http://localhost:8080'
+// 
+// const api = 'http://54.190.127.181:8080'
+const api = 'http://localhost:8080'
 
 const options = {
     expires:new Date(
@@ -95,7 +95,7 @@ export const loadUser = () => async (dispatch) => {
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
     } catch (error) {
-        // dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
+        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
     }
     };
 
