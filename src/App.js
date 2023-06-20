@@ -50,6 +50,7 @@ import TestingSubmissionFormPage from './pages/Store/TestingSubmissionFormPage';
 import SampleView from './components/User/MySamplePage/SampleView';
 import PackagesPage from './pages/Store/PackagesPage';
 import PackageView from './components/Store/StoreMisc/PackageView';
+import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 
 
 function App() {
@@ -137,6 +138,8 @@ function App() {
         <Route path="/reset-pass/:token" element={<ResetPassPage />} />
 
         <Route path="/cart" element={<CartPage />} />
+
+        <Route path="/payment-success" element={<PaymentSuccessfulPage />} />
 
         
 
