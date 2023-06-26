@@ -1,15 +1,16 @@
-const OrderDetails = ({order}) => {
+import { Link } from "react-router-dom";
 
-  function printInvoice(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-     var originalContents = document.body.innerHTML;
+const OrderDetails = ({order,oId}) => {
 
-     document.body.innerHTML = printContents;
+  
+    // var printContents = document.getElementById(divName).innerHTML;
+    //  var originalContents = document.body.innerHTML;
 
-     window.print();
+    //  document.body.innerHTML = printContents;
 
-     document.body.innerHTML = originalContents;
-}
+    //  window.print();
+
+    //  document.body.innerHTML = originalContents;
 
   return (
 
@@ -18,12 +19,14 @@ const OrderDetails = ({order}) => {
       {/* Print Invoice Button */}
 
       <div className=" w-fit ml-auto">
-        <button onClick={() => printInvoice("invoice")} id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Print Invoice</button>
+        <Link to={'/invoice/'+order.invoiceNumber+'/'+oId}>
+        <button id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Invoice</button>
+        </Link>
       </div>
 
       {/* Order Details */}
 
-      <div id="invoice" className="py-10 mt-10 text-gray-600">
+      <div  className="py-10 mt-10 text-gray-600">
 
         {/* Order Id */}
 
@@ -164,7 +167,7 @@ const OrderDetails = ({order}) => {
             {
               order.products.map ((item, index) => (
 
-                <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-gray-200" >
+                <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-black-900" >
 
                   {/* Item Name */}
 
@@ -173,14 +176,14 @@ const OrderDetails = ({order}) => {
                     {/* Name */}
 
                     <div>
-                      <h2 className=" text-md"><b>Name:</b> <br /> {item.name}</h2>
+                      <h2 className=" text-md"><b>Name:</b> <br /> {item.sampleName}</h2>
                     </div>
 
                     {/* Price */}
 
-                    <div className="text-right h-fit my-auto">
+                    {/* <div className="text-right h-fit my-auto">
                       <h2 className=" text-md font-bold">C${item.price}</h2>
-                    </div>
+                    </div> */}
 
                   </div>
 
@@ -191,14 +194,14 @@ const OrderDetails = ({order}) => {
                     {/* Title */}
 
                     <div>
-                      <h2 className=" text-md"><b>Turnaround Type:</b> <br /> {item.turnaroundType.title}</h2>
+                      <h2 className=" text-md"><b>Turnaround Type:</b> <br /> {item.selectedTurnaround.label}</h2>
                     </div>
 
-                    {/* Price */}
+                    {/* Price
 
                     <div className="text-right h-fit my-auto">
                       <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
-                    </div>
+                    </div> */}
 
                   </div>
 
@@ -208,27 +211,27 @@ const OrderDetails = ({order}) => {
 
                     {/* Heading */}
 
-                    <h2 className=" text-md font-bold">Strains:</h2>
+                    <h2 className=" text-md font-bold">Tests</h2>
 
-                    {/* Strains */}
+                    {/* Tests */}
 
                     <div>
 
                       {
-                        item.strainsType.map((strain, index) => (
+                        item.testFormData.map((test, index) => (
 
                           <div key={index} className="grid grid-cols-2 gap-5">
 
                             {/* Name */}
 
                             <div>
-                              <h2 className=" text-md">{strain.title}</h2>
+                              <h2 className=" text-md">{test.test.Name}</h2>
                             </div>
 
                             {/* Price */}
 
                             <div className="text-right h-fit my-auto">
-                              <h2 className=" text-md font-bold">C${strain.addOnPrice}</h2>
+                              <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value == 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2>
                             </div>
 
                           </div>
@@ -257,7 +260,7 @@ const OrderDetails = ({order}) => {
 
               <h2 className=" text-md font-bold">Subtotal:</h2>
 
-              <h2 className=" text-md text-right font-bold">C${order.subTotalPrice}</h2>
+              <h2 className=" text-md text-right font-bold">C$ {order.subTotalPrice}</h2>
 
             </div>
 
@@ -267,7 +270,7 @@ const OrderDetails = ({order}) => {
 
               <h2 className=" text-md font-bold">Shipping:</h2>
 
-              <h2 className=" text-md text-right font-bold">C${order.shippingPrice}</h2>
+              <h2 className=" text-md text-right font-bold">C$ {order.shippingPrice}</h2>
 
             </div>
 
@@ -277,7 +280,7 @@ const OrderDetails = ({order}) => {
 
               <h2 className=" text-md font-bold">Tax:</h2>
 
-              <h2 className=" text-md text-right font-bold">C${order.taxPrioce}</h2>
+              <h2 className=" text-md text-right font-bold">C$ {order.taxPrioce}</h2>
 
             </div>
 
@@ -287,7 +290,7 @@ const OrderDetails = ({order}) => {
 
               <h2 className=" text-xl font-bold">Total:</h2>
 
-              <h2 className=" text-xl text-right font-bold">C${order.totalPrice}</h2>
+              <h2 className=" text-xl text-right font-bold">C$ {order.totalPrice}</h2>
 
             </div>
 

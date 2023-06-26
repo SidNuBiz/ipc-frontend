@@ -36,7 +36,7 @@ const OrderView = () => {
                 {/* Page Section */}
 
                 <div className="animate-crossfade lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto pt-40">
-                    <OrderDetails order={orders[orderId]} />
+                    <OrderDetails order={orders[orderId]} oId={orderId} />
                 </div>
 
                 {/* Footer */}

@@ -14,7 +14,7 @@ const SampleList = () => {
 
     useEffect(()=>{
         dispatch(mySample())
-    },[])
+    },[dispatch])
 
     return (
 

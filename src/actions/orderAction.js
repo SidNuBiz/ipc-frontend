@@ -150,6 +150,23 @@ const api = 'http://localhost:8080'
       });
     }
   };
+
+  // export const getInvoice = (id) => async() => {
+
+  //   try{
+  //     const token = Cookies.get('token')
+  //     const config = {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}` 
+  //       },
+  //     };
+  //     const {data} = await axios.get(`${api}/api/v1/invoice/${id}`)
+  //     console.log(data)
+  //     return data
+  //   }catch(error){
+  //     return error
+  //   }
+  // }
   
   // Clearing Errors
   export const clearErrors = () => async (dispatch) => {

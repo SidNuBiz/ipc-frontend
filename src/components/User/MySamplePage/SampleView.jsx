@@ -7,7 +7,7 @@ import SampleDetails from "./SampleDetails.jsx";
 import Loader from "../../../pages/Loader";
 // import {samples} from "../../../data/sampleResult.js"
 
-const OrderView = () => {
+const SampleView = () => {
 
     const { samples,loading } = useSelector(
       (state) => state.mySample
@@ -42,6 +42,7 @@ const OrderView = () => {
 
                 <div className="animate-crossfade lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto pt-40">
                     <SampleDetails sample={samples[sampleId]} />
+                    
                 </div>
 
                 {/* Footer */}
@@ -58,4 +59,4 @@ const OrderView = () => {
   );
 }
 
-export default OrderView;
+export default SampleView;

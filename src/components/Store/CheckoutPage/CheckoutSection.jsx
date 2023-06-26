@@ -12,7 +12,6 @@ const CheckoutSection = ({user}) => {
   const [shippingPrice,setShippingPrice] = useState(0)
   const [taxPrice,setTaxPrice] = useState(0)
 
-
   const [details,setDetails] = useState(user.address.details);
   const [country,setCountry] = useState(user.address.country);
   const [city,setCity] = useState(user.address.city);
@@ -78,7 +77,7 @@ const CheckoutSection = ({user}) => {
 
   const createOrderSubmit = (e) => {
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData}))
     navigate('/')
 
   }

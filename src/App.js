@@ -6,6 +6,7 @@ import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
 import { getProduct } from "./actions/productAction";
+import { mySample } from "./actions/limsAction";
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -51,6 +52,7 @@ import SampleView from './components/User/MySamplePage/SampleView';
 import PackagesPage from './pages/Store/PackagesPage';
 import PackageView from './components/Store/StoreMisc/PackageView';
 import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
+import Invoice from './components/User/MyAccountPage/Invoice';
 
 
 function App() {
@@ -59,6 +61,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
     store.dispatch(getProduct());
+    store.dispatch(mySample())
     Aos.init({duration: 1500});
 
   }, [])
@@ -102,6 +105,8 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
 
           <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
+
+          <Route path="/invoice/:invoiceId/:orderId" element={<Invoice />} />
           
         </Route>
 

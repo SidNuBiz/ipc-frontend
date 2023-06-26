@@ -65,7 +65,7 @@ const TestingSubmissionFormPageSection = () => {
             return alert.error("Acknowledgement Must be Checked")
         }
 
-        // navigate('/checkout')
+        
 
         dispatch({type:'MAIN_FORM_DATA',payload:{
             sampleFormData,
@@ -74,7 +74,7 @@ const TestingSubmissionFormPageSection = () => {
             acknowledgementCheck
         }})
         
-        
+        navigate('/checkout')
 
         // dispatch(createSamples({
         //     sampleFormData,

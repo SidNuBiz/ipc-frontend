@@ -162,12 +162,12 @@ export const addImage = (file) => async (dispatch) => {
 // get All Users
 export const getAllUsers = () => async (dispatch) => {
   try {
-    console.log("game")
+  
     dispatch({ type: ALL_USERS_REQUEST });
     const { data } = await axios.get(`${api}/api/v1/users/all`);
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
-    console.log(error)
+    
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.error });
   }
 };
@@ -181,7 +181,7 @@ export const forgotPasswordRecover = (email) => async (dispatch) => {
     const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(`${api}/api/v1/password/forgot`, {email}, config);
-    console.log(data)
+    
 
     dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
   } catch (error) {
