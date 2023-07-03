@@ -19,6 +19,12 @@ const BusinessInfoSection = ({phoneCodes}) => {
             message:event.target[4].value
         })
 
+        event.target[0].value = ""
+        event.target[1].value = ""
+        event.target[2].value = ""
+        event.target[3].value = ""
+        event.target[4].value = ""
+
         if(submitCheck){
             alert.success('Your message is submitted')
         }else{

@@ -568,8 +568,14 @@ const NavBar = () => {
                                         </li>
 
                                         <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
+                                            <Link to="/store/packages"><h2>Package Pricing</h2></Link>
+                                        </li>
+
+                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
                                             <Link to="/store/faq"><h2>FAQ</h2></Link>
                                         </li>
+
+                                
 
                                     </ul>
                                 </div>
