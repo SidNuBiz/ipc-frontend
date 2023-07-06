@@ -1,3 +1,27 @@
+//NO DATA -> MATRIX FROM TEST TYPE ETC.
+//NO PRICE -> NO PRICE IS GIVEN IN NEW LAB PRICINNG MASTER DOCUMENT EXCEL SHEET
+//AN0014 OR AN014 ?
+//WHICH IS THE REQUIRED AMOUNT
+//PROBLEMT WITH AN002
+//AN008 REQUIRED AMOUNT DOES NOT MATCH WITH THE EXCEL SHEET
+//AN013 HAS NO PRICE VALUE
+//PROBLEM WITH AN014 NO DATA
+//AN017 HAS NO PRICE VALUE AND NO DATA
+//AN024 HAS NO DATA
+//AN025 REQUIRED AMOUNT DOES NOT MATCH USPAMTREQ
+//AN026 NO DATA
+//AN027 NO DATA
+//AN028 NO DATA
+//AN029 NO DATA
+//AN030 NO DATA
+//MI012 NO DATA
+//MI015 DATA DOES NOT MATCH
+//MI016 DATA DOES NOT MATCH
+//MI017 DATA DOES NOT MATCH
+//ML001 NO PRICE VALUE
+
+
+
 let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "82",
@@ -102,13 +126,13 @@ let mapping = [
   },
   {
     OfficialCopyOfAllTestsV7_Id: "77",
-    Name: "Passive Air Plate Testing",
+    Name: "Passive Air Plate Testing - Generral Screen",
     TestingCode: "MI014",
     Categories: "Microbial",
     Type2: "Environmental",
     Options: "Individual Testing",
     MatrixForm: "Vapor/Gas/Air",
-    Description: "Screens for the presence and gives a total count of the following: Total Yeast &amp; Mould, Total Aerobic Plate Count &amp; Bile Tolerant Gram Negative (Enterobacterial Count)",
+    Description: "$50 for presence/total count, $200 to identify. Screens for the presence and gives a total count of the following: Total Yeast &amp; Mould, Total Aerobic Plate Count &amp; Bile Tolerant Gram Negative (Enterobacterial Count)",
     USPAmtReq: 0,
     StandardPricing: "50",
     RushedPricing: "100",
@@ -124,7 +148,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "76",
     Name: "Total Alkali",
-    TestingCode: "AN024",
+    TestingCode: "AN025",
     Categories: "Analytical",
     Type2: "NHP, Cosmetics, Food, Environmental",
     Options: "Individual Testing",
@@ -145,7 +169,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "75",
     Name: "CO2 Purity Testing",
-    TestingCode: "AN022",
+    TestingCode: "AN023",
     Categories: "Analytical",
     Type2: "Environmental",
     Options: "Individual Testing",
@@ -166,7 +190,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "74",
     Name: "Vitamin Activity",
-    TestingCode: "AN021",
+    TestingCode: "AN022",
     Categories: "Analytical",
     Type2: "NHP, Cosmetics, Food",
     Options: "Individual Testing",
@@ -187,12 +211,12 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "73",
     Name: "Vitamin Analysis-Fat Soluble",
-    TestingCode: "AN020",
+    TestingCode: "AN021",
     Categories: "Analytical",
     Type2: "NHP, Cosmetics, Food",
     Options: "Individual Testing",
     MatrixForm: "Crude Oil, Edible, Food, Capsule, Extract(Solvent Based), Tincture/Oil(Alcohol Based), Emulsion, Topical, Finished Oil, Powder, Tablet, Water, VapeCartridges/Oil",
-    Description: "Vitamin A (Palmitate) &amp; Vitamin E (Tocopherol α, β &amp; γ)",
+    Description: "Vitamin A (Palmitate) &; Vitamin E (Tocopherol α, β &; γ)",
     USPAmtReq: 3,
     StandardPricing: "300",
     RushedPricing: "600",
@@ -208,7 +232,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "72",
     Name: "Vitamin Analysis-Water Soluble",
-    TestingCode: "AN019",
+    TestingCode: "AN020",
     Categories: "Analytical",
     Type2: "NHP, Cosmetics, Food",
     Options: "Individual Testing",
@@ -229,7 +253,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "71",
     Name: "Acid Value",
-    TestingCode: "AN018",
+    TestingCode: "AN019",
     Categories: "Analytical",
     Type2: "Cannabis, NHP, Cosmetics, Food, Environmental",
     Options: "Individual Testing",
@@ -250,7 +274,7 @@ let mapping = [
   {
     OfficialCopyOfAllTestsV7_Id: "70",
     Name: "Fatty Acid Analysis",
-    TestingCode: "AN017",
+    TestingCode: "AN018",
     Categories: "Analytical",
     Type2: "Cannabis, NHP, Cosmetics, Food, Environmental",
     Options: "Individual Testing",
@@ -262,7 +286,7 @@ let mapping = [
     StandardPricingLvl2: "489.25",
     RushedPricingLvl2100: "978.50",
     StandardPricingLvl3: "463.50",
-    RushedPricingLvl3100: "927.",
+    RushedPricingLvl3100: "927.00",
     Entry_Status: "Submitted",
     Entry_DateCreated: "2023-03-09 9:50 AM",
     Entry_DateSubmitted: "2023-03-09 12:18 PM",
@@ -270,8 +294,8 @@ let mapping = [
   },
   {
     OfficialCopyOfAllTestsV7_Id: "69",
-    Name: "Flavonoid Analysis",
-    TestingCode: "AN015",
+    Name: "Flavonoid Analysis - Hyperosid",
+    TestingCode: "AN016",
     Categories: "Analytical",
     Type2: "Cannabis, NHP",
     Options: "Individual Testing",
@@ -280,20 +304,42 @@ let mapping = [
     Description: "Quantification and/or Identification of Desired Flavonoids",
     USPAmtReq: 3,
     EUAmtReq: 3,
-    StandardPricing: "50",
-    RushedPricing: "100",
-    StandardPricingLvl2: "47.5",
-    RushedPricingLvl2100: "95",
-    StandardPricingLvl3: "45",
-    RushedPricingLvl3100: "90",
+    StandardPricing: "450",
+    RushedPricing: "900",
+    StandardPricingLvl2: "427.5",
+    RushedPricingLvl2100: "855",
+    StandardPricingLvl3: "405",
+    RushedPricingLvl3100: "810",
     Entry_Status: "Incomplete",
     Entry_DateCreated: "2023-02-09 10:50 AM",
     Entry_DateUpdated: "2023-03-09 12:42 PM"
   },
+  // {
+  //   OfficialCopyOfAllTestsV7_Id: "68",
+  //   Name: "Heavy Metals Add on",
+  //   TestingCode: "AN014",
+  //   Categories: "Analytical",
+  //   Type2: "NHP",
+  //   Options: "Individual Testing",
+  //   MatrixForm: "Edible, Capsule, Extract(Solvent Based), Tincture/Oil(Alcohol Based), Emulsion, Topical, Finished Oil, Powder, Tablet",
+  //   SubMatrixForm1: "Beverage, Liquid, Powder/Tablet, Other",
+  //   Description: "Quantification of Peroxide",
+  //   USPAmtReq: 3,
+  //   StandardPricing: "32",
+  //   RushedPricing: "64",
+  //   StandardPricingLvl2: "30.4",
+  //   RushedPricingLvl2100: "60.8",
+  //   StandardPricingLvl3: "28.8",
+  //   RushedPricingLvl3100: "57.6",
+  //   Entry_Status: "Submitted",
+  //   Entry_DateCreated: "2023-01-26 2:41 PM",
+  //   Entry_DateSubmitted: "2023-01-26 2:43 PM",
+  //   Entry_DateUpdated: "2023-03-09 12:42 PM"
+  // },
   {
     OfficialCopyOfAllTestsV7_Id: "68",
     Name: "Peroxide Testing",
-    TestingCode: "AN0014",
+    TestingCode: "AN015",
     Categories: "Analytical",
     Type2: "NHP",
     Options: "Individual Testing",
@@ -301,12 +347,12 @@ let mapping = [
     SubMatrixForm1: "Beverage, Liquid, Powder/Tablet, Other",
     Description: "Quantification of Peroxide",
     USPAmtReq: 3,
-    StandardPricing: "32",
-    RushedPricing: "64",
-    StandardPricingLvl2: "30.4",
-    RushedPricingLvl2100: "60.8",
-    StandardPricingLvl3: "28.8",
-    RushedPricingLvl3100: "57.6",
+    StandardPricing: "50",
+    RushedPricing: "100",
+    StandardPricingLvl2: "47.5",
+    RushedPricingLvl2100: "95",
+    StandardPricingLvl3: "45",
+    RushedPricingLvl3100: "90",
     Entry_Status: "Submitted",
     Entry_DateCreated: "2023-01-26 2:41 PM",
     Entry_DateSubmitted: "2023-01-26 2:43 PM",
@@ -330,7 +376,7 @@ let mapping = [
   // },
   {
     OfficialCopyOfAllTestsV7_Id: "66",
-    Name: "Ingredient Quantification",
+    Name: "Ingredient Quantification - Methyl Salicylate & Menthol",
     TestingCode: "AN012",
     Categories: "Analytical",
     Type2: "Cannabis, NHP",
@@ -482,7 +528,7 @@ let mapping = [
     Type2: "Cannabis",
     Options: "Individual Testing",
     MatrixForm: "Fresh Flower",
-    Description: "Package of: Hop latent viroid, cannabis cryptic virus &amp; lettuce chlorosis virus",
+    Description: "Package of: Hop latent viroid, cannabis cryptic virus & lettuce chlorosis virus",
     USPAmtReq: 4,
     EUAmtReq: 8,
     StandardPricing: "100",
@@ -528,9 +574,9 @@ let mapping = [
     Description: "Presence/Absence",
     USPAmtReq: 12,
     EUAmtReq: 30,
-    StandardPricing: "14",
+    StandardPricing: "74",
     RushedPricing: "148",
-    StandardPricingLvl2: "730.30",
+    StandardPricingLvl2: "70.30",
     RushedPricingLvl2100: "140.60",
     StandardPricingLvl3: "66.60",
     RushedPricingLvl3100: "133.20",
@@ -859,7 +905,7 @@ let mapping = [
   },
   {
     OfficialCopyOfAllTestsV7_Id: "33",
-    Name: "Total Yeast &amp; Mould",
+    Name: "Total Yeast & Mould",
     TestingCode: "MI002",
     Categories: "Microbial",
     Type2: "Cannabis, NHP, Cosmetics, Food, Environmental",
@@ -888,7 +934,7 @@ let mapping = [
     Type2: "Cannabis",
     Options: "Individual Testing",
     MatrixForm: "Dried Flower, Fresh Flower, Crude Oil, Distilate, Isolate, Edible, Capsule, Extract(Solvent Based), Tincture/Oil(Alcohol Based), Emulsion, Topical, VapeCartridges/Oil, Finished Oil",
-    Description: "Total Yeast &amp; Mold, Aerobic Bacterial Count, Bile tolerant Gram (-)ve bacteria, Escherichia coli, Salmonella spp, Staphylococcus aureus, Pseudomonas aeruginosa",
+    Description: "Total Yeast & Mold, Aerobic Bacterial Count, Bile tolerant Gram (-)ve bacteria, Escherichia coli, Salmonella spp, Staphylococcus aureus, Pseudomonas aeruginosa",
     USPNotUsedHeldDescOnly: "12g",
     USPAmtReq: 12,
     EUAmtReq: 30,
@@ -952,7 +998,7 @@ let mapping = [
   },
   {
     OfficialCopyOfAllTestsV7_Id: "28",
-    Name: "Potency - Cannabis",
+    Name: "Potency - HC",
     TestingCode: "AN001",
     Categories: "Analytical",
     Type2: "Cannabis",
@@ -1031,7 +1077,7 @@ let mapping = [
     Options: "Individual Testing",
     MatrixForm: "Dried Flower, Fresh Flower, Crude Oil, Distilate, Isolate, Edible, Capsule, Extract(Solvent Based), Tincture/Oil(Alcohol Based), Emulsion, Topical, VapeCartridges/Oil, Finished Oil, Powder, Tablet",
     SubMatrixForm1: "Gummies, Hard Candies, Brownie/Cookie Etc, Chocolate, Beverage, Liquid, Powder/Tablet, Other",
-    Description: "Health Canada required 96",
+    Description: "Health Canada list of 96",
     USPNotUsedHeldDescOnly: "3g",
     USPAmtReq: 3,
     EUAmtReq: 10,
@@ -1054,7 +1100,7 @@ let mapping = [
     Type2: "Cannabis, NHP",
     Options: "Individual Testing",
     MatrixForm: "Dried Flower, Fresh Flower, Crude Oil, Distilate, Isolate, Edible, Capsule, Emulsion, Topical, VapeCartridges/Oil, Finished Oil, Powder, Tablet",
-    Description: "Health Canada required: Arsenic, Cadmium, Mercury, and Lead",
+    Description: "Arsenic, Cadmium, Mercury, and Lead",
     USPNotUsedHeldDescOnly: "3g",
     USPAmtReq: 3,
     EUAmtReq: 10,
@@ -1102,7 +1148,7 @@ let mapping = [
     Options: "Individual Testing",
     MatrixForm: "Dried Flower, Fresh Flower, Crude Oil, Distilate, Isolate, Edible, Capsule, Extract(Solvent Based), Tincture/Oil(Alcohol Based), Emulsion, Topical, VapeCartridges/Oil, Finished Oil, Powder, Tablet",
     SubMatrixForm1: "Gummies, Hard Candies, Brownie/Cookie Etc, Chocolate, Beverage, Liquid, Powder/Tablet",
-    Description: "Evaluates product for extraneous materials such as metals, wood or plastic pieces, filth, insect parts",
+    Description: "Evaluates for extraneous materials such as metals, wood or plastic pieces, filth, insect parts",
     USPNotUsedHeldDescOnly: "1g",
     USPAmtReq: 1,
     EUAmtReq: 5,
@@ -1117,6 +1163,8 @@ let mapping = [
     Entry_DateSubmitted: "2022-10-14 7:00 AM",
     Entry_DateUpdated: "2023-03-09 12:42 PM"
   },
+
+  //PACKAGE PRICING
   {
     OfficialCopyOfAllTestsV7_Id: "20",
     Name: "Cannabis Oil Required Profile Plus",
