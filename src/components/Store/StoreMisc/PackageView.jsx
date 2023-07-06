@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import NotificationPopup from "../../Misc/NotificationPopup";
 import NavBar from "../../Misc/NavBar";
 import { useState } from "react";
 import { useParams } from "react-router-dom";

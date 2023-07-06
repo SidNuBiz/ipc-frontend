@@ -50,6 +50,7 @@ import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotifi
 import TestingSubmissionFormPage from './pages/Store/TestingSubmissionFormPage';
 import SampleView from './components/User/MySamplePage/SampleView';
 import PackagesPage from './pages/Store/PackagesPage';
+import TestsPricingPage from './pages/Store/TestsPricingPage';
 import PackageView from './components/Store/StoreMisc/PackageView';
 import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 import Invoice from './components/User/MyAccountPage/Invoice';
@@ -107,6 +108,12 @@ function App() {
           <Route path="/testing-submission" element={<TestingSubmissionFormPage />} />
 
           <Route path="/invoice/:invoiceId/:orderId" element={<Invoice />} />
+
+          <Route path="/store/packages" element={<PackagesPage />} />
+
+          <Route path="/store/packages/package/:packageId" element={<PackageView />} />
+
+          <Route path="/store/tests/pricing" element={<TestsPricingPage />} />
           
         </Route>
 
@@ -178,9 +185,7 @@ function App() {
 
         <Route path="/store/all/testing-services/:serviceId" element={<ServiceView />} />
 
-        <Route path="/store/packages" element={<PackagesPage />} />
-
-        <Route path="/store/packages/package/:packageId" element={<PackageView />} />
+       
         
 
         {/* Services Dropdown Pages */}
