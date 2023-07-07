@@ -158,7 +158,11 @@ const NavBar = () => {
                                         </li>
 
                                         <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/store/packages"><h2 className="px-5 py-3">Packages</h2></Link>
+                                            <Link to="/store/packages"><h2 className="px-5 py-3">Package Pricing</h2></Link>
+                                        </li>
+
+                                        <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
+                                            <Link to="/store/tests/pricing"><h2 className="px-5 py-3">Tests Pricing</h2></Link>
                                         </li>
 
                                         <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
@@ -569,6 +573,10 @@ const NavBar = () => {
 
                                         <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
                                             <Link to="/store/packages"><h2>Package Pricing</h2></Link>
+                                        </li>
+
+                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
+                                            <Link to="/store/tests/pricing"><h2>Tests Pricing</h2></Link>
                                         </li>
 
                                         <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">

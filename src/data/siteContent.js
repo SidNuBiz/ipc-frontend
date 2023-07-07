@@ -941,15 +941,15 @@
             {
 
                 
-                img: "https://static.wixstatic.com/media/nsplsh_326679654c685565597067~mv2.jpg/v1/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20National%20Cancer%20Institute.jpg",
+                "img": "https://static.wixstatic.com/media/nsplsh_326679654c685565597067~mv2.jpg/v1/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20National%20Cancer%20Institute.jpg",
 
-                name: "ANALYTICAL TESTING LICENSE",
+                "name": "ANALYTICAL TESTING LICENSE",
 
-                details: {
+                "details": {
 
-                    paragraph: "Innovate Phytoceuticals is pleased to hold an Analytical Testing License under the Cannabis Act and its’ Regulations from Health Canada for the following authorized activities:",
+                    "paragraph": "Innovate Phytoceuticals is pleased to hold an Analytical Testing License under the Cannabis Act and its’ Regulations from Health Canada for the following authorized activities:",
 
-                    bulletPoints: [
+                    "bulletPoints": [
 
                         "Possess Cannabis for the purpose of testing",
     
@@ -960,22 +960,22 @@
                 }, 
 
 
-                description: "Under the Analytical Testing License, Innovate Phytoceuticals offers standardized testing for Cannabis, such as: potency testing cannabinoid, terpene & bioflavonoid profiling; pesticide; heavy metal & residual solvent screening as well as toxicological & microbial analyses and much more.",
+                "description": "Under the Analytical Testing License, Innovate Phytoceuticals offers standardized testing for Cannabis, such as: potency testing cannabinoid, terpene & bioflavonoid profiling; pesticide; heavy metal & residual solvent screening as well as toxicological & microbial analyses and much more.",
 
             },
 
             {
 
                 
-                img: "https://static.wixstatic.com/media/nsplsh_44ed343aafcf440c82fa884dbea2cbd7~mv2.jpg/v1/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Hal%20Gatewood.jpg",
+                "img": "https://static.wixstatic.com/media/nsplsh_44ed343aafcf440c82fa884dbea2cbd7~mv2.jpg/v1/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Hal%20Gatewood.jpg",
 
-                name: "RESEARCH LICENSES",
+                "name": "RESEARCH LICENSES",
 
-                details: {
+                "details": {
 
-                    paragraph: "Innovate Phytoceuticals is pleased to hold multiple Research Licenses under the Cannabis Act and its’ Regulations from Health Canada to possess and produce Cannabis for the purpose of research. The following authorized activities under these licenses have been approved by Health Canada:",
+                    "paragraph": "Innovate Phytoceuticals is pleased to hold multiple Research Licenses under the Cannabis Act and its’ Regulations from Health Canada to possess and produce Cannabis for the purpose of research. The following authorized activities under these licenses have been approved by Health Canada:",
 
-                    bulletPoints: [
+                    "bulletPoints": [
 
                         "The production and identification of novel and unique Cannabis strains",
     
@@ -994,22 +994,22 @@
 
                 
 
-                description: "",
+                "description": "",
 
             },
 
             {
 
                 
-                img: "https://static.wixstatic.com/media/nsplsh_42753642534572534c5f4d~mv2_d_5000_3334_s_4_2.jpg/v1/crop/x_0,y_494,w_5000,h_2346/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Add%20Weed.jpg",
+                "img": "https://static.wixstatic.com/media/nsplsh_42753642534572534c5f4d~mv2_d_5000_3334_s_4_2.jpg/v1/crop/x_0,y_494,w_5000,h_2346/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Add%20Weed.jpg",
 
-                name: "NURSERY LICENSE",
+                "name": "NURSERY LICENSE",
 
-                details: {
+                "details": {
 
-                    paragraph: "Innovate Phytoceuticals has recently been awarded a cannabis nursery license under the Cannabis Act and its Regulations from Health Canada. The following authorized activities under this license have been approved by Health Canada:",
+                    "paragraph": "Innovate Phytoceuticals has recently been awarded a cannabis nursery license under the Cannabis Act and its Regulations from Health Canada. The following authorized activities under this license have been approved by Health Canada:",
 
-                    bulletPoints: [
+                    "bulletPoints": [
 
                         "Possess and obtain cannabis plants or seeds by propagating, cultivating or harvesting",
     
@@ -1025,27 +1025,27 @@
 
                 
 
-                description: "",
+                "description": "",
 
             },
 
             {
 
                 
-                img: "https://static.wixstatic.com/media/nsplsh_6738415a584e566b627130~mv2_d_5178_3452_s_4_2.jpg/v1/crop/x_0,y_511,w_5178,h_2430/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Nastya%20Dulhiier.jpg",
+                "img": "https://static.wixstatic.com/media/nsplsh_6738415a584e566b627130~mv2_d_5178_3452_s_4_2.jpg/v1/crop/x_0,y_511,w_5178,h_2430/fill/w_785,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Nastya%20Dulhiier.jpg",
 
-                name: "CONTROLLED DRUGS & SUBSTANCES DEALER’S LICENSE",
+                "name": "CONTROLLED DRUGS & SUBSTANCES DEALER’S LICENSE",
 
-                details: {
+                "details": {
 
-                    paragraph: "Innovate Phytoceuticals holds a Controlled Drugs and Substances Dealer’s License under the Controlled Drugs and Substances Act from Health Canada. This license allows for the possession, production, assembly, R&D, sale, import and export of controlled drugs and substances. The company is licensed to conduct these activities with 20 different controlled substances, including psilocybin, psilocin, lysergic acid diethylamide (LSD), MDMA and mescaline.",
+                    "paragraph": "Innovate Phytoceuticals holds a Controlled Drugs and Substances Dealer’s License under the Controlled Drugs and Substances Act from Health Canada. This license allows for the possession, production, assembly, R&D, sale, import and export of controlled drugs and substances. The company is licensed to conduct these activities with 20 different controlled substances, including psilocybin, psilocin, lysergic acid diethylamide (LSD), MDMA and mescaline.",
 
-                    bulletPoints: [],
+                    "bulletPoints": [],
                 }, 
 
                 
 
-                description: "",
+                "description": "",
 
             },
 
@@ -1058,128 +1058,128 @@
 
     export const equipmentData = {
 
-        dateOfUpdate: "2022 October 14",
+        "dateOfUpdate": "2022 October 14",
 
-        equipments: [
+        "equipments": [
 
             {
-                img: "https://static.wixstatic.com/media/352b81_634ff1e9c4614e0b87746b98c16b0b6f~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_634ff1e9c4614e0b87746b98c16b0b6f~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_634ff1e9c4614e0b87746b98c16b0b6f~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_634ff1e9c4614e0b87746b98c16b0b6f~mv2.jpg",
 
-                name: "qPCR",
+                "name": "qPCR",
 
-                model: "CFX-96",
+                "model": "CFX-96",
 
-                description: "BIO-RAD- qPCR system",
+                "description": "BIO-RAD- qPCR system",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_118fcc533bef4c149e6571c7497919ff~mv2.jpg/v1/fill/w_1044,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_118fcc533bef4c149e6571c7497919ff~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_118fcc533bef4c149e6571c7497919ff~mv2.jpg/v1/fill/w_1044,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_118fcc533bef4c149e6571c7497919ff~mv2.jpg",
                 
-                name: "KingFisher",
+                "name": "KingFisher",
 
-                model: "KingfisherFlex, Head part, plates",
+                "model": "KingfisherFlex, Head part, plates",
 
-                description: "automated DNA/RNA extraction",
+                "description": "automated DNA/RNA extraction",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_d3b7ec38845e4f818a7de9ca3e616e5c~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_d3b7ec38845e4f818a7de9ca3e616e5c~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_d3b7ec38845e4f818a7de9ca3e616e5c~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_d3b7ec38845e4f818a7de9ca3e616e5c~mv2.jpg",
                 
-                name: "ICP-MS",
+                "name": "ICP-MS",
 
-                model: "ICP-RQ-MS, Computer, Monitor, Chiller, Pump",
+                "model": "ICP-RQ-MS, Computer, Monitor, Chiller, Pump",
 
-                description: "Complete trace elemental analysis solution for your highthroughput lab; Directly under bench.",
+                "description": "Complete trace elemental analysis solution for your highthroughput lab; Directly under bench.",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_6cf765be0673453ab5481e1ee53aee21~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_6cf765be0673453ab5481e1ee53aee21~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_6cf765be0673453ab5481e1ee53aee21~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_6cf765be0673453ab5481e1ee53aee21~mv2.jpg",
                 
-                name: "GC-TSQ9000-1",
+                "name": "GC-TSQ9000-1",
 
-                model: "TRACE 1310, TSQ 9000 Evo, UPS",
+                "model": "TRACE 1310, TSQ 9000 Evo, UPS",
 
-                description: "GC-MS for pesticide analysis",
+                "description": "GC-MS for pesticide analysis",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_2d36450ef0624a7f9a208f6b749dabfd~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_2d36450ef0624a7f9a208f6b749dabfd~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_2d36450ef0624a7f9a208f6b749dabfd~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_2d36450ef0624a7f9a208f6b749dabfd~mv2.jpg",
                 
-                name: "GC-ISQ7000",
+                "name": "GC-ISQ7000",
 
-                model: "TRACE 1310 (GC), ISQ7000, TRACE 1300-FID, UPS",
+                "model": "TRACE 1310 (GC), ISQ7000, TRACE 1300-FID, UPS",
 
-                description: "Volatile compound; Residual solvent.",
+                "description": "Volatile compound; Residual solvent.",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_58799edc69634e3193b4d455da73c040~mv2.jpg/v1/fill/w_1044,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_58799edc69634e3193b4d455da73c040~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_58799edc69634e3193b4d455da73c040~mv2.jpg/v1/fill/w_1044,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_58799edc69634e3193b4d455da73c040~mv2.jpg",
                 
-                name: "UHPLC-ALTIS-DAD",
+                "name": "UHPLC-ALTIS-DAD",
 
-                model: "Vanquish UHPLC-dual, TSQ ALTIS, DAD detector, UPS",
+                "model": "Vanquish UHPLC-dual, TSQ ALTIS, DAD detector, UPS",
 
-                description: "LC for pesticide detection, DAD for potency detection.",
+                "description": "LC for pesticide detection, DAD for potency detection.",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_259f7749d32b464bac2400312064a48c~mv2.jpg/v1/fill/w_441,h_662,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_259f7749d32b464bac2400312064a48c~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_259f7749d32b464bac2400312064a48c~mv2.jpg/v1/fill/w_441,h_662,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_259f7749d32b464bac2400312064a48c~mv2.jpg",
                 
-                name: "HPLC-CAD",
+                "name": "HPLC-CAD",
 
-                model: "Vanquish UHPLC-dual, CAD, DAD, UPS",
+                "model": "Vanquish UHPLC-dual, CAD, DAD, UPS",
 
-                description: "Non-volatile and many semi-volatile analytes including, but not limited to, antibiotics, excipients, ions, lipids, natural products, biofuels, sugars and surfactants.",
+                "description": "Non-volatile and many semi-volatile analytes including, but not limited to, antibiotics, excipients, ions, lipids, natural products, biofuels, sugars and surfactants.",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_475a671375ef4dd497b4805546b2f918~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_475a671375ef4dd497b4805546b2f918~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_475a671375ef4dd497b4805546b2f918~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_475a671375ef4dd497b4805546b2f918~mv2.jpg",
                 
-                name: "FlashPrep C-850",
+                "name": "FlashPrep C-850",
 
-                model: "Ulti Mate 3000, C-850",
+                "model": "Ulti Mate 3000, C-850",
 
-                description: "Standard DAD, autosampler; Dual flash and prep HPLC integrated in one instrument.",
+                "description": "Standard DAD, autosampler; Dual flash and prep HPLC integrated in one instrument.",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_9e245a77c1c2450e88c96774ab3c603e~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_9e245a77c1c2450e88c96774ab3c603e~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_9e245a77c1c2450e88c96774ab3c603e~mv2.jpg/v1/fill/w_453,h_679,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_9e245a77c1c2450e88c96774ab3c603e~mv2.jpg",
                 
-                name: "Colony Counter",
+                "name": "Colony Counter",
 
-                model: "Scan 1200 (interscience)",
+                "model": "Scan 1200 (interscience)",
 
-                description: "Software upgrade to the PRO, which allows for CFR21Part11 compliance",
+                "description": "Software upgrade to the PRO, which allows for CFR21Part11 compliance",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_fd0f6f9117c44e1fa1677e9164b69135~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_fd0f6f9117c44e1fa1677e9164b69135~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_fd0f6f9117c44e1fa1677e9164b69135~mv2.jpg/v1/fill/w_464,h_696,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/352b81_fd0f6f9117c44e1fa1677e9164b69135~mv2.jpg",
                 
-                name: "Easy Spiral Dilute",
+                "name": "Easy Spiral Dilute",
 
-                model: "Interscience",
+                "model": "Interscience",
 
-                description: "Automatic diluter and plater of Petri dishes",
+                "description": "Automatic diluter and plater of Petri dishes",
             },
 
 
             {
-                img: "https://static.wixstatic.com/media/352b81_d2211ce01ada4d5c8551c329dbc8f919~mv2.jpg/v1/fill/w_928,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_d2211ce01ada4d5c8551c329dbc8f919~mv2.jpg",
+                "img": "https://static.wixstatic.com/media/352b81_d2211ce01ada4d5c8551c329dbc8f919~mv2.jpg/v1/fill/w_928,h_696,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_d2211ce01ada4d5c8551c329dbc8f919~mv2.jpg",
                 
-                name: "Stability Chambers",
+                "name": "Stability Chambers",
 
-                model: "7003-25-1",
+                "model": "7003-25-1",
 
-                description: "10 degree above the amnient to 70 degree, 25 cu ft",
+                "description": "10 degree above the amnient to 70 degree, 25 cu ft",
             },
 
         ],
