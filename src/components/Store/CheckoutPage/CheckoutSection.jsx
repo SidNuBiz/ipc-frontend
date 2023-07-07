@@ -78,6 +78,8 @@ const CheckoutSection = ({user}) => {
   const createOrderSubmit = (e) => {
     e.preventDefault();
     dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData}))
+    dispatch({type:'MAIN_FORM_DATA',payload:{}})
+    dispatch({type:'SAMPLE_FORM_DATA',payload:[]})
     navigate('/')
 
   }
@@ -254,7 +256,7 @@ const CheckoutSection = ({user}) => {
                           </div>
 
                           <div>
-                            <button type="submit" className="w-full bg-[#397f77] text-white text-lg font-semibold py-3 rounded-lg mt-10 hover:bg-[#18debb] duration-300">Continue</button>
+                            <button type="submit" className="w-full bg-[#397f77] text-white text-lg font-semibold py-3 rounded-lg mt-10 hover:bg-[#18debb] duration-300">Place Order</button>
                           </div>
                       </form>
 

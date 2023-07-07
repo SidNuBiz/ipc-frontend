@@ -40,7 +40,7 @@ const SampleDetails = ({ sample }) => {
 
                 <div className=" w-fit ml-auto">
                     <button
-                        onClick={() => printInvoice("invoice")}
+                        onClick={() => printInvoice("result")}
                         id="add-to-cart-btn"
                         className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">
                         Print
@@ -50,7 +50,7 @@ const SampleDetails = ({ sample }) => {
                 {/* Order Details */}
 
                 <div
-                    id="invoice"
+                    id="result"
                     className="py-10 mt-10 text-gray-600">
                     {/* Order Id */}
 
