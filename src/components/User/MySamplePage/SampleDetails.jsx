@@ -150,9 +150,9 @@ const SampleDetails = ({ sample }) => {
                                     <th scope="col" className="px-6 py-3">
                                         Component Name
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    {/* <th scope="col" className="px-6 py-3">
                                         Result
-                                    </th>
+                                    </th> */}
                                     <th scope="col" className="px-6 py-3">
                                         Status
                                     </th>
@@ -167,11 +167,28 @@ const SampleDetails = ({ sample }) => {
                                     <td className="px-6 py-4">
                                         {result.name}
                                     </td>
-                                    <td className="px-6 py-4">
+                                    {/* <td className="px-6 py-4">
                                         {result.result}
-                                    </td>
+                                    </td> */}
+                                    {/* A test assigned to the sample with a status of V (Available) or P (In Progress) has its status updated to C (Complete).
+A test assigned to the sample with a status of U (Unavailable), W (Waiting for Preparation), V (Available), or P (In Progress) has its status updated to X (Cancelled). */}
                                     <td className="px-6 py-4">
-                                        {result.result_type}
+                                        {
+                                            result.test_status == 'V' ? 'Available' :
+                                            result.test_status == 'P' ? 'In Progress' :
+                                            result.test_status == 'C' ? 'Complete' :
+                                            result.test_status == 'U' ? 'Unavailable' :
+                                            result.test_status == 'W' ? 'Waiting for Preparation' :
+                                            result.test_status == 'X' ? 'Cancelled' :
+                                            result.test_status == 'I' ? 'Inspection' :
+                                            result.test_status == 'A' ? 'Authorised' :
+                                            result.test_status == 'S' ? 'Suspended' :
+                                            result.test_status == 'R' ? 'Rejected' :
+                                            "Status Unavailable "
+                                         
+                                            
+                                            
+                                        }
                                     </td>
                                 </tr>
                   

@@ -57,6 +57,23 @@ const TestingSubmissionFormPageSection = () => {
 
         })
 
+        sampleFormData.forEach(sample => {
+            sample.testFormData.forEach((test,idx) => {
+                if(sample.testFormData.length-1 > idx){
+                    if(sample.testFormData[idx].type != sample.testFormData[idx+1].type){
+                        alert.error("All the test type for a single smaple needs to be same")
+                        closeSubmit = false
+                    }
+                    if(sample.testFormData[idx].matrixForm != sample.testFormData[idx+1].matrixForm){
+                        alert.error("All the matrix form for a single smaple needs to be same")
+                        closeSubmit = false
+                    }
+           
+                }
+                
+            })
+        })
+
         if(!closeSubmit){
             return null
         }
@@ -64,7 +81,6 @@ const TestingSubmissionFormPageSection = () => {
         if(!acknowledgementCheck){
             return alert.error("Acknowledgement Must be Checked")
         }
-
         
 
         dispatch({type:'MAIN_FORM_DATA',payload:{

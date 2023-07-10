@@ -7,7 +7,6 @@ const OrderList = () => {
         (state) => state.myOrders
     );
 
-    console.log(orders && orders.reverse())
 
     return (
         <div>
