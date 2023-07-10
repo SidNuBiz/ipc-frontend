@@ -168,7 +168,7 @@ const SampleDetails = ({ sample }) => {
                                         {result.name}
                                     </td>
                                     <td className="px-6 py-4">
-                                        {result.result ? 'X':sample.result}
+                                        {result.result}
                                     </td>
                                     <td className="px-6 py-4">
                                         {result.result_type}

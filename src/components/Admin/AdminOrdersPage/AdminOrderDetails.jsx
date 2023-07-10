@@ -19,7 +19,7 @@ const AdminOrderDetails = ({ order }) => {
 
             <div className=" w-fit ml-auto">
                 <button
-                    onClick={() => printInvoice("invoice")}
+                    onClick={() => printInvoice("invoices")}
                     id="add-to-cart-btn"
                     className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  "
                 >
@@ -42,7 +42,7 @@ const AdminOrderDetails = ({ order }) => {
 
             {/* Order Details */}
 
-            <div id="invoice" className="py-10 text-gray-600">
+            <div id="invoices" className="py-10 text-gray-600">
                 {/* Order Id */}
 
                 <div className="mb-10">
@@ -172,74 +172,93 @@ const AdminOrderDetails = ({ order }) => {
                     {/* Items */}
 
                     <div className="">
-                        {order.products.map((item, index) => (
-                            <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-gray-200">
-                                {/* Item Name */}
 
-                                <div className="grid grid-cols-2 gap-5 mb-3">
-                                    {/* Name */}
+                        {
+                        order.products.map ((item, index) => (
 
-                                    <div>
-                                        <h2 className=" text-md">
-                                            <b>Name:</b> <br /> {item.name}
-                                        </h2>
-                                    </div>
+                            <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-black-900" >
 
-                                    {/* Price */}
+                            {/* Item Name */}
 
-                                    <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C${item.price}</h2>
-                                    </div>
+                            <div className="grid grid-cols-2 gap-5 mb-3">
+
+                                {/* Name */}
+
+                                <div>
+                                <h2 className=" text-md"><b>Name:</b> <br /> {item.sampleName}</h2>
                                 </div>
 
-                                {/* Item turnaround Type */}
+                                {/* Price */}
 
-                                <div className="grid grid-cols-2 gap-5 mb-3">
-                                    {/* Title */}
+                                {/* <div className="text-right h-fit my-auto">
+                                <h2 className=" text-md font-bold">C${item.price}</h2>
+                                </div> */}
 
-                                    <div>
-                                        <h2 className=" text-md">
-                                            <b>Turnaround Type:</b> <br /> {item.turnaroundType.title}
-                                        </h2>
-                                    </div>
-
-                                    {/* Price */}
-
-                                    <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
-                                    </div>
-                                </div>
-
-                                {/* Item Ordered Strains */}
-
-                                <div className="mb-3">
-                                    {/* Heading */}
-
-                                    <h2 className=" text-md font-bold">Strains:</h2>
-
-                                    {/* Strains */}
-
-                                    <div>
-                                        {item.strainsType.map((strain, index) => (
-                                            <div key={index} className="grid grid-cols-2 gap-5">
-                                                {/* Name */}
-
-                                                <div>
-                                                    <h2 className=" text-md">{strain.title}</h2>
-                                                </div>
-
-                                                {/* Price */}
-
-                                                <div className="text-right h-fit my-auto">
-                                                    <h2 className=" text-md font-bold">C${strain.addOnPrice}</h2>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
                             </div>
-                        ))}
+
+                            {/* Item turnaround Type */}
+
+                            <div className="grid grid-cols-2 gap-5 mb-3">
+
+                                {/* Title */}
+
+                                <div>
+                                <h2 className=" text-md"><b>Turnaround Type:</b> <br /> {item.selectedTurnaround.label}</h2>
+                                </div>
+
+                                {/* Price
+
+                                <div className="text-right h-fit my-auto">
+                                <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
+                                </div> */}
+
+                            </div>
+
+                            {/* Item Ordered Strains */}
+
+                            <div className="mb-3">
+
+                                {/* Heading */}
+
+                                <h2 className=" text-md font-bold">Tests</h2>
+
+                                {/* Tests */}
+
+                                <div>
+
+                                {
+                                    item.testFormData.map((test, index) => (
+
+                                    <div key={index} className="grid grid-cols-2 gap-5">
+
+                                        {/* Name */}
+
+                                        <div>
+                                        <h2 className=" text-md">{test.test.Name}</h2>
+                                        </div>
+
+                                        {/* Price */}
+
+                                        <div className="text-right h-fit my-auto">
+                                        <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value == 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2>
+                                        </div>
+
+                                    </div>
+
+                                    ))
+                                }
+
+                                </div>
+
+                            </div>
+
+                            </div>
+
+                        ))
+                        }
+
                     </div>
+
 
                     {/* Total */}
 

@@ -10,7 +10,7 @@ import ServiceEnvironmentalImage from '../../../assets/service-environmental-img
 import ServiceAgricultureImage from '../../../assets/service-agriculture-img.webp';
 
 
-const ServiceOverviewSection = () => {
+const ServiceOverviewSection = ({services}) => {
 
     return (
 
@@ -45,17 +45,47 @@ const ServiceOverviewSection = () => {
 
                 {/* Cannabis */}
 
+                {services && services.map((service,index)=>(
+                    <Link to={`/services/${index}`} key={index}>
+
+                        <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
+    
+                        
+    
+                            <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) != 0 ? 'lg:order-1':""}`}>
+                                <img src={ServiceCannabisImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
+                            </div>
+    
+                
+    
+                            <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
+                                <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>{service.title}</h2>
+    
+                                <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
+                                    {service.points.map((point,idx)=>(
+                                        <li key={idx}>{point}</li>
+                                    ))}
+                                    
+                                    
+                                </ul>
+                            </div>
+    
+                        </div>
+                         
+                     </Link>
+                ))}
+
                 <Link to="/services/cannabis">
 
                     <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
 
-                        {/* Image */}
+                      
 
                         <div className=' mx-auto h-fit my-auto w-full shadow-xl rounded-2xl'>
                             <img src={ServiceCannabisImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
                         </div>
 
-                        {/* Text */}
+              
 
                         <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
                             <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Cannabis</h2>

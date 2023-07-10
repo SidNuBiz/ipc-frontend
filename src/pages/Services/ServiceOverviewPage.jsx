@@ -2,6 +2,7 @@ import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import ServiceOverviewSection from "../../components/Services/ServiceOverviewPage/ServiceOverviewSection.jsx";
 import TestimonialSection from "../../components/Services/ServiceOverviewPage/TestimonialSection.jsx";
+import { services } from "../../data/services.js";
 import { useEffect } from "react";
 
 
@@ -29,7 +30,7 @@ const ServiceOverviewPage = () => {
                 {/* Overview Section */}
                 
                 <div>
-                    <ServiceOverviewSection />
+                    <ServiceOverviewSection services={services} />
                 </div>
 
                 {/* Testimonial Section */}

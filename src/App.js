@@ -22,6 +22,7 @@ import ServiceRndPage from './pages/Services/ServiceRndPage.jsx';
 import ServiceCdsPage from './pages/Services/ServiceCdsPage.jsx';
 import ServiceEnvironmentalPage from './pages/Services/ServiceEnvironmentalPage.jsx';
 import ServiceAgriculturePage from './pages/Services/ServiceAgriculturePage.jsx';
+import ServicePage from './pages/Services/ServicePage';
 import WhoWeArePage from './pages/About/WhoWeArePage.jsx';
 import LicensingAndAccreditationsPage from './pages/About/LicensingAndAccreditationsPage.jsx';
 import EquipmentPage from './pages/About/EquipmentPage.jsx';
@@ -191,7 +192,8 @@ function App() {
         {/* Services Dropdown Pages */}
 
         <Route path="/services/overview" element={<ServiceOverviewPage />} />
-
+        <Route path="/services/:id" element={<ServicePage />} />
+{/* 
         <Route path="/services/cannabis" element={<ServiceCannabisPage />} />
 
         <Route path="/services/nhp" element={<ServiceNhpPage />} />
@@ -206,7 +208,7 @@ function App() {
 
         <Route path="/services/environmental" element={<ServiceEnvironmentalPage />} />
 
-        <Route path="/services/agriculture" element={<ServiceAgriculturePage />} />
+        <Route path="/services/agriculture" element={<ServiceAgriculturePage />} /> */}
 
       </Routes>
       

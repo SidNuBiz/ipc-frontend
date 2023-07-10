@@ -5,6 +5,7 @@ import { useState, useEffect , Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userAction";
 import Loader from "../../pages/Loader";
+import {services} from "../../data/services"
 
 const NavBar = () => {
     const dispatch = useDispatch()
@@ -53,16 +54,7 @@ const NavBar = () => {
                     <div className=" flex lg:col-span-4 lg:block md:hidden sm:hidden h-fit my-auto w-fit mx-auto">
                         <ul className="block font-medium">
 
-                            {/* Dashboard */}
-
-                            {isAuthenticated && user.role == 'admin' &&
-                            <li className=" inline-block mr-8">
-                                <Link to="/IPC-admin-portal">
-                                    <button className="text-xl">Dashboard</button>
-                                </Link>
-                            </li>
-                            
-                            }
+    
 
                             {/* Home */}
                             <li className=" inline-block mr-8">
@@ -108,35 +100,18 @@ const NavBar = () => {
 
                                 {/* Dropdown */}
 
-                                <div className="absolute hidden peer-hover:block hover:block bg-white drop-shadow-lg text-lg py-2 rounded-2xl">
+                            
+                                <div  className="absolute hidden peer-hover:block hover:block bg-white drop-shadow-lg text-lg py-2 rounded-2xl">
                                     <ul>
-                                        <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/overview"><h2 className="px-5 py-3">Overview</h2></Link>
+                                    <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
+                                        <Link to="/services/overview"><h2 className="px-5 py-3">Overview</h2></Link>
+                                    </li>
+                                    {services && services.map((service,idx) => (
+                                        <li key={idx} className="block hover:bg-[#18debb] hover:bg-opacity-30">
+                                            <Link to={`/services/${idx}`} ><h2 className="px-5 py-3">{service.title}</h2></Link>
                                         </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/cannabis"><h2 className="px-5 py-3">Cannabis</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/nhp"><h2 className="px-5 py-3">NHP</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/pharmaceutical"><h2 className="px-5 py-3">Pharmaceutical</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/fnb"><h2 className="px-5 py-3">Food & Beverage</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/rnd"><h2 className="px-5 py-3">R&D</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/cds"><h2 className="px-5 py-3">Controlled Drug & Substances</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/environmental"><h2 className="px-5 py-3">Environmental</h2></Link>
-                                        </li>
-                                        <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/agriculture"><h2 className="px-5 py-3">Agriculture</h2></Link>
-                                        </li>
+                                        
+                                    ))}
                                     </ul>
                                 </div>
                                 
@@ -250,6 +225,11 @@ const NavBar = () => {
 
                                     <div className="absolute hidden peer-hover:block hover:block bg-white drop-shadow-lg text-lg py-2 rounded-2xl">
                                             <ul>
+                                            {isAuthenticated && user.role == 'admin' &&
+                                                <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
+                                                    <Link to="/IPC-admin-portal"><h2 className="px-5 py-3">Dashboard</h2></Link>
+                                                </li>
+                                            }
                                             <li className="block hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <Link to="/user/profile"><h2 className="px-5 py-3">Profile</h2></Link>
                                             </li>
@@ -259,7 +239,6 @@ const NavBar = () => {
                                             <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <Link to="/user/samples"><h2 className="px-5 py-3">Samples</h2></Link>
                                             </li>
-
                                             <li className=" block  hover:bg-[#18debb] hover:bg-opacity-30">
                                                 <button className="px-5 py-3" onClick={logoutUser} >Logout</button>
                                             </li>
@@ -507,38 +486,13 @@ const NavBar = () => {
                                         <li className="block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
                                             <Link to="/services/overview"><h2>Overview</h2></Link>
                                         </li>
+                                        {services && services.map((service,idx) => (
+                                            <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
+                                                <Link to={`/services/${idx}`} ><h2>{service.title}</h2></Link>
+                                            </li>
+                                        ))}
 
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/cannabis"><h2>Cannabis</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/nhp"><h2>NHP</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/pharmaceutical"><h2>Pharmaceutical</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/fnb"><h2>Food & Beverage</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/rnd"><h2>R&D</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/cds"><h2>Controlled Drug & Substances</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/environmental"><h2>Environmental</h2></Link>
-                                        </li>
-
-                                        <li className=" block pl-10 py-3 hover:bg-[#18debb] hover:bg-opacity-30">
-                                            <Link to="/services/agriculture"><h2>Agriculture</h2></Link>
-                                        </li>
+                                      
                                     </ul>
                                 </div>
                                 
