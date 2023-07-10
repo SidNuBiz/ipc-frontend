@@ -35,6 +35,14 @@ const CheckoutSection = ({user}) => {
             subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricing)
         }else if(sample.selectedTurnaround.value == 'standard'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricing)
+        }else if(sample.selectedTurnaround.value == 'rushed level 2'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl2)
+        }else if(sample.selectedTurnaround.value == 'standard level 2'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl2)
+        }else if(sample.selectedTurnaround.value == 'rushed level 3'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl3)
+        }else if(sample.selectedTurnaround.value == 'standard level 3'){
+            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl3)
         }
     })
   })

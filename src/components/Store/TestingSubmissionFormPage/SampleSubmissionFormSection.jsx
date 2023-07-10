@@ -117,6 +117,10 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const turnaroundList = [
         {label:"Standard", value: "standard"},
         {label:"Rushed", value: "rushed"},
+        {label:"Standard Level 2", value: "standard level 2"},
+        {label:"Rushed Level 2", value: "rushed level 2"},
+        {label:"Standard Level 3", value: "standard level 3"},
+        {label:"Rushed Level 3", value: "rushed level 3"},
     ]
 
     const addTest = ()=>{     
@@ -350,15 +354,15 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
                     {/* Heading */}
 
-                    <div className='mb-3'>
+                    {/* <div className='mb-3'>
                         <p className='font-semibold text-lg'>Total Amount Required for Sample 1</p>
-                    </div>
+                    </div> */}
 
                     {/* Amount */}
 
-                    <div className='mb-5'>
+                    {/* <div className='mb-5'>
                         <p className='text-lg text-[#397f77]'>03 grams</p>
-                    </div>
+                    </div> */}
 
                     {/* Note */}
 
