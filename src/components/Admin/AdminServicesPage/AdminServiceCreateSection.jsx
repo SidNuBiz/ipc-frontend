@@ -299,8 +299,21 @@ const AdminServiceCreateSection = () => {
       }
 
       const addThisProduct = () => {
-        dispatch(createProduct({title,description},image))
-        navigate("/IPC-admin-portal/services")
+        console.log({
+          title,
+          subHeading,
+          servicePointsArr,
+          description:{paragraphsArr,bulletPointsArr},
+          hoverBoxContentArr,
+          outline:{
+            outlineTitle,
+            outlineSubHeading,
+            outlineParagrapsh,
+            outlineBulletPointsArr
+          }
+        })
+        // dispatch(createProduct({title,description},image))
+        // navigate("/IPC-admin-portal/services")
       }
 
   return (
