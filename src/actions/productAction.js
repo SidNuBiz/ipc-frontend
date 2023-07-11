@@ -62,7 +62,7 @@ export const getAdminProduct = () => async (dispatch) => {
 export const createProduct = (productData,image) => async (dispatch) => {
   try {
     dispatch({ type: NEW_PRODUCT_REQUEST });
-    console.log(image)
+  
     const config = {
       headers: { "Content-Type":"multipart/form-data" },
     };
