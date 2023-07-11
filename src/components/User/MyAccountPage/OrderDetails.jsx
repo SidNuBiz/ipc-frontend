@@ -51,7 +51,7 @@ const OrderDetails = ({order,oId}) => {
             {/* Order Date */}
 
             <div className="mb-3">
-              <h2 className=" text-md"><b>Order Date:</b> {order.created}</h2>
+              <h2 className=" text-md"><b>Order Date:</b>  {new Date(order.created).toLocaleDateString()}</h2>
             </div>
 
             {/* Order Status */}
