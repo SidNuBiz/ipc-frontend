@@ -7,6 +7,8 @@ const OrderList = () => {
         (state) => state.myOrders
     );
 
+    console.log(orders && orders.reverse())
+
     return (
         <div>
             {/* Order List */}
@@ -15,7 +17,7 @@ const OrderList = () => {
                 {/* Order 1 */}
 
                 <ul>
-                    {orders && orders.map((order, index) => (
+                    {orders && orders.slice(0).reverse().map((order, index) => (
                         <li
                             key={index}
                             className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
@@ -37,7 +39,7 @@ const OrderList = () => {
 
                                 <div className=" italic px-5">
                                     <b className=" not-italic">Date</b> <br />
-                                    {order.created}
+                                    {new Date(order.created).toLocaleDateString()}
                                 </div>
 
                                 {/* Order Status */}
