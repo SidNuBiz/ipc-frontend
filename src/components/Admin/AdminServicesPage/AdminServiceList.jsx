@@ -6,22 +6,22 @@ import { deleteProduct } from "../../../actions/productAction";
 const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
 
-    const {products,loading} = useSelector(
-        (state) => state.products
+    const {services,loading} = useSelector(
+        (state) => state.services
     );
 
-    const [services,setServices] = useState(products)
+    const [servicesList,setServicesList] = useState(services)
 
-    const deleteThisProduct = (productId,idx) => {
-        dispatch(deleteProduct(productId))
-        services.splice(idx, 1)
-        setServices(services)
-        dispatch({type:'ALL_PRODUCT_SUCCESS',payload:services})
+    const deleteThisProduct = (serviceId,idx) => {
+        dispatch(deleteProduct(serviceId))
+        servicesList.splice(idx, 1)
+        setServicesList(servicesList)
+        dispatch({type:'ALL_PRODUCT_SUCCESS',payload:servicesList})
     }
 
     return (
         <div>
-            {services && services.filter( service => service.name.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
+            {servicesList && servicesList.filter( service => service.title.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
@@ -30,7 +30,7 @@ const AdminServiceList = ({searchKey}) => {
 
                         <div className=" lg:col-span-1 md:col-span-2 sm:col-span-3">
                             <div className=" lg:h-32 md:h-32 sm:h-full w-full">
-                                <img src={service.image.url} alt="" className="h-full w-full object-cover" />
+                                <img src={service.mainImage} alt="" className="h-full w-full object-cover" />
                             </div>
                         </div>
 
@@ -38,11 +38,11 @@ const AdminServiceList = ({searchKey}) => {
 
                         <div className=" lg:col-span-7 md:col-span-6 sm:col-span-5 grid lg:grid-cols-6 md:grid-cols-6 sm:grid-cols-2 gap-5 ml-5">
                             <div className="col-span-2">
-                                <h2 className="text-xl text-[#397f77]">{service.name}</h2>
+                                <h2 className="text-xl text-[#397f77]">{service.title}</h2>
                             </div>
 
                             <div className="col-span-2">
-                                <h2 className="text-xl text-[#397f77] font-semibold">C${service.price}</h2>
+                                <h2 className="text-xl text-[#397f77] font-semibold">C${service._id}</h2>
                             </div>
 
                             {/* Service Actions */}

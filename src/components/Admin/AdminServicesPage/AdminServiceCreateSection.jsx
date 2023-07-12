@@ -178,13 +178,14 @@ const AdminServiceCreateSection = () => {
 
     const [imageGallery,setImageGallery] = useState([])
     const [previewImageGallery,setPreviewImageGallery] = useState([])
-    const [icon,setIcon] = useState('')
+    const [icon,setIcon] = useState()
     const [previewIcon,setPreviewIcon] = useState('')
-    const [mainImage,setMainImage] = useState('')
+    const [mainImage,setMainImage] = useState()
     const [previewMainImage,setPreviewMainImage] = useState('')
 
     const addServiceMainImage = (e) =>{
       const files = Array.from(e.target.files);
+      console.log(files)
       setPreviewMainImage('');
       setMainImage(files[0]);
       const reader = new FileReader();
@@ -192,7 +193,6 @@ const AdminServiceCreateSection = () => {
       reader.onload = () => {
         if (reader.readyState === 2) {
           setPreviewMainImage( reader.result);
-          setMainImage(reader.result)
           
         }
       };
@@ -207,7 +207,6 @@ const AdminServiceCreateSection = () => {
       reader.onload = () => {
         if (reader.readyState === 2) {
           setPreviewIcon( reader.result);
-          setIcon(reader.result)
        
         }
       };
@@ -223,7 +222,7 @@ const AdminServiceCreateSection = () => {
         reader.onload = () => {
           if (reader.readyState === 2) {
             setPreviewImageGallery((old) => [...old, reader.result]);
-            setImageGallery((old) => [...old, reader.result]);
+            setImageGallery((old) => [...old, e.target.files[0]]);
           }
         };
   
@@ -255,9 +254,9 @@ const AdminServiceCreateSection = () => {
             outlineParagraph,
             'outlineBulletPoints':outlineBulletPointsArr
           },
-          mainImage,
-          icon,
-          imageGallery
+          mainImage:"no image",
+          icon:"no image",
+          imageGallery:[]
         }
         dispatch(createService(service,mainImage,icon,imageGallery))
         // navigate("/IPC-admin-portal/services")

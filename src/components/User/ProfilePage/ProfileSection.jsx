@@ -90,7 +90,7 @@ const ProfileSection = ({user}) => {
                         {/* <img src="https://img.icons8.com/material/200/397f77/user-male-circle--v1.png" alt="" className=" opacity-50" /> */}
                         <div className=" w-[200px] h-[200px] rounded-full mx-auto">
 
-                            <img src={user.avatar.url} alt="" className=" h-full w-full rounded-full object-cover" />
+                            <img src="https://ipc-frontend.s3.amazonaws.com/service_images/7b978938d7ae9bcc4583ed0cc82c2335" alt="" className=" h-full w-full rounded-full object-cover" />
 
                         </div>
     

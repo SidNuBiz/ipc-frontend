@@ -7,6 +7,7 @@ import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
 import { getProduct } from "./actions/productAction";
 import { mySample } from "./actions/limsAction";
+import { getService } from './actions/serviceAction';
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -14,14 +15,6 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
 import ResetPassPage from './pages/ResetPassPage.jsx';
 import ServiceOverviewPage from './pages/Services/ServiceOverviewPage.jsx';
-import ServiceCannabisPage from './pages/Services/ServiceCannabisPage.jsx';
-import ServiceNhpPage from './pages/Services/ServiceNhpPage.jsx';
-import ServicePharmaceuticalPage from './pages/Services/ServicePharmaceuticalPage.jsx';
-import ServiceFnbPage from './pages/Services/ServiceFnbPage.jsx';
-import ServiceRndPage from './pages/Services/ServiceRndPage.jsx';
-import ServiceCdsPage from './pages/Services/ServiceCdsPage.jsx';
-import ServiceEnvironmentalPage from './pages/Services/ServiceEnvironmentalPage.jsx';
-import ServiceAgriculturePage from './pages/Services/ServiceAgriculturePage.jsx';
 import ServicePage from './pages/Services/ServicePage';
 import WhoWeArePage from './pages/About/WhoWeArePage.jsx';
 import LicensingAndAccreditationsPage from './pages/About/LicensingAndAccreditationsPage.jsx';
@@ -62,7 +55,7 @@ function App() {
   useEffect ( () => {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
-    store.dispatch(getProduct());
+    store.dispatch(getService());
     store.dispatch(mySample())
     Aos.init({duration: 1500});
 
@@ -186,29 +179,12 @@ function App() {
 
         <Route path="/store/all/testing-services/:serviceId" element={<ServiceView />} />
 
-       
-        
+
 
         {/* Services Dropdown Pages */}
 
         <Route path="/services/overview" element={<ServiceOverviewPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
-{/* 
-        <Route path="/services/cannabis" element={<ServiceCannabisPage />} />
-
-        <Route path="/services/nhp" element={<ServiceNhpPage />} />
-
-        <Route path="/services/pharmaceutical" element={<ServicePharmaceuticalPage />} />
-
-        <Route path="/services/fnb" element={<ServiceFnbPage />} />
-
-        <Route path="/services/rnd" element={<ServiceRndPage />} />
-
-        <Route path="/services/cds" element={<ServiceCdsPage />} />
-
-        <Route path="/services/environmental" element={<ServiceEnvironmentalPage />} />
-
-        <Route path="/services/agriculture" element={<ServiceAgriculturePage />} /> */}
 
       </Routes>
       
