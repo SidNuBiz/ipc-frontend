@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import AdminServiceList from "./AdminServiceList"
 import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../../../actions/productAction";
+import { getService } from "../../../actions/serviceAction";
 import Loader from "../../../pages/Loader";
 
 
@@ -11,20 +11,23 @@ const AdminServicesSection = () => {
 
   const[searchKey,setSearchKey] = useState('')
 
-  const {products,loading} = useSelector(
-    (state) => state.products
+  const {loading} = useSelector(
+    (state) => state.services
   );
-  const {loading:newProductLoading} = useSelector(
-    (state) => state.newProduct
+  const {loading:newServiceLoading} = useSelector(
+    (state) => state.newService
   );
+  const {loading:updateServiceLoading} = useSelector(
+    (state) => state.service
+  )
 
   useEffect(()=>{
-    dispatch(getProduct())
-  },[dispatch,newProductLoading])
+    dispatch(getService())
+  },[dispatch,newServiceLoading])
 
   return (
 
-    <Fragment>{loading || newProductLoading? <Loader /> : 
+    <Fragment>{loading || newServiceLoading || updateServiceLoading? <Loader /> : 
         <Fragment>
           <div>
 

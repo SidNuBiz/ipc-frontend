@@ -233,34 +233,34 @@ const AdminServiceCreateSection = () => {
 
     // Reset add New Turnaround Fields 
 
-      const addThisProduct = () => {
-        if(title.trim() == ""){
-          alert.error("Give a name for the service")
-          return
-        }
-        if(paragraphsArr.length == 0){
-          alert.error("Give a description paragraph for the service")
-          return
-        }
-        const service = {
-          title,
-          subHeading,
-          points:servicePointsArr,
-          description:{'paragraphs':paragraphsArr,'bulletPoints':bulletPointsArr},
-          'hoverBoxContents':hoverBoxContentArr,
-          outline:{
-            outlineTitle,
-            outlineSubHeading,
-            outlineParagraph,
-            'outlineBulletPoints':outlineBulletPointsArr
-          },
-          mainImage:"no image",
-          icon:"no image",
-          imageGallery:[]
-        }
-        dispatch(createService(service,mainImage,icon,imageGallery))
-        // navigate("/IPC-admin-portal/services")
+    const addThisProduct = () => {
+      if(title.trim() == ""){
+        alert.error("Give a name for the service")
+        return
       }
+      if(paragraphsArr.length == 0){
+        alert.error("Give a description paragraph for the service")
+        return
+      }
+      const service = {
+        title,
+        subHeading,
+        points:servicePointsArr,
+        description:{'paragraphs':paragraphsArr,'bulletPoints':bulletPointsArr},
+        'hoverBoxContents':hoverBoxContentArr,
+        outline:{
+          outlineTitle,
+          outlineSubHeading,
+          outlineParagraph,
+          'outlineBulletPoints':outlineBulletPointsArr
+        },
+        mainImage:"no image",
+        icon:"no image",
+        imageGallery:[]
+      }
+      dispatch(createService(service,mainImage,icon,imageGallery))
+      navigate("/IPC-admin-portal/services")
+    }
 
   return (
 
@@ -951,7 +951,7 @@ const AdminServiceCreateSection = () => {
 
         </div>
 
-      </div>
+    </div>
 
   )
 }

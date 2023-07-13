@@ -8,14 +8,14 @@ import {
     NEW_SERVICE_REQUEST,
     NEW_SERVICE_SUCCESS,
     NEW_SERVICE_FAIL,
-    // UPDATE_SERVICE_REQUEST,
-    // UPDATE_SERVICE_SUCCESS,
-    // UPDATE_SERVICE_FAIL,
-    // UPDATE_SERVICE_RESET,
-    // DELETE_SERVICE_REQUEST,
-    // DELETE_SERVICE_SUCCESS,
-    // DELETE_SERVICE_FAIL,
-    // DELETE_SERVICE_RESET,
+    UPDATE_SERVICE_REQUEST,
+    UPDATE_SERVICE_SUCCESS,
+    UPDATE_SERVICE_FAIL,
+    UPDATE_SERVICE_RESET,
+    DELETE_SERVICE_REQUEST,
+    DELETE_SERVICE_SUCCESS,
+    DELETE_SERVICE_FAIL,
+   
     // PRODUCT_DETAILS_REQUEST,
     // PRODUCT_DETAILS_FAIL,
     // PRODUCT_DETAILS_SUCCESS,
@@ -88,53 +88,48 @@ import {
     }
   };
   
-//   export const productReducer = (state = {}, action) => {
-//     switch (action.type) {
-//       case DELETE_PRODUCT_REQUEST:
-//       case UPDATE_PRODUCT_REQUEST:
-//         return {
-//           ...state,
-//           loading: true,
-//         };
-//       case DELETE_PRODUCT_SUCCESS:
-//         return {
-//           ...state,
-//           loading: false,
-//           isDeleted: action.payload,
-//         };
+  export const serviceReducer = (state = {}, action) => {
+    switch (action.type) {
+      case DELETE_SERVICE_REQUEST:
+      case UPDATE_SERVICE_REQUEST:
+        return {
+          ...state,
+          loading: true,
+        };
+      case DELETE_SERVICE_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          isDeleted: action.payload,
+        };
   
-//       case UPDATE_PRODUCT_SUCCESS:
-//         return {
-//           ...state,
-//           loading: false,
-//           isUpdated: action.payload,
-//         };
-//       case DELETE_PRODUCT_FAIL:
-//       case UPDATE_PRODUCT_FAIL:
-//         return {
-//           ...state,
-//           loading: false,
-//           error: action.payload,
-//         };
-//       case DELETE_PRODUCT_RESET:
-//         return {
-//           ...state,
-//           isDeleted: false,
-//         };
-//       case UPDATE_PRODUCT_RESET:
-//         return {
-//           ...state,
-//           isUpdated: false,
-//         };
-//       case CLEAR_ERRORS:
-//         return {
-//           ...state,
-//           error: null,
-//         };
-//       default:
-//         return state;
-//     }
-//   };
+      case UPDATE_SERVICE_SUCCESS:
+        return {
+          ...state,
+          loading: false,
+          isUpdated: action.payload,
+        };
+      case DELETE_SERVICE_FAIL:
+      case UPDATE_SERVICE_FAIL:
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case UPDATE_SERVICE_RESET:
+        return {
+          ...state,
+          isUpdated: false,
+        };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+      default:
+        return state;
+    }
+  };
   
 //   export const productDetailsReducer = (state = { product: {} }, action) => {
 //     switch (action.type) {

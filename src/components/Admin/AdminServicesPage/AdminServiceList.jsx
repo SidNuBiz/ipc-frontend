@@ -1,7 +1,8 @@
 import {useState} from "react"
 import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
-import { deleteProduct } from "../../../actions/productAction";
+import { deleteService } from "../../../actions/serviceAction";
+
 
 const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
@@ -10,18 +11,22 @@ const AdminServiceList = ({searchKey}) => {
         (state) => state.services
     );
 
-    const [servicesList,setServicesList] = useState(services)
+    const [servicesList,setServicesList] = useState([])
 
-    const deleteThisProduct = (serviceId,idx) => {
-        dispatch(deleteProduct(serviceId))
+    const deleteThisService = (serviceId,idx) => {
+        setServicesList(services)
+        dispatch(deleteService(serviceId))
         servicesList.splice(idx, 1)
         setServicesList(servicesList)
-        dispatch({type:'ALL_PRODUCT_SUCCESS',payload:servicesList})
+        dispatch({type:'ALL_SERVICE_SUCCESS',payload:servicesList})
     }
 
+   
+
     return (
+
         <div>
-            {servicesList && servicesList.filter( service => service.title.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
+            {services && services.filter( service => service.title.toLowerCase().includes(searchKey.toLowerCase())).map((service,idx) => (
                 <div key={service._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
@@ -51,13 +56,13 @@ const AdminServiceList = ({searchKey}) => {
                                 {/* Edit Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <Link to={`/IPC-admin-portal/services/${service._id}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
+                                    <Link to={`/IPC-admin-portal/services/${idx}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
                                 </div>
 
                                 {/* Delete Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <button onClick={() => deleteThisProduct(service._id,idx)} className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
+                                    <button onClick={() => deleteThisService(service._id,idx)} className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/windows/28/ffffff/trash.png" alt=""/></button>
                                 </div>
                             </div>
                         </div>
@@ -65,6 +70,7 @@ const AdminServiceList = ({searchKey}) => {
                 </div>
             ))}
         </div>
+
     );
 };
 

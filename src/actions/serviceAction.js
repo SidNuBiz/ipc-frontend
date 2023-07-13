@@ -10,13 +10,13 @@ import {
   NEW_SERVICE_REQUEST,
   NEW_SERVICE_SUCCESS,
   NEW_SERVICE_FAIL,
-//   UPDATE_PRODUCT_REQUEST,
-//   UPDATE_PRODUCT_SUCCESS,
-//   UPDATE_PRODUCT_FAIL,
-//   DELETE_PRODUCT_REQUEST,
-//   DELETE_PRODUCT_SUCCESS,
-//   DELETE_PRODUCT_FAIL,
-//   PRODUCT_DETAILS_REQUEST,
+  UPDATE_SERVICE_REQUEST,
+  UPDATE_SERVICE_SUCCESS,
+  UPDATE_SERVICE_FAIL,
+  DELETE_SERVICE_REQUEST,
+  DELETE_SERVICE_SUCCESS,
+  DELETE_SERVICE_FAIL,
+//   SERVICE_DETAILS_REQUEST,
 //   PRODUCT_DETAILS_FAIL,
 //   PRODUCT_DETAILS_SUCCESS,
   CLEAR_ERRORS,
@@ -48,7 +48,6 @@ export const createService = (serviceData,mainImage,icon,imageGallery) => async 
     try {
       dispatch({ type: NEW_SERVICE_REQUEST });
 
-      console.log(mainImage)
       const config = {
         headers: { "Content-Type":"multipart/form-data" },
       };
@@ -63,11 +62,8 @@ export const createService = (serviceData,mainImage,icon,imageGallery) => async 
         fileData.append('imageGallery',image)
       })
      
-    
-     console.log(serviceData)
      
       const {data} = await axios.post(`${api}/api/v1/service/create`,serviceData,config2)
-      console.log(data)
       const {data:newServiceData} = await axios.post(`${api}/api/v1/service/image/${data.service._id}`,fileData,config)
       dispatch({
         type: NEW_SERVICE_SUCCESS,
@@ -81,5 +77,59 @@ export const createService = (serviceData,mainImage,icon,imageGallery) => async 
         payload: error
       });
     }
+};
+
+// Update Service
+export const updateService = (serviceData,mainImage,icon,imageGallery, id) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_SERVICE_REQUEST });
+    console.log(imageGallery)
+    const config = {
+      headers: { "Content-Type":"multipart/form-data" },
+    };
+    const config2 = {
+      headers:{"Content-Type":"application/json"}
+    }
+    let fileData = new FormData()
+
+    fileData.append('mainImage',mainImage)
+    fileData.append('icon',icon)
+    imageGallery.forEach(image => {
+      fileData.append('imageGallery',image)
+    })
+   
+   
+    const {data} = await axios.put(`${api}/api/v1/service/update/${id}`,serviceData,config2)
+    const {data:newServiceData} = await axios.post(`${api}/api/v1/service/image/${data.service._id}`,fileData,config)
+    dispatch(getService())
+    dispatch({
+      type: UPDATE_SERVICE_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_SERVICE_FAIL,
+      payload: error
+    });
+  }
+};
+
+// Delete Service
+export const deleteService = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_SERVICE_REQUEST });
+    console.log(id)
+    const { data } = await axios.delete(`${api}/api/v1/service/delete/${id}`);
+
+    dispatch({
+      type: DELETE_SERVICE_SUCCESS,
+      payload: data.success,
+    });
+  } catch (error) {
+    dispatch({
+      type: DELETE_SERVICE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
 };
 
