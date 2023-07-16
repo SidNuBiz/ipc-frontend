@@ -19,9 +19,7 @@ const AdminServiceEditPage = () => {
   );
   console.log(services)
   useEffect(() => {
-    // if(services.length == 0){
-    //   dispatch(getService())
-    // }
+
     
     // 👇️ scroll to top on page load
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});

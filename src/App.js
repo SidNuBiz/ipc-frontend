@@ -48,6 +48,7 @@ import TestsPricingPage from './pages/Store/TestsPricingPage';
 import PackageView from './components/Store/StoreMisc/PackageView';
 import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 import Invoice from './components/User/MyAccountPage/Invoice';
+import AdminHomePageContentEdit from './pages/Admin/AdminHomePageContentEdit';
 
 
 function App() {
@@ -130,6 +131,9 @@ function App() {
 
           <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage  />} />
 
+           {/* Site Content Edit */}
+          <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />
+
 
         </Route>
 
@@ -185,6 +189,8 @@ function App() {
 
         <Route path="/services/overview" element={<ServiceOverviewPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
+
+       
 
       </Routes>
       
