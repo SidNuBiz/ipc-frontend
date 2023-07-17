@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from 'react-alert';
 import noImg from '../../../assets/no-img.jpg'
-import { updateService,getService } from "../../../actions/serviceAction";
+import { updateService } from "../../../actions/serviceAction";
 
 const AdminServiceEditSection = ({thisService}) => {
  

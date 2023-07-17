@@ -26,7 +26,7 @@ import {
 const api = 'http://localhost:8080'
 
 //Get All Service
-export const getService = ()=>async (dispatch)=>{
+export const getService = ()=>async (dispatch)=>{  
   try{
       dispatch({type:ALL_SERVICE_REQUEST})
    

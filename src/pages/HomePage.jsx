@@ -4,17 +4,28 @@ import ContactSection from "../components/HomePage/ContactSection.jsx";
 import ServicesSection from "../components/HomePage/ServicesSection.jsx";
 import NavBar from "../components/Misc/NavBar.jsx";
 import Footer from "../components/Misc/Footer.jsx";
-import { useRef, useEffect ,Fragment} from "react";
+import { useRef, useEffect ,Fragment, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
+import axios from "axios";
 
 const HomePage = () => {
     const dispatch = useDispatch()
     const { error, loading, isAuthenticated } = useSelector(
         (state) => state.user
     );
+    const [homePageDetails,setHomePageDetails] = useState([])
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
+        console.log(homePageDetails)
+        setHomePageDetails(data.details)
+       
+    }
+
     useEffect(() => {
-        // 👇️ scroll to top on page load
+
+        fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
     
@@ -28,7 +39,7 @@ const HomePage = () => {
 
     return (
     <Fragment>
-        {loading ? (
+        {loading || homePageDetails.length == 0  ? (
           <Loader />
         ) : (
         <Fragment>
@@ -59,13 +70,13 @@ const HomePage = () => {
                 {/* Overview Section */}
 
                 <div>
-                    <OverviewSection />
+                    <OverviewSection details={homePageDetails[1].overviewSection} />
                 </div>
 
                 {/* Contact Section */}
 
                 <div>
-                    <ContactSection />
+                    <ContactSection details={homePageDetails[0].contactSection} />
                 </div>
 
                 {/* Footer */}

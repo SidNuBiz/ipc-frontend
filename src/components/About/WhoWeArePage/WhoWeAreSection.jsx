@@ -29,7 +29,7 @@ return (
 
                 <h2 className=" lg:text-3xl md:text-3xl sm:text-xl text-center font-semibold w-fit mx-auto pt-10 lg:-mb-10 md:-mb-10">Who We Are</h2>
 
-                <Carousel showStatus={false} infiniteLoop={true} autoPlay={true} interval= {3000} showIndicators={false} showArrows={false} className="p-10 lg:w-2/3 md:w-5/6 sm:w-full mx-auto italic">
+                <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true} interval= {3000} showIndicators={false} showArrows={false} className="p-10 lg:w-2/3 md:w-5/6 sm:w-full mx-auto italic">
 
                     {
 

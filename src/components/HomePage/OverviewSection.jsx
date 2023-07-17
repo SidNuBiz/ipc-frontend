@@ -2,12 +2,12 @@
 import FirstBackground from "../../assets/dna.png";
 // import SecondBackground from "../../assets/section-bg-3.png";
 import SectionTopCurve from "../../assets/section-top-curve.png";
+import { useRef, useEffect ,Fragment, useState} from "react";
 
 
-const OverviewSection = () => {
-
-    
-
+const OverviewSection = ({details}) => {
+    console.log(details)
+ 
     return (
 
         <div className="relative bg-gradient-to-t from-gray-900 to-[#032725]">
@@ -37,9 +37,9 @@ const OverviewSection = () => {
 
                     <div data-aos="fade-in" className="h-fit my-auto">
 
-                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10 lg:pt-0 md:pt-10 sm:pt-10 ">Mission</h2>
+                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10 lg:pt-0 md:pt-10 sm:pt-10 ">{details.mission.title}</h2>
 
-                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">Dedicated to delivering excellence in research, testing and product development through an uncompromising commitment to maintaining the highest of industry standards.</p>
+                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">{details.mission.content}</p>
 
                     </div>
 
@@ -58,9 +58,9 @@ const OverviewSection = () => {
 
                     <div data-aos="fade-in" className="h-fit my-auto">
 
-                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10">Vision</h2>
+                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10">{details.vision.title}</h2>
 
-                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">To push the boundaries of scientific discovery and vision, inspiring and celebrating innovation.</p>
+                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">{details.vision.content}</p>
                     
                     </div>
 
@@ -79,9 +79,9 @@ const OverviewSection = () => {
 
                     <div data-aos="fade-in" className="h-fit my-auto">
 
-                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10">Quality</h2>
+                        <h2 className="block lg:text-7xl md:text-7xl sm:text-5xl font-semibold w-fit mx-auto text-[#18debb] mb-10">{details.quality.title}</h2>
 
-                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">We are a center of excellence whose products and services transcend expectations. Our commitment to continuous improvement allows us to surpass all regulation and guideline requirements.</p>
+                        <p className="lg:text-3xl md:text-3xl sm:text-2xl lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto font-medium text-center">{details.quality.content}</p>
 
                     </div>
 

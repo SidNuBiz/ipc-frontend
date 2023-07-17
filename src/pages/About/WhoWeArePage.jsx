@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect,useState,Fragment } from 'react';
 import NavBar from '../../components/Misc/NavBar.jsx';
 import Footer from '../../components/Misc/Footer.jsx';
 import { whoWeArePageContents } from '../../data/siteContent.js';
@@ -6,11 +6,22 @@ import WhoWeAreSection from '../../components/About/WhoWeArePage/WhoWeAreSection
 import OurStorySection from '../../components/About/WhoWeArePage/OurStorySection.jsx';
 import MeetTheTeamSection from '../../components/About/WhoWeArePage/MeetTheTeamSection.jsx';
 import OurClientsSection from '../../components/About/WhoWeArePage/OurClientsSection.jsx';
+import axios from 'axios';
+import Loader from '../Loader.jsx';
 
 const WhoWeArePage = () => {
 
+    const [whoWeArePageDetails,setWhoWeArePageDetails] = useState([])
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/who-we-are-page-details')
+        setWhoWeArePageDetails(data.details)
+       
+    }
+
     useEffect(() => {
-        // 👇️ scroll to top on page load
+
+        fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
 
@@ -19,52 +30,61 @@ const WhoWeArePage = () => {
 
 
   return (
-    <div className='bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen'>
-      
-        {/* NavBar */}
-
-        <div>
-            <NavBar />
-        </div>
-
-        {/* Page Sections */}
-
-        <div className="animate-crossfade ">
-
-            {/* Who We Are Section */}
+    <Fragment>
+    {whoWeArePageDetails.length == 0  ? (
+      <Loader />
+    ) : (
+    <Fragment>
+        <div className='bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen'>
+        
+            {/* NavBar */}
 
             <div>
-                <WhoWeAreSection whoWeAreSlides={pageContent.whoWeAreSlides} />
+                <NavBar />
             </div>
 
-            {/* Our Story Section */}
+            {/* Page Sections */}
+
+            <div className="animate-crossfade ">
+
+                {/* Who We Are Section */}
+
+                <div>
+                    <WhoWeAreSection whoWeAreSlides={whoWeArePageDetails[1].whoWeAreSection.whoWeAre} />
+                </div>
+
+                {/* Our Story Section */}
+
+                <div>
+                    <OurStorySection ourStorySlides={whoWeArePageDetails[0].ourStorySection.ourStory} />
+                </div>
+
+                {/* Meet The Team Section */}
+
+                <div className=''>
+                    <MeetTheTeamSection teamMembers={whoWeArePageDetails[2].teamMembersSection.teamMembers} />
+                </div>
+
+                {/* Our Clients Section */}
+
+                <div>
+                    <OurClientsSection clients={pageContent.clients} />
+                </div>
+
+            </div>
+
+
+            {/* Footer */}
 
             <div>
-                <OurStorySection ourStorySlides={pageContent.ourStorySlides} />
-            </div>
-
-            {/* Meet The Team Section */}
-
-            <div className=''>
-                <MeetTheTeamSection teamMembers={pageContent.teamMembers} />
-            </div>
-
-            {/* Our Clients Section */}
-
-            <div>
-                <OurClientsSection clients={pageContent.clients} />
+                <Footer />
             </div>
 
         </div>
-
-
-        {/* Footer */}
-
-        <div>
-            <Footer />
-        </div>
-
-    </div>
+    
+    </Fragment>
+      )}
+    </Fragment>
   );
 }
 

@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import Logo from '../../assets/header-logo.png';
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 
 const Footer = () => {
+
+    const [homePageDetails,setHomePageDetails] = useState([])
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
+        setHomePageDetails(data.details)
+       
+    }
+
+    useEffect(() => {
+
+        fetchData()
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    }, []);
 
     return (
 
@@ -30,11 +46,11 @@ const Footer = () => {
 
                         {/* Phone */}
 
-                        <h2 className="block mb-3 text-xl">Phone: (778) 484-5483</h2>
+                        <h2 className="block mb-3 text-xl">Phone: {homePageDetails.length > 0 && homePageDetails[0].contactSection.phone}</h2>
 
                         {/* Phone */}
 
-                        <h2 className="block mb-5 text-xl">Email: info@invp-lab.com</h2>
+                        <h2 className="block mb-5 text-xl">Email: {homePageDetails.length > 0 && homePageDetails[0].contactSection.email}</h2>
 
                         {/* Social */}
 

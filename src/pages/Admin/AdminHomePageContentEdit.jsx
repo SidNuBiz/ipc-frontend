@@ -23,28 +23,107 @@ const AdminHomePageContentEdit = () => {
     const [map,setMap] = useState('')
 
     async function updateOverview(){
-        const config = {
-            headers: { "Content-Type": "application/json" },
+        if(section1title.trim() == ""){
+            return alert.error("Section one title field can not be empty")
         }
-        const {data} = await axios.post("http://localhost:8080/api/v1/home-page-overview-details/update",
-            {
-                mission:{title:section1title,content:section1content},
-                vision:{title:section2title,content:section2content},
-                quality:{title:section3title,content:section3content}
-            },
-            config
-        )
+        if(section1content.trim() == ""){
+            return alert.error("Section one paragraph field can not be empty")
+        }
+        if(section2title.trim() == ""){
+            return alert.error("Section two title field can not be empty")
+        }
+        if(section2content.trim() == ""){
+            return alert.error("Section two field paragraph can not be empty")
+        }
+        if(section3title.trim() == ""){
+            return alert.error("Section three field title can not be empty")
+        }
+        if(section3content.trim() == ""){
+            return alert.error("Section three field paragraph can not be empty")
+        }
+
+        try{
+            const config = {
+                headers: { "Content-Type": "application/json" },
+            }
+            const {data} = await axios.put("http://localhost:8080/api/v1/home-page-overview-details/update",
+                {
+                    mission:{title:section1title,content:section1content},
+                    vision:{title:section2title,content:section2content},
+                    quality:{title:section3title,content:section3content}
+                },
+                config
+            )
+            if(data.success){
+                alert.success("Successfully Updated")
+            }
+        }catch(error){
+            alert.error(error.response.data.error)
+        }
+      
     }
     
 
-    function updateContact(){
+    async function updateContact(){
+        if(location.trim() == ""){
+            return alert.error("Location field can not be empty")
+        }
+        if(email.trim() == ""){
+            return alert.error("Email field can not be empty")
+        }
+        if(phone.trim() == ""){
+            return alert.error("Phone field can not be empty")
+        }
+        if(map.trim() == ""){
+            return alert.error("Map field can not be empty")
+        }
+        try{
+            const config = {
+                headers: { "Content-Type": "application/json" },
+            }
+            const {data} = await axios.put("http://localhost:8080/api/v1/home-page-contact-details/update",
+                {
+                    location,
+                    email,
+                    phone,
+                    map
+                },
+                config
+            )
+            if(data.success){
+                alert.success("Successfully Updated")
+            }
+        }catch(error){
+            alert.error(error.response.data.error)
+        }
+  
 
     }
+
+
 
     async function fetchData(){
-        const {data} = await axios.get("http://localhost:8080/home-page-details")
+        const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
+        setSection1Title(data.details[1].overviewSection.mission.title)
+        setSection1Content(data.details[1].overviewSection.mission.content)
+        setSection2Title(data.details[1].overviewSection.vision.title)
+        setSection2Content(data.details[1].overviewSection.vision.content)
+        setSection3Title(data.details[1].overviewSection.quality.title)
+        setSection3Content(data.details[1].overviewSection.quality.content)
+        setLocation(data.details[0].contactSection.location)
+        setEmail(data.details[0].contactSection.email)
+        setPhone(data.details[0].contactSection.phone)
+        setMap(data.details[0].contactSection.map)
 
+        
+       
     }
+
+    useEffect(() => {
+
+        fetchData()
+        
+    }, []);
 
   
 
@@ -60,7 +139,7 @@ const AdminHomePageContentEdit = () => {
 
             </div>
 
-          
+        
 
             <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
 
@@ -80,7 +159,7 @@ const AdminHomePageContentEdit = () => {
 
                     {/* Go Back Button */}
 
-           
+        
 
                     <div className='mt-10'>
 
@@ -205,7 +284,7 @@ const AdminHomePageContentEdit = () => {
 
                     {/* Go Back Button */}
 
-                 
+                
 
                     <div className='mt-10'>
 
@@ -229,7 +308,7 @@ const AdminHomePageContentEdit = () => {
                         <div className='mb-10'>
                             <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Phone</label>
 
-                            <input id='service-name' type="number" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={phone} onChange={(e)=>setPhone(e.target.value)} required/>
+                            <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={phone} onChange={(e)=>setPhone(e.target.value)} required/>
                         </div>
 
                         {/* Map */}
@@ -241,14 +320,14 @@ const AdminHomePageContentEdit = () => {
                         </div>
 
 
-                       
+                    
                     </div>
 
                     <div className="mb-5 mt-10 flex justify-between">
-                       
+                    
 
-                       <button onClick={updateContact} className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-                   </div>
+                    <button onClick={updateContact} className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+                </div>
 
 
                 </div>
@@ -259,8 +338,6 @@ const AdminHomePageContentEdit = () => {
         </div>
 
     </div>
-    
-  
 
 
   )

@@ -49,6 +49,7 @@ import PackageView from './components/Store/StoreMisc/PackageView';
 import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 import Invoice from './components/User/MyAccountPage/Invoice';
 import AdminHomePageContentEdit from './pages/Admin/AdminHomePageContentEdit';
+import AdminWhoWeArePageContentEdit from './pages/Admin/AdminWhoWeArePageContentEdit';
 
 
 function App() {
@@ -133,6 +134,7 @@ function App() {
 
            {/* Site Content Edit */}
           <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />
+          <Route path="/IPC-admin-portal/about/who-we-are/edit" element={<AdminWhoWeArePageContentEdit />} />
 
 
         </Route>
