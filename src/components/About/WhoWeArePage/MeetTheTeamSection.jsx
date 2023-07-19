@@ -66,7 +66,7 @@ const MeetTheTeamSection = ({teamMembers}) => {
 
                             <div className="animate-crossfade lg:bg-black lg:bg-opacity-60 z-20 lg:p-10 lg:max-w-full lg:hidden lg:group-hover:block duration-300 h-auto lg:text-[14px]">
 
-                                <p>{member.story}</p>
+                                <p>{member.about}</p>
 
                             </div>
 

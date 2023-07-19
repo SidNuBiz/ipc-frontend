@@ -50,6 +50,7 @@ import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 import Invoice from './components/User/MyAccountPage/Invoice';
 import AdminHomePageContentEdit from './pages/Admin/AdminHomePageContentEdit';
 import AdminWhoWeArePageContentEdit from './pages/Admin/AdminWhoWeArePageContentEdit';
+import AdminLicensingPageEdit from './pages/Admin/AdminLicensingPage';
 
 
 function App() {
@@ -135,6 +136,7 @@ function App() {
            {/* Site Content Edit */}
           <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />
           <Route path="/IPC-admin-portal/about/who-we-are/edit" element={<AdminWhoWeArePageContentEdit />} />
+          <Route path="IPC-admin-portal/about/licensing/edit" element={<AdminLicensingPageEdit />} />
 
 
         </Route>

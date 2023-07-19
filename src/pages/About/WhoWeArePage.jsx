@@ -12,10 +12,13 @@ import Loader from '../Loader.jsx';
 const WhoWeArePage = () => {
 
     const [whoWeArePageDetails,setWhoWeArePageDetails] = useState([])
+    const [teamMembers,setTeamMembers] = useState([])
 
     async function fetchData(){
         const {data} =  await axios.get('http://localhost:8080/api/v1/who-we-are-page-details')
         setWhoWeArePageDetails(data.details)
+        const {data:team} = await axios.get('http://localhost:8080/api/v1/team-member/all')
+        setTeamMembers(team.details)
        
     }
 
@@ -31,7 +34,7 @@ const WhoWeArePage = () => {
 
   return (
     <Fragment>
-    {whoWeArePageDetails.length == 0  ? (
+    {whoWeArePageDetails.length == 0 || teamMembers.length == 0  ? (
       <Loader />
     ) : (
     <Fragment>
@@ -62,7 +65,7 @@ const WhoWeArePage = () => {
                 {/* Meet The Team Section */}
 
                 <div className=''>
-                    <MeetTheTeamSection teamMembers={whoWeArePageDetails[2].teamMembersSection.teamMembers} />
+                    <MeetTheTeamSection teamMembers={teamMembers} />
                 </div>
 
                 {/* Our Clients Section */}
