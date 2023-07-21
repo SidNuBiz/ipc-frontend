@@ -419,7 +419,7 @@ const AdminWhoWeArePageContentEdit = () => {
                     </div>
 
                     {membersArr.map(member=>(
-                        <TeamMember member={member} setMembersArr={setMembersArr} />
+                        <TeamMember key={member._id} member={member} setMembersArr={setMembersArr} />
          
                     ))}
 

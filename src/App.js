@@ -50,7 +50,10 @@ import PaymentSuccessfulPage from './pages/PaymentSuccessfulPage';
 import Invoice from './components/User/MyAccountPage/Invoice';
 import AdminHomePageContentEdit from './pages/Admin/AdminHomePageContentEdit';
 import AdminWhoWeArePageContentEdit from './pages/Admin/AdminWhoWeArePageContentEdit';
-import AdminLicensingPageEdit from './pages/Admin/AdminLicensingPage';
+import AdminLicensingPageEdit from './pages/Admin/AdminLicensingPageEdit';
+import AdminEquipmentPageEdit from './pages/Admin/AdminEquipmentPageEdit';
+import AdminLegalPageEdit from './pages/Admin/AdminLegalPageEdit';
+import AdminFaqPageEdit from './pages/Admin/AdminFaqPageEdit';
 
 
 function App() {
@@ -137,6 +140,10 @@ function App() {
           <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />
           <Route path="/IPC-admin-portal/about/who-we-are/edit" element={<AdminWhoWeArePageContentEdit />} />
           <Route path="IPC-admin-portal/about/licensing/edit" element={<AdminLicensingPageEdit />} />
+          <Route path="IPC-admin-portal/about/equipment/edit" element={<AdminEquipmentPageEdit />} />
+          <Route path="IPC-admin-portal/legal/edit" element={<AdminLegalPageEdit />} />
+          <Route path="IPC-admin-portal/faq/edit" element={<AdminFaqPageEdit />} />
+
 
 
         </Route>

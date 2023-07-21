@@ -1,8 +1,7 @@
-import React, { useState,useEffect,Fragment} from 'react'
+import React, { useState,useEffect} from 'react'
 import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
-import Loader from '../Loader';
 import { v4 as uuidv4 } from 'uuid';
 import License from '../../components/Admin/AdminLicensingPage.jsx/AdminLicense';
 import AdminLicenseDetails from '../../components/Admin/AdminLicensingPage.jsx/AdminLicenseDetails';
@@ -186,7 +185,7 @@ const AdminLicensingPageEdit = () => {
 
                     {licenseArr.map(item=>(
 
-                        <License license={item} setLicenseArr={setLicenseArr} />
+                        <License key={item._id} license={item} setLicenseArr={setLicenseArr} />
                     
                     ))}
 
@@ -221,7 +220,7 @@ const AdminLicensingPageEdit = () => {
 
 
                     {licenseDetailsArr.map(item => (
-                        <AdminLicenseDetails licenseDetails={item}  setLicenseDetailsArr={setLicenseDetailsArr} />
+                        <AdminLicenseDetails key={item._id} licenseDetails={item}  setLicenseDetailsArr={setLicenseDetailsArr} />
                     ))}
 
 

@@ -112,13 +112,13 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
                     {/* Image Upload Button */}
 
-                    <button onClick={() => {document.getElementById("service-img-upload").click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Member Image</button>
+                    <button onClick={() => {document.getElementById(licenseDetails._id).click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Member Image</button>
                 </div>
 
                 {/* Image Upload reference input for Button */}
 
                 <div>
-                    <input id='service-img-upload' type="file" className='hidden' accept="image/*" onChange={addLicenseImage}/>
+                    <input id={licenseDetails._id} type="file" className='hidden' accept="image/*" onChange={addLicenseImage}/>
                 </div>
 
             </div>
