@@ -54,6 +54,7 @@ import AdminLicensingPageEdit from './pages/Admin/AdminLicensingPageEdit';
 import AdminEquipmentPageEdit from './pages/Admin/AdminEquipmentPageEdit';
 import AdminLegalPageEdit from './pages/Admin/AdminLegalPageEdit';
 import AdminFaqPageEdit from './pages/Admin/AdminFaqPageEdit';
+import AdminServiceHoverBoxPage from './pages/Admin/AdminServices/AdminServiceHoverBoxPage';
 
 
 function App() {
@@ -143,6 +144,7 @@ function App() {
           <Route path="IPC-admin-portal/about/equipment/edit" element={<AdminEquipmentPageEdit />} />
           <Route path="IPC-admin-portal/legal/edit" element={<AdminLegalPageEdit />} />
           <Route path="IPC-admin-portal/faq/edit" element={<AdminFaqPageEdit />} />
+          <Route path="IPC-admin-portal/service/hoverbox" element={<AdminServiceHoverBoxPage />} />
 
 
 

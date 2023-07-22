@@ -1,7 +1,21 @@
 import GrayLogo from "../../../assets/logo-gray.png";
+import axios from "axios";
+import { useState,useEffect } from "react";
 
+const EquipmentSection = () => {
 
-const EquipmentSection = ({ equipmentData }) => {
+    const [equipments,setEquipments] = useState([])
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/equipment-details/all')
+        setEquipments(data.equipments)  
+    }
+
+    useEffect(() => {
+
+        fetchData()
+    
+    }, []);
 
     return (
 
@@ -19,7 +33,7 @@ const EquipmentSection = ({ equipmentData }) => {
             {/* Update Date */}
 
             <div className="text-center mt-5">
-                <h2 className="text-gray-600 text-xl italic">Updated - {equipmentData.dateOfUpdate}</h2>
+                <h2 className="text-gray-600 text-xl italic">Updated - 2022 October 14</h2>
             </div>
 
 
@@ -30,7 +44,7 @@ const EquipmentSection = ({ equipmentData }) => {
                 <div className=" relative grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-10 w-5/6 mx-auto place-items-center items-center ">
 
                     {
-                        equipmentData.equipments.map((equipment, index) => (
+                        equipments.map((equipment, index) => (
 
                             <div key={index} className=" group bg-white relative flex text-center text-gray-600 min-h-[600px] w-full overflow-hidden border-2 border-black shadow-xl items-center hover:bg-transparent hover:text-white duration-300 ">
 

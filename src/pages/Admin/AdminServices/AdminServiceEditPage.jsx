@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import AdminServiceEditSection from '../../../components/Admin/AdminServicesPage/AdminServiceEditSection'
 import SideBar from '../../../components/Admin/Misc/SideBar'
 import Loader from "../../../pages/Loader";
-import {getService} from "../../../actions/serviceAction"
 
 const AdminServiceEditPage = () => {
 
@@ -17,13 +16,13 @@ const AdminServiceEditPage = () => {
   const {services,loading} = useSelector(
     (state) => state.services
   );
-  console.log(services)
+
   useEffect(() => {
 
     
     // 👇️ scroll to top on page load
     window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-  }, [dispatch]);
+  },[]);
 
   return (
 

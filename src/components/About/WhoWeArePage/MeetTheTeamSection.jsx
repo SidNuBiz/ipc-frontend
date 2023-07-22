@@ -3,6 +3,7 @@ import GrayLogo from "../../../assets/logo-gray.png";
 
 const MeetTheTeamSection = ({teamMembers}) => {
 
+
     return (
 
         <div className="mt-24">
@@ -48,9 +49,9 @@ const MeetTheTeamSection = ({teamMembers}) => {
                                 <div className=" lg:absolute lg:bottom-14 lg:text-4xl font-bold">
 
                                     {
-                                        member.designations.map((designation, index) => (
+                                        member.designations.map((item, index) => (
 
-                                            <p key={index} className="mb-5">{designation}</p>
+                                            <p key={index} className="mb-5">{item.designation}</p>
 
                                         ))
                                     }

@@ -1,7 +1,28 @@
 import GrayLogo from "../../../assets/logo-gray.png";
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+// import Loader from '../../../Loader.jsx';
 
+const LicensingAndAccreditationsSection = () => {
 
-const LicensingAndAccreditationsSection = ({licensing}) => {
+    const [licenses,setLicenses] = useState([])
+    const [licenseDetails,setLicenseDetails] = useState([])
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/license-details/all')
+        setLicenseDetails(data.details)
+        const {data:license} = await axios.get('http://localhost:8080/api/v1//license/all')
+        setLicenses(license.licenses)
+       
+       
+    }
+
+    useEffect(() => {
+
+        fetchData()
+       
+    }, []);
+
 
     return (
 
@@ -19,7 +40,7 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
             {/* Update Date */}
 
             <div className="text-center mt-5">
-                <h2 className="text-gray-600 text-xl italic">Updated - {licensing.dateOfUpdate}</h2>
+                <h2 className="text-gray-600 text-xl italic">Updated -2022 October 14</h2>
             </div>
 
 
@@ -44,11 +65,11 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
                     <tbody>
 
                         {
-                            licensing.licenses.map((license, index) => (
+                            licenses.map((item, index) => (
 
                                 <tr key={index} className="even:bg-gray-100">
-                                    <td className=" text-gray-600 text-lg font-semibold p-3 border border-slate-500">{license.name}</td>
-                                    <td className=" text-gray-600 text-lg font-semibold p-3 border border-slate-500">{license.number}</td>
+                                    <td className=" text-gray-600 text-lg font-semibold p-3 border border-slate-500">{item.name}</td>
+                                    <td className=" text-gray-600 text-lg font-semibold p-3 border border-slate-500">{item.number}</td>
                                 </tr>
 
                             ))
@@ -66,7 +87,7 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
 
                 {
 
-                    licensing.licenseTypes.map((licenseType, index) => (
+                    licenseDetails.map((licenseType, index) => (
 
                         <div key={index} className="mb-20 w-full">
 
@@ -84,11 +105,11 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
 
                                 {                   //if there is an initial description
 
-                                    licenseType.details.paragraph && (
+                                    licenseType.description && (
 
                                         <div className="mb-5">
 
-                                            <p>{licenseType.details.paragraph}</p>
+                                            <p>{licenseType.description}</p>
 
                                         </div>
 
@@ -98,16 +119,16 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
 
                                 {                       //if there is a list
 
-                                    licenseType.details.bulletPoints && (
+                                    licenseType.points && (
 
                                         <div className="mb-5">
 
                                             <ul className=" list-disc">
 
                                                 {
-                                                    licenseType.details.bulletPoints.map((bulletPoint, index) => (
+                                                    licenseType.points.map((bulletPoint, index) => (
 
-                                                        <li key={index} className=" ml-10">{bulletPoint}</li>
+                                                        <li key={index} className=" ml-10">{bulletPoint.point}</li>
 
                                                     ))
                                                 }
@@ -121,7 +142,7 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
                                 }
 
 
-                                {               //if there is a description
+                                {/* {             
 
                                     licenseType.description && (
 
@@ -130,7 +151,7 @@ const LicensingAndAccreditationsSection = ({licensing}) => {
                                         </div>
 
                                     )
-                                }
+                                } */}
 
                             </div>
 

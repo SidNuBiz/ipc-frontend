@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef,useState,useEffect } from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
+import axios from 'axios';
 
 
-const LegalSection = ({legal}) => {
+const LegalSection = () => {
 
     // Scroll fuctions
 
@@ -11,6 +12,21 @@ const LegalSection = ({legal}) => {
     const scrollToRef = () => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     };
+
+    const [legal,setLegal] = useState({})
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/legal/get')
+
+        setLegal(data.legal)
+       
+    }
+
+    useEffect(() => {
+
+        fetchData()
+       
+    }, []);
 
     return (
 
@@ -43,9 +59,9 @@ const LegalSection = ({legal}) => {
             <div ref={ref} className="mt-32 mb-20">
 
                 {
-                    legal.paragraphs.map((paragraph, index) => (
+                    legal.description && legal.description.map((item, index) => (
 
-                        <p key={index} className="lg:text-xl md:text-xl sm:text-md text-gray-600 mb-10">{paragraph}</p>
+                        <p key={index} className="lg:text-xl md:text-xl sm:text-md text-gray-600 mb-10">{item.paragraph}</p>
 
                     ))
                 }
