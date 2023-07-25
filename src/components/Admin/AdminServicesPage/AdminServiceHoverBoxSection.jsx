@@ -2,12 +2,13 @@ import React, { useState,useEffect} from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import {getService} from '../../../actions/serviceAction'
 
 
-const AdminServiceHoverBoxSection = ({index, hoverBox, setHoverBoxContentArr, serviceId })=>{
+const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serviceId })=>{
     const alert = useAlert()
-
-    console.log(hoverBox)
+    const dispatch = useDispatch()
     // Hover box content
    
     const [hoverBoxImg,setHoverBoxImg] = useState(null)
@@ -51,6 +52,63 @@ const AdminServiceHoverBoxSection = ({index, hoverBox, setHoverBoxContentArr, se
             }
         };
     }
+
+    async function updateServiceHoverBox(){
+
+        try{
+            const config = {
+                headers: { "Content-Type":"multipart/form-data" },
+            }
+         
+            let fileData = new FormData()
+            fileData.set('title',hoverBoxTitle)
+            fileData.set('index',idx)
+            fileData.set('description',hoverBoxDescription)
+            fileData.append('points',JSON.stringify(hoverBoxBulletPointsArr))
+            if(hoverBoxImg != null ){
+                fileData.append('hoverBoxImage',hoverBoxImg)
+            }else{
+                fileData.set('img',hoverBox.img)
+            }
+
+            const {data} = await axios.put(`http://localhost:8080/api/v1/service-hoverbox/update/${serviceId}`,fileData,config)
+            if(data.success){
+
+                alert.success("updated successfully")
+                // dispatch({type:'ALL_SERVICE_SUCCESS',payload:data.services})
+                dispatch(getService())
+            }
+        }catch(error){
+            alert.error(error.response.data.error)
+        }
+       
+      
+    }
+
+    async function deleteServiceHoverBox(){
+        try{
+            const config = {
+                headers: { "Content-Type":"application/json" },
+            }
+            
+            const {data} = await axios.delete(`http://localhost:8080/api/v1/service-hoverbox/delete/${serviceId}/${idx}`)
+            if(data.success){
+                alert.success("deleted successfully")
+                // dispatch({type:'ALL_SERVICE_SUCCESS',payload:data.services})
+                dispatch(getService())
+            }
+        }catch(error){
+            alert.error(error.response.data.error)
+        }
+    }
+    useEffect(()=>{
+        setHoverBoxImg(null)
+        setHoverBoxPreviewImg(hoverBox.img)
+        setHoverBoxTitle(hoverBox.title)
+        setHoverBoxDescription(hoverBox.description)
+        setHoverBoxBulletPointsArr(hoverBox.points)
+        setHoverBoxBulletPoints('')
+    },[serviceId])
     return(
         <div>
             
@@ -64,13 +122,13 @@ const AdminServiceHoverBoxSection = ({index, hoverBox, setHoverBoxContentArr, se
 
                         {/* Image Upload Button */}
 
-                        <button onClick={() => {document.getElementById("hover-box-img").click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Equipment Image</button>
+                        <button onClick={() => {document.getElementById(serviceId+idx).click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Equipment Image</button>
                     </div>
 
                     {/* Image Upload reference input for Button */}
 
                     <div>
-                        <input id="hover-box-img" type="file" className='hidden' accept="image/*" onChange={addHoverBoxImage}/>
+                        <input id={serviceId+idx} type="file" className='hidden' accept="image/*" onChange={addHoverBoxImage}/>
                     </div>
 
                 </div>
@@ -182,8 +240,8 @@ const AdminServiceHoverBoxSection = ({index, hoverBox, setHoverBoxContentArr, se
             </table>
 
             
-            <button   className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-            <button  className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
+            <button  onClick={updateServiceHoverBox} className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+            <button  onClick={deleteServiceHoverBox} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
 
             </div>
         </div>

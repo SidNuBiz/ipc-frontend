@@ -1,7 +1,7 @@
 import React from 'react'
 import noImg from '../../../assets/no-img.jpg'
 import { useState,Fragment,useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from 'react-alert';
 import SideBar from "../../../components/Admin/Misc/SideBar";
@@ -9,24 +9,22 @@ import Loader from "../../../pages/Loader";
 import Select from 'react-select'
 import axios from 'axios';
 import AdminServiceHoverBoxSection from '../../../components/Admin/AdminServicesPage/AdminServiceHoverBoxSection';
-
-
+import {getService} from "../../../actions/serviceAction"
 
 
 const AdminServiceHoverBoxPage = () => {
 
     const alert = useAlert()
-
+    const dispatch = useDispatch()
     const {services,loading} = useSelector(
         (state) => state.services
     );
 
 
-
     const [selectedServiceIdx,setSelectedServiceIdx] = useState(0)
 
     // Hover box content
-    const [hoverBoxContentArr,setHoverBoxContentArr]=useState(services[selectedServiceIdx].hoverBoxContents)
+    
     const [hoverBoxImg,setHoverBoxImg] = useState(null)
     const [hoverBoxPreviewImg,setHoverBoxPreviewImg] = useState(noImg)
     const [hoverBoxTitle,setHoverBoxTitle] = useState('')
@@ -89,6 +87,14 @@ const AdminServiceHoverBoxPage = () => {
             const {data} = await axios.post(`http://localhost:8080/api/v1/service-hoverbox/create/${services[selectedServiceIdx]._id}`,fileData,config)
             if(data.success){
                 alert.success("created successfully")
+                    
+                setHoverBoxImg(null)
+                setHoverBoxPreviewImg(noImg)
+                setHoverBoxTitle('')
+                setHoverBoxDescription('')
+                setHoverBoxBulletPointsArr([])
+                setHoverBoxBulletPoints('')
+                dispatch(getService())
             }
         }catch(error){
             alert.error(error.response.data.error)
@@ -121,6 +127,8 @@ const AdminServiceHoverBoxPage = () => {
 
     }
 
+
+
     
     return(
 
@@ -151,7 +159,13 @@ const AdminServiceHoverBoxPage = () => {
                         <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Hover Box Content</h2>
 
                         {services[selectedServiceIdx].hoverBoxContents.map((item,index)=>(
-                            <AdminServiceHoverBoxSection idx={index} hoverBox={item} setHoverBoxContentArr={setHoverBoxContentArr} serviceId={services[selectedServiceIdx]._id} />
+                            <div>
+                                
+                                <AdminServiceHoverBoxSection idx={index}  hoverBox={item} setSelectedServiceIdx={setSelectedServiceIdx} serviceId={services[selectedServiceIdx]._id} />
+                                
+
+                            </div>
+                            
                      
                         ))}
 
