@@ -6,7 +6,7 @@ import { useRef, useEffect ,Fragment, useState} from "react";
 
 
 const OverviewSection = ({details}) => {
-    console.log(details)
+  
  
     return (
 

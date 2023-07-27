@@ -169,7 +169,7 @@ const AdminServiceCreateSection = () => {
   
         reader.onload = () => {
           if (reader.readyState === 2) {
-            setPreviewImageGallery((old) => [...old, reader.result]);
+            setPreviewImageGallery((old) => [...old, {id:e.target.files[0].name,image:reader.result}]);
             setImageGallery((old) => [...old, e.target.files[0]]);
           }
         };
@@ -178,10 +178,17 @@ const AdminServiceCreateSection = () => {
       });
     };
 
+    function deleteImage(image,id) {
+      
+      setPreviewImageGallery(previewImageGallery.filter(item => item.image != image))
+      setImageGallery(imageGallery.filter(item=>item.name != id))
+    }
+
+
 
     // Reset add New Turnaround Fields 
 
-    const addThisProduct = () => {
+    const addThisService = () => {
       if(title.trim() == ""){
         alert.error("Give a name for the service")
         return
@@ -225,7 +232,7 @@ const AdminServiceCreateSection = () => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button onClick={addThisProduct} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
+            <button onClick={addThisService} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
         </div>
 
 
@@ -290,14 +297,15 @@ const AdminServiceCreateSection = () => {
 
         <div className='mt-10 flex flex-wrap'> 
 
-          {previewImageGallery.map(image=>(
+          {previewImageGallery.map(item=>(
             <div className=' m-5'>
 
           
               {/* Image */}
   
-              <div className=' h-fit '>
-                <img src={image} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+              <div className=' h-fit relative group'>
+                <img src={item.image} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+                <button onClick={() => deleteImage(item.image,item.id)} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#D10000] text-white hover:bg-[#FF0000] duration-300 lg:hidden md:hidden group-hover:block">Delete</button>
               </div>
   
   

@@ -88,7 +88,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: LOAD_USER_REQUEST });
     
         const token = Cookies.get('token')
-
+        
         const config = { headers:{'Authorization': `Bearer ${token}` }}
         const { data } = await axios.get(`${api}/api/v1/me`,config);
         // const { data } = await axios.get(`http://localhost:8080/api/v1/me`,config);

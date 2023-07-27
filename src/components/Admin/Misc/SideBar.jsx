@@ -8,6 +8,7 @@ import Loader from "../../../pages/Loader";
 const SideBar = () => {
 
     const [state, setState] = useState(false);
+    const [pageContentDropDown,setPageContentDropDown] = useState(false)
 
     const dispatch = useDispatch()
     const { error, loading, isAuthenticated,user } = useSelector(
@@ -188,6 +189,62 @@ const SideBar = () => {
                                                 Members
                                             </div>
                                         </NavLink>
+                                    </li>
+
+                                    <li className="w-full mb-5 ">
+                                    
+                                        <div className="pb-2 border-b-2 border-transparent hover:border-white duration-100">
+                                            <img
+                                                src="https://img.icons8.com/material/35/ffffff/cms.png"
+                                                alt="team-member-icon"
+                                                className="inline-block mr-4 w-fit mx-auto"
+                                            />
+                                               
+
+                                            <button onClick={() => setPageContentDropDown (!pageContentDropDown)}  >
+
+                                                <span >Page Contents</span>
+
+                                                {/* Down Arrow Icon */}
+
+                                                <span className={"absolute right-[80px] top-[6px]" + ( pageContentDropDown ? " inline-block align-middle transition-transform duration-300 rotate-180" : " inline-block align-middle transition-transform duration-300 rotate-0" )}>
+                                                    <img src="https://img.icons8.com/material/24/ffffff/expand-arrow--v1.png" alt=""  className=""/>
+                                                </span>
+
+                                            </button>
+
+                                        </div>
+
+                                        {/* Dropdown */}
+
+                                        <div className={"overflow-hidden my-2 " + ( pageContentDropDown ? " h-full " : "h-0")}>
+                                            <ul>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/home/edit"><h2>Home Page</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/about/who-we-are/edit"><h2>Who We Are</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/about/licensing/edit"><h2>Licensing & Accreditations</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/about/equipment/edit"><h2>Equipments</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/faq/edit"><h2>FAQ</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/legal/edit"><h2>Legal</h2></Link>
+                                                </li>
+                                                <li className="block pl-10 py-2 border-b-2 border-transparent hover:border-white duration-100">
+                                                    <Link to="/IPC-admin-portal/service/hoverbox"><h2>Service Hoverbox</h2></Link>
+                                                </li>
+                                        
+
+                                            </ul>
+                                        </div>
+                                        
                                     </li>
 
                                 </ul>

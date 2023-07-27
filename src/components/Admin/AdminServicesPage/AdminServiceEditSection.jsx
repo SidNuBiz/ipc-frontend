@@ -92,60 +92,6 @@ const AdminServiceEditSection = ({thisService}) => {
     }
 
 
-    // Hover box content
-    const [hoverBoxContentArr,setHoverBoxContentArr]=useState(thisService.hoverBoxContents)
-    const [hoverBoxBackgroundImg,setHoverBoxBackgroundImg] = useState('')
-    const [hoverBoxTitle,setHoverBoxTitle] = useState('')
-    const [hoverBoxDescription,setHoverBoxDescription] = useState('')
-    const [hoverBoxBulletPointsArr,setHoverBoxBulletPointsArr] = useState([])
-    const [hoverBoxBulletPoints,setHoverBoxBulletPoints] = useState('')
-
-    const addNewHoverBoxContent = () => {
-      let newHoverBoxContentArr = [...hoverBoxContentArr]   
-      newHoverBoxContentArr.push({id:uuidv4(),hoverBoxTitle,hoverBoxBackgroundImg,hoverBoxDescription,hoverBoxBulletPointsArr})
-      setHoverBoxContentArr(newHoverBoxContentArr)
-      setHoverBoxTitle('')
-      setHoverBoxDescription('')
-      setHoverBoxBackgroundImg('')
-      setHoverBoxBulletPoints('')
-      setHoverBoxBulletPointsArr([])
-      
-    }
-
-    const editHoverBoxContent = (idx,value,key) => {
-      let editedHoverBoxContentArr = servicePointsArr
-      editedHoverBoxContentArr[idx].key = value
-      setHoverBoxContentArr(editedHoverBoxContentArr)
-    }
-
-    const deleteHoverBoxContent = (value) => {
-      setHoverBoxContentArr(
-        hoverBoxContentArr.filter((item) => item.id !== value)
-      );
-    }
-
-
-    
-    const addNewHoverBoxBulletPoint = () => {
-      let newHoverBoxBulletPointsArr = [...hoverBoxBulletPointsArr]   
-      newHoverBoxBulletPointsArr.push({id:uuidv4(),bulletpoint:hoverBoxBulletPoints})
-      setHoverBoxBulletPoints('')
-      setHoverBoxBulletPointsArr(newHoverBoxBulletPointsArr)
-    }
-
-    // const editHoverBoxBulletPoints = (idx,value) => {
-    //   let editedHoverBoxBulletPointsArr = hoverBoxBulletPointsArr
-    //   editedHoverBoxBulletPointsArr[idx].bulletpoint = value
-    //   setHoverBoxBulletPointsArr(editedHoverBoxBulletPointsArr)
-    // }
-
-    // const deleteHoverBoxBulletPoints = (value) => {
-    //   setHoverBoxBulletPointsArr(
-    //     hoverBoxBulletPointsArr.filter((item) => item.id !== value)
-    //   );
-    // }
-
-
     // Outline
     
     const [outlineTitle,setOutlineTitle] = useState(thisService.outline.outlineTitle)
@@ -175,9 +121,11 @@ const AdminServiceEditSection = ({thisService}) => {
 
 
     // Image Gallery & mainImage & icon
-
+    const storeImage = []
     const [imageGallery,setImageGallery] = useState([])
-    const [previewImageGallery,setPreviewImageGallery] = useState(thisService.imageGallery)
+    const [previewImageGallery,setPreviewImageGallery] = useState(thisService.imageGallery.map((item,idx)=>{return{id:idx,image:item}}))
+
+    const [dbImageGallery,setDbImageGallery] = useState(thisService.imageGallery)
     const [icon,setIcon] = useState()
     const [previewIcon,setPreviewIcon] = useState(thisService.icon)
     const [mainImage,setMainImage] = useState()
@@ -215,14 +163,16 @@ const AdminServiceEditSection = ({thisService}) => {
     const addServiceImageGallery = (e) => {
       const files = Array.from(e.target.files);
 
-  
+      console.log(e.target.files[0].name)
       files.forEach((file) => {
         const reader = new FileReader();
   
         reader.onload = () => {
           if (reader.readyState === 2) {
-            setPreviewImageGallery((old) => [...old, reader.result]);
+      
+            setPreviewImageGallery((old) => [...old, {id:e.target.files[0].name,image:reader.result}]);
             setImageGallery((old) => [...old, e.target.files[0]]);
+         
           }
         };
   
@@ -230,10 +180,16 @@ const AdminServiceEditSection = ({thisService}) => {
       });
     };
 
+    function deleteImage(image,id) {
+      setDbImageGallery(dbImageGallery.filter(item => item != image))
+      setPreviewImageGallery(previewImageGallery.filter(item => item.image != image))
+      setImageGallery(imageGallery.filter(item=>item.name != id))
+    }
+
 
     // Reset add New Turnaround Fields 
 
-    const addThisProduct = () => {
+    const updateThisService = () => {
       if(title.trim() == ""){
         alert.error("Give a name for the service")
         return
@@ -247,7 +203,7 @@ const AdminServiceEditSection = ({thisService}) => {
         subHeading,
         points:servicePointsArr,
         description:{'paragraphs':paragraphsArr,'bulletPoints':bulletPointsArr},
-        'hoverBoxContents':hoverBoxContentArr,
+        'hoverBoxContents':thisService.hoverBoxContents,
         outline:{
           outlineTitle,
           outlineSubHeading,
@@ -256,7 +212,7 @@ const AdminServiceEditSection = ({thisService}) => {
         },
         mainImage:thisService.mainImage,
         icon:thisService.icon,
-        imageGallery:thisService.imageGallery
+        imageGallery:dbImageGallery
       }
       dispatch(updateService(service,mainImage,icon,imageGallery,thisService._id))
      
@@ -280,8 +236,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
-
-            <button onClick={addThisProduct} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+            <button onClick={updateThisService} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
         </div>
 
 
@@ -346,14 +301,15 @@ const AdminServiceEditSection = ({thisService}) => {
 
         <div className='mt-10 flex flex-wrap'> 
 
-          {previewImageGallery.map(image=>(
-            <div className=' m-5'>
+          {previewImageGallery.map((item,idx)=>(
+            <div key={item.image} className=' m-5'>
 
           
               {/* Image */}
   
-              <div className=' h-fit '>
-                <img src={image} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+              <div className=' h-fit relative  group'>
+                <img src={item.image}  alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+                <button onClick={() => deleteImage(item.image,item.id)} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#D10000] text-white hover:bg-[#FF0000] duration-300 lg:hidden md:hidden group-hover:block">Delete</button>
               </div>
   
   
@@ -640,201 +596,6 @@ const AdminServiceEditSection = ({thisService}) => {
 
           </div>
 
-
-          {/* Hover Box Content */}
-
-
-          <div className='mt-5'>
-
-            <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Hover Box Content</h2>
-
-
-            <table className='w-full'>
-
-
-              <thead >
-
-                {
-
-                    hoverBoxContentArr.length > 0 && (
-
-                        <tr className='text-gray-600 font-semibold'>
-
-                            <th className='text-left'>Hover box</th>
-
-                        </tr>
-
-                    )
-
-                }
-
-              </thead>
-
-              <tbody>
-
-                {
-                  hoverBoxContentArr.map((item,index) => {
-                    return (
-                      <tr key={item.id} className=''>
-
-                        <td>
-                          <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editHoverBoxContent(index,e.target.value,'hoverBoxTitle')}  defaultValue={item.hoverBoxTitle} required />
-                        </td>
-                        <td>
-                          <textarea row="6" type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editHoverBoxContent(index,e.target.value,'hoverBoxDescription')}  defaultValue={item.hoverBoxDescription} required />
-                        </td>
-                        {/* <td>
-                          <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editHoverBoxContent(index,e.target.value)}  defaultValue={item.point} required />
-                        </td> */}
-
-                      {
-                        item.hoverBoxBulletPointsArr.map((item,index) => {
-                          return (
-                              <tr key={item.id} className=''>
-
-                                <td>
-                                  <input disabled type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editBulletPoints(index,e.target.value)}  defaultValue={item.bulletpoint} required />
-                                </td>
-
-                                {/* <td className='h-full'>
-                                  <button onClick={() => deleteBulletPoints(item.id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
-                                </td> */}
-
-                              </tr>
-                            )
-                          })
-                        } 
-
-                        <td className='h-full'>
-                          <button onClick={() => deleteHoverBoxContent(item.id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
-                        </td>
-
-                      </tr>
-                    )
-                  })
-                } 
-
-              </tbody>
-
-            </table>
-
-
-
-            <div className=' mt-5 '>
-
-
-              <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
-
-              <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
-
-                <tbody>
-
-                  <tr className=' text-gray-600 font-semibold'>
-
-                    <td>
-
-                      <input  type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setHoverBoxTitle(e.target.value)}} value={hoverBoxTitle} placeholder='Title' required />
-                      <textarea row="6"  type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setHoverBoxDescription(e.target.value)}} value={hoverBoxDescription} placeholder='Description' required />
-                    
-                      <div className='mt-5 px-[80px]'>
-
-                        <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Hover Box Bulletpoints</h2>
-
-
-                        <table className='w-full'>
-
-
-                          <thead >
-
-                            {
-
-                                hoverBoxBulletPointsArr.length > 0 && (
-
-                                    <tr className='text-gray-600 font-semibold'>
-
-                                        <th className='text-left'>Bulletpoints</th>
-
-                                    </tr>
-
-                                )
-
-                            }
-
-                          </thead>
-
-                          <tbody>
-
-                            {
-                              hoverBoxBulletPointsArr.map((item,index) => {
-                                return (
-                                  <tr key={item.id} className=''>
-
-                                    <td>
-                                      <input disabled type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editBulletPoints(index,e.target.value)}  defaultValue={item.bulletpoint} required />
-                                    </td>
-
-                                    {/* <td className='h-full'>
-                                      <button onClick={() => deleteBulletPoints(item.id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
-                                    </td> */}
-
-                                  </tr>
-                                )
-                              })
-                            } 
-
-                          </tbody>
-
-                        </table>
-
-
-
-                        <div className=' mt-5 '>
-
-
-                          <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
-
-                          <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
-
-                            <tbody>
-
-                              <tr className=' text-gray-600 font-semibold'>
-
-                                <td>
-
-                                  <input id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setHoverBoxBulletPoints(e.target.value)}} value={hoverBoxBulletPoints} placeholder='Bulletpoint' required />
-                                
-
-                                </td>
-
-                              </tr>
-
-                            </tbody>
-
-                          </table>
-
-                      </div>
-
-                      <div className='mt-5 w-full mx-auto'>
-                        <button onClick={addNewHoverBoxBulletPoint} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
-                      </div>
-
-                      </div>
-
-                    </td>
-
-                  </tr>
-
-                </tbody>
-
-              </table>
-
-            </div>
-
-            <div className='mt-5 w-full mx-auto'>
-              <button onClick={addNewHoverBoxContent} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
-            </div>
-
-          </div>
 
 
           {/* Outline */}

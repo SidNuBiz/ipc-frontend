@@ -20,7 +20,6 @@ const AdminServiceHoverBoxPage = () => {
         (state) => state.services
     );
 
-
     const [selectedServiceIdx,setSelectedServiceIdx] = useState(0)
 
     // Hover box content
