@@ -15,6 +15,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
     const[title,setTitle] = useState(thisService.title)
     const[subHeading,setSubHeading] = useState(thisService.subHeading)
+    const[codeName,setCodeName] = useState(thisService.codeName)
 
 
     //Service Points
@@ -200,6 +201,7 @@ const AdminServiceEditSection = ({thisService}) => {
       }
       const service = {
         title,
+        codeName,
         subHeading,
         points:servicePointsArr,
         description:{'paragraphs':paragraphsArr,'bulletPoints':bulletPointsArr},
@@ -329,6 +331,14 @@ const AdminServiceEditSection = ({thisService}) => {
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
 
               <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={title} onChange={(e)=>setTitle(e.target.value)} required/>
+            </div>
+
+             {/* Code Name */}
+
+           <div className='mb-10'>
+              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Code Name</label>
+
+              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={codeName} onChange={(e)=>setCodeName(e.target.value)} required/>
             </div>
 
             {/* Sub Heading */}

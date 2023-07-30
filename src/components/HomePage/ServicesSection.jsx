@@ -1,7 +1,9 @@
 import GrayLogo from "../../assets/logo-gray.png";
 import { Link } from "react-router-dom";
 
-const ServicesSection = () => {
+const ServicesSection = ({services}) => {
+
+    console.log(services)
 
     return (
 
@@ -25,6 +27,27 @@ const ServicesSection = () => {
             <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10 mt-20 w-5/6 mx-auto text-gray-600">
 
                 {/* Service 1 */}
+
+                {services.map(((service,idx) => (
+
+                    <div className="hover:scale-110 duration-300 ">
+                        <Link to={"/services/"+idx}>
+
+                            <div className=" bg-white p-8 drop-shadow-xl rounded-2xl border-2 border-gray-50 h-full">
+
+                                <span className="block w-fit mx-auto mb-5 opacity-80">
+                                    <img src={service.icon} alt=""/>
+                                </span>
+
+                                <span className="block lg:text-3xl md:text-3xl sm:text-2xl font-medium text-center w-fit mx-auto">{service.title}</span>
+
+                            </div>
+
+                        </Link>
+                    </div>
+
+
+                )))}
 
                 <div className="hover:scale-110 duration-300 ">
                     <Link to="/services/cannabis">

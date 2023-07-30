@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import {newMap} from "../../data/mapping-json.js"
@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 
 const TestsPricingPage = () => {
+
+    const [searchKey,setSearchKey] = useState('')
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -37,6 +39,13 @@ const TestsPricingPage = () => {
                     className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-5">
                     &#x2190;Back
                 </button>
+            </div>
+
+            {/*Searcb Bar  */}
+            <div className="col-span-3 sm:order-2">
+
+                <input type="text" placeholder="Search Test..." className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
+
             </div>
 
             {/* Service Name */}
@@ -90,7 +99,7 @@ const TestsPricingPage = () => {
                                 </tr> */}
 
                                 {newMap &&
-                                    newMap.map((test, index) => (
+                                    newMap.filter( tests => tests.Name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                         <tr
                                             key={index}
                                             className="border-b-2 border-gray-300">

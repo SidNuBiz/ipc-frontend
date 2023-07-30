@@ -34,20 +34,12 @@ const ServiceOutlineSection = ({ outline }) => {
             {/* Outline Paragraphs */}                  
 
             {
-                outline.outlineParagraphs && (          // If there is a paragraph, render it
+                outline.outlineParagraph && (          // If there is a paragraph, render it
 
                     <div>
-
-                        {
-                            outline.outlineParagraphs.map((paragraph, index) => (
-
-                                <div key={index} className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl">
-                                    <p>{paragraph}</p>
-                                </div>
-
-                            ))
-                        }
-
+                        <div className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl">
+                            <p>{outline.outlineParagraph}</p>
+                        </div>
                     </div>
 
                 )           
@@ -62,11 +54,11 @@ const ServiceOutlineSection = ({ outline }) => {
                     <div>
 
                         {
-                            outline.outlineBulletPoints.map((bulletPoint, index) => (
+                            outline.outlineBulletPoints.map((item) => (
 
-                                <ul key={index} className="text-2xl text-gray-600 list-disc list-outside ml-10">
+                                <ul key={item.id} className="text-2xl text-gray-600 list-disc list-outside ml-10">
 
-                                    <li className="mb-2">{bulletPoint}</li>
+                                    <li className="mb-2">{item.bulletpoint}</li>
 
                                 </ul>
 

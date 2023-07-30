@@ -14,11 +14,14 @@ const HomePage = () => {
     const { error, loading, isAuthenticated } = useSelector(
         (state) => state.user
     );
+
+    const {services} = useSelector(
+        (state) => state.services
+    );
     const [homePageDetails,setHomePageDetails] = useState([])
 
     async function fetchData(){
         const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
-        console.log(homePageDetails)
         setHomePageDetails(data.details)
        
     }
@@ -33,13 +36,15 @@ const HomePage = () => {
 
     const ref = useRef(null);
 
+
+
     const scrollToRef = () => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     };
 
     return (
     <Fragment>
-        {loading || homePageDetails.length == 0  ? (
+        {loading || homePageDetails.length == 0 || services.length == 0 ? (
           <Loader />
         ) : (
         <Fragment>
@@ -64,7 +69,7 @@ const HomePage = () => {
                 {/* Services Section */}
 
                 <div ref={ref}>
-                    <ServicesSection />
+                    <ServicesSection services={services} />
                 </div>
 
                 {/* Overview Section */}

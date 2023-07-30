@@ -9,21 +9,20 @@ import Loader from "../../../pages/Loader"
 
 const AllTestingServicesSection = () => {
 
- 
-
-    const {products,loading} = useSelector(
-        (state) => state.products
+      
+    const {services,loading} = useSelector(
+        (state) => state.services
     );
-
     return (
-        <Fragment>{loading ? <Loader /> : 
+        <Fragment>{loading == false ?
+          
             <Fragment>
                 <div>
 
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
 
                         {
-                            products.map((item) => (
+                            services.map((item) => (
 
                                 <Link key={item._id} to={{pathname: `testing-services/${item._id}`}}>
                                 
@@ -41,7 +40,8 @@ const AllTestingServicesSection = () => {
                     </div>
 
                 </div>
-            </Fragment> 
+            </Fragment> :
+            <Loader /> 
         }</Fragment>
 
     );

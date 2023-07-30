@@ -26,15 +26,15 @@
         imageGallery: [
 
         
-                'https://static.wixstatic.com/media/nsplsh_2d685a38496b6447664a51~mv2_d_5412_3590_s_4_2.jpg/v1/fill/w_980,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Kimzy%20Nanney.jpg',
+            'https://static.wixstatic.com/media/nsplsh_2d685a38496b6447664a51~mv2_d_5412_3590_s_4_2.jpg/v1/fill/w_980,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image%20by%20Kimzy%20Nanney.jpg',
 
-                'https://static.wixstatic.com/media/nsplsh_fb90360fc88f41a0ad5494cc56988489~mv2.jpg/v1/fill/w_576,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_fb90360fc88f41a0ad5494cc56988489~mv2.jpg',
+            'https://static.wixstatic.com/media/nsplsh_fb90360fc88f41a0ad5494cc56988489~mv2.jpg/v1/fill/w_576,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_fb90360fc88f41a0ad5494cc56988489~mv2.jpg',
 
-                'https://static.wixstatic.com/media/nsplsh_538b3f04c71f4081bb3be60d3e8f6edb~mv2.jpg/v1/fill/w_384,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_538b3f04c71f4081bb3be60d3e8f6edb~mv2.jpg',
+            'https://static.wixstatic.com/media/nsplsh_538b3f04c71f4081bb3be60d3e8f6edb~mv2.jpg/v1/fill/w_384,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_538b3f04c71f4081bb3be60d3e8f6edb~mv2.jpg',
 
-                'https://static.wixstatic.com/media/nsplsh_2654d0eb39d8409c8ebe28abb7e92442~mv2.jpg/v1/fill/w_384,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_2654d0eb39d8409c8ebe28abb7e92442~mv2.jpg',
+            'https://static.wixstatic.com/media/nsplsh_2654d0eb39d8409c8ebe28abb7e92442~mv2.jpg/v1/fill/w_384,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_2654d0eb39d8409c8ebe28abb7e92442~mv2.jpg',
 
-                'https://static.wixstatic.com/media/nsplsh_426761474b76594e394d59~mv2.jpg/v1/fill/w_576,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_426761474b76594e394d59~mv2.jpg',
+            'https://static.wixstatic.com/media/nsplsh_426761474b76594e394d59~mv2.jpg/v1/fill/w_576,h_301,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/nsplsh_426761474b76594e394d59~mv2.jpg',
 
         ],
 

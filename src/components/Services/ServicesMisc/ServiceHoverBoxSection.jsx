@@ -14,7 +14,7 @@ const ServiceHoverBoxSection = ({ hoverBoxContents }) => {
 
                         {/* Background Image */}
 
-                        <img src={hoverBoxContent.hoverBoxBackgroundImg} alt="" className=" z-10 lg:absolute md:block sm:block object-cover object-center w-full h-full "/>
+                        <img src={hoverBoxContent.img} alt="" className=" z-10 lg:absolute md:block sm:block object-cover object-center w-full h-full "/>
 
                         {/* Content */}
 
@@ -22,11 +22,11 @@ const ServiceHoverBoxSection = ({ hoverBoxContents }) => {
 
                             {/* Hover Box Title */}
 
-                            <h2 className=" text-3xl font-semibold mb-5">{hoverBoxContent.hoverBoxTitle}</h2>
+                            <h2 className=" text-3xl font-semibold mb-5">{hoverBoxContent.title}</h2>
 
                             {/* Hover Box Description */}
 
-                            <p>{hoverBoxContent.hoverBoxDescription}</p>
+                            <p>{hoverBoxContent.description}</p>
 
                         </div>
 
@@ -36,11 +36,11 @@ const ServiceHoverBoxSection = ({ hoverBoxContents }) => {
                         <div className="animate-crossfade lg:bg-black lg:bg-opacity-60 z-20 lg:p-10 lg:w-1/2 lg:hidden lg:group-hover:block duration-300 lg:pl-20 md:pl-10 sm:pl-10 h-auto">
 
                             {
-                                hoverBoxContent.hoverBoxBulletPoints.map((bulletPoint, index) => (
+                                hoverBoxContent.points.map((item) => (
 
-                                    <ul key={index} className=" list-outside list-disc text-xl">
+                                    <ul key={item.id} className=" list-outside list-disc text-xl">
 
-                                        <li className="mb-2">{bulletPoint}</li>
+                                        <li className="mb-2">{item.bulletpoint}</li>
 
                                     </ul>
 

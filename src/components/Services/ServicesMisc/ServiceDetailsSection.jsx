@@ -35,9 +35,9 @@ const ServiceDetailsSection = ({ serviceTitle, serviceSubHeading, serviceDescrip
                         <p className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl">
 
                             {
-                                serviceDescription.paragraphs.map((paragraph, index) => (
+                                serviceDescription.paragraphs.map((item) => (
                                     
-                                    <span key={index} className="block mb-10">{paragraph}</span>
+                                    <span key={item.id} className="block mb-10">{item.paragraph}</span>
 
                                 ))
                             }
@@ -59,11 +59,11 @@ const ServiceDetailsSection = ({ serviceTitle, serviceSubHeading, serviceDescrip
 
                         {
                         
-                            serviceDescription.bulletPoints.map((bulletPoint, index) => (
+                            serviceDescription.bulletPoints.map((item) => (
 
-                                <ul key={index} className="text-2xl text-gray-600 list-disc list-outside ml-10">
+                                <ul key={item.id} className="text-2xl text-gray-600 list-disc list-outside ml-10">
 
-                                    <li className="mb-2">{bulletPoint}</li>
+                                    <li className="mb-2">{item.bulletPoint}</li>
 
                                 </ul>
 

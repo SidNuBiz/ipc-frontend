@@ -46,9 +46,9 @@ const AdminServiceList = ({searchKey}) => {
                                 <h2 className="text-xl text-[#397f77]">{service.title}</h2>
                             </div>
 
-                            <div className="col-span-2">
+                            {/* <div className="col-span-2">
                                 <h2 className="text-xl text-[#397f77] font-semibold">C${service._id}</h2>
-                            </div>
+                            </div> */}
 
                             {/* Service Actions */}
 

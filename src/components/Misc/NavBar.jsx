@@ -5,13 +5,17 @@ import { useState, useEffect , Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userAction";
 import Loader from "../../pages/Loader";
-import {services} from "../../data/services"
 
 const NavBar = () => {
     const dispatch = useDispatch()
     const { error, loading, isAuthenticated,user } = useSelector(
         (state) => state.user
     );
+
+    const {services,loading:sLoading} = useSelector(
+        (state) => state.services
+    );
+    
     const isLoggedIn = isAuthenticated;
 
     const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -37,7 +41,7 @@ const NavBar = () => {
 
     return (
         <Fragment>
-        {loading ? (
+        {loading || sLoading ? (
           <Loader />
         ) : (
         <Fragment>
