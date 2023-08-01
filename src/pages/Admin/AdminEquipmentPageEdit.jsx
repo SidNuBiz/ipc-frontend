@@ -1,15 +1,36 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState,useEffect,useRef} from 'react'
 import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Equipment from '../../components/Admin/AdminEquipmentPage/AdminEquipment';
 import noImg from "../../assets/no-img.jpg"
+import DatePicker from "react-datepicker";
 
 
 const AdminEquipmentPageEdit = () => {
 
     const alert = useAlert()
-    // License Details
+    const [date, setDate] = useState('');
+    const dateInputRef = useRef(null);
+
+  
+    const handleChange = async (e) => {
+      setDate(e.target.value);
+      try{
+        const config = {
+            headers:{"Content-Type":"application/json"}
+          }
+          const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{equipment:e.target.value},config)
+          if(data.success){
+            // alert.success("Date updated successfully")
+          }
+      }catch(error){
+        alert.error(error.response.data.error)
+      }
+      
+    };
+
+ 
     const [equipmentsArr,setEquipmentsArr] = useState([])
 
 
@@ -68,7 +89,10 @@ const AdminEquipmentPageEdit = () => {
 
     async function fetchData(){
         const {data} =  await axios.get('http://localhost:8080/api/v1/equipment-details/all')
+        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
         setEquipmentsArr(data.equipments)
+        setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
+        dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()
 
     }
 
@@ -84,6 +108,9 @@ const AdminEquipmentPageEdit = () => {
 
     <div>
 
+        
+           
+
         <div className="lg:grid lg:grid-cols-5">
 
             <div className=" col-span-1 z-50 relative">
@@ -92,7 +119,11 @@ const AdminEquipmentPageEdit = () => {
 
             </div>
 
+       
+
             <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
+
+           
 
                 <div>
 
@@ -106,6 +137,16 @@ const AdminEquipmentPageEdit = () => {
 
                     <div className="mb-5 pb-5 ">
                         <h2 className=" text-4xl font-semibold text-gray-600">Update Equipment Content</h2>
+                        
+                    </div>
+
+                    <div className='mb-10'>
+                        <input
+                            type="date"
+                            onChange={handleChange}
+                            ref={dateInputRef}
+                        />
+                        <p>Selected Updated Date: {date}</p>
                     </div>
 
                     <div>
@@ -114,7 +155,6 @@ const AdminEquipmentPageEdit = () => {
                         {equipmentsArr.map(item => (
                             <Equipment key={item._id} equipment={item}  setEquipmentsArr={setEquipmentsArr} />
                         ))}
-
 
 
                     </div>

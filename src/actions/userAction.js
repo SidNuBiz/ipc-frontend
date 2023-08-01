@@ -164,7 +164,10 @@ export const getAllUsers = () => async (dispatch) => {
   try {
   
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`${api}/api/v1/users/all`);
+    const token = Cookies.get('token')
+        
+    const config = { headers:{'Authorization': `Bearer ${token}` }}
+    const { data } = await axios.get(`${api}/api/v1/users/all`,config);
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
   } catch (error) {
     
@@ -213,6 +216,21 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     });
   }
 };
+
+//Update Status
+export const updateStatus = (status,id) => async (dispatch) => {
+  try {
+ 
+    const token = Cookies.get('token')
+        
+    const config = { headers:{'Authorization': `Bearer ${token}` }}
+    const { data } = await axios.put(`${api}/api/v1/update/status/${id}`,{status},config);
+    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    console.log(error)
+   
+  }
+}
 
 export const submitContactForm = async (contactData)=>{
   const config = { headers: { "Content-Type": "application/json" } };

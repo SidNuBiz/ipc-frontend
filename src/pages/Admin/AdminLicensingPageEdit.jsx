@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState,useEffect,useRef} from 'react'
 import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
@@ -13,6 +13,23 @@ const AdminLicensingPageEdit = () => {
  
 
     const alert = useAlert()
+    const [date, setDate] = useState('');
+    const dateInputRef = useRef(null);
+    const handleChange = async (e) => {
+        setDate(e.target.value);
+        try{
+          const config = {
+              headers:{"Content-Type":"application/json"}
+            }
+            const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{license:e.target.value},config)
+            if(data.success){
+            //   alert.success("Date updated successfully")
+            }
+        }catch(error){
+          alert.error(error.response.data.error)
+        }
+        
+      };
     // License Details
     const [licenseDetailsArr,setLicenseDetailsArr] = useState([])
 
@@ -127,7 +144,7 @@ const AdminLicensingPageEdit = () => {
             }
             
           } catch (error) {
-              alert.error(error.response.data.error)
+            //   alert.error(error.response.data.error)
           }
     };
 
@@ -141,6 +158,10 @@ const AdminLicensingPageEdit = () => {
 
         const {data:license} =  await axios.get('http://localhost:8080/api/v1/license-details/all')
         setLicenseDetailsArr(license.details)
+
+        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
+        dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()
 
   
     }
@@ -181,6 +202,15 @@ const AdminLicensingPageEdit = () => {
 
                     <div className="mb-5 pb-5 ">
                         <h2 className=" text-4xl font-semibold text-gray-600">Update License Content</h2>
+                    </div>
+
+                    <div className='mb-10'>
+                        <input
+                            type="date"
+                            onChange={handleChange}
+                            ref={dateInputRef}
+                        />
+                        <p>Selected Updated Date: {date}</p>
                     </div>
 
                     {licenseArr.map(item=>(

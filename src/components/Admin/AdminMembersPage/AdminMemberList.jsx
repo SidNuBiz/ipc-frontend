@@ -1,19 +1,27 @@
 import React from "react";
 import { useState } from "react";
-import {useSelector} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
+import { updateStatus } from "../../../actions/userAction";
+import axios from "axios";
 
 const AdminMemberList = ({ searchKey }) => {
+
+    const dispatch = useDispatch()
 
     const { users } = useSelector(
         (state) => state.allUsers
     );
 
+    var [showModal, setShowModal] = useState(false);
+    const [userStatus,setUserStatus] = useState("")
+
     var [thisMember, setThisMember] = useState({
 
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
         phone: "",
+        status: "",
         avatar:{
             url:""
         },
@@ -27,14 +35,30 @@ const AdminMemberList = ({ searchKey }) => {
         }
     });
 
-    var [showModal, setShowModal] = useState(false);
+    const changeUserStatus = (e) =>{
+        setUserStatus(e.target.value)
+        dispatch(updateStatus(e.target.value,thisMember._id))
+        
+    }
+
+    const options = [
+        {
+          label: "Inactive",
+          value: "inactive",
+        },
+        {
+          label: "Active",
+          value: "active",
+        },
+       
+      ];
 
     return (
         <div className="h-full">
             <div className="">
                 <ul className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-10">
                     {users && users.filter( member => member.firstname.toLowerCase().includes(searchKey.toLowerCase()) || member.lastname.toLowerCase().includes(searchKey.toLowerCase())).map((member, index) => (
-                        <li key={index} onClick={() => {setThisMember(member); setShowModal(true)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
+                        <li key={index} onClick={() => {setThisMember(member); setShowModal(true); setUserStatus(member.status)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
                             <div className="p-5 text-center text-white" >
 
                                 {/* Member Image */}
@@ -83,6 +107,12 @@ const AdminMemberList = ({ searchKey }) => {
                             {/* Heading */}
 
                             <h2 className="text-white text-xl font-semibold mb-5 border-b-[2px] border-b-slate-100 pb-2">Basic Info</h2>
+
+                            <select value={userStatus} onChange={(e)=>changeUserStatus(e)}>
+                                {options.map((option) => (
+                                <option value={option.value}>{option.label}</option>
+                                ))}
+                            </select>
 
                             <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 text-lg">
                                 {/* First Name */}

@@ -7,12 +7,15 @@ const LicensingAndAccreditationsSection = () => {
 
     const [licenses,setLicenses] = useState([])
     const [licenseDetails,setLicenseDetails] = useState([])
+    const [date,setDate] = useState('')
 
     async function fetchData(){
         const {data} =  await axios.get('http://localhost:8080/api/v1/license-details/all')
         setLicenseDetails(data.details)
         const {data:license} = await axios.get('http://localhost:8080/api/v1//license/all')
         setLicenses(license.licenses)
+        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        setDate(new Date(updated.updated.license).getDate()+"/"+(new Date(updated.updated.license).getMonth()+1)+"/"+new Date(updated.updated.license).getFullYear()) 
        
        
     }
@@ -40,7 +43,7 @@ const LicensingAndAccreditationsSection = () => {
             {/* Update Date */}
 
             <div className="text-center mt-5">
-                <h2 className="text-gray-600 text-xl italic">Updated -2022 October 14</h2>
+                <h2 className="text-gray-600 text-xl italic">Updated - {date}</h2>
             </div>
 
 

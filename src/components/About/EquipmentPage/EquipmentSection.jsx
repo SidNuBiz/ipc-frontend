@@ -5,10 +5,13 @@ import { useState,useEffect } from "react";
 const EquipmentSection = () => {
 
     const [equipments,setEquipments] = useState([])
+    const [date,setDate] = useState('')
 
     async function fetchData(){
         const {data} =  await axios.get('http://localhost:8080/api/v1/equipment-details/all')
-        setEquipments(data.equipments)  
+        setEquipments(data.equipments)
+        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        setDate(new Date(updated.updated.equipment).getDate()+"/"+(new Date(updated.updated.equipment).getMonth()+1)+"/"+new Date(updated.updated.equipment).getFullYear()) 
     }
 
     useEffect(() => {
@@ -33,7 +36,7 @@ const EquipmentSection = () => {
             {/* Update Date */}
 
             <div className="text-center mt-5">
-                <h2 className="text-gray-600 text-xl italic">Updated - 2022 October 14</h2>
+                <h2 className="text-gray-600 text-xl italic">Updated - {date}</h2>
             </div>
 
 
