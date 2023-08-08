@@ -85,17 +85,19 @@ export const register = (userData) => async (dispatch) => {
 // Load User
 export const loadUser = () => async (dispatch) => {
     try {
-        dispatch({ type: LOAD_USER_REQUEST });
-    
-        const token = Cookies.get('token')
-        
+      dispatch({ type: LOAD_USER_REQUEST });
+  
+      const token = Cookies.get('token')
+
+      if(token != undefined){
         const config = { headers:{'Authorization': `Bearer ${token}` }}
         const { data } = await axios.get(`${api}/api/v1/me`,config);
-        // const { data } = await axios.get(`http://localhost:8080/api/v1/me`,config);
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+      }
+      
     } catch (error) {
-        dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
+      dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.error }); 
     }
     };
 

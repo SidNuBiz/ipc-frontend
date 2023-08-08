@@ -15,7 +15,7 @@ const SampleDetails = ({ sample }) => {
     );
 
     useEffect(()=>{
-        dispatch(mySampleResult(sample.id_numeric))
+        dispatch(mySampleResult(sample.ID_NUMERIC))
     },[dispatch])
 
     function printInvoice(divName) {
@@ -38,20 +38,20 @@ const SampleDetails = ({ sample }) => {
             <div>
                 {/* Print Invoice Button */}
 
-                <div className=" w-fit ml-auto">
+                {/* <div className=" w-fit ml-auto">
                     <button
                         onClick={() => printInvoice("result")}
                         id="add-to-cart-btn"
                         className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">
                         Print
                     </button>
-                </div>
+                </div> */}
 
                 {/* Order Details */}
 
                 <div
                     id="result"
-                    className="py-10 mt-10 text-gray-600">
+                    className="py-10 text-gray-600">
                     {/* Order Id */}
 
                     <div className="mb-10">
@@ -97,7 +97,7 @@ const SampleDetails = ({ sample }) => {
                             <div className="">
                                 <h2 className=" text-md">
                                     <b>Sampled Id: </b>
-                                    {sample.id_text}
+                                    {sample.ID_TEXT}
                                 </h2>
                             </div>
 
@@ -106,7 +106,7 @@ const SampleDetails = ({ sample }) => {
                             <div className="">
                                 <h2 className=" text-md">
                                     <b>Sample Name: </b>
-                                    {sample.sample_name}
+                                    {sample.SAMPLE_NAME}
                                 </h2>
                             </div>
 
@@ -115,7 +115,7 @@ const SampleDetails = ({ sample }) => {
                             <div>
                                 <h2 className=" text-md">
                                     <b>Sample Status: </b>
-                                    {sample.status}
+                                    {sample.STATUS}
                                 </h2>
                             </div>
 
@@ -124,7 +124,7 @@ const SampleDetails = ({ sample }) => {
                             <div className="lg:col-span-2">
                                 <h2 className=" text-md">
                                     <b>Sample Description: </b>
-                                    {sample.description}
+                                    {sample.DESCRIPTION}
                                 </h2>
                             </div>
 
@@ -174,16 +174,16 @@ const SampleDetails = ({ sample }) => {
 A test assigned to the sample with a status of U (Unavailable), W (Waiting for Preparation), V (Available), or P (In Progress) has its status updated to X (Cancelled). */}
                                     <td className="px-6 py-4">
                                         {
-                                            result.test_status == 'V' ? 'Available' :
-                                            result.test_status == 'P' ? 'In Progress' :
-                                            result.test_status == 'C' ? 'Complete' :
-                                            result.test_status == 'U' ? 'Unavailable' :
-                                            result.test_status == 'W' ? 'Waiting for Preparation' :
-                                            result.test_status == 'X' ? 'Cancelled' :
-                                            result.test_status == 'I' ? 'Inspection' :
-                                            result.test_status == 'A' ? 'Authorised' :
-                                            result.test_status == 'S' ? 'Suspended' :
-                                            result.test_status == 'R' ? 'Rejected' :
+                                            result.TEST_STATUS == 'V' ? 'Available' :
+                                            result.TEST_STATUS == 'P' ? 'In Progress' :
+                                            result.TEST_STATUS == 'C' ? 'Complete' :
+                                            result.TEST_STATUS == 'U' ? 'Unavailable' :
+                                            result.TEST_STATUS == 'W' ? 'Waiting for Preparation' :
+                                            result.TEST_STATUS == 'X' ? 'Cancelled' :
+                                            result.TEST_STATUS == 'I' ? 'Inspection' :
+                                            result.TEST_STATUS == 'A' ? 'Authorised' :
+                                            result.TEST_STATUS == 'S' ? 'Suspended' :
+                                            result.TEST_STATUS == 'R' ? 'Rejected' :
                                             "Status Unavailable "
                                          
                                             

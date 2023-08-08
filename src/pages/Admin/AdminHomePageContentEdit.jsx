@@ -7,7 +7,6 @@ import Loader from '../Loader';
 
 const AdminHomePageContentEdit = () => {
  
-
     const alert = useAlert()
 
     const [section1title,setSection1Title] = useState('')

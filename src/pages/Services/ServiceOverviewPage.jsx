@@ -2,11 +2,16 @@ import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import ServiceOverviewSection from "../../components/Services/ServiceOverviewPage/ServiceOverviewSection.jsx";
 import TestimonialSection from "../../components/Services/ServiceOverviewPage/TestimonialSection.jsx";
-import { services } from "../../data/services.js";
-import { useEffect } from "react";
+import { useEffect , Fragment} from "react";
+import { useSelector} from "react-redux";
+import Loader from "../Loader.jsx";
 
 
 const ServiceOverviewPage = () => {
+
+    const {services,loading} = useSelector(
+        (state) => state.services
+    );
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -14,6 +19,10 @@ const ServiceOverviewPage = () => {
     }, []);
 
     return (
+
+        <Fragment>
+        {loading == false ? (
+             <Fragment>
 
         <div className="bg-gradient-to-b from-white via-[#eaf8f5] to-transparent">
 
@@ -48,6 +57,12 @@ const ServiceOverviewPage = () => {
             </div>
 
         </div>
+
+        </Fragment>
+        ) : (
+           <Loader />
+        )}
+        </Fragment>
 
     );
 

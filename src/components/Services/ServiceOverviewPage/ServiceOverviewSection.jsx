@@ -46,14 +46,14 @@ const ServiceOverviewSection = ({services}) => {
                 {/* Cannabis */}
 
                 {services && services.map((service,index)=>(
-                    <Link to={`/services/${index}`} key={index}>
+                    <Link to={`/services/${index}`} key={service._id}>
 
                         <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
     
                         
     
                             <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) != 0 ? 'lg:order-1':""}`}>
-                                <img src={ServiceCannabisImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
+                                <img src={service.mainImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
                             </div>
     
                 
@@ -62,8 +62,8 @@ const ServiceOverviewSection = ({services}) => {
                                 <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>{service.title}</h2>
     
                                 <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-                                    {service.points.map((point,idx)=>(
-                                        <li key={idx}>{point}</li>
+                                    {service.overviewPoints.map((item)=>(
+                                        <li key={item.id}>{item.point}</li>
                                     ))}
                                     
                                     
@@ -74,266 +74,7 @@ const ServiceOverviewSection = ({services}) => {
                          
                      </Link>
                 ))}
-
-                <Link to="/services/cannabis">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                      
-
-                        <div className=' mx-auto h-fit my-auto w-full shadow-xl rounded-2xl'>
-                            <img src={ServiceCannabisImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-              
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Cannabis</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Microbio</li>
-
-                                <li>Heavy metal</li>
-
-                                <li>Profile</li>
-
-                                <li>Stability</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* NHP */}
-
-                <Link to="/services/nhp">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className=' mx-auto h-fit my-auto lg:order-1 w-full shadow-xl rounded-2xl'>
-                            <img src={ServiceNhpImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>NHP (natural health products)</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Microbio</li>
-
-                                <li>Heavy metal</li>
-
-                                <li>Toxins</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* Pharmaceutical */}
-
-                <Link to="/services/pharmaceutical">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className=' mx-auto h-fit my-auto w-full shadow-xl rounded-2xl'>
-                            <img src={ServicePharmaceuticalImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Pharmaceutical</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Microbio</li>
-
-                                <li>Stability</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* F&D */}
-
-                <Link to="/services/fnb">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className='w-full mx-auto h-fit my-auto lg:order-1 shadow-xl rounded-2xl'>
-                            <img src={ServiceFbImage} alt="" className='h-[450px] object-cover w-full rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Food and Beverage</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Microbio</li>
-
-                                <li>Stability</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* R&D */}
-
-                <Link to="/services/rnd">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className='w-full mx-auto h-fit my-auto shadow-xl rounded-2xl'>
-                            <img src={ServiceRdImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>R&D</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Synthesis</li>
-
-                                <li>Tissue culture</li>
-
-                                <li>Strain development</li>
-
-                                <li>Non-standard</li>
-
-                                <li>Phenolic-compounds</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* Controlled Drug and Substances */}
-
-                <Link to="/services/cds">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className='w-full mx-auto h-fit my-auto lg:order-1 shadow-xl rounded-2xl'>
-                            <img src={ServiceControlledDrugImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Controlled Drug & Substances</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Psilocybin Mushroom</li>
-
-                                <li>MDMA</li>
-
-                                <li>Synthesis</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* Environmental */}
-
-                <Link to="/services/environmental">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className='w-full mx-auto h-fit my-auto shadow-xl rounded-2xl'>
-                            <img src={ServiceEnvironmentalImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Environmental</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Hydrocarbons</li>
-
-                                <li>PCBs</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
-
-                {/* Agriculture */}
-
-                <Link to="/services/agriculture">
-
-                    <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
-
-                        {/* Image */}
-
-                        <div className='w-full mx-auto h-fit my-auto lg:order-1 shadow-xl rounded-2xl'>
-                            <img src={ServiceAgricultureImage} alt="" className=' w-full h-[450px] object-cover rounded-2xl' />
-                        </div>
-
-                        {/* Text */}
-
-                        <div className='h-fit my-auto lg:w-fit lg:mx-auto'>
-                            <h2 className=' lg:text-5xl md:text-5xl sm:text-4xl text-gray-600 font-semibold'>Agriculture</h2>
-
-                            <ul className=' lg:text-2xl md:text-2xl sm:text-xl mt-10 list-disc list-inside'>
-
-                                <li>Virisis</li>
-
-                                <li>Genetics</li>
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    
-                </Link>
-
+            
             </div>
 
             {/* Visit Store Button */}

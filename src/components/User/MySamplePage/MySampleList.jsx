@@ -43,7 +43,7 @@ const SampleList = () => {
 
                                         <div className="">
                                             <b>Sample</b> <br />
-                                            {sample.sample_name}
+                                            {sample.SAMPLE_NAME}
                                         </div>
 
                                     </div>

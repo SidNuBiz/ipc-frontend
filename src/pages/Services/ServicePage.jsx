@@ -10,9 +10,6 @@ import { useSelector} from "react-redux";
 import Loader from "../Loader.jsx";
 
 
-
-
-
 const ServicePage = () => {
 
     const params = useParams()

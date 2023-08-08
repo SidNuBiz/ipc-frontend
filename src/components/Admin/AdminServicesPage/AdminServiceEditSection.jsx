@@ -42,6 +42,30 @@ const AdminServiceEditSection = ({thisService}) => {
       );
     }
 
+    //Overview Points
+
+    const [overviewPointsArr,setOverviewPointsArr] = useState(thisService.overviewPoints)
+    const [overviewPoints,setOverviewPoints] = useState('')
+    
+    const addNewOverviewPoint = () => {
+      let newOverviewPointsArr = [...overviewPointsArr]   
+      newOverviewPointsArr.push({id:uuidv4(),point:overviewPoints})
+      setOverviewPoints('')
+      setOverviewPointsArr(newOverviewPointsArr)
+    }
+
+    const editOverviewPoints = (idx,value) => {
+      let editedOverviewPointsArr = overviewPointsArr
+      editedOverviewPointsArr[idx].point = value
+      setOverviewPointsArr(editedOverviewPointsArr)
+    }
+
+    const deleteOverviewPoints = (value) => {
+      setOverviewPointsArr(
+        overviewPointsArr.filter((item) => item.id !== value)
+      );
+    }
+
 
     //Description Paragraphs
 
@@ -204,6 +228,7 @@ const AdminServiceEditSection = ({thisService}) => {
         codeName,
         subHeading,
         points:servicePointsArr,
+        'overviewPoints':overviewPointsArr,
         description:{'paragraphs':paragraphsArr,'bulletPoints':bulletPointsArr},
         'hoverBoxContents':thisService.hoverBoxContents,
         outline:{
@@ -430,6 +455,93 @@ const AdminServiceEditSection = ({thisService}) => {
 
             <div className='mt-5 w-full mx-auto'>
               <button onClick={addNewServicePoint} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
+            </div>
+
+          </div>
+
+
+          {/* Overview Points */}
+
+          <div className='mt-5'>
+
+            <h2 className='text-2xl text-[#397f77] font-semibold mb-5'>Overview Points</h2>
+
+
+            <table className='w-full'>
+
+
+              <thead >
+
+                {
+
+                    overviewPointsArr.length > 0 && (
+
+                        <tr className='text-gray-600 font-semibold'>
+
+                            <th className='text-left'>Points</th>
+
+                        </tr>
+
+                    )
+
+                }
+
+              </thead>
+
+              <tbody>
+
+                {
+                  overviewPointsArr.map((item,index) => {
+                    return (
+                      <tr key={item.id} className=''>
+
+                        <td>
+                          <input type="text" className='mr-2 w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e)=>editOverviewPoints(index,e.target.value)}  defaultValue={item.point} required />
+                        </td>
+
+                        <td className='h-full'>
+                          <button onClick={() => deleteOverviewPoints(item.id)} className="text-white rounded-lg hover:scale-125 duration-300 h-full w-full"><img src="https://img.icons8.com/windows/35/c70000/trash.png" alt="" className='h-[28px] w-[28px] m-2'/></button>
+                        </td>
+
+                      </tr>
+                    )
+                  })
+                } 
+
+              </tbody>
+
+            </table>
+
+
+
+            <div className=' mt-5 '>
+
+
+              <h2 className='text-lg text-[#397f77] font-semibold' >Add New</h2>
+
+              <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
+
+                <tbody>
+
+                  <tr className=' text-gray-600 font-semibold'>
+
+                    <td>
+
+                      <input id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOverviewPoints(e.target.value)}} value={overviewPoints} placeholder='Point' required />
+                     
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+            <div className='mt-5 w-full mx-auto'>
+              <button onClick={addNewOverviewPoint} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
             </div>
 
           </div>
