@@ -21,7 +21,7 @@ import {
 //   PRODUCT_DETAILS_SUCCESS,
   CLEAR_ERRORS,
 } from "../constants/serviceConstants";
-
+import Cookies from "js-cookie";
 // const api = 'http://54.190.127.181:8080'
 const api = 'http://localhost:8080'
 
@@ -42,17 +42,19 @@ export const getService = ()=>async (dispatch)=>{
 }
 
 
-// Create Product
+// Create Service
 export const createService = (serviceData,mainImage,icon,imageGallery) => async (dispatch) => {
 
     try {
       dispatch({ type: NEW_SERVICE_REQUEST });
+      const token = Cookies.get('token')
 
       const config = {
-        headers: { "Content-Type":"multipart/form-data" },
+        headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
       };
+      
       const config2 = {
-        headers:{"Content-Type":"application/json"}
+          headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
       }
       let fileData = new FormData()
 
@@ -83,12 +85,13 @@ export const createService = (serviceData,mainImage,icon,imageGallery) => async 
 export const updateService = (serviceData,mainImage,icon,imageGallery, id) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_SERVICE_REQUEST });
-    console.log(imageGallery)
+    const token = Cookies.get('token')
     const config = {
-      headers: { "Content-Type":"multipart/form-data" },
+      headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
     };
+ 
     const config2 = {
-      headers:{"Content-Type":"application/json"}
+        headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
     }
     let fileData = new FormData()
 
@@ -118,8 +121,11 @@ export const updateService = (serviceData,mainImage,icon,imageGallery, id) => as
 export const deleteService = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_SERVICE_REQUEST });
-    console.log(id)
-    const { data } = await axios.delete(`${api}/api/v1/service/delete/${id}`);
+    const token = Cookies.get('token')
+    const config = {
+      headers: { 'Authorization': `Bearer ${token}` },
+    };
+    const { data } = await axios.delete(`${api}/api/v1/service/delete/${id}`,config);
 
     dispatch({
       type: DELETE_SERVICE_SUCCESS,

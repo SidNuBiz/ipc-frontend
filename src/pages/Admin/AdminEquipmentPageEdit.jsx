@@ -4,7 +4,7 @@ import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Equipment from '../../components/Admin/AdminEquipmentPage/AdminEquipment';
 import noImg from "../../assets/no-img.jpg"
-import DatePicker from "react-datepicker";
+import Cookies from 'js-cookie';
 
 
 const AdminEquipmentPageEdit = () => {
@@ -17,13 +17,15 @@ const AdminEquipmentPageEdit = () => {
     const handleChange = async (e) => {
       setDate(e.target.value);
       try{
+        const token = Cookies.get('token')
+        
         const config = {
-            headers:{"Content-Type":"application/json"}
-          }
-          const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{equipment:e.target.value},config)
-          if(data.success){
-            // alert.success("Date updated successfully")
-          }
+            headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
+        }
+        const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{equipment:e.target.value},config)
+        if(data.success){
+        // alert.success("Date updated successfully")
+        }
       }catch(error){
         alert.error(error.response.data.error)
       }
@@ -59,12 +61,14 @@ const AdminEquipmentPageEdit = () => {
 
     async function createEquipmentDetails ()  {
         try {
+            const token = Cookies.get('token')
 
             const config = {
-              headers: { "Content-Type":"multipart/form-data" },
+              headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             };
+        
             const config2 = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             let fileData = new FormData()
       

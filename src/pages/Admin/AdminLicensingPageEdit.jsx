@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import License from '../../components/Admin/AdminLicensingPage.jsx/AdminLicense';
 import AdminLicenseDetails from '../../components/Admin/AdminLicensingPage.jsx/AdminLicenseDetails';
 import noImg from "../../assets/no-img.jpg"
+import Cookies from 'js-cookie';
 
 
 
@@ -18,8 +19,10 @@ const AdminLicensingPageEdit = () => {
     const handleChange = async (e) => {
         setDate(e.target.value);
         try{
-          const config = {
-              headers:{"Content-Type":"application/json"}
+            const token = Cookies.get('token')
+        
+            const config = {
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{license:e.target.value},config)
             if(data.success){
@@ -100,8 +103,10 @@ const AdminLicensingPageEdit = () => {
     async function createLicense ()  {
 
         try {
+            const token = Cookies.get('token')
+        
             const config = {
-                headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
             const {data} = await axios.post(`http://localhost:8080/api/v1/license/create`,{name:licenseName,number:licenseNumber},config)
@@ -122,11 +127,14 @@ const AdminLicensingPageEdit = () => {
     async function createLicenseDetails ()  {
         try {
 
+            const token = Cookies.get('token')
+
             const config = {
-              headers: { "Content-Type":"multipart/form-data" },
+              headers: { "Content-Type":"multipart/form-data", 'Authorization':`Bearer ${token}` },
             };
+        
             const config2 = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             let fileData = new FormData()
       

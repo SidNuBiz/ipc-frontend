@@ -2,6 +2,7 @@ import React, { useState,useEffect} from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie';
 
 const TeamMember = ({member,setMembersArr})=>{
 
@@ -67,12 +68,15 @@ const TeamMember = ({member,setMembersArr})=>{
     async function updateTeamMember (id)  {
 
         try {
+        
+        const token = Cookies.get('token')
 
         const config = {
-            headers: { "Content-Type":"multipart/form-data" },
+            headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
         };
+
         const config2 = {
-            headers:{"Content-Type":"application/json"}
+            headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
         }
         let fileData = new FormData()
 
@@ -93,7 +97,12 @@ const TeamMember = ({member,setMembersArr})=>{
     async function deleteTeamMember(id){
         try {
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/team-member/delete/${id}`)
+            const token = Cookies.get('token')
+        
+            const config = {
+                headers: { 'Authorization': `Bearer ${token}` },
+            }
+            const {data} = await axios.delete(`http://localhost:8080/api/v1/team-member/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

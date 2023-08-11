@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Loader from '../Loader';
+import Cookies from 'js-cookie'
 
 
 const AdminHomePageContentEdit = () => {
@@ -42,8 +43,10 @@ const AdminHomePageContentEdit = () => {
         }
 
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             const {data} = await axios.put("http://localhost:8080/api/v1/home-page-overview-details/update",
                 {
@@ -77,8 +80,10 @@ const AdminHomePageContentEdit = () => {
             return alert.error("Map field can not be empty")
         }
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             const {data} = await axios.put("http://localhost:8080/api/v1/home-page-contact-details/update",
                 {

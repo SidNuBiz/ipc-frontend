@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Equipment = ({equipment,setEquipmentsArr})=>{
 
@@ -31,12 +32,14 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
 
     async function updateEquipmentDetails (id)  {
         try {
+            const token = Cookies.get('token')
 
             const config = {
-              headers: { "Content-Type":"multipart/form-data" },
+              headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             };
+           
             const config2 = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             let fileData = new FormData()
       
@@ -57,7 +60,12 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
     async function deleteEquipmentDetails(id){
         try {
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/equipment-details/delete/${id}`)
+            const token = Cookies.get('token')
+        
+            const config = {
+                headers: { 'Authorization': `Bearer ${token}` },
+            }
+            const {data} = await axios.delete(`http://localhost:8080/api/v1/equipment-details/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

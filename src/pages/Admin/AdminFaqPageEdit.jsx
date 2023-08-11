@@ -4,6 +4,7 @@ import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Faq from '../../components/Admin/AdminFaqPage/AdminFaq';
 import Select from 'react-select'
+import Cookies from 'js-cookie';
 
 const AdminFaqPageEdit = () => {
 
@@ -48,8 +49,10 @@ const AdminFaqPageEdit = () => {
     async function createFaq ()  {
         try {
 
+            const token = Cookies.get('token')
+        
             const config = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
          
             const {data} = await axios.post(`http://localhost:8080/api/v1/faq/create/`,{question,answer,category},config)
@@ -79,10 +82,6 @@ const AdminFaqPageEdit = () => {
         fetchData()
         
     }, []);
-
-  
-
-  
 
   return (
 

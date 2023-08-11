@@ -85,11 +85,13 @@ export const register = (userData) => async (dispatch) => {
 // Load User
 export const loadUser = () => async (dispatch) => {
     try {
-      dispatch({ type: LOAD_USER_REQUEST });
+      
   
       const token = Cookies.get('token')
 
       if(token != undefined){
+        dispatch({ type: LOAD_USER_REQUEST });
+
         const config = { headers:{'Authorization': `Bearer ${token}` }}
         const { data } = await axios.get(`${api}/api/v1/me`,config);
     
