@@ -10,6 +10,7 @@ import Select from 'react-select'
 import axios from 'axios';
 import AdminServiceHoverBoxSection from '../../../components/Admin/AdminServicesPage/AdminServiceHoverBoxSection';
 import {getService} from "../../../actions/serviceAction"
+import Cookies from 'js-cookie';
 
 
 const AdminServiceHoverBoxPage = () => {
@@ -69,9 +70,12 @@ const AdminServiceHoverBoxPage = () => {
     async function createServiceHoverBox(){
 
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type":"multipart/form-data" },
+                headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             }
+            
             if(hoverBoxImg == null){
                 alert.error("Please select an image")
                 return

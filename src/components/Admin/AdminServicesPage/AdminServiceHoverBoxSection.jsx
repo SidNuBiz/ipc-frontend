@@ -4,6 +4,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import {getService} from '../../../actions/serviceAction'
+import Cookies from 'js-cookie';
 
 
 const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serviceId })=>{
@@ -56,8 +57,10 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
     async function updateServiceHoverBox(){
 
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type":"multipart/form-data" },
+                headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             }
          
             let fileData = new FormData()

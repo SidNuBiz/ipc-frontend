@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import Select from 'react-select'
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Faq = ({faq,setFaqArr})=>{
 
@@ -44,8 +45,10 @@ const Faq = ({faq,setFaqArr})=>{
     async function updateFaq (id)  {
         try {
 
+            const token = Cookies.get('token')
+        
             const config = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
            
             const {data} = await axios.put(`http://localhost:8080/api/v1/faq/update/${id}`,{question,answer,category},config)
@@ -62,7 +65,13 @@ const Faq = ({faq,setFaqArr})=>{
     async function deleteFaq(id){
         try {
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/faq/delete/${id}`)
+            const token = Cookies.get('token')
+        
+            const config = {
+                headers: { 'Authorization': `Bearer ${token}` },
+            }
+
+            const {data} = await axios.delete(`http://localhost:8080/api/v1/faq/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

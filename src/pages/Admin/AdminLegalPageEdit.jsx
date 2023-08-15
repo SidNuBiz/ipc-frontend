@@ -3,12 +3,9 @@ import axios from 'axios';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from 'react-alert';
-
-
-
+import Cookies from 'js-cookie';
 
 const AdminLegalPageEdit = () => {
-
 
     const alert = useAlert()
 
@@ -40,8 +37,10 @@ const AdminLegalPageEdit = () => {
 
     async function updateLegal() {
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
 
             const{data} = await axios.put("http://localhost:8080/api/v1/legal/update",{subHeading,description:paragraphsArr},config)
@@ -99,11 +98,6 @@ const AdminLegalPageEdit = () => {
                     </div>
 
 
-
-
-           
-
-                   
                     {/* Legal Info */}
 
                     <div className='mt-10'>

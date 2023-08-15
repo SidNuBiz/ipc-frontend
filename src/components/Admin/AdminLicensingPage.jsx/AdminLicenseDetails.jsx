@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import Cookies from 'js-cookie';
 
 const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
@@ -62,12 +63,14 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
     async function updateLicenseDetails (id)  {
         try {
+            const token = Cookies.get('token')
 
             const config = {
-              headers: { "Content-Type":"multipart/form-data" },
+              headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             };
+        
             const config2 = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             let fileData = new FormData()
       
@@ -88,7 +91,13 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
     async function deleteLicenseDetails(id){
         try {
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/license-details/delete/${id}`)
+            const token = Cookies.get('token')
+        
+            const config = {
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
+            }
+
+            const {data} = await axios.delete(`http://localhost:8080/api/v1/license-details/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

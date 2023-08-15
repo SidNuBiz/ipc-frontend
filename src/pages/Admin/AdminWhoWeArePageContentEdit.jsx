@@ -5,7 +5,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import noImg from "../../assets/no-img.jpg"
 import TeamMember from '../../components/Admin/AdminWhoWeArePage/AdminTeamMember';
-
+import Cookies from 'js-cookie';
 
 const AdminWhoWeArePageContentEdit = () => {
  
@@ -37,8 +37,10 @@ const AdminWhoWeArePageContentEdit = () => {
 
 
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             const {data} = await axios.put("http://localhost:8080/api/v1/who-we-are-details/update",
                 {
@@ -69,8 +71,10 @@ const AdminWhoWeArePageContentEdit = () => {
         }
 
         try{
+            const token = Cookies.get('token')
+        
             const config = {
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             const {data} = await axios.put("http://localhost:8080/api/v1/our-story-details/update",
                 {
@@ -153,12 +157,14 @@ const AdminWhoWeArePageContentEdit = () => {
     async function createTeamMember ()  {
 
         try {
+            const token = Cookies.get('token')
 
             const config = {
-              headers: { "Content-Type":"multipart/form-data" },
+              headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
             };
+            
             const config2 = {
-              headers:{"Content-Type":"application/json"}
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             let fileData = new FormData()
       
