@@ -10,7 +10,7 @@ const ResetPassPage = () => {
     const {token} = useParams()
     const dispatch = useDispatch();
 
-    const { error,success, loading } = useSelector(
+    const { error,success } = useSelector(
         (state) => state.forgotPassword
     );
 

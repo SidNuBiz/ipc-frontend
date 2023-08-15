@@ -2,7 +2,7 @@ import Footer from "../../components/Misc/Footer";
 import NavBar from "../../components/Misc/NavBar.jsx";
 import CheckoutSection from "../../components/Store/CheckoutPage/CheckoutSection.jsx";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 

@@ -4,7 +4,6 @@ import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Equipment from '../../components/Admin/AdminEquipmentPage/AdminEquipment';
 import noImg from "../../assets/no-img.jpg"
-import DatePicker from "react-datepicker";
 
 
 const AdminEquipmentPageEdit = () => {

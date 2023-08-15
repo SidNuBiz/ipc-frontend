@@ -1,6 +1,6 @@
 import React from 'react'
 import noImg from '../../../assets/no-img.jpg'
-import { useState,Fragment,useEffect } from 'react'
+import { useState,Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from 'react-alert';

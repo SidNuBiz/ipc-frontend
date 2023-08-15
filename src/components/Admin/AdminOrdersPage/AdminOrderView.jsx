@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect,Fragment } from "react";
 import { useParams } from "react-router-dom";
 import {useSelector} from "react-redux"
-import { orders } from "../../../data/siteContent";
 import Loader from "../../../pages/Loader";
 import SideBar from "../Misc/SideBar";
 import AdminOrderDetails from "./AdminOrderDetails";

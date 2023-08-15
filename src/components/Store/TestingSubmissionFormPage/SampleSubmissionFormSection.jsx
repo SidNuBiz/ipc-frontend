@@ -51,7 +51,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
     const checkboxData = (e)=>{
        
-        storageType[e.target.name].value = e.target.name=='others' ?  e.target.value : e.target.checked
+        storageType[e.target.name].value = e.target.name === 'others' ?  e.target.value : e.target.checked
         // setStorageType({
         //     ...storageType,
         //     [e.target.name]:e.target.name=='others' ?  e.target.value : e.target.checked
@@ -70,7 +70,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
         setStorageType(sStorageType)
         const updateSampleData = sampleFormData.map(sample => {
   
-            if(sample.id==sampleData.id){
+            if(sample.id===sampleData.id){
                 return {
                     id:sample.id,
                     'sampleName':sName,

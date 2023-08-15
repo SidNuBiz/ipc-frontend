@@ -1,8 +1,7 @@
-import React, { useState,useEffect,Fragment} from 'react'
+import React, { useState,useEffect} from 'react'
 import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
-import Loader from '../Loader';
 import { v4 as uuidv4 } from 'uuid';
 import noImg from "../../assets/no-img.jpg"
 import TeamMember from '../../components/Admin/AdminWhoWeArePage/AdminTeamMember';
@@ -24,14 +23,14 @@ const AdminWhoWeArePageContentEdit = () => {
 
 
     async function updateWhoWeAre(){
-        if(whoWeAre1.trim() == ""){
+        if(whoWeAre1.trim() === ""){
             return alert.error("Who We Are : Slide one field can not be empty")
         }
-        if(whoWeAre2.trim() == ""){
+        if(whoWeAre2.trim() === ""){
             return alert.error("Who We Are : Slide two field can not be empty")
         }
 
-        if(whoWeAre3.trim() == ""){
+        if(whoWeAre3.trim() === ""){
             return alert.error("Who We Are : Slide three field can not be empty")
         }
 
@@ -58,14 +57,14 @@ const AdminWhoWeArePageContentEdit = () => {
     
 
     async function updateOurStory(){
-        if(ourStory1.trim() == ""){
+        if(ourStory1.trim() === ""){
             return alert.error("Our Slide : Slide one field can not be empty")
         }
-        if(ourStory2.trim() == ""){
+        if(ourStory2.trim() === ""){
             return alert.error("Our Slide : Slide two field can not be empty")
         }
 
-        if(ourStory3.trim() == ""){
+        if(ourStory3.trim() === ""){
             return alert.error("Our Slide : Slide three field can not be empty")
         }
 

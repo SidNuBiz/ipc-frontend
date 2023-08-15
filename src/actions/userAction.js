@@ -13,9 +13,6 @@ import {
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
-    UPDATE_PASSWORD_REQUEST,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_FAIL,
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
     FORGOT_PASSWORD_FAIL,
@@ -25,15 +22,6 @@ import {
     ALL_USERS_REQUEST,
     ALL_USERS_SUCCESS,
     ALL_USERS_FAIL,
-    DELETE_USER_REQUEST,
-    DELETE_USER_SUCCESS,
-    DELETE_USER_FAIL,
-    UPDATE_USER_REQUEST,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_FAIL,
-    USER_DETAILS_REQUEST,
-    USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,
     CLEAR_ERRORS
 } from "../constants/userConstatns"
 import Cookies from 'js-cookie'
@@ -85,11 +73,12 @@ export const register = (userData) => async (dispatch) => {
 // Load User
 export const loadUser = () => async (dispatch) => {
     try {
-      dispatch({ type: LOAD_USER_REQUEST });
-  
+      
       const token = Cookies.get('token')
 
       if(token != undefined){
+        dispatch({ type: LOAD_USER_REQUEST });
+  
         const config = { headers:{'Authorization': `Bearer ${token}` }}
         const { data } = await axios.get(`${api}/api/v1/me`,config);
     

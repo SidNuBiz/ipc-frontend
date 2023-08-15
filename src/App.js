@@ -5,7 +5,6 @@ import "aos/dist/aos.css";
 import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
-import { getProduct } from "./actions/productAction";
 import { mySample } from "./actions/limsAction";
 import { getService } from './actions/serviceAction';
 import store from "./store";

@@ -1,6 +1,5 @@
 import React from 'react'
 import AdminOrderList from './AdminOrderList'
-import { orders } from '../../../data/siteContent'
 import Loader from "../../../pages/Loader";
 import {getAllOrders} from "../../../actions/orderAction"
 import {useDispatch,useSelector} from "react-redux"

@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { testingServices } from "../../../data/siteContent";
 import {removeItemsFromCart} from "../../../actions/cartAction"
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,7 +6,6 @@ import { Link } from "react-router-dom";
 const CartList = () => {
     const dispatch = useDispatch()
 
-    const [subTotalPrice,setSubTotalPrice] =  useState(0)
     const [shippingPrice,setShippingPrice] = useState(0)
     const [taxPrice,setTaxPrice] = useState(0)
  
@@ -15,7 +13,7 @@ const CartList = () => {
         (state) => state.cart
     );
     let totalPrice = 0
-    cartItems.map(item =>{
+    cartItems.forEach(item =>{
         totalPrice = totalPrice + item.price
     })
     

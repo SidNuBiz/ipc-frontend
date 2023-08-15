@@ -11,7 +11,7 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
-          return i == self.indexOf(v);
+          return i === self.indexOf(v);
         });
       
         return outputArray;
@@ -40,8 +40,8 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
 
         setType(e.value)
         let matrixArr = []
-        typeTests = newMap.filter(data => (data.Type2 != undefined ? data.Type2.includes(e.value):false))
-        typeTests.forEach(data => data.MatrixForm != undefined ? matrixArr.push(...data.MatrixForm):false)
+        typeTests = newMap.filter(data => (data.Type2 !== undefined ? data.Type2.includes(e.value):false))
+        typeTests.forEach(data => data.MatrixForm !== undefined ? matrixArr.push(...data.MatrixForm):false)
         const selectMatrixArr = removeDuplicate(matrixArr).map((data) => {
             return {label:data,value:data}
         })
@@ -56,8 +56,8 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         setAmount('')
         setUnit('')
         let categoriesArr = []
-        matrixFormTests = typeTests.filter(data => data.MatrixForm != undefined ? data.MatrixForm.includes(e.value):false)
-        matrixFormTests.forEach(data => data.MatrixForm != undefined ? categoriesArr.push(data.Categories):false)
+        matrixFormTests = typeTests.filter(data => data.MatrixForm !== undefined ? data.MatrixForm.includes(e.value):false)
+        matrixFormTests.forEach(data => data.MatrixForm !== undefined ? categoriesArr.push(data.Categories):false)
         const selectCategoriesArr = removeDuplicate(categoriesArr).map((data) => {
             return {label:data,value:data}
         })
@@ -71,8 +71,8 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         setAmount('')
         setUnit('')
         let testNameArr = []
-        categoriesTests = matrixFormTests.filter(data => data.Categories == e.value)
-        categoriesTests.forEach(data => data.Name != undefined ? testNameArr.push(data.Name):false)
+        categoriesTests = matrixFormTests.filter(data => data.Categories === e.value)
+        categoriesTests.forEach(data => data.Name !== undefined ? testNameArr.push(data.Name):false)
         const selectTestNameArr = removeDuplicate(testNameArr).map((data) => {
             return {label:data,value:data}
         })
@@ -83,12 +83,12 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         setDescription('')
         setAmount('')
         setUnit('')
-        const nameTests = categoriesTests.filter(data => data.Name == e.value)
+        const nameTests = categoriesTests.filter(data => data.Name === e.value)
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].USPAmtReq)
         console.log(testFormData)
         const filteredTestFormData = testFormData.filter(test => {
-            return test.id != testDataId
+            return test.id !== testDataId
         })
      
         sampleDataMerged({td:[...filteredTestFormData,{

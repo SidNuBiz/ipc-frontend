@@ -10,7 +10,7 @@ const Invoice = () => {
     const [invoice,setInvoice] =useState('true')
 
 
-    const { orders,loading } = useSelector(
+    const { orders } = useSelector(
         (state) => state.myOrders
     );
 
@@ -34,7 +34,7 @@ const Invoice = () => {
     return (
         
     <Fragment>
-    {invoice == 'true'? (
+    {invoice === 'true'? (
       <Loader />
     ) : (
         <Fragment>

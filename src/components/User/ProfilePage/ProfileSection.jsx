@@ -218,7 +218,7 @@ const ProfileSection = ({user}) => {
             </div>
 
             {/* Billing Address */}
-            {user.role == 'user' && 
+            {user.role === 'user' && 
             <div className="my-10">
 
                 {/* Heading */}

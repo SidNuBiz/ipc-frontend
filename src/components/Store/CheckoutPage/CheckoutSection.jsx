@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect} from "react";
+import { useState } from "react";
 import {createOrder} from "../../../actions/orderAction"
 import {useNavigate} from "react-router-dom"
 
@@ -31,17 +31,17 @@ const CheckoutSection = ({user}) => {
   let subTotalPrice = 0
   mainFormData.sampleFormData.forEach(sample =>{
     sample.testFormData.forEach(tests=>{
-        if(sample.selectedTurnaround.value == 'rushed'){
+        if(sample.selectedTurnaround.value === 'rushed'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricing)
-        }else if(sample.selectedTurnaround.value == 'standard'){
+        }else if(sample.selectedTurnaround.value === 'standard'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricing)
-        }else if(sample.selectedTurnaround.value == 'rushed level 2'){
+        }else if(sample.selectedTurnaround.value === 'rushed level 2'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl2)
-        }else if(sample.selectedTurnaround.value == 'standard level 2'){
+        }else if(sample.selectedTurnaround.value === 'standard level 2'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl2)
-        }else if(sample.selectedTurnaround.value == 'rushed level 3'){
+        }else if(sample.selectedTurnaround.value === 'rushed level 3'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl3)
-        }else if(sample.selectedTurnaround.value == 'standard level 3'){
+        }else if(sample.selectedTurnaround.value === 'standard level 3'){
             subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl3)
         }
     })

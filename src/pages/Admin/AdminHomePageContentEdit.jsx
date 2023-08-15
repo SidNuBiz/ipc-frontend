@@ -1,8 +1,7 @@
-import React, { useState,useEffect,Fragment} from 'react'
+import React, { useState,useEffect } from 'react'
 import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
-import Loader from '../Loader';
 
 
 const AdminHomePageContentEdit = () => {
@@ -22,22 +21,22 @@ const AdminHomePageContentEdit = () => {
     const [map,setMap] = useState('')
 
     async function updateOverview(){
-        if(section1title.trim() == ""){
+        if(section1title.trim() === ""){
             return alert.error("Section one title field can not be empty")
         }
-        if(section1content.trim() == ""){
+        if(section1content.trim() === ""){
             return alert.error("Section one paragraph field can not be empty")
         }
-        if(section2title.trim() == ""){
+        if(section2title.trim() === ""){
             return alert.error("Section two title field can not be empty")
         }
-        if(section2content.trim() == ""){
+        if(section2content.trim() === ""){
             return alert.error("Section two field paragraph can not be empty")
         }
-        if(section3title.trim() == ""){
+        if(section3title.trim() === ""){
             return alert.error("Section three field title can not be empty")
         }
-        if(section3content.trim() == ""){
+        if(section3content.trim() === ""){
             return alert.error("Section three field paragraph can not be empty")
         }
 
@@ -64,16 +63,16 @@ const AdminHomePageContentEdit = () => {
     
 
     async function updateContact(){
-        if(location.trim() == ""){
+        if(location.trim() === ""){
             return alert.error("Location field can not be empty")
         }
-        if(email.trim() == ""){
+        if(email.trim() === ""){
             return alert.error("Email field can not be empty")
         }
-        if(phone.trim() == ""){
+        if(phone.trim() === ""){
             return alert.error("Phone field can not be empty")
         }
-        if(map.trim() == ""){
+        if(map.trim() === ""){
             return alert.error("Map field can not be empty")
         }
         try{

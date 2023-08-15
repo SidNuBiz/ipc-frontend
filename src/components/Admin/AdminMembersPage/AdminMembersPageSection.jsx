@@ -1,5 +1,4 @@
 import React from 'react'
-import { members } from '../../../data/siteContent.js'
 import AdminMemberList from './AdminMemberList.jsx'
 import {getAllUsers} from "../../../actions/userAction"
 import Loader from "../../../pages/Loader";

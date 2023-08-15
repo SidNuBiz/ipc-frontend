@@ -1,6 +1,5 @@
-import { testingServices } from "../../../data/siteContent";
 import TestingService from "./TestingService.jsx";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Fragment } from "react"
 import Loader from "../../../pages/Loader"
@@ -14,7 +13,7 @@ const AllTestingServicesSection = () => {
         (state) => state.services
     );
     return (
-        <Fragment>{loading == false ?
+        <Fragment>{loading === false ?
           
             <Fragment>
                 <div>

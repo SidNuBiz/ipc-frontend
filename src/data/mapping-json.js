@@ -1802,11 +1802,11 @@ let mapping = [
 ]
 
 export const newMap = mapping.map(data => {
-  if(data.Type2 != undefined){
+  if(data.Type2 !== undefined){
     let editType =data.Type2.split(", ")
     data.Type2 = editType
   }
-  if(data.MatrixForm != undefined){
+  if(data.MatrixForm !== undefined){
     let editMatrixForm =data.MatrixForm.split(", ")
     data.MatrixForm = editMatrixForm
   }

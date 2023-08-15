@@ -146,7 +146,7 @@ const AdminServiceEditSection = ({thisService}) => {
 
 
     // Image Gallery & mainImage & icon
-    const storeImage = []
+  
     const [imageGallery,setImageGallery] = useState([])
     const [previewImageGallery,setPreviewImageGallery] = useState(thisService.imageGallery.map((item,idx)=>{return{id:idx,image:item}}))
 
@@ -206,20 +206,20 @@ const AdminServiceEditSection = ({thisService}) => {
     };
 
     function deleteImage(image,id) {
-      setDbImageGallery(dbImageGallery.filter(item => item != image))
-      setPreviewImageGallery(previewImageGallery.filter(item => item.image != image))
-      setImageGallery(imageGallery.filter(item=>item.name != id))
+      setDbImageGallery(dbImageGallery.filter(item => item !== image))
+      setPreviewImageGallery(previewImageGallery.filter(item => item.image !== image))
+      setImageGallery(imageGallery.filter(item=>item.name !== id))
     }
 
 
     // Reset add New Turnaround Fields 
 
     const updateThisService = () => {
-      if(title.trim() == ""){
+      if(title.trim() === ""){
         alert.error("Give a name for the service")
         return
       }
-      if(paragraphsArr.length == 0){
+      if(paragraphsArr.length === 0){
         alert.error("Give a description paragraph for the service")
         return
       }

@@ -18,17 +18,6 @@ const SampleDetails = ({ sample }) => {
         dispatch(mySampleResult(sample.ID_NUMERIC))
     },[dispatch])
 
-    function printInvoice(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
-
-        document.body.innerHTML = printContents;
-
-        window.print();
-
-        document.body.innerHTML = originalContents;
-    }
-
     return (
         <Fragment>
         {loading ? (
@@ -36,16 +25,6 @@ const SampleDetails = ({ sample }) => {
         ) : (
             <Fragment>
             <div>
-                {/* Print Invoice Button */}
-
-                {/* <div className=" w-fit ml-auto">
-                    <button
-                        onClick={() => printInvoice("result")}
-                        id="add-to-cart-btn"
-                        className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">
-                        Print
-                    </button>
-                </div> */}
 
                 {/* Order Details */}
 
@@ -167,23 +146,19 @@ const SampleDetails = ({ sample }) => {
                                     <td className="px-6 py-4">
                                         {result.name}
                                     </td>
-                                    {/* <td className="px-6 py-4">
-                                        {result.result}
-                                    </td> */}
-                                    {/* A test assigned to the sample with a status of V (Available) or P (In Progress) has its status updated to C (Complete).
-A test assigned to the sample with a status of U (Unavailable), W (Waiting for Preparation), V (Available), or P (In Progress) has its status updated to X (Cancelled). */}
+                                   
                                     <td className="px-6 py-4">
                                         {
-                                            result.TEST_STATUS == 'V' ? 'Available' :
-                                            result.TEST_STATUS == 'P' ? 'In Progress' :
-                                            result.TEST_STATUS == 'C' ? 'Complete' :
-                                            result.TEST_STATUS == 'U' ? 'Unavailable' :
-                                            result.TEST_STATUS == 'W' ? 'Waiting for Preparation' :
-                                            result.TEST_STATUS == 'X' ? 'Cancelled' :
-                                            result.TEST_STATUS == 'I' ? 'Inspection' :
-                                            result.TEST_STATUS == 'A' ? 'Authorised' :
-                                            result.TEST_STATUS == 'S' ? 'Suspended' :
-                                            result.TEST_STATUS == 'R' ? 'Rejected' :
+                                            result.TEST_STATUS === 'V' ? 'Available' :
+                                            result.TEST_STATUS === 'P' ? 'In Progress' :
+                                            result.TEST_STATUS === 'C' ? 'Complete' :
+                                            result.TEST_STATUS === 'U' ? 'Unavailable' :
+                                            result.TEST_STATUS === 'W' ? 'Waiting for Preparation' :
+                                            result.TEST_STATUS === 'X' ? 'Cancelled' :
+                                            result.TEST_STATUS === 'I' ? 'Inspection' :
+                                            result.TEST_STATUS === 'A' ? 'Authorised' :
+                                            result.TEST_STATUS === 'S' ? 'Suspended' :
+                                            result.TEST_STATUS === 'R' ? 'Rejected' :
                                             "Status Unavailable "
                                          
                                             

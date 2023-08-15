@@ -4,9 +4,6 @@ import {
   ALL_SERVICE_FAIL,
   ALL_SERVICE_REQUEST,
   ALL_SERVICE_SUCCESS,
-  ADMIN_SERVICE_REQUEST,
-  ADMIN_SERVICE_SUCCESS,
-  ADMIN_SERVICE_FAIL,
   NEW_SERVICE_REQUEST,
   NEW_SERVICE_SUCCESS,
   NEW_SERVICE_FAIL,
@@ -100,7 +97,7 @@ export const updateService = (serviceData,mainImage,icon,imageGallery, id) => as
    
    
     const {data} = await axios.put(`${api}/api/v1/service/update/${id}`,serviceData,config2)
-    const {data:newServiceData} = await axios.post(`${api}/api/v1/service/image/${data.service._id}`,fileData,config)
+    await axios.post(`${api}/api/v1/service/image/${data.service._id}`,fileData,config)
     dispatch(getService())
     dispatch({
       type: UPDATE_SERVICE_SUCCESS,

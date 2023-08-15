@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 
@@ -42,11 +42,10 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
       
             fileData.append('equipmentImage',equipmentImage)
            
-            const {data} = await axios.put(`http://localhost:8080/api/v1/equipment-details/update/${id}`,{name,img:equipment.img,description,model},config2)
+            await axios.put(`http://localhost:8080/api/v1/equipment-details/update/${id}`,{name,img:equipment.img,description,model},config2)
             const {data:status} = await axios.post(`http://localhost:8080/api/v1/equipment-details/image/${id}`,fileData,config)
             if(status.success){
               alert.success("Successfully Updated")
-             
             }
             
         } catch (error) {

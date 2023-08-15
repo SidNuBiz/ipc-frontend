@@ -205,8 +205,8 @@ const AdminServiceCreateSection = () => {
 
     function deleteImage(image,id) {
       
-      setPreviewImageGallery(previewImageGallery.filter(item => item.image != image))
-      setImageGallery(imageGallery.filter(item=>item.name != id))
+      setPreviewImageGallery(previewImageGallery.filter(item => item.image !== image))
+      setImageGallery(imageGallery.filter(item=>item.name !== id))
     }
 
 
@@ -214,11 +214,11 @@ const AdminServiceCreateSection = () => {
     // Reset add New Turnaround Fields 
 
     const addThisService = () => {
-      if(title.trim() == ""){
+      if(title.trim() === ""){
         alert.error("Give a name for the service")
         return
       }
-      if(paragraphsArr.length == 0){
+      if(paragraphsArr.length === 0){
         alert.error("Give a description paragraph for the service")
         return
       }

@@ -1,8 +1,5 @@
-
 import FirstBackground from "../../assets/dna.png";
-// import SecondBackground from "../../assets/section-bg-3.png";
 import SectionTopCurve from "../../assets/section-top-curve.png";
-import { useRef, useEffect ,Fragment, useState} from "react";
 
 
 const OverviewSection = ({details}) => {

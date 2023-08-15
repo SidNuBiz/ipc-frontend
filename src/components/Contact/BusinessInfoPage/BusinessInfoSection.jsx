@@ -1,5 +1,4 @@
 import GrayLogo from "../../../assets/logo-gray.png";
-import Select from 'react-select'
 import {submitContactForm} from '../../../actions/userAction'
 import { useAlert } from "react-alert";
 
@@ -30,30 +29,6 @@ const BusinessInfoSection = ({phoneCodes}) => {
         }else{
             alert.error('Some error occurred ! Please try again')
         }
-    }
-
-    const selectCustomStyles = {
-
-        control: (provided, state) => ({
-
-            ...provided,
-
-            backgroundColor: 'transparent',
-
-            outline: 'none',
-
-            outlineOffset: state.isFocused ? 'none' : 'none',
-
-            border: 0,
-
-            boxShadow: 'none',
-            
-
-
-            
-
-        }),
-
     }
 
     return (

@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import {useSelector,useDispatch} from "react-redux"
 import { updateStatus } from "../../../actions/userAction";
-import axios from "axios";
 
 const AdminMemberList = ({ searchKey }) => {
 
@@ -160,7 +159,7 @@ const AdminMemberList = ({ searchKey }) => {
 
                                     {/* Email */}
 
-                                    <p className="text-white">{thisMember.phone == ""? "Not Provided" : thisMember.phone }</p>
+                                    <p className="text-white">{thisMember.phone === ""? "Not Provided" : thisMember.phone }</p>
                                 </div>
                             </div>
 
@@ -183,7 +182,7 @@ const AdminMemberList = ({ searchKey }) => {
 
                                         {/* Address */}
 
-                                        <p className="text-white">{thisMember.address.details == ""? "Not Provided" : thisMember.address.details}</p>
+                                        <p className="text-white">{thisMember.address.details === ""? "Not Provided" : thisMember.address.details}</p>
                                     </div>
 
                                     {/* Country */}
@@ -195,7 +194,7 @@ const AdminMemberList = ({ searchKey }) => {
 
                                         {/* Country */}
 
-                                        <p className="text-white">{thisMember.address.country == ""? "Not Provided" : thisMember.address.details}</p>
+                                        <p className="text-white">{thisMember.address.country === ""? "Not Provided" : thisMember.address.details}</p>
                                     </div>
 
                                     {/* City */}
@@ -207,7 +206,7 @@ const AdminMemberList = ({ searchKey }) => {
 
                                         {/* Address */}
 
-                                        <p className="text-white">{thisMember.address.city == ""? "Not Provided" : thisMember.address.city}</p>
+                                        <p className="text-white">{thisMember.address.city === ""? "Not Provided" : thisMember.address.city}</p>
                                     </div>
 
                                     {/* Zip */}
@@ -219,7 +218,7 @@ const AdminMemberList = ({ searchKey }) => {
 
                                         {/* Country */}
 
-                                        <p className="text-white">{thisMember.address.zip == ""? "Not Provided" : thisMember.address.zip}</p>
+                                        <p className="text-white">{thisMember.address.zip === ""? "Not Provided" : thisMember.address.zip}</p>
                                     </div>
                                 </div>
                             </div>

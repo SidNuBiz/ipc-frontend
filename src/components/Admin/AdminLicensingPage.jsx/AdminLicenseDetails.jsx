@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -73,7 +73,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
       
             fileData.append('licenseImage',licenseImage)
           
-            const {data} = await axios.put(`http://localhost:8080/api/v1/license-details/update/${id}`,{name,img:licenseDetails.img,description,'points':pointsArr},config2)
+            await axios.put(`http://localhost:8080/api/v1/license-details/update/${id}`,{name,img:licenseDetails.img,description,'points':pointsArr},config2)
             const {data:license} = await axios.post(`http://localhost:8080/api/v1/license-details/image/${id}`,fileData,config)
             if(license.success){
               alert.success("Successfully Updated")

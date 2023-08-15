@@ -2,7 +2,7 @@
 import Logo from "../../assets/header-logo.png";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login } from "../../actions/userAction";
+import { login } from "../../actions/userAction";
 import {useNavigate} from "react-router-dom"
 
 
@@ -11,7 +11,7 @@ const AdminLoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
-    const { error, loading, isAuthenticated } = useSelector(
+    const { error, isAuthenticated } = useSelector(
         (state) => state.user
     );
 

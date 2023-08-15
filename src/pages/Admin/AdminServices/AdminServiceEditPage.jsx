@@ -1,6 +1,6 @@
 import React from 'react'
 import { Fragment,useEffect } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import AdminServiceEditSection from '../../../components/Admin/AdminServicesPage/AdminServiceEditSection'
 import SideBar from '../../../components/Admin/Misc/SideBar'
@@ -9,9 +9,6 @@ import Loader from "../../../pages/Loader";
 const AdminServiceEditPage = () => {
 
   const serviceId = useParams().id;
-
-  const dispatch = useDispatch();
-
 
   const {services,loading} = useSelector(
     (state) => state.services

@@ -7,7 +7,7 @@ import { deleteService } from "../../../actions/serviceAction";
 const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
 
-    const {services,loading} = useSelector(
+    const {services} = useSelector(
         (state) => state.services
     );
 

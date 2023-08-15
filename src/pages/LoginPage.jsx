@@ -12,10 +12,10 @@ const LoginPage = () => {
     const navigate = useNavigate()
     const alert = useAlert()
 
-    const { error, loading, isAuthenticated } = useSelector(
+    const { error, isAuthenticated } = useSelector(
         (state) => state.user
     );
-    const {error:FPerror,message,success} = useSelector((state)=>state.forgotPassword)
+    const {error:FPerror,message} = useSelector((state)=>state.forgotPassword)
 
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")

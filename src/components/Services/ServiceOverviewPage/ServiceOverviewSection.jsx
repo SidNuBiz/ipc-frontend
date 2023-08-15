@@ -1,13 +1,5 @@
 import { Link } from 'react-router-dom';
 import HeaderBackground from '../../../assets/service-overview-header-bg.webp';
-import ServiceCannabisImage from '../../../assets/service-cannabis-img.webp';
-import ServiceNhpImage from '../../../assets/service-nhp-img.webp';
-import ServicePharmaceuticalImage from '../../../assets/service-pharmaceutical-img.webp';
-import ServiceFbImage from '../../../assets/service-f&b-img.webp';
-import ServiceRdImage from '../../../assets/service-r&d-img.webp';
-import ServiceControlledDrugImage from '../../../assets/service-controlled-drug-img.webp';
-import ServiceEnvironmentalImage from '../../../assets/service-environmental-img.webp';
-import ServiceAgricultureImage from '../../../assets/service-agriculture-img.webp';
 
 
 const ServiceOverviewSection = ({services}) => {
@@ -52,7 +44,7 @@ const ServiceOverviewSection = ({services}) => {
     
                         
     
-                            <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) != 0 ? 'lg:order-1':""}`}>
+                            <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) !== 0 ? 'lg:order-1':""}`}>
                                 <img src={service.mainImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
                             </div>
     

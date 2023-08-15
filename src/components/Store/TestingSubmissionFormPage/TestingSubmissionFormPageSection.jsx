@@ -5,7 +5,6 @@ import SignatureCanvas from "react-signature-canvas";
 import { useState} from "react";
 import {useDispatch,useSelector} from "react-redux"
 import {useAlert} from "react-alert"
-import {createSamples} from "../../../actions/limsAction"
 import { useNavigate } from "react-router-dom"
 
 
@@ -36,13 +35,13 @@ const TestingSubmissionFormPageSection = () => {
         let closeSubmit = true
         sampleFormData.forEach(sample =>{
           
-            if(sample.sampleName == "" || sample.sampleName == undefined ){
+            if(sample.sampleName === "" || sample.sampleName === undefined ){
                 alert.error("Please Enter Sample Name")
                 closeSubmit = false
             }
             let check = true
             for (const key in sample.storageType){
-                if((sample.storageType[key].value || (key == 'others' ? (sample.storageType[key].value !='' ? true : false) : false))){ 
+                if((sample.storageType[key].value || (key === 'others' ? (sample.storageType[key].value !=='' ? true : false) : false))){ 
                     check = false
                 }
             }
@@ -50,7 +49,7 @@ const TestingSubmissionFormPageSection = () => {
                 alert.error("Please Select a Storage Type for "+sample.sampleName)
                 closeSubmit = false
             }
-            if(sample.testFormData.length == 0){
+            if(sample.testFormData.length === 0){
                 alert.error("Please select atleast 1 test for the "+sample.sampleName)
                 closeSubmit = false
             }
@@ -60,11 +59,11 @@ const TestingSubmissionFormPageSection = () => {
         sampleFormData.forEach(sample => {
             sample.testFormData.forEach((test,idx) => {
                 if(sample.testFormData.length-1 > idx){
-                    if(sample.testFormData[idx].type != sample.testFormData[idx+1].type){
+                    if(sample.testFormData[idx].type !== sample.testFormData[idx+1].type){
                         alert.error("All the test type for a single smaple needs to be same")
                         closeSubmit = false
                     }
-                    if(sample.testFormData[idx].matrixForm != sample.testFormData[idx+1].matrixForm){
+                    if(sample.testFormData[idx].matrixForm !== sample.testFormData[idx+1].matrixForm){
                         alert.error("All the matrix form for a single smaple needs to be same")
                         closeSubmit = false
                     }

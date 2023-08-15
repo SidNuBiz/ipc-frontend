@@ -34,7 +34,7 @@ const WhoWeArePage = () => {
 
   return (
     <Fragment>
-    {whoWeArePageDetails.length == 0 || teamMembers.length == 0  ? (
+    {whoWeArePageDetails.length === 0 || teamMembers.length === 0  ? (
       <Loader />
     ) : (
     <Fragment>

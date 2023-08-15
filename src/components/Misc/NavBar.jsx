@@ -8,7 +8,7 @@ import Loader from "../../pages/Loader";
 
 const NavBar = () => {
     const dispatch = useDispatch()
-    const { error, loading, isAuthenticated,user } = useSelector(
+    const { loading, isAuthenticated,user } = useSelector(
         (state) => state.user
     );
 
@@ -229,7 +229,7 @@ const NavBar = () => {
 
                                     <div className="absolute hidden peer-hover:block hover:block bg-white drop-shadow-lg text-lg py-2 rounded-2xl">
                                             <ul>
-                                            {isAuthenticated && user.role == 'admin' &&
+                                            {isAuthenticated && user.role === 'admin' &&
                                                 <li className=" block hover:bg-[#18debb] hover:bg-opacity-30">
                                                     <Link to="/IPC-admin-portal"><h2 className="px-5 py-3">Dashboard</h2></Link>
                                                 </li>
@@ -408,7 +408,7 @@ const NavBar = () => {
                         <ul>
                             {/* Dashboard */}
 
-                            {isAuthenticated && user.role == 'admin' &&
+                            {isAuthenticated && user.role === 'admin' &&
                             <li className=" block mb-10">
                                 <Link to="/IPC-admin-portal">
                                     <button className="text-2xl font-semibold ml-20">Dashboard</button>

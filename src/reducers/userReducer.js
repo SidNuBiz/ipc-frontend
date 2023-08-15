@@ -35,9 +35,6 @@ import {
     UPDATE_USER_SUCCESS,
     UPDATE_USER_FAIL,
     UPDATE_USER_RESET,
-    USER_DETAILS_REQUEST,
-    USER_DETAILS_SUCCESS,
-    USER_DETAILS_FAIL,
     CLEAR_ERRORS,
   } from "../constants/userConstatns";
 

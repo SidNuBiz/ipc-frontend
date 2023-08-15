@@ -2,10 +2,7 @@ import NavBar from "../../Misc/NavBar.jsx";
 import Footer from "../../Misc/Footer.jsx";
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, Fragment } from "react";
-import {addItemsToCart} from "../../../actions/cartAction"
-import { testingServices } from "../../../data/siteContent.js";
-import { useSelector,useDispatch } from "react-redux";
-// import NotificationPopup from "../../Misc/NotificationPopup.jsx";
+import { useSelector } from "react-redux";
 import {newMap} from "../../../data/mapping-json.js"
 import Loader from "../../../pages/Loader.jsx";
 
@@ -15,7 +12,7 @@ const ServiceView = () => {
 
     const {serviceId} = useParams();
 
-    const {services,loading} = useSelector(
+    const {services} = useSelector(
         (state) => state.services
     );
 
@@ -77,7 +74,7 @@ const ServiceView = () => {
 
     return (
         <Fragment>
-        {thisService != undefined ? (
+        {thisService !== undefined ? (
              <Fragment>
                 
 
@@ -266,7 +263,7 @@ const ServiceView = () => {
                                                     </tr> */}
 
                                                     {newMap &&
-                                                        newMap.filter(data => (data.Type2 != undefined ? data.Type2.includes(thisService.codeName):false)).filter( tests => tests.Name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
+                                                        newMap.filter(data => (data.Type2 !== undefined ? data.Type2.includes(thisService.codeName):false)).filter( tests => tests.Name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                                             <tr
                                                                 key={index}
                                                                 className="border-b-2 border-gray-300">

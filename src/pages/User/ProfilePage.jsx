@@ -1,14 +1,14 @@
-import { useState, useEffect , Fragment } from "react";
+import { useEffect, Fragment } from "react";
 import NavBar from "../../components/Misc/NavBar.jsx"
 import Footer from "../../components/Misc/Footer.jsx"
 import ProfileSection from "../../components/User/ProfilePage/ProfileSection.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Loader from "../Loader";
 
 
 const ProfilePage = () => {
-  const dispatch = useDispatch()
-  const { error, loading, isAuthenticated,user } = useSelector(
+
+  const { loading, user } = useSelector(
       (state) => state.user
   );
   useEffect(() => {

@@ -35,7 +35,7 @@ const ServicePage = () => {
 
     return (
         <Fragment>
-        {loading == false ? (
+        {loading === false ? (
              <Fragment>
                 
              <div className="bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen">

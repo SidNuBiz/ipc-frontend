@@ -5,13 +5,13 @@ import ServicesSection from "../components/HomePage/ServicesSection.jsx";
 import NavBar from "../components/Misc/NavBar.jsx";
 import Footer from "../components/Misc/Footer.jsx";
 import { useRef, useEffect ,Fragment, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import axios from "axios";
 
 const HomePage = () => {
-    const dispatch = useDispatch()
-    const { error, loading, isAuthenticated } = useSelector(
+    
+    const { loading } = useSelector(
         (state) => state.user
     );
 
@@ -44,7 +44,7 @@ const HomePage = () => {
 
     return (
     <Fragment>
-        {loading || homePageDetails.length == 0 || services.length == 0 ? (
+        {loading || homePageDetails.length === 0 || services.length === 0 ? (
           <Loader />
         ) : (
         <Fragment>

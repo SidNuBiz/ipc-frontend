@@ -11,7 +11,7 @@ const SideBar = () => {
     const [pageContentDropDown,setPageContentDropDown] = useState(false)
 
     const dispatch = useDispatch()
-    const { error, loading, isAuthenticated,user } = useSelector(
+    const { loading, user } = useSelector(
         (state) => state.user
     );
 

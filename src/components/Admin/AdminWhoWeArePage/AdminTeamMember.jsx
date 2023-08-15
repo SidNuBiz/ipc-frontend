@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react'
+import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
@@ -78,7 +78,7 @@ const TeamMember = ({member,setMembersArr})=>{
 
         fileData.append('memberImage',memberImage)
         
-        const {data} = await axios.put(`http://localhost:8080/api/v1/team-member/update/${id}`,{name,img:member.img,about,designationsArr},config2)
+        await axios.put(`http://localhost:8080/api/v1/team-member/update/${id}`,{name,img:member.img,about,designationsArr},config2)
         const {data:team} = await axios.post(`http://localhost:8080/api/v1/team-member/image/${id}`,fileData,config)
         if(team.success){
             alert.success("Successfully updated")
