@@ -1,5 +1,3 @@
-import axios from "axios";
-import Cookies from 'js-cookie'
 import {
   ALL_SERVICE_FAIL,
   ALL_SERVICE_REQUEST,
@@ -19,6 +17,7 @@ import {
   CLEAR_ERRORS,
 } from "../constants/serviceConstants";
 import Cookies from "js-cookie";
+import axios from "axios";
 // const api = 'http://54.190.127.181:8080'
 const api = 'http://localhost:8080'
 

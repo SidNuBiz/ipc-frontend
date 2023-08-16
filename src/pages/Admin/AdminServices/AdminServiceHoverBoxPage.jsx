@@ -69,6 +69,12 @@ const AdminServiceHoverBoxPage = () => {
 
     async function createServiceHoverBox(){
 
+        if(hoverBoxTitle.trim() === ''){
+            return alert.error("Please Enter a title")
+        }
+        if(hoverBoxDescription.trim() === ''){
+            return alert.error("Please Enter a description")
+        }
         try{
             const token = Cookies.get('token')
         

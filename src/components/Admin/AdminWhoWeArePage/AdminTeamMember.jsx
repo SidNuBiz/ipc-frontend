@@ -67,6 +67,14 @@ const TeamMember = ({member,setMembersArr})=>{
     // Update Team Member
     async function updateTeamMember (id)  {
 
+        if(name.trim() === ""){
+            return alert.error("Memeber Must have a name")
+        }
+
+        if(about.trim() === ""){
+            return alert.error("Member must have a about description")
+        }
+
         try {
         
         const token = Cookies.get('token')

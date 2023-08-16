@@ -205,11 +205,6 @@ const SideBar = () => {
 
                                                 <span >Page Contents</span>
 
-                                                {/* Down Arrow Icon */}
-
-                                                <span className={"absolute right-[80px] top-[6px]" + ( pageContentDropDown ? " inline-block align-middle transition-transform duration-300 rotate-180" : " inline-block align-middle transition-transform duration-300 rotate-0" )}>
-                                                    <img src="https://img.icons8.com/material/24/ffffff/expand-arrow--v1.png" alt=""  className=""/>
-                                                </span>
 
                                             </button>
 

@@ -73,7 +73,7 @@ const ServiceOverviewSection = ({services}) => {
 
             <div data-aos="fade-in" className='my-32 w-fit mx-auto'>
 
-                <Link to="/store">
+                <Link to="/store/all">
                     <button className=' bg-[#397f77] text-white text-xl px-10 py-2 hover:bg-[#18debb] duration-300 rounded-full'>Visit Innovate Store</button>
                 </Link>
 

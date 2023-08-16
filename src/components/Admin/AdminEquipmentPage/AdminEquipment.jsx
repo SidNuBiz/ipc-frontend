@@ -31,6 +31,15 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
 
 
     async function updateEquipmentDetails (id)  {
+        if(name.trim() === ""){
+            return alert.error("Please Enter Name")
+        }
+        if(model.trim() === ""){
+            return alert.error("Please Enter Model")
+        }
+        if(description.trim() === ""){
+            return alert.error("Please Enter Description")
+        }
         try {
             const token = Cookies.get('token')
 

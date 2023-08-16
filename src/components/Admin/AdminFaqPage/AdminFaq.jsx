@@ -44,7 +44,18 @@ const Faq = ({faq,setFaqArr})=>{
     }
     async function updateFaq (id)  {
         try {
-
+            console.log("helo")
+            if(question.trim() === ""){
+                return alert.error("Please Enter Question")
+            }
+            if(answer.trim() === ""){
+                return alert.error("Please Enter Answer")
+            }
+            if(category === null){
+                console.log("Fsdf")
+                return alert.error("Please Select Category")
+            }
+            console.log("hola")
             const token = Cookies.get('token')
         
             const config = {
@@ -58,7 +69,7 @@ const Faq = ({faq,setFaqArr})=>{
             }
             
         } catch (error) {
-            alert.error(error)
+            alert.error(error.response.data.error)
         }
     };
 

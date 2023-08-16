@@ -8,13 +8,18 @@ const License = ({license,setLicenseArr})=>{
 
     const alert = useAlert()
 
-
     const [licenseName,setLicenseName] = useState(license.name)
     const [licenseNumber,setLicenseNumber] = useState(license.number)
-
     
     // Update License
     async function updateLicense (id)  {
+        if(licenseName.trim() === ""){
+            return alert.error("License Name can not be empty")
+        }
+
+        if(licenseNumber.trim() === ""){
+            return alert.error("License Number can not be empty")
+        }
 
         try {
             const token = Cookies.get('token')

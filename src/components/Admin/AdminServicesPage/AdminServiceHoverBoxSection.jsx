@@ -56,6 +56,13 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
 
     async function updateServiceHoverBox(){
 
+        if(hoverBoxTitle.trim() === ''){
+            return alert.error("Please Enter a title")
+        }
+        if(hoverBoxDescription.trim() === ''){
+            return alert.error("Please Enter a description")
+        }
+
         try{
             const token = Cookies.get('token')
         
@@ -89,11 +96,8 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
     }
 
     async function deleteServiceHoverBox(){
+        
         try{
-            const config = {
-                headers: { "Content-Type":"application/json" },
-            }
-            
             const {data} = await axios.delete(`http://localhost:8080/api/v1/service-hoverbox/delete/${serviceId}/${idx}`)
             if(data.success){
                 alert.success("deleted successfully")

@@ -37,38 +37,38 @@ const AdminLicensingPageEdit = () => {
     const [licenseDetailsArr,setLicenseDetailsArr] = useState([])
 
 
-      const [name,setName] = useState('')
-      const [description,setDescription] = useState('')
-  
-  
-      const [pointsArr,setPointsArr] = useState([])
-      const [points,setPoints] = useState('')
-      
-      const addNewPoint = () => {
-          if(points.trim() !== ''){
-              let newPointsArr = [...pointsArr]   
-              newPointsArr.push({id:uuidv4() ,point:points})
-              setPoints('')
-              setPointsArr(newPointsArr)
-          }else{
-              alert.error("Fill the point field first")
-          }
-    
-      }
-  
-      const editPoints = (idx,value) => {
-          let editedPointsArr = pointsArr
-          editedPointsArr[idx].point = value
-          setPointsArr(editedPointsArr)
-      }
-  
-      const deletePoints = (id) => {
-      setPointsArr(
-          pointsArr.filter((item) => (item.id !== id ))
-          
-      );
+    const [name,setName] = useState('')
+    const [description,setDescription] = useState('')
 
-      }
+
+    const [pointsArr,setPointsArr] = useState([])
+    const [points,setPoints] = useState('')
+    
+    const addNewPoint = () => {
+        if(points.trim() !== ''){
+            let newPointsArr = [...pointsArr]   
+            newPointsArr.push({id:uuidv4() ,point:points})
+            setPoints('')
+            setPointsArr(newPointsArr)
+        }else{
+            alert.error("Fill the point field first")
+        }
+
+    }
+
+    const editPoints = (idx,value) => {
+        let editedPointsArr = pointsArr
+        editedPointsArr[idx].point = value
+        setPointsArr(editedPointsArr)
+    }
+
+    const deletePoints = (id) => {
+        setPointsArr(
+            pointsArr.filter((item) => (item.id !== id ))
+            
+        );
+
+    }
   
     const [licenseImage,setLicenseImage] = useState()
     const [previewLicenseImage,setPreviewLicenseImage] = useState('')
@@ -89,9 +89,6 @@ const AdminLicensingPageEdit = () => {
     }
   
 
-
-
-
     // License
     const [licenseArr,setLicenseArr] = useState([])
 
@@ -99,8 +96,16 @@ const AdminLicensingPageEdit = () => {
     const [licenseNumber,setLicenseNumber] = useState('')
 
     
-    // Update License
+    // Create License
     async function createLicense ()  {
+
+        if(licenseName.trim() === ""){
+            return alert.error("License Name can not be empty")
+        }
+
+        if(licenseNumber.trim() === ""){
+            return alert.error("License Number can not be empty")
+        }
 
         try {
             const token = Cookies.get('token')
@@ -125,6 +130,15 @@ const AdminLicensingPageEdit = () => {
 
 
     async function createLicenseDetails ()  {
+
+        if(name.trim() === ""){
+            return alert.error("Name can not be empty")
+        }
+
+        if(description.trim() === ""){
+            return alert.error("Description can not be empty")
+        }
+
         try {
 
             const token = Cookies.get('token')
@@ -151,9 +165,9 @@ const AdminLicensingPageEdit = () => {
               setPreviewLicenseImage('')
             }
             
-          } catch (error) {
-            //   alert.error(error.response.data.error)
-          }
+        } catch (error) {
+            alert.error(error.response.data.error)
+        }
     };
 
 

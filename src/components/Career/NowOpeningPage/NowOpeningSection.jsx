@@ -23,54 +23,54 @@ const NowOpeningSection = ({nowOpening}) => {
             {/* Sub Heading */}
 
             <div className="mb-10">
-                <h2 className="text-center text-[#397f77] font-semibold lg:text-2xl md:text-2xl sm:text-xl">We’re Hiring!</h2>
+                <h2 className="text-center text-[#397f77] font-semibold lg:text-2xl md:text-2xl sm:text-xl">We're not hiring at the moment, but we're glad you're interested in joining our team! Keep an eye on this page for future opportunities.</h2>
             </div>
 
             {/* Info */}
 
-            <div className="lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto text-center text-xl mb-20">{nowOpening.info}</div>
+            {/* <div className="lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto text-center text-xl mb-20">{nowOpening.info}</div> */}
 
 
             {/* Jobs */}
 
-            <div className="lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto text-center">
+            {/* <div className="lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto text-center">
 
                 {
                     nowOpening.jobs.map((job, index) => (
 
-                        <div key={index} className="my-10">
+                        <div key={index} className="my-10"> */}
 
                             {/* Image */}
-
+{/* 
                             <div className="w-full ">
                                 <img src={job.img} alt="" className="w-full h-[500px] object-cover" />
-                            </div>
+                            </div> */}
 
                             {/* Details */}
 
-                            <div className="py-10 ">
+                            {/* <div className="py-10 "> */}
 
                                 {/* Title */}
 
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
                                     <h2 className="text-[#397f77] text-3xl font-semibold">{job.title}</h2>
-                                </div>
+                                </div> */}
 
                                 {/* Type */}
 
-                                <div className="mb-5">
+                                {/* <div className="mb-5">
                                     <h2 className=" text-gray-600 text-2xl font-semibold">{job.type}</h2>
-                                </div>
+                                </div> */}
 
                                 {/* Details */}
 
-                                <div className="mb-10">
+                                {/* <div className="mb-10">
                                     <p className=" text-xl">{job.details}</p>
-                                </div>
+                                </div> */}
 
                                 {/* Learn More Button */}
 
-                                <div>
+                                {/* <div>
                                     <button className=' bg-[#397f77] text-white text-xl px-10 py-2 hover:bg-[#18debb] duration-300'>Learn More</button>
                                 </div>
                             </div>
@@ -80,85 +80,85 @@ const NowOpeningSection = ({nowOpening}) => {
                     ))
                 }
 
-            </div>
+            </div> */}
 
             {/* Application Form */}
 
-            <div className="bg-[#397f77]">
+            {/* <div className="bg-[#397f77]">
 
-                <div className="lg:grid lg:grid-cols-2 gap-10">
+                <div className="lg:grid lg:grid-cols-2 gap-10"> */}
 
                     {/* Application */}
 
-                    <div className="text-white py-20 h-fit my-auto">
+                    {/* <div className="text-white py-20 h-fit my-auto"> */}
 
                         {/* Title */}
 
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <h2 className=" text-6xl font-semibold text-center">{nowOpening.formTitle}</h2>
-                        </div>
+                        </div> */}
 
                         {/* Sub Title */}
 
-                        <div className="mb-5">
+                        {/* <div className="mb-5">
                             <h2 className="font-semibold text-center text-lg">{nowOpening.formSubTitle}</h2>
-                        </div>
+                        </div> */}
 
                         {/* Paragraph */}
 
-                        <div className="lg:w-5/6 md:w-2/3 sm:w-5/6 mx-auto">
+                        {/* <div className="lg:w-5/6 md:w-2/3 sm:w-5/6 mx-auto">
                             <p className=" text-center text-lg">{nowOpening.formParagraph}</p>
-                        </div>
+                        </div> */}
 
                         {/* Form */}
 
-                        <div className="lg:w-5/6 md:w-2/3 sm:w-5/6 mx-auto mt-10">
+                        {/* <div className="lg:w-5/6 md:w-2/3 sm:w-5/6 mx-auto mt-10">
 
-                            <form action="">
+                            <form action=""> */}
 
                                 {/* Names */}
 
-                                <div className="grid grid-cols-2 gap-5 mb-5">
+                                {/* <div className="grid grid-cols-2 gap-5 mb-5"> */}
 
                                     {/* First Name */}
 
-                                    <div>
+                                    {/* <div>
                                         <input type="text" className=" bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" placeholder="First Name" />
-                                    </div>
+                                    </div> */}
 
                                     {/* Last Name */}
 
-                                    <div>
+                                    {/* <div>
                                         <input type="text" className=" bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" placeholder="Last Name" />
-                                    </div>
+                                    </div> */}
 
-                                </div>
+                                {/* </div> */}
 
                                 {/* Email & Phone */}
 
-                                <div className="grid grid-cols-2 gap-5 mb-5">
+                                {/* <div className="grid grid-cols-2 gap-5 mb-5"> */}
 
                                     {/* Email */}
 
-                                    <div>
+                                    {/* <div>
                                         <input type="email" className=" bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" placeholder="Email" />
-                                    </div>
+                                    </div> */}
 
                                     {/* Phone */}
 
-                                    <div>
+                                    {/* <div>
                                         <input type="tel" className=" bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" placeholder="Phone" />
                                     </div>
 
-                                </div>
+                                </div> */}
 
                                 {/* Position and Apply Date */}
 
-                                <div className="grid grid-cols-2 gap-5 mb-5">
+                                {/* <div className="grid grid-cols-2 gap-5 mb-5"> */}
 
                                     {/* Position Select */}
 
-                                    <div>
+                                    {/* <div>
                                         <select name="" id="" className=" bg-transparent w-full px-3 py-4 border-2 border-white focus:outline-none placeholder:text-white" defaultValue="Position I'm Applying" >
 
                                             <option value="Position I'm Applying"  defaultChecked disabled >Position I'm Applying</option>
@@ -172,43 +172,43 @@ const NowOpeningSection = ({nowOpening}) => {
                                             }
 
                                         </select>
-                                    </div>
+                                    </div> */}
 
                                     {/* Date Select */}
 
-                                    <div>
+                                    {/* <div>
                                         <input type="date" min={new Date().toISOString().split('T')[0]} className=" light-calender-picker bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" />
                                     </div>
 
-                                </div>
+                                </div> */}
 
                                 {/* Resume Link */}
 
-                                <div>
+                                {/* <div>
                                     <input type="text" className=" bg-transparent w-full px-3 py-3 border-2 border-white focus:outline-none placeholder:text-white" placeholder="Link to Your Resume" />
-                                </div>
+                                </div> */}
 
                                 {/* Submit Button */}
 
-                                <div className="mt-10 w-fit mx-auto">
+                                {/* <div className="mt-10 w-fit mx-auto">
                                     <button type="submit" className="px-10 py-3 bg-white text-gray-600 text-xl font-semibold hover:text-[#18debb] duration-300">Apply Now</button>
-                                </div>
+                                </div> */}
 
-                            </form>
+                            {/* </form>
 
                         </div>
 
-                    </div>
+                    </div> */}
 
                     {/* Form Image */}
 
-                    <div>
+                    {/* <div>
                         <img src={nowOpening.formImg} alt="" className="lg:max-h-full md:max-h-[500px] sm:max-h-[500px] w-full object-cover" />
                     </div>
 
-                </div>
+                </div> */}
 
-            </div>
+            {/* </div> */}
 
         </div>
 

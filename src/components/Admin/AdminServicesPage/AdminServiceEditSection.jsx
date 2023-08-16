@@ -223,6 +223,10 @@ const AdminServiceEditSection = ({thisService}) => {
         alert.error("Give a description paragraph for the service")
         return
       }
+      if(overviewPointsArr.length === 0){
+        alert.error("Give at least one overview point")
+        return
+      }
       const service = {
         title,
         codeName,
@@ -247,10 +251,10 @@ const AdminServiceEditSection = ({thisService}) => {
     }
 
 
+
+
   return (
 
-
-    
     <div>
 
         {/* Heading */}

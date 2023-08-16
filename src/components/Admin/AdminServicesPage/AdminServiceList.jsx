@@ -1,14 +1,21 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import { deleteService } from "../../../actions/serviceAction";
+import { useAlert } from 'react-alert';
+
 
 
 const AdminServiceList = ({searchKey}) => {
     const dispatch = useDispatch()
 
+    const alert = useAlert()
+
     const {services} = useSelector(
         (state) => state.services
+    );
+    const {isUpdated,isDeleted} = useSelector(
+        (state) => state.service
     );
 
     const [servicesList,setServicesList] = useState([])
@@ -21,7 +28,16 @@ const AdminServiceList = ({searchKey}) => {
         dispatch({type:'ALL_SERVICE_SUCCESS',payload:servicesList})
     }
 
-   
+    useEffect(()=>{
+       
+        if(isUpdated){
+          alert.success("service updated successfully")
+          dispatch({
+            type: 'UPDATE_SERVICE_SUCCESS',
+            payload: false,
+          });
+        }
+    },[isUpdated,isDeleted])
 
     return (
 

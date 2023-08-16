@@ -47,6 +47,15 @@ const AdminFaqPageEdit = () => {
 
     }
     async function createFaq ()  {
+        if(question.trim() === ""){
+            return alert.error("Please Enter Question")
+        }
+        if(answer.trim() === ""){
+            return alert.error("Please Enter Amswer")
+        }
+        if(category === null){
+            return alert.error("Please Select Category")
+        }
         try {
 
             const token = Cookies.get('token')
@@ -66,7 +75,7 @@ const AdminFaqPageEdit = () => {
             }
             
         } catch (error) {
-            alert.error(error)
+            alert.error(error.response.data.error)
         }
     };
 

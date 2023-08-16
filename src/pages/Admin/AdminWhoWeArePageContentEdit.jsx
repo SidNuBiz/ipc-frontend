@@ -8,7 +8,6 @@ import TeamMember from '../../components/Admin/AdminWhoWeArePage/AdminTeamMember
 import Cookies from 'js-cookie';
 
 const AdminWhoWeArePageContentEdit = () => {
- 
 
     const alert = useAlert()
 
@@ -19,7 +18,6 @@ const AdminWhoWeArePageContentEdit = () => {
     const [whoWeAre1,setWhoWeAre1] = useState('')
     const [whoWeAre2,setWhoWeAre2] = useState('')
     const [whoWeAre3,setWhoWeAre3] = useState('')
-
 
 
     async function updateWhoWeAre(){
@@ -33,9 +31,6 @@ const AdminWhoWeArePageContentEdit = () => {
         if(whoWeAre3.trim() === ""){
             return alert.error("Who We Are : Slide three field can not be empty")
         }
-
-
-
         try{
             const token = Cookies.get('token')
         
@@ -60,14 +55,13 @@ const AdminWhoWeArePageContentEdit = () => {
 
     async function updateOurStory(){
         if(ourStory1.trim() === ""){
-            return alert.error("Our Slide : Slide one field can not be empty")
+            return alert.error("Our Story : Slide one field can not be empty")
         }
         if(ourStory2.trim() === ""){
-            return alert.error("Our Slide : Slide two field can not be empty")
+            return alert.error("Our Story : Slide two field can not be empty")
         }
-
         if(ourStory3.trim() === ""){
-            return alert.error("Our Slide : Slide three field can not be empty")
+            return alert.error("Our Story : Slide three field can not be empty")
         }
 
         try{
@@ -153,8 +147,15 @@ const AdminWhoWeArePageContentEdit = () => {
      }
 
 
-    
     async function createTeamMember ()  {
+
+        if(name.trim() === ""){
+            return alert.error("Memeber Must have a name")
+        }
+
+        if(about.trim() === ""){
+            return alert.error("Member must have a about description")
+        }
 
         try {
             const token = Cookies.get('token')
@@ -205,8 +206,6 @@ const AdminWhoWeArePageContentEdit = () => {
         fetchData()
         
     }, []);
-
-  
 
   return (
 

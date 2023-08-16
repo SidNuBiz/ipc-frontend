@@ -62,6 +62,14 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
 
     async function updateLicenseDetails (id)  {
+        if(name.trim() === ""){
+            return alert.error("Name can not be empty")
+        }
+
+        if(description.trim() === ""){
+            return alert.error("Description can not be empty")
+        }
+
         try {
             const token = Cookies.get('token')
 

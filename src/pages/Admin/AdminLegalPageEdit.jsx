@@ -36,6 +36,12 @@ const AdminLegalPageEdit = () => {
     }
 
     async function updateLegal() {
+        if(subHeading.trim() === ""){
+            return alert.error("Sub Heading can not be empty")
+        }
+        if(paragraphsArr.length === 0){
+            return alert.error("At least one paragraph needed")
+        }
         try{
             const token = Cookies.get('token')
         

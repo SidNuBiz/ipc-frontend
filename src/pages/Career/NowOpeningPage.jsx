@@ -28,7 +28,7 @@ const NowOpeningPage = () => {
 
             {/* Page Sections */}
 
-            <div className="animate-crossfade ">
+            <div className="animate-crossfade">
                 <NowOpeningSection nowOpening={pageContent} />
             </div>
 
