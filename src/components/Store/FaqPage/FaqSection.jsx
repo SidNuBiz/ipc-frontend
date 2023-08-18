@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
 import FaqAccordion from "./FaqAccordion";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 
-const FaqSection = ({ faq }) => {
+const FaqSection = () => {
+
+    const[faq,setFaq] = useState([])
 
     var [generalTab, setGeneralTab] = useState(true);
 
@@ -48,6 +51,22 @@ const FaqSection = ({ faq }) => {
 
 
     }
+
+
+    async function fetchData(){
+        const {data} =  await axios.get('http://localhost:8080/api/v1/faq/all')
+        setFaq(data.faqs)
+        const arr = faq.map((item)=> {if(item.category === 'General'){return item}})
+        console.log(arr)
+
+       
+    }
+
+    useEffect(() => {
+
+        fetchData()
+    
+    }, []);
 
     return (
 
@@ -98,7 +117,7 @@ const FaqSection = ({ faq }) => {
                         generalTab ? (
                             
                             <div>
-                                <FaqAccordion data={faq.general} />
+                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'General'){return item}})} />
                             </div>
                         
                         ) 
@@ -106,7 +125,7 @@ const FaqSection = ({ faq }) => {
                         : samplesTab ? (
 
                             <div>
-                                <FaqAccordion data={faq.samples} />
+                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'Samples'){return item}})} />
                             </div>
 
                         )
@@ -114,7 +133,7 @@ const FaqSection = ({ faq }) => {
                         : (
 
                             <div>
-                                <FaqAccordion data={faq.results} />
+                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'Results'){return item}})} />
                             </div>
 
                         )

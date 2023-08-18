@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import NavBar from "../../components/Misc/NavBar";
 import Footer from "../../components/Misc/Footer";
 import EquipmentSection from "../../components/About/EquipmentPage/EquipmentSection";
-import { equipmentData } from "../../data/siteContent.js";
-
 
 
 const EquipmentPage = () => {
@@ -13,7 +11,6 @@ const EquipmentPage = () => {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
 
-    var pageContent = equipmentData;
 
     return (
 
@@ -28,7 +25,7 @@ const EquipmentPage = () => {
             {/* Page Sections */}
 
             <div>
-                <EquipmentSection equipmentData={pageContent} />
+                <EquipmentSection />
             </div>
 
 
