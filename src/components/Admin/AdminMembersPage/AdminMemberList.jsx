@@ -62,8 +62,8 @@ const AdminMemberList = ({ searchKey }) => {
 
                                 {/* Member Image */}
 
-                                <div className="w-fit mx-auto mb-3">
-                                    <img src={member.avatar.url} alt="" className="h-24 w-24 rounded-full object-cover" />
+                                <div className="w-fit mx-auto  mb-3">
+                                    <img src={member.avatar.url} alt="" className="h-24 w-24 bg-[#ffffff] rounded-full object-cover" />
                                 </div>
 
                                 {/* Member Name */}
