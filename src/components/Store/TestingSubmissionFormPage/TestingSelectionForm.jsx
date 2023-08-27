@@ -145,6 +145,10 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
             label: 'Food',
             value: 'Food',
         },
+        {
+            label: 'Water',
+            value: 'Water'
+        }
     ]
 
   return (

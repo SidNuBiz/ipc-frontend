@@ -50,7 +50,9 @@ const SideBar = () => {
                             {/* Organization Logo */}
 
                             <div className="block w-fit float-left">
-                                <img src={Logo} alt="" className="h-16 w-auto" />
+                                <NavLink to="/">
+                                    <img src={Logo} alt="" className="h-16 w-auto" />
+                                </NavLink>
                             </div>
 
                             {/* Sidebar Close Button */}
@@ -257,7 +259,9 @@ const SideBar = () => {
                         {/* Company Logo */}
 
                         <div className="inline-block w-fit h-fit my-auto ">
-                            <img src={Logo} alt="" className="h-[64px] w-auto my-3" />
+                            <NavLink to="/">
+                                <img src={Logo} alt="" className="h-[64px] w-auto my-3" />
+                            </NavLink>
                         </div>
 
                         {/* Menu Button */}
