@@ -88,6 +88,13 @@ const TestingSubmissionFormPageSection = () => {
             additionalInfo,
             acknowledgementCheck
         }})
+
+        console.log({
+            sampleFormData,
+            // signature,
+            additionalInfo,
+            acknowledgementCheck
+        })
         
         navigate('/checkout')
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
-import { newMap } from "../../../data/mapping-json";
+import { newMap } from "../../../data/new-mapping";
 
 let typeTests
 let matrixFormTests
