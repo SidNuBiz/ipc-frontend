@@ -10,6 +10,12 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
     const {sampleFormData} = useSelector(state => state.sampleFormSubmit)
 
+    const [type, setType] = useState(null)
+    const [matrixForm, setMatrixForm] = useState(null)
+
+    const[categoryList, setCategoryList] = useState(null)
+    
+
     const [testFormData,setTestFormData] = useState([])
     const [sampleName,setSampleName] = useState('')
     const [sampleBatch,setSampleBatch] = useState('')
@@ -209,7 +215,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
         {/* Tests */}
 
-        {testList.map((item)=>(
+        {testList.map((item,idx)=>(
             <div key={item.id} className='mb-5'>
                 {/* Delete Test Button */}
                 <span className='block float-right ml-3'>
@@ -228,7 +234,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                     X
                     </button>
                 </span>
-                {<item.content  testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
+                {<item.content testList={testList} setTestList={setTestList} idx={idx} categoryList={categoryList} setCategoryList={setCategoryList}  type={type} setType={setType} matrixForm={matrixForm} setMatrixForm={setMatrixForm} testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
             </div>
         ))}
      

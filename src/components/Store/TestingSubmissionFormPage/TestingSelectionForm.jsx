@@ -7,7 +7,7 @@ let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
+const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type,setType,matrixForm,setMatrixForm,testDataId,sampleDataMerged,testFormData}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -17,8 +17,7 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         return outputArray;
     }
       
-    const [type, setType] = useState(null)
-    const [matrixForm, setMatrixForm] = useState(null)
+    
     const [category, setCategory] = useState(null)
     const [testName, setTestName] = useState(null)
     const [description, setDescription] = useState('')
@@ -26,8 +25,8 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
     const [unit, setUnit] = useState('')
 
     const [matrixFormList, setMatrixFormList] = useState([])
-    const[categoryList, setCategoryList] = useState(null)
     const [testNameList, setTestNameList] = useState(null) 
+    
 
     function handleTypeChange(e) {
         
@@ -37,7 +36,7 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         setDescription('')
         setAmount('')
         setUnit('')
-
+        setTestList([testList[0]])
         setType(e.value)
         let matrixArr = []
         typeTests = newMap.filter(data => (data.Type2 !== undefined ? data.Type2.includes(e.value):false))
@@ -151,6 +150,8 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
         }
     ]
 
+   
+
   return (
     <div className='text-gray-600 bg-gray-50 p-3 rounded-md'>
 
@@ -164,14 +165,23 @@ const TestingSelectionForm = ({testDataId,sampleDataMerged,testFormData}) => {
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type<span className='text-red-500'>*</span></label>
-                    <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    {
+                        idx == 0 ? <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> : 
+                        <input type='text' value={type.value} name='static-type' id='static-type' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    }
+                    
+                    
                 </div>
 
                 {/* Test Matrix */}
 
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form<span className='text-red-500'>*</span></label>
-                    <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                    {
+                        idx == 0 ? <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> : 
+                        <input type='text' value={matrixForm.value} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    }
+                    
                 </div>
 
                 {/* Test Matrix */}
