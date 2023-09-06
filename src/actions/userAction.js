@@ -76,14 +76,16 @@ export const loadUser = () => async (dispatch) => {
       
   
       const token = Cookies.get('token')
+      dispatch({ type: LOAD_USER_REQUEST });
 
       if(token != undefined){
-        dispatch({ type: LOAD_USER_REQUEST });
-
+       
         const config = { headers:{'Authorization': `Bearer ${token}` }}
         const { data } = await axios.get(`${api}/api/v1/me`,config);
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+      }else{
+        dispatch({ type: LOAD_USER_FAIL, payload: "Need to Login" }); 
       }
       
     } catch (error) {

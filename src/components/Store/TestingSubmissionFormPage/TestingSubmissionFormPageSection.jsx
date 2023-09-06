@@ -8,13 +8,10 @@ import {useAlert} from "react-alert"
 import { useNavigate } from "react-router-dom"
 
 
-
 const TestingSubmissionFormPageSection = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
     const navigate = useNavigate()
-
-
 
     const {sampleFormData} = useSelector(state=>state.sampleFormSubmit)
 
@@ -32,6 +29,7 @@ const TestingSubmissionFormPageSection = () => {
     }
 
     const submit = ()=>{
+        
         let closeSubmit = true
         sampleFormData.forEach(sample =>{
           
@@ -57,19 +55,22 @@ const TestingSubmissionFormPageSection = () => {
         })
 
         sampleFormData.forEach(sample => {
+ 
             sample.testFormData.forEach((test,idx) => {
-                if(sample.testFormData.length-1 > idx){
-                    if(sample.testFormData[idx].type !== sample.testFormData[idx+1].type){
-                        alert.error("All the test type for a single smaple needs to be same")
-                        closeSubmit = false
-                    }
-                    if(sample.testFormData[idx].matrixForm !== sample.testFormData[idx+1].matrixForm){
-                        alert.error("All the matrix form for a single smaple needs to be same")
-                        closeSubmit = false
-                    }
-           
+                console.log(sample.testFormData[idx].test.Tests)
+                if(sample.testFormData[idx].test.Tests !== undefined){
+                    sample.testFormData[idx].test.Tests.forEach((testName) => {
+                        sample.testFormData.forEach((item)=>{
+                     
+                            if(item.test.Name == testName ){
+                                alert.error(`${sample.testFormData[idx].test.Name} has ${item.test.Name} included`)
+                                closeSubmit = false
+                            }
+                        })
+                    })
+
                 }
-                
+
             })
         })
 
@@ -105,8 +106,6 @@ const TestingSubmissionFormPageSection = () => {
         //     acknowledgementCheck
         // }))
 
-
-       
     }
 
     return (

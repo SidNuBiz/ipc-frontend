@@ -84,8 +84,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setUnit('')
         const nameTests = categoriesTests.filter(data => data.Name === e.value)
         setDescription(nameTests[0].Description)
-        setAmount(nameTests[0].USPAmtReq)
-        console.log(testFormData)
+        setAmount(nameTests[0].SampleRequired)
+        setUnit(nameTests[0].Unit)
         const filteredTestFormData = testFormData.filter(test => {
             return test.id !== testDataId
         })
