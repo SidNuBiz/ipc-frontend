@@ -3,11 +3,12 @@ import Select from 'react-select'
 import { useState } from 'react'
 import { newMap } from "../../../data/new-mapping";
 
+
 let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type,setType,matrixForm,setMatrixForm,testDataId,sampleDataMerged,testFormData}) => {
+const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type,setType,matrixForm,setMatrixForm,subMatrixForm,setSubMatrixForm,testDataId,sampleDataMerged,testFormData}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -17,7 +18,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         return outputArray;
     }
       
-    
+    const [test,setTest] = useState(null)
+
     const [category, setCategory] = useState(null)
     const [testName, setTestName] = useState(null)
     const [description, setDescription] = useState('')
@@ -25,6 +27,10 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const [unit, setUnit] = useState('')
 
     const [matrixFormList, setMatrixFormList] = useState([])
+    const [subMatrixFormList,setSubMatrixFormList] = useState([])
+    const [isSubMatrixExist, setIsSubMatrixExist] = useState(false)
+    const [isAddOn, setIsAddOn] = useState(false)
+    const [addOns,setAddOns] = useState([])
     const [testNameList, setTestNameList] = useState(null) 
     
 
@@ -36,6 +42,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
+        setIsSubMatrixExist(false)
         setTestList([testList[0]])
         setType(e.value)
         let matrixArr = []
@@ -54,6 +61,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
+        setIsSubMatrixExist(false)
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.MatrixForm !== undefined ? data.MatrixForm.includes(e.value):false)
         matrixFormTests.forEach(data => data.MatrixForm !== undefined ? categoriesArr.push(data.Categories):false)
@@ -69,6 +77,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
+        setIsSubMatrixExist(false)
         let testNameArr = []
         categoriesTests = matrixFormTests.filter(data => data.Categories === e.value)
         categoriesTests.forEach(data => data.Name !== undefined ? testNameArr.push(data.Name):false)
@@ -82,23 +91,82 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
+        setIsSubMatrixExist(false)
         const nameTests = categoriesTests.filter(data => data.Name === e.value)
+        setTest(nameTests[0])
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].SampleRequired)
         setUnit(nameTests[0].Unit)
+        console.log(nameTests[0].Description)
+        if(nameTests[0].SubMatrixForm1 !== undefined){
+            const subMatrixList = nameTests[0].SubMatrixForm1.map((data)=>{
+                return {label:data,value:data}
+            })
+            setSubMatrixFormList(subMatrixList)
+            setIsSubMatrixExist(true)
+        }
+        if(nameTests[0].Name == "Cannabis Potency Add On"){
+            const addOnArr = []
+          
+            let editDescription = nameTests[0].Description.split(", ")
+                            
+            editDescription.forEach((data)=>{
+                addOnArr.push({name:data,value:false})
+            })
+            setAddOns(addOnArr)
+            setIsAddOn(true)
+        }
         const filteredTestFormData = testFormData.filter(test => {
             return test.id !== testDataId
         })
-     
+        
         sampleDataMerged({td:[...filteredTestFormData,{
             id:testDataId,
             type:type.value,
             matrixForm:matrixForm.value,
+            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
             category:category.value,
-            test:nameTests[0]
+            test:nameTests[0],
+            addOn:addOns
         }]})
       
     }
+
+    const handleSubMatrixChange = () => {
+        const filteredTestFormData = testFormData.filter(test => {
+            return test.id !== testDataId
+        })
+        sampleDataMerged({td:[...filteredTestFormData,{
+            id:testDataId,
+            type:type.value,
+            matrixForm:matrixForm.value,
+            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
+            category:category.value,
+            test:test,
+            addOn:addOns
+        }]})
+    }
+
+    const checkAddOn = (e,idx)=>{
+        const addOnArr = addOns
+        addOnArr[idx].value = e.target.checked
+        console.log(addOnArr)
+        console.log(e.target.checled)
+        setAddOns(addOnArr)
+        const filteredTestFormData = testFormData.filter(test => {
+            return test.id !== testDataId
+        })
+        sampleDataMerged({td:[...filteredTestFormData,{
+            id:testDataId,
+            type:type.value,
+            matrixForm:matrixForm.value,
+            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
+            category:category.value,
+            test:test,
+            addOn:addOns
+        }]})
+    }
+
     const selectCustomStyles = {
 
         control: (provided, state) => ({
@@ -184,6 +252,19 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     
                 </div>
 
+                {/* Sub Matrix Form */}
+              
+                {isSubMatrixExist && <div>
+                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Sub Matrix Form<span className='text-red-500'>*</span></label>
+                    {
+                        // idx == 0 ? 
+                        <Select options={subMatrixFormList} value={subMatrixForm} onChange={(e) => { setSubMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> 
+                        // : 
+                        // <input type='text' value={subMatrixForm.value} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                    }
+                    
+                </div>}
+
                 {/* Test Matrix */}
 
                 {/* <div>
@@ -215,7 +296,20 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     <input type='text' value={amount + ' ' + unit} name='amount' id='amount' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
+                {/* Add On */}
+
+                {isAddOn && addOns.map((data,idx)=>(
+                    <div className='m-2'>
+                      <input type="checkbox" onChange={(e)=>checkAddOn(e,idx)} name={data.name+testDataId} id={data.name+testDataId} />
+                      <label htmlFor={data.name+testDataId}>{data.name}</label>
+                    </div>
+                ))}
+                
+
             </div>
+               
+        
+               
 
         </span>
 

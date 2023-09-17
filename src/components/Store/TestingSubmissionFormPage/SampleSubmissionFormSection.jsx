@@ -3,16 +3,18 @@ import TestingSelectionForm from './TestingSelectionForm'
 import Select from 'react-select'
 import { useState,useEffect,useId } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
+import {useAlert} from "react-alert"
 
 const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
     const dispatch = useDispatch()
+    const alert = useAlert()
 
     const {sampleFormData} = useSelector(state => state.sampleFormSubmit)
 
     const [type, setType] = useState(null)
     const [matrixForm, setMatrixForm] = useState(null)
-
+    const [subMatrixForm, setSubMatrixForm] = useState(null)
     const[categoryList, setCategoryList] = useState(null)
     
 
@@ -129,7 +131,10 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
         {label:"Rushed Level 3", value: "rushed level 3"},
     ]
 
-    const addTest = ()=>{     
+    const addTest = ()=>{  
+        if(type === null || matrixForm === null){
+            return alert.error("select type and matrix form before adding another test")
+        }   
         setTestList([...testList,{id:new Date().getTime(),content:TestingSelectionForm}])
         sampleDataMerged({td:testFormData})
     }
@@ -234,7 +239,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                     X
                     </button>
                 </span>
-                {<item.content testList={testList} setTestList={setTestList} idx={idx} categoryList={categoryList} setCategoryList={setCategoryList}  type={type} setType={setType} matrixForm={matrixForm} setMatrixForm={setMatrixForm} testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
+                {<item.content testList={testList} setTestList={setTestList} idx={idx} categoryList={categoryList} setCategoryList={setCategoryList}  type={type} setType={setType} matrixForm={matrixForm} setMatrixForm={setMatrixForm} subMatrixForm={subMatrixForm} setSubMatrixForm={setSubMatrixForm} testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
             </div>
         ))}
      
