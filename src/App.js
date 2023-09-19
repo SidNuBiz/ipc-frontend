@@ -35,6 +35,9 @@ import AdminLoginPage from './pages/Admin/AdminLoginPage.jsx';
 import AdminServicesPage from './pages/Admin/AdminServices/AdminServicesPage.jsx';
 import AdminServiceEditPage from './pages/Admin/AdminServices/AdminServiceEditPage';
 import AdminServiceCreatePage from './pages/Admin/AdminServices/AdminServiceCreatePage';
+import AdminAnalysesPage from './pages/Admin/AdminAnalyses/AdminAnalysisPage';
+import AdminAnalysisCreatePage from './pages/Admin/AdminAnalyses/AdminAnalysisCreatePage';
+import AdminAnalysisEditPage from './pages/Admin/AdminAnalyses/AdminAnalysisEditPage';
 import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
 import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
@@ -120,21 +123,28 @@ function App() {
         <Route element={<ProtectedRoute isAdmin={true} />}>
           {/* Admin Routes */}
 
-          <Route path="/IPC-admin-portal"  element={<AdminHomePage  />} />
+          <Route path="/IPC-admin-portal"  element={<AdminHomePage />} />
 
-          <Route path="/IPC-admin-portal/notifications"  element={<AdminNotificationsPage  />} />
+          <Route path="/IPC-admin-portal/notifications"  element={<AdminNotificationsPage />} />
 
-          <Route path="/IPC-admin-portal/services"  element={<AdminServicesPage  />} />
+          <Route path="/IPC-admin-portal/services"  element={<AdminServicesPage />} />
 
-          <Route path="/IPC-admin-portal/services/create"  element={<AdminServiceCreatePage  />} />
+          <Route path="/IPC-admin-portal/services/create"  element={<AdminServiceCreatePage />} />
 
-          <Route path="/IPC-admin-portal/services/:id"  element={<AdminServiceEditPage  />} />
+          <Route path="/IPC-admin-portal/services/:id"  element={<AdminServiceEditPage />} />
 
-          <Route path="/IPC-admin-portal/orders"  element={<AdminOrdersPage  />} />
+          <Route path="/IPC-admin-portal/analyses"  element={<AdminAnalysesPage />} />
 
-          <Route path="/IPC-admin-portal/orders/:id"  element={<AdminOrderView  />} />
+          <Route path="/IPC-admin-portal/analyses/create"  element={<AdminAnalysisCreatePage />} />
 
-          <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage  />} />
+          <Route path="/IPC-admin-portal/analyses/:id"  element={<AdminAnalysisEditPage />} />
+
+          <Route path="/IPC-admin-portal/orders"  element={<AdminOrdersPage />} />
+
+          <Route path="/IPC-admin-portal/orders/:id"  element={<AdminOrderView />} />
+
+          <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage />} />
+
 
            {/* Site Content Edit */}
           <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />

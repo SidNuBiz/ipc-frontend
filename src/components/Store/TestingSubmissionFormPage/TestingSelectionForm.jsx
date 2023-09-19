@@ -56,6 +56,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     }
 
     function handleMatrixChange(e) {
+        console.log(typeTests)
         setCategory(null)
         setTestName(null)
         setDescription('')
@@ -150,8 +151,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const checkAddOn = (e,idx)=>{
         const addOnArr = addOns
         addOnArr[idx].value = e.target.checked
-        console.log(addOnArr)
-        console.log(e.target.checled)
         setAddOns(addOnArr)
         const filteredTestFormData = testFormData.filter(test => {
             return test.id !== testDataId
@@ -258,7 +257,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Sub Matrix Form<span className='text-red-500'>*</span></label>
                     {
                         // idx == 0 ? 
-                        <Select options={subMatrixFormList} value={subMatrixForm} onChange={(e) => { setSubMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> 
+                        <Select options={subMatrixFormList} value={subMatrixForm} onChange={(e) => {handleSubMatrixChange(); setSubMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> 
                         // : 
                         // <input type='text' value={subMatrixForm.value} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                     }

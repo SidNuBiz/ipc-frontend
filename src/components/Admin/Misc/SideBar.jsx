@@ -155,6 +155,19 @@ const SideBar = () => {
                                     </li>
 
                                     <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
+                                        <NavLink to="/IPC-admin-portal/analyses">
+                                            <div className="pb-2">
+                                                <img
+                                                    src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/40/ffffff/external-lab-alternative-medicine-flatart-icons-outline-flatarticons.png"
+                                                    alt="activities-icon"
+                                                    className="inline-block mr-4 w-fit mx-auto"
+                                                />
+                                                Tests
+                                            </div>
+                                        </NavLink>
+                                    </li>
+
+                                    <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                         <NavLink to="/IPC-admin-portal/orders">
                                             <div className="pb-2">
                                                 <img

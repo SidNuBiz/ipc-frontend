@@ -8,6 +8,7 @@ import {productsReducer ,productDetailsReducer,newProductReducer} from './reduce
 import {newServiceReducer,servicesReducer,serviceReducer} from './reducers/serviceReducer'
 import {mySampleReducer,sampleSubmissionReducer,mySampleResultReducer,} from './reducers/limsReducer'
 import { sampleSubmitFormReducer } from './reducers/sampleSubmitReducer';
+import {newAnalysisReducer, analysesReducer, analysisReducer} from './reducers/analysisReducer'
 
 
 const reducer = combineReducers({
@@ -30,7 +31,10 @@ const reducer = combineReducers({
     mySample: mySampleReducer,
     sampleSubmit: sampleSubmissionReducer,
     sampleFormSubmit: sampleSubmitFormReducer,
-    mySampleResult: mySampleResultReducer
+    mySampleResult: mySampleResultReducer,
+    newAnalysis: newAnalysisReducer,
+    analyses: analysesReducer,
+    analysis: analysisReducer
 
 })
 
