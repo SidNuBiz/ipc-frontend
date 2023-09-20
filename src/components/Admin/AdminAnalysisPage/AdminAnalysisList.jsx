@@ -4,8 +4,6 @@ import {useDispatch,useSelector} from "react-redux"
 import { deleteAnalysis } from "../../../actions/analysisAction";
 import { useAlert } from 'react-alert';
 
-
-
 const AdminAnalysisList = ({searchKey}) => {
     const dispatch = useDispatch()
 
@@ -18,16 +16,15 @@ const AdminAnalysisList = ({searchKey}) => {
         (state) => state.analysis
     );
 
-    const [analysesList,setAnalysesList] = useState([])
+    const [analysesList,setAnalysesList] = useState(analyses)
 
     const deleteThisAnalysis = (analysisId,idx) => {
-        setAnalysesList(analyses)
         dispatch(deleteAnalysis(analysisId))
         console.log(analyses)
         analysesList.splice(idx, 1)
         console.log(analysesList)
         setAnalysesList(analysesList)
-        dispatch({type:'ALL_ANALYSIS_SUCCESS',payload:analysesList})
+        dispatch({type:'ALL_ANALYSIS_SUCCESS',payload:{analyses:analysesList}})
     }
 
     useEffect(()=>{
@@ -39,12 +36,12 @@ const AdminAnalysisList = ({searchKey}) => {
             payload: false,
           });
         }
-    },[isUpdated,isDeleted])
+    },[isUpdated,isDeleted,analysesList])
 
     return (
 
         <div>
-            {analyses && analyses.filter( analysis => analysis.name.toLowerCase().includes(searchKey.toLowerCase())).map((analysis,idx) => (
+            {analysesList && analysesList.filter( analysis => analysis.name.toLowerCase().includes(searchKey.toLowerCase())).map((analysis,idx) => (
                 <div key={analysis._id}>
 
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">

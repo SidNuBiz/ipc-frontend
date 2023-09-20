@@ -11,10 +11,6 @@ import {
     DELETE_ANALYSIS_REQUEST,
     DELETE_ANALYSIS_SUCCESS,
     DELETE_ANALYSIS_FAIL,
-  //   
-  _DETAILS_REQUEST,
-  //   PRODUCT_DETAILS_FAIL,
-  //   PRODUCT_DETAILS_SUCCESS,
     CLEAR_ERRORS,
   } from "../constants/analysisConstants";
   import Cookies from "js-cookie";

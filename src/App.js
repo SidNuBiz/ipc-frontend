@@ -7,6 +7,8 @@ import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
 import { mySample } from "./actions/limsAction";
 import { getService } from './actions/serviceAction';
+import {getAnalyses} from './actions/analysisAction';
+import {getPackages} from './actions/packageAction'
 import store from "./store";
 import ProtectedRoute from './components/Misc/Route'
 import HomePage from './pages/HomePage.jsx';
@@ -38,6 +40,9 @@ import AdminServiceCreatePage from './pages/Admin/AdminServices/AdminServiceCrea
 import AdminAnalysesPage from './pages/Admin/AdminAnalyses/AdminAnalysisPage';
 import AdminAnalysisCreatePage from './pages/Admin/AdminAnalyses/AdminAnalysisCreatePage';
 import AdminAnalysisEditPage from './pages/Admin/AdminAnalyses/AdminAnalysisEditPage';
+import AdminPackagesPage from './pages/Admin/AdminPackages/AdminPacckagePage';
+import AdminPackageCreatePage from './pages/Admin/AdminPackages/AdminPackageCreatePage';
+import AdminPackageEditPage from './pages/Admin/AdminPackages/AdminPackageEditPage';
 import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
 import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
@@ -66,6 +71,8 @@ function App() {
     store.dispatch(myOrders());
     store.dispatch(getService());
     store.dispatch(mySample())
+    store.dispatch(getPackages());
+    store.dispatch(getAnalyses());
     Aos.init({duration: 1500});
 
   }, [])
@@ -138,6 +145,12 @@ function App() {
           <Route path="/IPC-admin-portal/analyses/create"  element={<AdminAnalysisCreatePage />} />
 
           <Route path="/IPC-admin-portal/analyses/:id"  element={<AdminAnalysisEditPage />} />
+
+          <Route path="/IPC-admin-portal/packages"  element={<AdminPackagesPage />} />
+
+          <Route path="/IPC-admin-portal/packages/create"  element={<AdminPackageCreatePage />} />
+
+          <Route path="/IPC-admin-portal/packages/:id"  element={<AdminPackageEditPage />} />
 
           <Route path="/IPC-admin-portal/orders"  element={<AdminOrdersPage />} />
 

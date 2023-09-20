@@ -9,16 +9,17 @@ import {newServiceReducer,servicesReducer,serviceReducer} from './reducers/servi
 import {mySampleReducer,sampleSubmissionReducer,mySampleResultReducer,} from './reducers/limsReducer'
 import { sampleSubmitFormReducer } from './reducers/sampleSubmitReducer';
 import {newAnalysisReducer, analysesReducer, analysisReducer} from './reducers/analysisReducer'
+import {newPackageReducer, packagesReducer, packageReducer} from './reducers/packageReducer'
 
 
 const reducer = combineReducers({
   
     user: userReducer,
-    allUsers:allUsersReducer,
-    forgotPassword:forgotPasswordReducer,
-    profile:profileReducer,
-    cart:cartReducer,
-    newOrder:newOrderReducer,
+    allUsers: allUsersReducer,
+    forgotPassword: forgotPasswordReducer,
+    profile: profileReducer,
+    cart: cartReducer,
+    newOrder: newOrderReducer,
     myOrders: myOrdersReducer,
     orderDetails: orderDetailsReducer,
     allOrders: allOrdersReducer,
@@ -34,7 +35,10 @@ const reducer = combineReducers({
     mySampleResult: mySampleResultReducer,
     newAnalysis: newAnalysisReducer,
     analyses: analysesReducer,
-    analysis: analysisReducer
+    analysis: analysisReducer,
+    newPackage: newPackageReducer,
+    packages: packagesReducer,
+    package: packageReducer
 
 })
 

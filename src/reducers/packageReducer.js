@@ -1,46 +1,46 @@
 import {
-    ALL_ANALYSIS_FAIL,
-    ALL_ANALYSIS_REQUEST,
-    ALL_ANALYSIS_SUCCESS,
-    ADMIN_ANALYSIS_REQUEST,
-    ADMIN_ANALYSIS_SUCCESS,
-    ADMIN_ANALYSIS_FAIL,
-    NEW_ANALYSIS_REQUEST,
-    NEW_ANALYSIS_SUCCESS,
-    NEW_ANALYSIS_FAIL,
-    UPDATE_ANALYSIS_REQUEST,
-    UPDATE_ANALYSIS_SUCCESS,
-    UPDATE_ANALYSIS_FAIL,
-    UPDATE_ANALYSIS_RESET,
-    DELETE_ANALYSIS_REQUEST,
-    DELETE_ANALYSIS_SUCCESS,
-    DELETE_ANALYSIS_FAIL,
+    ALL_PACKAGE_FAIL,
+    ALL_PACKAGE_REQUEST,
+    ALL_PACKAGE_SUCCESS,
+    ADMIN_PACKAGE_REQUEST,
+    ADMIN_PACKAGE_SUCCESS,
+    ADMIN_PACKAGE_FAIL,
+    NEW_PACKAGE_REQUEST,
+    NEW_PACKAGE_SUCCESS,
+    NEW_PACKAGE_FAIL,
+    UPDATE_PACKAGE_REQUEST,
+    UPDATE_PACKAGE_SUCCESS,
+    UPDATE_PACKAGE_FAIL,
+    UPDATE_PACKAGE_RESET,
+    DELETE_PACKAGE_REQUEST,
+    DELETE_PACKAGE_SUCCESS,
+    DELETE_PACKAGE_FAIL,
 
     CLEAR_ERRORS,
-  } from "../constants/analysisConstants";
+  } from "../constants/packageConstants";
   
-  export const analysesReducer = (state = { analyses: [] }, action) => {
+  export const packagesReducer = (state = { packages: [] }, action) => {
     switch (action.type) {
-      case ALL_ANALYSIS_REQUEST:
-      case ADMIN_ANALYSIS_REQUEST:
+      case ALL_PACKAGE_REQUEST:
+      case ADMIN_PACKAGE_REQUEST:
         return {
           loading: true,
-          analyses: [],
+          packages: [],
         };
-      case ALL_ANALYSIS_SUCCESS:
+      case ALL_PACKAGE_SUCCESS:
         return {
           loading: false,
-          analyses: action.payload.analyses,
+          packages: action.payload.packages,
           
         };
   
-      case ADMIN_ANALYSIS_SUCCESS:
+      case ADMIN_PACKAGE_SUCCESS:
         return {
           loading: false,
-          analyses: action.payload,
+          packages: action.payload,
         };
-      case ALL_ANALYSIS_FAIL:
-      case ADMIN_ANALYSIS_FAIL:
+      case ALL_PACKAGE_FAIL:
+      case ADMIN_PACKAGE_FAIL:
         return {
           loading: false,
           error: action.payload,
@@ -56,20 +56,20 @@ import {
     }
   };
   
-  export const newAnalysisReducer = (state = { analysis: {} }, action) => {
+  export const newPackageReducer = (state = { package: {} }, action) => {
     switch (action.type) {
-      case NEW_ANALYSIS_REQUEST:
+      case NEW_PACKAGE_REQUEST:
         return {
           ...state,
           loading: true,
         };
-      case NEW_ANALYSIS_SUCCESS:
+      case NEW_PACKAGE_SUCCESS:
         return {
           loading: false,
           success: action.payload.success,
-          analysis: action.payload.analysis,
+          package: action.payload.package,
         };
-      case NEW_ANALYSIS_FAIL:
+      case NEW_PACKAGE_FAIL:
         return {
           ...state,
           loading: false,
@@ -85,35 +85,35 @@ import {
     }
   };
   
-  export const analysisReducer = (state = {}, action) => {
+  export const packageReducer = (state = {}, action) => {
     switch (action.type) {
-      case DELETE_ANALYSIS_REQUEST:
-      case UPDATE_ANALYSIS_REQUEST:
+      case DELETE_PACKAGE_REQUEST:
+      case UPDATE_PACKAGE_REQUEST:
         return {
           ...state,
           loading: true,
         };
-      case DELETE_ANALYSIS_SUCCESS:
+      case DELETE_PACKAGE_SUCCESS:
         return {
           ...state,
           loading: false,
           isDeleted: action.payload,
         };
   
-      case UPDATE_ANALYSIS_SUCCESS:
+      case UPDATE_PACKAGE_SUCCESS:
         return {
           ...state,
           loading: false,
           isUpdated: action.payload,
         };
-      case DELETE_ANALYSIS_FAIL:
-      case UPDATE_ANALYSIS_FAIL:
+      case DELETE_PACKAGE_FAIL:
+      case UPDATE_PACKAGE_FAIL:
         return {
           ...state,
           loading: false,
           error: action.payload,
         };
-      case UPDATE_ANALYSIS_RESET:
+      case UPDATE_PACKAGE_RESET:
         return {
           ...state,
           isUpdated: false,
