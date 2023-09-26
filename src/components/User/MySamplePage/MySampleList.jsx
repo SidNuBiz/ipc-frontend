@@ -11,7 +11,7 @@ const SampleList = () => {
     const { samples,loading } = useSelector(
         (state) => state.mySample
     );
-
+  
     useEffect(()=>{
         dispatch(mySample())
     },[dispatch])
@@ -24,13 +24,23 @@ const SampleList = () => {
         ) : (
             <Fragment>
             <div>
+                <div className="mb-5 flex justify-between">
+                    <button
+                        onClick={() => {
+                            window.history.go(-1);
+                        }}
+                        className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2"
+                    >
+                        &#x2190;Back
+                    </button>
+                </div>
                 {/* Order List */}
 
                 <div className="w-full mb-10">
                     {/* Order 1 */}
 
                     <ul>
-                        {samples && samples.map((sample, index) => (
+                        {samples && samples.sort(function(a, b){return JSON.parse(b.ID_NUMERIC) - JSON.parse(a.ID_NUMERIC)}).map((sample, index) => (
                             <li
                                 key={index}
                                 className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
@@ -48,36 +58,21 @@ const SampleList = () => {
 
                                     </div>
 
-                                    {/* Order Date */}
+                                    {/* Sample Date */}
 
-                                    {/* <div className=" italic px-5">
+                                    <div className=" italic px-5">
                                         <b className=" not-italic">Date</b> <br />
-                                        {order.created}
-                                    </div> */}
+                                        {new Date(sample.LOGIN_DATE).toLocaleDateString()}
+                                    </div>
 
-                                    {/* Order Status */}
-{/* 
-                                    <div className=" px-5">
-                                        <div className="mb-3">
-                                            <b>Status</b> <br />
-                                            {order.status}
-                                        </div>
-                                    </div> */}
+                                   
 
-                                    {/* Order Total */}
-
-                                    {/* <div className="text-left px-5">
-                                        <div className="mb-3">
-                                            <b>Total</b> <br />
-                                            C${order.totalPrice}
-                                        </div>
-                                    </div> */}
                                 </div>
 
                                 {/* View Details Button */}
 
                                 <div className="w-fit mt-5 ml-auto">
-                                    <Link to={`sample/${index}`} className="inline-block">
+                                    <Link to={`sample/${(samples.length-1)-index}`} className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                     </Link>
                                 </div>

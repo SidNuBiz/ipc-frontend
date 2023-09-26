@@ -4,8 +4,6 @@ import {useDispatch,useSelector} from "react-redux"
 import { deletePackage } from "../../../actions/packageAction";
 import { useAlert } from 'react-alert';
 
-
-
 const AdminPackageList = ({searchKey}) => {
     const dispatch = useDispatch()
 

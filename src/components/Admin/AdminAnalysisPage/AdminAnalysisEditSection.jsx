@@ -14,10 +14,10 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const [name, setName] = useState(thisAnalysis.name);
     const [testingCode, setTestingCode] = useState(thisAnalysis.testingCode);
     const [categories, setCategories] = useState(thisAnalysis.categories);
-    const [type, setType] = useState(thisAnalysis.type);
+    const [type, setType] = useState(thisAnalysis.type.toString());
     const [componentList, setComponentList] = useState(thisAnalysis.componentList)
-    const [matrixForm, setMatrixForm] = useState(thisAnalysis.matrixForm);
-    const [subMatrixForm, setSubMatrixForm] = useState(thisAnalysis.subMatrixForm)
+    const [matrixForm, setMatrixForm] = useState(thisAnalysis.matrixForm.toString());
+    const [subMatrixForm, setSubMatrixForm] = useState(thisAnalysis.subMatrixForm.toString())
     const [description, setDescription] = useState(thisAnalysis.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisAnalysis.uspNotUsedHeldDescOnly);
     const [uspAmtReq, setUspAmtReq] = useState(thisAnalysis.uspAmtReq);

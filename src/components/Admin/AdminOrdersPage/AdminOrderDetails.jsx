@@ -17,7 +17,7 @@ const AdminOrderDetails = ({ order }) => {
         <div>
             {/* Print Invoice Button */}
 
-            <div className=" w-fit ml-auto">
+            {/* <div className=" w-fit ml-auto">
                 <button
                     onClick={() => printInvoice("invoices")}
                     id="add-to-cart-btn"
@@ -25,7 +25,7 @@ const AdminOrderDetails = ({ order }) => {
                 >
                     Print Invoice
                 </button>
-            </div>
+            </div> */}
 
             {/* Go Back Button */}
 
@@ -234,7 +234,21 @@ const AdminOrderDetails = ({ order }) => {
                                         {/* Name */}
 
                                         <div>
-                                        <h2 className=" text-md">{test.test.Name}</h2>
+                                        <h2 className=" text-md">{test.test.Name}
+                                            
+                                            <p className="text-red-600" >
+                                            {test.addOn.length > 0 && <>[</>}
+                                            {test.addOn.map((addon)=>(
+                                            
+                                            <span >{addon.value ? addon.name+",":null} </span>
+                                        
+                                        
+                                            ))}
+                                            {test.addOn.length > 0 && <>]</>}
+                                            </p>
+                                            
+                                         </h2>
+                                       
                                         </div>
 
                                         {/* Price */}
@@ -300,19 +314,19 @@ const AdminOrderDetails = ({ order }) => {
 
             {/* Result */}
 
-            <div className="">
+            {/* <div className=""> */}
                 {/* Heading */}
 
-                <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-5">Test Result</h2>
+                {/* <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-5">Test Result</h2> */}
 
                 {/* Result */}
-                <div className="w-full">
+                {/* <div className="w-full">
 
                     <h2 className="text-xl text-gray-600 font-semibold w-full text-center">[ Result not published ]</h2>
 
-                </div>
+                </div> */}
 
-            </div>
+            {/* </div> */}
         </div>
     );
 };

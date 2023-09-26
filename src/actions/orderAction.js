@@ -78,9 +78,16 @@ const api = 'http://localhost:8080'
   export const getAllOrders = () => async (dispatch) => {
     try {
       dispatch({ type: ALL_ORDERS_REQUEST });
+
+      const token = Cookies.get('token')
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        },
+      };
   
       // const { data } = await axios.get("/api/v1/admin/orders");
-      const { data } = await axios.get(`${api}/api/v1/admin/orders`);
+      const { data } = await axios.get(`${api}/api/v1/admin/orders`,config);
   
       dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {
@@ -95,10 +102,13 @@ const api = 'http://localhost:8080'
   export const updateOrder = (id, order) => async (dispatch) => {
     try {
       dispatch({ type: UPDATE_ORDER_REQUEST });
-  
+
+      const token = Cookies.get('token')
+
       const config = {
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}` 
         },
       };
 
@@ -121,6 +131,13 @@ const api = 'http://localhost:8080'
   export const deleteOrder = (id) => async (dispatch) => {
     try {
       dispatch({ type: DELETE_ORDER_REQUEST });
+
+      const token = Cookies.get('token')
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        },
+      };
   
       // const { data } = await axios.delete(`/api/v1/admin/order/${id}`);
       const { data } = await axios.delete(`${api}/api/v1/admin/order/${id}`);
@@ -135,21 +152,27 @@ const api = 'http://localhost:8080'
   };
   
   // Get Order Details
-  export const getOrderDetails = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: ORDER_DETAILS_REQUEST });
+  // export const getOrderDetails = (id) => async (dispatch) => {
+  //   try {
+  //     dispatch({ type: ORDER_DETAILS_REQUEST });
+  //     const token = Cookies.get('token')
+  //     const config = {
+  //       headers: {
+  //         'Authorization': `Bearer ${token}` 
+  //       },
+  //     };
   
-      // const { data } = await axios.get(`/api/v1/order/${id}`);
-      const { data } = await axios.get(`${api}/api/v1/order/${id}`);
+  //     // const { data } = await axios.get(`/api/v1/order/${id}`);
+  //     const { data } = await axios.get(`${api}/api/v1/order/${id}`);
   
-      dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
-    } catch (error) {
-      dispatch({
-        type: ORDER_DETAILS_FAIL,
-        payload: error.response.data.error,
-      });
-    }
-  };
+  //     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
+  //   } catch (error) {
+  //     dispatch({
+  //       type: ORDER_DETAILS_FAIL,
+  //       payload: error.response.data.error,
+  //     });
+  //   }
+  // };
 
   // export const getInvoice = (id) => async() => {
 

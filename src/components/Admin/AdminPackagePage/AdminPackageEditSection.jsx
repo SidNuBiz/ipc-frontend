@@ -20,10 +20,10 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [name, setName] = useState(thisPackage.name);
     const [testingCode, setTestingCode] = useState(thisPackage.testingCode);
     const [categories, setCategories] = useState(thisPackage.categories);
-    const [type, setType] = useState(thisPackage.type);
+    const [type, setType] = useState(thisPackage.type.toString());
     const [componentList, setComponentList] = useState(thisPackage.componentList)
-    const [matrixForm, setMatrixForm] = useState(thisPackage.matrixForm);
-    const [subMatrixForm, setSubMatrixForm] = useState(thisPackage.subMatrixForm)
+    const [matrixForm, setMatrixForm] = useState(thisPackage.matrixForm.toString());
+    const [subMatrixForm, setSubMatrixForm] = useState(thisPackage.subMatrixForm.toString())
     const [description, setDescription] = useState(thisPackage.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisPackage.uspNotUsedHeldDescOnly);
     const [uspAmtReq, setUspAmtReq] = useState(thisPackage.uspAmtReq);

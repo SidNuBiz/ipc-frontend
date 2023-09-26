@@ -295,16 +295,21 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     <input type='text' value={amount + ' ' + unit} name='amount' id='amount' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
-                {/* Add On */}
+               
+                
 
-                {isAddOn && addOns.map((data,idx)=>(
+            </div>
+
+            <div className='grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-2 gap-2 mt-10'>
+                 {/* Add On */}
+                
+
+                 {isAddOn && addOns.map((data,idx)=>(
                     <div className='m-2'>
                       <input type="checkbox" onChange={(e)=>checkAddOn(e,idx)} name={data.name+testDataId} id={data.name+testDataId} />
                       <label htmlFor={data.name+testDataId}>{data.name}</label>
                     </div>
                 ))}
-                
-
             </div>
                
         

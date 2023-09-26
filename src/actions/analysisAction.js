@@ -24,8 +24,29 @@ import {
         dispatch({type:ALL_ANALYSIS_REQUEST})
      
         const {data} = await axios.get(`${api}/api/v1/analysis/all`)
+
+        data.analyses = data.analyses.map(data => {
+          if(data.type !== undefined){
+            let editType =data.type.split(", ")
+            data.type = editType
+          }
+      
+          if(data.matrixForm !== undefined){
+            let editMatrixForm =data.matrixForm.split(",")
+            data.matrixForm = editMatrixForm
+          }
+      
+          if(data.subMatrixForm !== undefined){
+            let editSubMatrixForm = data.subMatrixForm.split(",")
+            data.subMatrixForm = editSubMatrixForm
+          }
+        
+          return data
+        
+        })
   
         dispatch({type:ALL_ANALYSIS_SUCCESS,payload:data})
+
     }catch(error){
         dispatch({
             type:ALL_ANALYSIS_FAIL,

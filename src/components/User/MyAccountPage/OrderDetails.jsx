@@ -16,6 +16,17 @@ const OrderDetails = ({order,oId}) => {
 
     <div>
 
+<     div className="mb-5 flex justify-between">
+          <button
+              onClick={() => {
+                  window.history.go(-1);
+              }}
+              className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2"
+          >
+              &#x2190;Back
+          </button>
+      </div>
+
       {/* Print Invoice Button */}
 
       <div className=" w-fit ml-auto">
@@ -23,6 +34,8 @@ const OrderDetails = ({order,oId}) => {
         <button id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Invoice</button>
         </Link>
       </div>
+
+      
 
       {/* Order Details */}
 

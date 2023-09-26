@@ -55,22 +55,18 @@ const TestingSubmissionFormPageSection = () => {
         })
 
         sampleFormData.forEach(sample => {
- 
             sample.testFormData.forEach((test,idx) => {
-                console.log(sample.testFormData[idx].test.Tests)
-                if(sample.testFormData[idx].test.Tests !== undefined){
-                    sample.testFormData[idx].test.Tests.forEach((testName) => {
-                        sample.testFormData.forEach((item)=>{
-                     
-                            if(item.test.Name == testName ){
+                console.log(sample.testFormData[idx].test.packageTests !== undefined)
+                if(sample.testFormData[idx].test.packageTests !== undefined){        
+                    sample.testFormData[idx].test.packageTests.forEach((singleTest) => {
+                        sample.testFormData.forEach((item)=>{                        
+                            if(item.test.Name == singleTest.Name ){
                                 alert.error(`${sample.testFormData[idx].test.Name} has ${item.test.Name} included`)
                                 closeSubmit = false
                             }
                         })
                     })
-
                 }
-
             })
         })
 

@@ -26,6 +26,17 @@ const SampleDetails = ({ sample }) => {
             <Fragment>
             <div>
 
+                <div className="mb-5 flex justify-between">
+                    <button
+                        onClick={() => {
+                            window.history.go(-1);
+                        }}
+                        className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2"
+                    >
+                        &#x2190;Back
+                    </button>
+                </div>
+
                 {/* Order Details */}
 
                 <div

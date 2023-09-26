@@ -18,7 +18,7 @@ const OrderList = () => {
                 <ul>
                     {orders && orders.slice(0).reverse().map((order, index) => (
                         <li
-                            key={index}
+                            key={order._id}
                             className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
                         >
                             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5">
@@ -63,7 +63,7 @@ const OrderList = () => {
                             {/* View Details Button */}
 
                             <div className="w-fit mt-5 ml-auto">
-                                <Link to={`orders/${index}`} className="inline-block">
+                                <Link to={`orders/${(orders.length-1)-index}`} className="inline-block">
                                     <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                 </Link>
                             </div>

@@ -1,3 +1,5 @@
+
+
 let mapping = [
     {
      "Name": "Potency - Cannabis",
@@ -1564,11 +1566,6 @@ export const newMap = mapping.map(data => {
       let editMatrixForm =data.MatrixForm.split(", ")
       data.MatrixForm = editMatrixForm
     }
-
-    // if(data.MatrixForm !== undefined){
-    //   let editMatrixForm =data.MatrixForm.split(", ")
-    //   data.MatrixForm = editMatrixForm
-    // }
 
     if(data.SubMatrixForm1 !== undefined){
       let editSubMatrixForm = data.SubMatrixForm1.split(", ")

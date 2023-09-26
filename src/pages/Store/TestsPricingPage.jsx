@@ -3,6 +3,7 @@ import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import {newMap} from "../../data/mapping-json.js"
 import { Link } from "react-router-dom";
+import {useSelector} from "react-redux"
 
 
 
@@ -10,6 +11,9 @@ import { Link } from "react-router-dom";
 const TestsPricingPage = () => {
 
     const [searchKey,setSearchKey] = useState('')
+
+    const {analyses} = useSelector(state=>state.analyses)
+    const {packages} = useSelector(state=>state.packages)
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -98,30 +102,30 @@ const TestsPricingPage = () => {
                                     <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].sampleRequired}</td>
                                 </tr> */}
 
-                                {newMap &&
-                                    newMap.filter( tests => tests.Name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
+                                {analyses && packages &&
+                                    [...analyses,...packages].filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                         <tr
                                             key={index}
                                             className="border-b-2 border-gray-300">
                                             {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.testCode}</td> */}
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.Name}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.name}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.Description}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.description}</td>
 
                                             {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.sampleRequired}</td> */}
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.StandardPricing}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.RushedPricing}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.StandardPricingLvl2}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl2}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.RushedPricingLvl2}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl2}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.StandardPricingLvl3}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl3}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.RushedPricingLvl3}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.sushedPricingLvl3}</td>
                                         </tr>
                                     ))}
 {/* 
