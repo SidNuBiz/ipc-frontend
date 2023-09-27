@@ -27,9 +27,40 @@
 //     console.log(element)
 // });
 
-const points = [{id:40}, {id:100}, {id:1}, {id:5}, {id:25}, {id:10}];
-const g = points.sort(function(a, b){return b.id - a.id});
-console.log(g)
+// const points = [{id:40}, {id:100}, {id:1}, {id:5}, {id:25}, {id:10}];
+// const g = points.sort(function(a, b){return b.id - a.id});
+// console.log(g)
+let con = false
+function game(){
+    const promise = new Promise((resolve,reject)=>{
+    
+           
+        if(con){
+            resolve("Work Done !!")
+        }else{
+            reject("Work Not Done :(")
+            console.log("ula")
+        }
+
+       
+
+ 
+    })
+
+    return promise
+}
+
+async function z(){
+    try{
+
+       await game()
+    }catch(err){
+        console.log(err)
+        
+    }
+}
+
+z()
 
 
 

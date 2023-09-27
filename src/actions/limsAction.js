@@ -36,6 +36,7 @@ export const createSamples = (samples) => async (dispatch) => {
       dispatch({ type: SAMPLE_SUBMIT_SUCCESS, payload: data.message });
 
     } catch (error) {
+      console.log(error)
       dispatch({
         type: SAMPLE_SUBMIT_FAIL,
         payload: error.response.data.error,
