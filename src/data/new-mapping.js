@@ -1530,6 +1530,10 @@ let mapping = [
         "SampleRequired": "12-30",
         "Unit": "g"
        },
+
+       {
+        "TestingCode":"MI001-CAN"
+       }
      ]
     },
     {

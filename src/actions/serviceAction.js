@@ -18,8 +18,8 @@ import {
 } from "../constants/serviceConstants";
 import Cookies from "js-cookie";
 import axios from "axios";
-// const api = 'http://54.190.127.181:8080'
-const api = 'http://localhost:8080'
+const api = 'http://34.202.67.106:8080'
+// const api = 'http://localhost:8080'
 
 //Get All Service
 export const getService = ()=>async (dispatch)=>{  

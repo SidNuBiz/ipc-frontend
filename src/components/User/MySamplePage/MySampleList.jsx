@@ -11,7 +11,7 @@ const SampleList = () => {
     const { samples,loading } = useSelector(
         (state) => state.mySample
     );
-  
+
     useEffect(()=>{
         dispatch(mySample())
     },[dispatch])
@@ -72,7 +72,7 @@ const SampleList = () => {
                                 {/* View Details Button */}
 
                                 <div className="w-fit mt-5 ml-auto">
-                                    <Link to={`sample/${(samples.length-1)-index}`} className="inline-block">
+                                    <Link to={`sample/${index}`} className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                     </Link>
                                 </div>

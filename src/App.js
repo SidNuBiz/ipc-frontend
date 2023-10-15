@@ -62,6 +62,7 @@ import AdminEquipmentPageEdit from './pages/Admin/AdminEquipmentPageEdit';
 import AdminLegalPageEdit from './pages/Admin/AdminLegalPageEdit';
 import AdminFaqPageEdit from './pages/Admin/AdminFaqPageEdit';
 import AdminServiceHoverBoxPage from './pages/Admin/AdminServices/AdminServiceHoverBoxPage';
+import InvoiceX from './pages/invoiceX';
 
 
 function App() {
@@ -224,6 +225,8 @@ function App() {
 
         <Route path="/services/overview" element={<ServiceOverviewPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
+
+        <Route path="/invoicex" element={<InvoiceX />} />
 
        
 

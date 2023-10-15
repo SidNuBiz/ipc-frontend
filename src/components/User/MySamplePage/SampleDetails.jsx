@@ -14,6 +14,7 @@ const SampleDetails = ({ sample }) => {
         (state) => state.user
     );
 
+
     useEffect(()=>{
         dispatch(mySampleResult(sample.ID_NUMERIC))
     },[dispatch])
@@ -36,6 +37,16 @@ const SampleDetails = ({ sample }) => {
                         &#x2190;Back
                     </button>
                 </div>
+
+                {/* Print Invoice Button */}
+
+                <div className=" w-fit ml-auto">
+
+                    <button  id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Report</button>
+   
+                </div>
+
+              
 
                 {/* Order Details */}
 

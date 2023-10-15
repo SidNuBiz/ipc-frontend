@@ -15,8 +15,8 @@ import {
 import axios from "axios";
 import Cookies from 'js-cookie'
 
-// const api = 'http://54.190.127.181:8080'
-const api = 'http://localhost:8080'
+const api = 'http://34.202.67.106:8080'
+// const api = 'http://localhost:8080'
 
 // Create Sample
 export const createSamples = (samples) => async (dispatch) => {

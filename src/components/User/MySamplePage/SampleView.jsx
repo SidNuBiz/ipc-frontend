@@ -41,7 +41,7 @@ const SampleView = () => {
                 {/* Page Section */}
 
                 <div className="animate-crossfade lg:w-2/3 md:w-5/6 sm:w-5/6 mx-auto pt-40">
-                    <SampleDetails sample={samples[sampleId]} />
+                    <SampleDetails sample={samples.sort(function(a, b){return JSON.parse(b.ID_NUMERIC) - JSON.parse(a.ID_NUMERIC)})[sampleId]} />
                     
                 </div>
 

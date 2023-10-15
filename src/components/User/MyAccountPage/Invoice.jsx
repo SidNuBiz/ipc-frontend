@@ -1,22 +1,25 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment,useRef } from 'react';
 import Loader from "../../../pages/Loader";
-import './Invoice.css';
+// import './Invoice.css';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import Cookies from 'js-cookie'
+
+
 const Invoice = () => {
     const {invoiceId,orderId} = useParams();
-    const [invoice,setInvoice] =useState('true')
+    const [invoice,setInvoice] =useState('false')
 
 
     const { orders } = useSelector(
         (state) => state.myOrders
     );
 
-
-    useEffect(() => async() => { 
+    async function fetchData(){
+      
         try{
+          
             const token = Cookies.get('token')
           
             const config = {
@@ -24,13 +27,23 @@ const Invoice = () => {
                 'Authorization': `Bearer ${token}` 
               },
             };
-            const {data} = await axios.get(`http://localhost:8080/api/v1/invoice/${invoiceId}`,config)
+            const {data} = await axios.get(`http://34.202.67.106:8080/api/v1/invoice/${invoiceId}`,config)
             console.log(data.invoice)
             setInvoice(data.invoice)
         }catch(error){
             console.log(error)
         }
-    },[])
+    }
+
+    
+
+
+    // useEffect(() => {
+
+    //     fetchData()
+       
+    // }, []);
+
     return (
         
     <Fragment>
@@ -38,7 +51,7 @@ const Invoice = () => {
       <Loader />
     ) : (
         <Fragment>
-        <section id="invoice">
+         <section id="invoice">
             <div class="invoice">
                 <div class="invoice_info">
                 <div class="i_row">
@@ -228,6 +241,7 @@ const Invoice = () => {
              
             </div>
         </section>
+
         </Fragment>
       )}
     </Fragment>

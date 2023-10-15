@@ -2,6 +2,7 @@ import {
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_SUCCESS,
     CREATE_ORDER_FAIL,
+    CREATE_ORDER_RESET,
     MY_ORDERS_REQUEST,
     MY_ORDERS_SUCCESS,
     MY_ORDERS_FAIL,
@@ -33,7 +34,14 @@ import {
       case CREATE_ORDER_SUCCESS:
         return {
           loading: false,
-          order: action.payload,
+          order: action.payload.order,
+          success: action.payload.success
+        };
+
+      case CREATE_ORDER_RESET:
+        return {
+          ...state,
+          success: false,
         };
   
       case CREATE_ORDER_FAIL:

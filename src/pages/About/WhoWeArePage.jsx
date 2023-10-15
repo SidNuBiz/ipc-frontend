@@ -15,9 +15,9 @@ const WhoWeArePage = () => {
     const [teamMembers,setTeamMembers] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/who-we-are-page-details')
+        const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/who-we-are-page-details')
         setWhoWeArePageDetails(data.details)
-        const {data:team} = await axios.get('http://localhost:8080/api/v1/team-member/all')
+        const {data:team} = await axios.get('http://34.202.67.106:8080/api/v1/team-member/all')
         setTeamMembers(team.details)
        
     }

@@ -5,11 +5,15 @@ import ServicesSection from "../components/HomePage/ServicesSection.jsx";
 import NavBar from "../components/Misc/NavBar.jsx";
 import Footer from "../components/Misc/Footer.jsx";
 import { useRef, useEffect ,Fragment, useState} from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import Loader from "./Loader";
 import axios from "axios";
+import { useAlert } from "react-alert";
+import {clearErrors} from "../actions/orderAction.js"
 
 const HomePage = () => {
+    const dispatch = useDispatch()
+    const alert = useAlert()
     
     const { loading } = useSelector(
         (state) => state.user
@@ -18,25 +22,37 @@ const HomePage = () => {
     const {services} = useSelector(
         (state) => state.services
     );
+
+    const {loading:orderLoading,error,success} = useSelector(
+        (state) => state.newOrder
+    )
     const [homePageDetails,setHomePageDetails] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
+        const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/home-page-details')
         setHomePageDetails(data.details)
        
     }
 
     useEffect(() => {
 
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+
+        if(success){
+            alert.success("Please go to account page for the order details")
+            dispatch({type:'CREATE_ORDER_RESET'})
+        }
+
         fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, []);
+    }, [error,success]);
     
     // Scroll fuctions
 
     const ref = useRef(null);
-
-
 
     const scrollToRef = () => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -44,7 +60,7 @@ const HomePage = () => {
 
     return (
     <Fragment>
-        {loading || homePageDetails.length === 0 || services.length === 0 ? (
+        {loading || homePageDetails.length === 0 || services.length === 0 || orderLoading  ? (
           <Loader />
         ) : (
         <Fragment>
