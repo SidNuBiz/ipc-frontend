@@ -27,8 +27,8 @@ import {
 import Cookies from 'js-cookie'
 import axios from "axios"
 // 
-const api = 'http://34.202.67.106:8080'
-// const api = 'http://localhost:8080'
+// const api = 'http://34.202.67.106:8080'
+const api = 'http://localhost:8080'
 
 const options = {
     expires:new Date(
@@ -115,6 +115,7 @@ export const updateProfile = (userData,isAddress) => async (dispatch) => {
     const config = { headers:{"Content-Type":"multipart/form-data" ,  'Authorization': `Bearer ${token}` }}
     let UD
     if (isAddress) {
+      console.log(userData)
       // const { data } = await axios.put(`http://localhost:8080/api/v1/me/address/update`,{...userData}, config);
       const { data } = await axios.put(`${api}/api/v1/me/address/update`,{...userData}, config);
       UD = data

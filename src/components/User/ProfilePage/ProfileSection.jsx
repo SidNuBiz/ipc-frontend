@@ -3,8 +3,35 @@ import { useDispatch, useSelector } from "react-redux";
 import {updateProfile,loadUser,addImage,clearErrors} from "../../../actions/userAction"
 import {UPDATE_PROFILE_RESET} from "../../../constants/userConstatns"
 import {useAlert} from "react-alert"
+import Select from 'react-select'
+import { Country, State, City }  from 'country-state-city';
 
 const ProfileSection = ({user}) => {
+    
+    
+    const selectCustomStyles = {
+
+        control: (provided, state) => ({
+
+            ...provided,
+
+            backgroundColor: 'white',
+
+            outline: 'none',
+
+            outlineOffset: state.isFocused ? 'none' : 'none',
+
+            border: 0,
+
+            boxShadow: 'none',
+
+            borderRadius: '6px',
+
+            innerWidth: '100%',
+
+        }),
+
+    }
 
     const dispatch = useDispatch()
     const alert = useAlert()
@@ -12,13 +39,26 @@ const ProfileSection = ({user}) => {
     const [firstname,setFirstname] = useState('');
     const [lastname,setLastname] = useState('');
     const [email,setEmail] = useState('');
-    const [phone,setPhone] = useState('')
+    const [phone,setPhone] = useState('');
 
     const [details,setDetails] = useState('');
     const [country,setCountry] = useState('');
+    const [state,setState] = useState('');
     const [city,setCity] = useState('');
-    const [zip,setZip] = useState('')
+    const [zip,setZip] = useState('');
 
+    const [countries,setCountries] = useState(Country.getAllCountries())
+    const [states,setStates] = useState([])
+    const [cities,setCitites] = useState([])
+    const filterStateCity = (isCountry,country,state=null)=> {
+        
+        if(isCountry){
+            setStates(State.getStatesOfCountry(countries.filter((c)=>c.name === country)[0].isoCode))
+        }else{
+            setCitites(City.getCitiesOfState(countries.filter((c)=>c.name === country.value)[0].isoCode,states.filter((c)=>c.name === state)[0].isoCode))
+        }
+    }
+  
     const { loading } = useSelector(
         (state) => state.user
     );
@@ -35,7 +75,7 @@ const ProfileSection = ({user}) => {
     const updateProfileAddress = (e) => {
 
         e.preventDefault();
-        dispatch(updateProfile({details,country,city,zip},true));
+        dispatch(updateProfile({details,country:country.value,city:city.value,state:state.value,zip},true));
 
     };
 
@@ -50,8 +90,9 @@ const ProfileSection = ({user}) => {
             setEmail(user.email);
             setPhone(user.phone);
             setDetails(user.address.details);
-            setCity(user.address.city);
-            setCountry(user.address.country);
+            setCity({label:user.address.city,value:user.address.city});
+            setCountry({label:user.address.country,value:user.address.country});
+            setState({label:user.address.state,value:user.address.state})
             setZip(user.address.zip);
         }
         if (isUpdated) {
@@ -218,7 +259,7 @@ const ProfileSection = ({user}) => {
             </div>
 
             {/* Billing Address */}
-            {user.role === 'user' && 
+            {user.role === 'admin' && 
             <div className="my-10">
 
                 {/* Heading */}
@@ -232,44 +273,50 @@ const ProfileSection = ({user}) => {
 
                 <form onSubmit={updateProfileAddress} className="lg:w-2/3 md:w-5/6 sm:w-full mx-auto">
 
-                    {/* Address Label & Input */}
+                    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5">
 
-                    <div className="mb-5">
-                        <label htmlFor="address" className="block text-lg text-gray-600 font-semibold mb-2">Address</label>
+                        {/* Country Label & Input */}
 
-                        <input type="text" name="address" id="address" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={details} onChange={(e)=>setDetails(e.target.value)} />
+                        <div className="mb-5">
+                            <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Country<span className='text-red-500'>*</span></label>
+                            <Select options={countries.map(country => {return {label:country.name,value:country.name}})} onChange={(e)=>{setCountry(e); filterStateCity(true,e.value)}} value={country}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
+                        </div>
+
+
+                        {/* State Label & Input */}
+
+                        <div className="mb-5">
+                        <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>State<span className='text-red-500'>*</span></label>
+                            <Select options={states.map(state => {return {label:state.name,value:state.name}})} onChange={(e)=>{setState(e); filterStateCity(false,country,e.value)}} value={state}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
+                        </div>
+
                     </div>
-
-                    {/* Country Label & Input */}
-
-                    <div className="mb-5">
-
-                        <label htmlFor="country" className="block text-lg text-gray-600 font-semibold mb-2">Country</label>
-
-                        <input type="text" name="country" id="country" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={country} onChange={(e)=>setCountry(e.target.value)}/>
-
-                    </div>
-
-                    {/* City & Zip Label & Input */}
-
+                    
                     <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5">
 
                         {/* City Label & Input */}
 
                         <div className="mb-5">
-                            <label htmlFor="city" className="block text-lg text-gray-600 font-semibold mb-2">City</label>
-
-                            <input type="text" name="city" id="city" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={city} onChange={(e)=>setCity(e.target.value)} />
+                            <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>City<span className='text-red-500'>*</span></label>
+                            <Select options={cities.map(city => {return {label:city.name,value:city.name}})} onChange={(e)=>setCity(e)} value={city}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
                         </div>
 
                         {/* Zip Label & Input */}
 
                         <div className="mb-5">
-                            <label htmlFor="zip" className="block text-lg text-gray-600 font-semibold mb-2">Zip</label>
+                            <label htmlFor="address" className='block mb-2 text-sm font-semibold'>Zip<span className='text-red-500'>*</span></label>
 
-                            <input type="text" name="zip" id="zip" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={zip} onChange={(e)=>setZip(e.target.value)} />
+                            <input type="text" name="address" id="address" style={{backgroundColor: 'white',outline: 'none',border: '1px solid #cccccc',boxShadow: 'none',borderRadius: '6px',height:'40px',paddingLeft:'10px',paddingRight:'10px', width: '100%',}} value={zip} onChange={(e)=>setZip(e.target.value)} />
                         </div>
 
+                    </div>
+
+                    {/* Address Label & Input */}
+
+                    <div className="mb-5">
+                        <label htmlFor="address" className='block mb-2 text-sm font-semibold'>Address<span className='text-red-500'>*</span></label>
+
+                        <input type="text" name="address" id="address" style={{backgroundColor: 'white',outline: 'none',border: '1px solid #cccccc',boxShadow: 'none',borderRadius: '6px',height:'40px',paddingLeft:'10px',paddingRight:'10px', width: '100%',}} value={details} onChange={(e)=>setDetails(e.target.value)} />
                     </div>
 
                     {/* Update Button */}

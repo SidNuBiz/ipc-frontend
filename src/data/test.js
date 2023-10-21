@@ -30,37 +30,45 @@
 // const points = [{id:40}, {id:100}, {id:1}, {id:5}, {id:25}, {id:10}];
 // const g = points.sort(function(a, b){return b.id - a.id});
 // console.log(g)
-let con = false
-function game(){
-    const promise = new Promise((resolve,reject)=>{
+// let con = false
+// function game(){
+//     const promise = new Promise((resolve,reject)=>{
     
            
-        if(con){
-            resolve("Work Done !!")
-        }else{
-            reject("Work Not Done :(")
-            console.log("ula")
-        }
+//         if(con){
+//             resolve("Work Done !!")
+//         }else{
+//             reject("Work Not Done :(")
+//             console.log("ula")
+//         }
 
-       
+//     })
 
- 
-    })
+//     return promise
+// }
 
-    return promise
-}
+// async function z(){
+//     try{
 
-async function z(){
-    try{
-
-       await game()
-    }catch(err){
-        console.log(err)
+//        await game()
+//     }catch(err){
+//         console.log(err)
         
-    }
-}
+//     }
+// }
 
-z()
+// z()\
+
+
+const { Country, State, City } = require("country-state-city");
+
+const countries = Country.getAllCountries()
+
+console.log(countries.filter((c)=>c.name == "Canada")[0].isoCode)
+// console.log(State.getStatesOfCountry(countries.filter((c)=>c.name == "Guam")[0].isoCode))
+console.log(State.getStatesOfCountry(countries.filter((c)=>c.name === "Bangladesh")[0]?.isoCode))
+console.log(City.getCitiesOfState())
+
 
 
 

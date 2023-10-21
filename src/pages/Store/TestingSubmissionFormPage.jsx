@@ -3,6 +3,7 @@ import NavBar from "../../components/Misc/NavBar";
 import Footer from "../../components/Misc/Footer";
 import { useEffect,Fragment } from "react";
 import {useSelector,useDispatch} from "react-redux"
+import { Navigate, useNavigate } from 'react-router-dom';
 import TestingSubmissionFormPageSection from '../../components/Store/TestingSubmissionFormPage/TestingSubmissionFormPageSection';
 import Loader from "../Loader"
 import {clearErrors} from "../../actions/limsAction"
@@ -11,10 +12,17 @@ const TestingSubmissionFormPage = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()    
     const {error,message,loading} = useSelector((state)=>state.sampleSubmit)
+    const {user} = useSelector((state)=>state.user)
 
     useEffect(() => {
+        console.log(user)
+        if(user.address.zip == "" || user.address.city == "" || user.address.state == "" || user.address.country == "" || user.address.details == ""){
+            navigate("/user/profile")
+            alert.error("Please fill up billing information to submit a sample")
+            
+        }
         if(error){
             alert.error(error)
             dispatch(clearErrors)
