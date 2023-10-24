@@ -8,7 +8,7 @@ let typeTests
 let matrixFormTests
 let categoriesTests
 
-const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type,setType,matrixForm,setMatrixForm,subMatrixForm,setSubMatrixForm,testDataId,sampleDataMerged,testFormData}) => {
+const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type, setType, matrixForm, setMatrixForm, testDataId, sampleDataMerged, testFormData}) => {
 
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -27,8 +27,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const [unit, setUnit] = useState('')
 
     const [matrixFormList, setMatrixFormList] = useState([])
-    const [subMatrixFormList,setSubMatrixFormList] = useState([])
-    const [isSubMatrixExist, setIsSubMatrixExist] = useState(false)
     const [isAddOn, setIsAddOn] = useState(false)
     const [addOns,setAddOns] = useState([])
     const [testNameList, setTestNameList] = useState(null) 
@@ -42,7 +40,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
-        setIsSubMatrixExist(false)
+        setIsAddOn(false)
+        setAddOns([])
         setTestList([testList[0]])
         setType(e.value)
         let matrixArr = []
@@ -56,13 +55,13 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     }
 
     function handleMatrixChange(e) {
-        console.log(typeTests)
         setCategory(null)
         setTestName(null)
         setDescription('')
         setAmount('')
         setUnit('')
-        setIsSubMatrixExist(false)
+        setIsAddOn(false)
+        setAddOns([])
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.MatrixForm !== undefined ? data.MatrixForm.includes(e.value):false)
         matrixFormTests.forEach(data => data.MatrixForm !== undefined ? categoriesArr.push(data.Categories):false)
@@ -78,7 +77,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
-        setIsSubMatrixExist(false)
+        setIsAddOn(false)
+        setAddOns([])
         let testNameArr = []
         categoriesTests = matrixFormTests.filter(data => data.Categories === e.value)
         categoriesTests.forEach(data => data.Name !== undefined ? testNameArr.push(data.Name):false)
@@ -92,20 +92,11 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
-        setIsSubMatrixExist(false)
         const nameTests = categoriesTests.filter(data => data.Name === e.value)
         setTest(nameTests[0])
         setDescription(nameTests[0].Description)
         setAmount(nameTests[0].SampleRequired)
         setUnit(nameTests[0].Unit)
-        console.log(nameTests[0].Description)
-        if(nameTests[0].SubMatrixForm1 !== undefined){
-            const subMatrixList = nameTests[0].SubMatrixForm1.map((data)=>{
-                return {label:data,value:data}
-            })
-            setSubMatrixFormList(subMatrixList)
-            setIsSubMatrixExist(true)
-        }
         if(nameTests[0].Name == "Cannabis Potency Add On"){
             const addOnArr = []
           
@@ -116,6 +107,9 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
             })
             setAddOns(addOnArr)
             setIsAddOn(true)
+        }else{
+            setIsAddOn(false)
+            setAddOns([])
         }
         const filteredTestFormData = testFormData.filter(test => {
             return test.id !== testDataId
@@ -125,27 +119,11 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
             id:testDataId,
             type:type.value,
             matrixForm:matrixForm.value,
-            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
             category:category.value,
             test:nameTests[0],
             addOn:addOns
         }]})
       
-    }
-
-    const handleSubMatrixChange = () => {
-        const filteredTestFormData = testFormData.filter(test => {
-            return test.id !== testDataId
-        })
-        sampleDataMerged({td:[...filteredTestFormData,{
-            id:testDataId,
-            type:type.value,
-            matrixForm:matrixForm.value,
-            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
-            category:category.value,
-            test:test,
-            addOn:addOns
-        }]})
     }
 
     const checkAddOn = (e,idx)=>{
@@ -159,7 +137,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
             id:testDataId,
             type:type.value,
             matrixForm:matrixForm.value,
-            subMatrixForm: subMatrixForm === null ? null : subMatrixForm.value,
             category:category.value,
             test:test,
             addOn:addOns
@@ -250,19 +227,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     }
                     
                 </div>
-
-                {/* Sub Matrix Form */}
-              
-                {isSubMatrixExist && <div>
-                    <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Sub Matrix Form<span className='text-red-500'>*</span></label>
-                    {
-                        // idx == 0 ? 
-                        <Select options={subMatrixFormList} value={subMatrixForm} onChange={(e) => {handleSubMatrixChange(); setSubMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> 
-                        // : 
-                        // <input type='text' value={subMatrixForm.value} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
-                    }
-                    
-                </div>}
 
                 {/* Test Matrix */}
 

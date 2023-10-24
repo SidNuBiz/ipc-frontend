@@ -137,6 +137,17 @@ const OrderDetails = ({order,oId}) => {
 
             </div>
 
+            {/* State */}
+
+            <div className="">
+
+              <div className="">
+                <b>State</b> <br />
+                {order.shippingAddress.shippingState}
+              </div>
+
+            </div>
+
             {/* City */}
 
             <div className="">
@@ -244,7 +255,8 @@ const OrderDetails = ({order,oId}) => {
                             {/* Price */}
 
                             <div className="text-right h-fit my-auto">
-                              <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2>
+                              {/* <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2> */}
+                              <h2 className=" text-md font-bold">C$ { test.test[item.selectedTurnaround.value]}</h2>
                             </div>
 
                           </div>
@@ -293,7 +305,7 @@ const OrderDetails = ({order,oId}) => {
 
               <h2 className=" text-md font-bold">Tax:</h2>
 
-              <h2 className=" text-md text-right font-bold">C$ {order.taxPrioce}</h2>
+              <h2 className=" text-md text-right font-bold">C$ {order.taxPrice}</h2>
 
             </div>
 

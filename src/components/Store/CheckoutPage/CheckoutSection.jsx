@@ -1,54 +1,51 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {createOrder} from "../../../actions/orderAction"
 import {useNavigate} from "react-router-dom"
+import { useAlert } from "react-alert";
 
 
 const CheckoutSection = ({user}) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const alert = useAlert()
   
   const [shippingPrice,setShippingPrice] = useState(0)
   const [taxPrice,setTaxPrice] = useState(0)
+  const [subTotalPrice,setSubTotalPrice] = useState(0)
 
   const [details,setDetails] = useState(user.address.details);
   const [country,setCountry] = useState(user.address.country);
+  const [state,setState] = useState(user.address.state);
   const [city,setCity] = useState(user.address.city);
   const [zip,setZip] = useState(user.address.zip)
 
   const [shippingDetails,setShippingDetails] = useState('');
   const [shippingCountry,setShippingCountry] = useState('');
+  const [shippingState,setShippingState] = useState('')
   const [shippingCity,setShippingCity] = useState('');
   const [shippingZip,setShippingZip] = useState('')
 
   const {mainFormData} = useSelector(state=>state.sampleFormSubmit)
 
-//   const { cartItems } = useSelector(
-//       (state) => state.cart
-//   );
+  const taxPercentage = user.address.tax == "G" ?  5 : user.address.tax == "H" ?  13 : user.address.tax == "HS" ?  15 : 0
 
-  let subTotalPrice = 0
-  mainFormData.sampleFormData.forEach(sample =>{
-    sample.testFormData.forEach(tests=>{
-        if(sample.selectedTurnaround.value === 'rushed'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricing)
-        }else if(sample.selectedTurnaround.value === 'standard'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricing)
-        }else if(sample.selectedTurnaround.value === 'rushed level 2'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl2)
-        }else if(sample.selectedTurnaround.value === 'standard level 2'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl2)
-        }else if(sample.selectedTurnaround.value === 'rushed level 3'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.RushedPricingLvl3)
-        }else if(sample.selectedTurnaround.value === 'standard level 3'){
-            subTotalPrice = subTotalPrice + parseInt(tests.test.StandardPricingLvl3)
-        }
-    })
-  })
-//   cartItems.map(item =>{
-//       subTotalPrice = subTotalPrice + item.price
-//   })
+
+  const calculatePrices = () => {
+    let subTotalPriceValue = 0
+    let taxPriceValue = 0
+    mainFormData.sampleFormData.forEach(sample =>{
+        sample.testFormData.forEach(tests=>{
+            console.log(parseFloat(tests.test[sample.selectedTurnaround.value]))
+            subTotalPriceValue = subTotalPriceValue + parseFloat(tests.test[sample.selectedTurnaround.value])
+            taxPriceValue = taxPriceValue + (parseFloat(tests.test[sample.selectedTurnaround.value]) * taxPercentage)/100
+        })
+      })
+     
+      setSubTotalPrice(parseFloat(subTotalPriceValue.toFixed(2)))
+      setTaxPrice(parseFloat(taxPriceValue.toFixed(2)))
+  }
 
 
   const setShipping = () => {
@@ -57,46 +54,37 @@ const CheckoutSection = ({user}) => {
 
         setShippingDetails(document.getElementById('billing-address').value)
         setShippingCountry(document.getElementById('billing-country').value)
+        setShippingState(document.getElementById('billing-state').value)
         setShippingCity(document.getElementById('billing-city').value)
         setShippingZip(document.getElementById('billing-zip').value)
 
-        // document.getElementById('shipping-address').value = document.getElementById('billing-address').value;
-        // document.getElementById('shipping-country').value = document.getElementById('billing-country').value;
-        // document.getElementById('shipping-city').value = document.getElementById('billing-city').value;
-        // document.getElementById('shipping-zip').value = document.getElementById('billing-zip').value;
-
-    }
-
-    else {
+    }else {
 
       setShippingDetails('')
       setShippingCountry('')
+      setShippingState('')
       setShippingCity('')
       setShippingZip('')
-
-        // document.getElementById('shipping-address').value = '';
-        // document.getElementById('shipping-country').value = '';
-        // document.getElementById('shipping-city').value = '';
-        // document.getElementById('shipping-zip').value = '';
 
     }
 
   }
 
   const createOrderSubmit = (e) => {
+    if(shippingDetails.trim() == "" ||  shippingCity.trim() == "" || shippingCountry.trim() == "" || shippingZip.trim() == "" || shippingState.trim() == ""){
+        alert.error("Please fill up all the shipping address fields")
+    }
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCity,shippingCountry,shippingZip},billing:{details,country,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData}))
     dispatch({type:'MAIN_FORM_DATA',payload:{}})
     dispatch({type:'SAMPLE_FORM_DATA',payload:[]})
     navigate('/')
 
   }
 
-//   useEffect(()=>{
-//     if(cartItems.length == 0){
-//       navigate('/store/all')
-//     }
-//   },[])
+  useEffect(()=>{
+    calculatePrices()
+  },[])
 
   return (
 
@@ -174,7 +162,7 @@ const CheckoutSection = ({user}) => {
                           <div className="mb-5">
 
                               <label htmlFor="billing-address" className="block text-lg text-gray-600 font-semibold mb-2">Address*</label>
-                              <input type="text" name="billing-address" id="billing-address" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={details} onChange={(e)=>{setDetails(e.target.value)}} required/>
+                              <input type="text" name="billing-address" id="billing-address" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={details}  required/>
 
                           </div>
 
@@ -183,16 +171,25 @@ const CheckoutSection = ({user}) => {
                           <div className="mb-5">
 
                               <label htmlFor="billing-country" className="block text-lg text-gray-600 font-semibold mb-2">Country*</label>
-                              <input type="text" name="billing-country" id="billing-country" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={country} onChange={(e)=>{setCountry(e.target.value)}} required/>
+                              <input type="text" name="billing-country" id="billing-country" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={country}  required/>
 
                           </div>
+
+                        {/* State Label & Input */}
+
+                        <div className="mb-5">
+
+                            <label htmlFor="billing-state" className="block text-lg text-gray-600 font-semibold mb-2">State*</label>
+                            <input type="text" name="billing-state" id="billing-state" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={state}  required/>
+
+                        </div>
 
                           {/* City Label & Input */}
 
                           <div className="mb-5">
 
                               <label htmlFor="billing-city" className="block text-lg text-gray-600 font-semibold mb-2">City*</label>
-                              <input type="text" name="billing-city" id="billing-city" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={city} onChange={(e)=>{setCity(e.target.value)}} required/>
+                              <input type="text" name="billing-city" id="billing-city" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={city}  required/>
 
                           </div>
 
@@ -201,7 +198,7 @@ const CheckoutSection = ({user}) => {
                           <div className="mb-5">
 
                               <label htmlFor="billing-zip" className="block text-lg text-gray-600 font-semibold mb-2">Zip / Postal Code*</label>
-                              <input type="number" name="billing-zip" id="billing-zip" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={zip} onChange={(e)=>{setZip(e.target.value)}} required/>
+                              <input type="text" name="billing-zip" id="billing-zip" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={zip}  required/>
 
                           </div>
 
@@ -243,6 +240,15 @@ const CheckoutSection = ({user}) => {
 
                           </div>
 
+                        {/* State Label & Input */}
+
+                        <div className="mb-5">
+
+                            <label htmlFor="shipping-state" className="block text-lg text-gray-600 font-semibold mb-2">State*</label>
+                            <input type="text" name="shipping-state" id="shipping-state" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={shippingState} onChange={(e)=>{setShippingState(e.target.value)}} required/>
+
+                        </div>
+
                           {/* City Label & Input */}
 
                           <div className="mb-5">
@@ -257,7 +263,7 @@ const CheckoutSection = ({user}) => {
                           <div className="mb-5">
 
                           <label htmlFor="shipping-zip" className="block text-lg text-gray-600 font-semibold mb-2">Zip / Postal Code*</label>
-                          <input type="number" name="shipping-zip" id="shipping-zip" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={shippingZip} onChange={(e)=>{setShippingZip(e.target.value)}} required/>
+                          <input type="text" name="shipping-zip" id="shipping-zip" className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]" value={shippingZip} onChange={(e)=>{setShippingZip(e.target.value)}} required/>
 
                           </div>
 
@@ -311,7 +317,7 @@ const CheckoutSection = ({user}) => {
 
                                     <td className="text-gray-600 ">Tax</td>
 
-                                    <td className="text-gray-600 text-right ">C$0.00</td>
+                                    <td className="text-gray-600 text-right ">C${taxPrice}</td>
 
                                 </tr>
 

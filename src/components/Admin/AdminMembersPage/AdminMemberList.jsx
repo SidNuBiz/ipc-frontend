@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import {useSelector,useDispatch} from "react-redux"
-import { updateStatus } from "../../../actions/userAction";
+import {useSelector, useDispatch} from "react-redux"
+import { updateStatus, updateTaxCode } from "../../../actions/userAction";
 
 const AdminMemberList = ({ searchKey }) => {
 
@@ -13,6 +13,7 @@ const AdminMemberList = ({ searchKey }) => {
 
     var [showModal, setShowModal] = useState(false);
     const [userStatus,setUserStatus] = useState("")
+    const [userTaxCode,setUserTaxCode] = useState("")
 
     var [thisMember, setThisMember] = useState({
 
@@ -40,6 +41,12 @@ const AdminMemberList = ({ searchKey }) => {
         
     }
 
+    const changeUserTaxCode = (e) =>{
+        setUserTaxCode(e.target.value)
+        dispatch(updateTaxCode(e.target.value,thisMember._id))
+        
+    }
+
     const options = [
         {
           label: "Inactive",
@@ -52,12 +59,39 @@ const AdminMemberList = ({ searchKey }) => {
        
       ];
 
+    const taxOptions = [
+        {
+            label: "No Tax",
+            value: "",
+        },
+        {
+            label: "GP",
+            value: "GP",
+        },
+        {
+            label: "G",
+            value: "G",
+        },
+        {
+            label: "P",
+            value: "P",
+        },
+        {
+            label: "H",
+            value: "H",
+        },
+        {
+            label: "HS",
+            value: "HS",
+        },
+    ]
+
     return (
         <div className="h-full">
             <div className="">
                 <ul className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-10">
                     {users && users.filter( member => member.firstname.toLowerCase().includes(searchKey.toLowerCase()) || member.lastname.toLowerCase().includes(searchKey.toLowerCase())).map((member, index) => (
-                        <li key={index} onClick={() => {setThisMember(member); setShowModal(true); setUserStatus(member.status)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
+                        <li key={index} onClick={() => {setThisMember(member); setShowModal(true); setUserStatus(member.status); setUserTaxCode(member.address.tax)}} className="bg-[#397f77] rounded-xl shadow-lg hover:scale-110 duration-300">
                             <div className="p-5 text-center text-white" >
 
                                 {/* Member Image */}
@@ -107,8 +141,17 @@ const AdminMemberList = ({ searchKey }) => {
 
                             <h2 className="text-white text-xl font-semibold mb-5 border-b-[2px] border-b-slate-100 pb-2">Basic Info</h2>
 
+                            {/* Status */}
+
                             <select value={userStatus} onChange={(e)=>changeUserStatus(e)}>
                                 {options.map((option) => (
+                                <option value={option.value}>{option.label}</option>
+                                ))}
+                            </select>
+
+                            {/* Tax Option */}
+                            <select className="mx-5" value={userTaxCode} onChange={(e)=>changeUserTaxCode(e)}>
+                                {taxOptions.map((option) => (
                                 <option value={option.value}>{option.label}</option>
                                 ))}
                             </select>

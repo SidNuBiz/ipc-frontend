@@ -214,30 +214,32 @@ const Invoice = () => {
                       </View>
                     </View>
                   </View>
-                  <View style={[styles.row,{fontSize:'10px',borderBottom:'1px solid #000',paddingBottom:'10px'}]}>
-                    <View style={[styles.colCenter,{flexBasis:'60px'}]}>
-                      <Text>{invoice.detail_lines[0].quantity}</Text>
+                  {invoice.detail_lines.map((item)=>(
+                    <View style={[styles.row,{fontSize:'10px',borderBottom:'1px solid #000',paddingBottom:'10px'}]}>
+                      <View style={[styles.colCenter,{flexBasis:'60px'}]}>
+                        <Text>{item.quantity}</Text>
+                      </View>
+                      <View style={[styles.col,{flexBasis:'167px',paddingLeft:'3px'}]}>
+                        <Text>{item.item_description}</Text>
+                      </View>
+                      <View style={[styles.colCenter,{flexBasis:'75px'}]}>
+                        <Text>{item.price}</Text>
+                      </View>
+                      <View style={[styles.colCenter,{flexBasis:'70px'}]}>
+                        <Text></Text>
+                      </View>
+                      <View style={[styles.colCenter,{flexBasis:'75px'}]}>
+                      {item.tax_lines.map(taxDetail => (
+                          <Text>{taxDetail.tax_authority}: {taxDetail.tax_amount}</Text>
+                      ))}
+                      </View>
+                      <View style={[styles.colRight,{flexBasis:'75px'}]}>
+                        <Text>{JSON.parse(item.price)+JSON.parse(item.tax_lines[0].tax_amount) }</Text>
+                      </View>
+  
                     </View>
-                    <View style={[styles.col,{flexBasis:'167px',paddingLeft:'3px'}]}>
-                      <Text>{invoice.detail_lines[0].item_description}</Text>
-                    </View>
-                    <View style={[styles.colCenter,{flexBasis:'75px'}]}>
-                      <Text>{invoice.detail_lines[0].price}</Text>
-                    </View>
-                    <View style={[styles.colCenter,{flexBasis:'70px'}]}>
-                      <Text></Text>
-                    </View>
-                    <View style={[styles.colCenter,{flexBasis:'75px'}]}>
-                    {invoice.tax_lines.map(tax => (
-                        <Text>{tax.tax_authority}: {tax.tax_amount}</Text>
-                    ))}
-                    </View>
-                    <View style={[styles.colRight,{flexBasis:'75px'}]}>
-                      <Text>{invoice.total}</Text>
-                    </View>
-
-                  </View>
-                
+                  ))}
+          
                   <View style={[styles.tableFoot,{paddingHorizontal:10}]}>
                     <View style={[styles.row,{justifyContent:'space-between'}]}>
                       <View style={{textAlign:'left',textDecoration:'left'}} >

@@ -123,12 +123,12 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     }
 
     const turnaroundList = [
-        {label:"Standard", value: "standard"},
-        {label:"Rushed", value: "rushed"},
-        {label:"Standard Level 2", value: "standard level 2"},
-        {label:"Rushed Level 2", value: "rushed level 2"},
-        {label:"Standard Level 3", value: "standard level 3"},
-        {label:"Rushed Level 3", value: "rushed level 3"},
+        {label:"Standard", value: "StandardPricing"},
+        {label:"Rushed", value: "RushedPricing"},
+        {label:"Standard Level 2", value: "StandardPricingLvl2"},
+        {label:"Rushed Level 2", value: "RushedPricingLvl2"},
+        {label:"Standard Level 3", value: "StandardPricingLvl3"},
+        {label:"Rushed Level 3", value: "RushedPricingLvl3"},
     ]
 
     const addTest = ()=>{  
@@ -239,7 +239,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                     X
                     </button>
                 </span>
-                {<item.content testList={testList} setTestList={setTestList} idx={idx} categoryList={categoryList} setCategoryList={setCategoryList}  type={type} setType={setType} matrixForm={matrixForm} setMatrixForm={setMatrixForm} subMatrixForm={subMatrixForm} setSubMatrixForm={setSubMatrixForm} testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
+                {<item.content testList={testList} setTestList={setTestList} idx={idx} categoryList={categoryList} setCategoryList={setCategoryList}  type={type} setType={setType} matrixForm={matrixForm} setMatrixForm={setMatrixForm} testDataId = {item.id} sampleDataMerged={sampleDataMerged} testFormData={testFormData} setTestFormData={setTestFormData}/>}
             </div>
         ))}
      

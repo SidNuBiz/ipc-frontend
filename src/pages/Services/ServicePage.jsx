@@ -5,7 +5,7 @@ import ServiceImageGallerySection from "../../components/Services/ServicesMisc/S
 import ServiceOutlineSection from "../../components/Services/ServicesMisc/ServiceOutlineSection.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import { useRef, useEffect, Fragment } from "react";
-import { useParams } from "react-router-dom"; 
+import { useParams,Link } from "react-router-dom"; 
 import { useSelector} from "react-redux";
 import Loader from "../Loader.jsx";
 
@@ -95,7 +95,22 @@ const ServicePage = () => {
                      {/* Service outline Section */}
  
                      <div>
-                         <ServiceOutlineSection outline={services[params.id].outline} />
+                        <ServiceOutlineSection outline={services[params.id].outline} />
+                        {/* Test Now Button*/}
+
+                        {/* <Link to="/testing-submission" >
+                            <div >
+                                <button className=' bg-[#397f77] text-white text-xl px-20 py-2 hover:bg-[#18debb] duration-300 rounded-full'>Test Now</button>
+                            </div>
+                        </Link> */}
+
+                         {/* Pricing Button */}
+
+                         <Link to={`/store/all/testing-services/${services[params.id]._id}`}  >
+                            <div className="my-10">
+                                <button className=' bg-[#397f77] text-white text-xl px-20 py-2 hover:bg-[#18debb] duration-300 rounded-full'>Pricing</button>
+                            </div>
+                        </Link>
                      </div>
  
                  </div>

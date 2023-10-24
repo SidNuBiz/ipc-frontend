@@ -4,16 +4,12 @@ import CheckoutSection from "../../components/Store/CheckoutPage/CheckoutSection
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-
-
-
 const CheckoutPage = () => {
 
   const { user } = useSelector(
     (state) => state.user
   );
 
-  console.log(user)
 
   useEffect(() => {
     // 👇️ scroll to top on page load
