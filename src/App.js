@@ -64,7 +64,6 @@ import AdminFaqPageEdit from './pages/Admin/AdminFaqPageEdit';
 import AdminServiceHoverBoxPage from './pages/Admin/AdminServices/AdminServiceHoverBoxPage';
 import InvoiceX from './pages/invoiceX';
 
-
 function App() {
 
   useEffect ( () => {

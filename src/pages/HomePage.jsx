@@ -11,6 +11,7 @@ import axios from "axios";
 import { useAlert } from "react-alert";
 import {clearErrors} from "../actions/orderAction.js"
 
+
 const HomePage = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
@@ -48,7 +49,7 @@ const HomePage = () => {
 
         fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, [error,success]);
+    }, [error,success,loading]);
     
     // Scroll fuctions
 

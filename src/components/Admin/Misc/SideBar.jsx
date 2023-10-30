@@ -4,11 +4,14 @@ import { useState, useEffect , Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../actions/userAction";
 import Loader from "../../../pages/Loader";
+import socket from "../../../utils/socket";
+
 
 const SideBar = () => {
 
     const [state, setState] = useState(false);
     const [pageContentDropDown,setPageContentDropDown] = useState(false)
+    const [notificationCount,setNotificationCount] = useState(0)
 
     const dispatch = useDispatch()
     const { loading, user } = useSelector(
@@ -21,11 +24,40 @@ const SideBar = () => {
     };
 
     function logoutUser() {
-        dispatch(logout());        
+        dispatch(logout());
+       
     }
 
     useEffect(() => {
-
+        console.log("loading", loading);
+    
+        let timer;
+        let notificationsListener;
+    
+        if (!loading) {
+            // Clear the previous timer and listener (if any)
+            clearInterval(timer);
+            if (notificationsListener) {
+                socket.off('notificationsLength', notificationsListener);
+            }
+    
+            socket.emit('getNotificationsLength', user._id);
+            notificationsListener = (data) => {
+                setNotificationCount(data);
+            };
+            socket.on('notificationsLength', notificationsListener);
+    
+            timer = setInterval(() => {
+                socket.emit('getNotificationsLength', user._id);
+            }, 1000);
+        }
+    
+        return () => {
+            clearInterval(timer);
+            if (notificationsListener) {
+                socket.off('notificationsLength', notificationsListener);
+            }
+        };
     }, [loading]);
 
     return (
@@ -136,7 +168,7 @@ const SideBar = () => {
                                                     alt="activities-icon"
                                                     className="inline-block mr-4 w-fit mx-auto"
                                                 />
-                                                Notifications
+                                                Notifications <span className="text-red-500">{notificationCount}</span>
                                             </div>
                                         </NavLink>
                                     </li>

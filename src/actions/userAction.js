@@ -26,9 +26,10 @@ import {
 } from "../constants/userConstatns"
 import Cookies from 'js-cookie'
 import axios from "axios"
+import socket from "../utils/socket"
 // 
-const api = 'http://34.202.67.106:8080'
-// const api = 'http://localhost:8080'
+// const api = 'http://34.202.67.106:8080'
+const api = 'http://localhost:8080'
 
 const options = {
     expires:new Date(
@@ -45,6 +46,8 @@ export const login = (userData) => async (dispatch) => {
         Cookies.set('token', data.token,options) 
 
         dispatch({type:LOGIN_SUCCESS,payload:data.user})
+        socket.connect()
+        socket.emit('setUserId', data.user._id);
     }catch(error){
         dispatch({type:LOGIN_FAIL,payload:error.response.data.error})
     }
@@ -84,6 +87,7 @@ export const loadUser = () => async (dispatch) => {
         const { data } = await axios.get(`${api}/api/v1/me`,config);
     
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+        socket.emit('setUserId', data.user._id);
       }else{
         dispatch({ type: LOAD_USER_FAIL, payload: "Need to Login" }); 
       }
@@ -101,6 +105,7 @@ export const logout = () => async (dispatch) => {
       await axios.get(`${api}/api/v1/logout`);
   
       dispatch({ type: LOGOUT_SUCCESS });
+      socket.disconnect();
     } catch (error) {
       dispatch({ type: LOGOUT_FAIL, payload: error.response.data.error });
     }

@@ -9,8 +9,6 @@ const AdminOrderList = ({searchKey}) => {
     );
 
 
-    console.log(new Date().getMonth())
-
   return (
     <div>
 
@@ -20,7 +18,7 @@ const AdminOrderList = ({searchKey}) => {
                 {/* Order 1 */}
 
                 <ul>
-                    {orders && orders.filter( order => order._id.toLowerCase().includes(searchKey.toLowerCase())).map((order, index) => (
+                    {orders && orders.filter( order => order._id.toLowerCase().includes(searchKey.toLowerCase())).slice(0).reverse().map((order, index) => (
                         <li
                             key={index}
                             className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"

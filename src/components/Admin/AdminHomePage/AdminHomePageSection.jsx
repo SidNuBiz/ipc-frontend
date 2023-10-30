@@ -120,14 +120,14 @@ const AdminHomePageSection = () => {
 
             {/* Notification List */}
 
-            <div className="p-5 bg-white rounded-xl shadow-lg ">
-                {/* Heading */}
+            {/* <div className="p-5 bg-white rounded-xl shadow-lg ">
+              
 
                 <div className="flex justify-between mb-10">
 
                     <h2 className="inline-block align-middle w-fit text-2xl font-semibold text-gray-600">Notifications</h2>
 
-                    {/* See all Button */}
+             
 
                     <Link to="/IPC-admin-portal/notifications">
 
@@ -142,7 +142,7 @@ const AdminHomePageSection = () => {
                 </div>
 
                 
-            </div>
+            </div> */}
 
         </div>
 

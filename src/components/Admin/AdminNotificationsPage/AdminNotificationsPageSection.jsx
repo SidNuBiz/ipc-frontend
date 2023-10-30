@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminNotificationList from './AdminNotificationList'
-import { notifications, orders } from '../../../data/siteContent.js'
 import Loader from "../../../pages/Loader";
-import {getAllOrders} from "../../../actions/orderAction"
-import {useDispatch,useSelector} from "react-redux"
-import {useEffect,Fragment,useState} from "react"
+import {Fragment} from "react"
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
 
 const AdminNotificationsPageSection = () => {
-  const dispatch = useDispatch()
 
-  const { orders,loading } = useSelector(
-    (state) => state.allOrders
+  const [notifications, setNotifications] = useState([])
+
+  const { loading, user } = useSelector(
+    (state) => state.user
   );
 
-  useEffect(()=>{
-    dispatch(getAllOrders())
-  },[dispatch])
+  async function fetchNotifications() {
+    if(loading) return
+    const data = await axios.post('http://localhost:8080/api/v1/notification',{id:user._id})
+    await axios.patch('http://localhost:8080/api/v1/notification/all',{id:user._id})
+    setNotifications(data.data.notifications)
+  }
+
+  useEffect(() => {
+    fetchNotifications()
+  }, [loading])
 
   return (
     <Fragment>
@@ -35,7 +42,7 @@ const AdminNotificationsPageSection = () => {
 
               <div>
 
-                  <AdminNotificationList notifications={orders} />
+                  <AdminNotificationList notifications={notifications} />
 
               </div>
 

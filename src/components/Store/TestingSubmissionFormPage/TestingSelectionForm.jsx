@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
 import { newMap } from "../../../data/new-mapping";
@@ -26,6 +26,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const [amount, setAmount] = useState('')
     const [unit, setUnit] = useState('')
 
+    const [typeFormList,setTypeFormList] = useState([])
     const [matrixFormList, setMatrixFormList] = useState([])
     const [isAddOn, setIsAddOn] = useState(false)
     const [addOns,setAddOns] = useState([])
@@ -167,32 +168,18 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
 
     }
 
-    const tests = [
-        { 
-            label: 'Environmental',
-            value: 'Environmental',
-        },
-        { 
-            label: 'Cannabis',
-            value: 'Cannabis',
-        },
-        { 
-            label: 'Cosmetics',
-            value: 'Cosmetics',
-        },
-        { 
-            label: 'NHP',
-            value: 'NHP',
-        },
-        { 
-            label: 'Food',
-            value: 'Food',
-        },
-        {
-            label: 'Water',
-            value: 'Water'
-        }
-    ]
+
+    useEffect(()=>{
+        let typeArr = []
+        newMap.forEach(test => {
+            typeArr.push(...test.Type2)
+        })
+        setTypeFormList(
+            removeDuplicate(typeArr).map((data) => {
+                return {label:data,value:data}
+            })
+        )
+    },[])
 
    
 
@@ -210,7 +197,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                 <div>
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Type<span className='text-red-500'>*</span></label>
                     {
-                        idx == 0 ? <Select options={tests} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> : 
+                        idx == 0 ? <Select options={typeFormList} value={type} onChange={(e) =>{handleTypeChange(e); setType(e); }} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> : 
                         <input type='text' value={type.value} name='static-type' id='static-type' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                     }
                     
