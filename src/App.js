@@ -63,6 +63,7 @@ import AdminLegalPageEdit from './pages/Admin/AdminLegalPageEdit';
 import AdminFaqPageEdit from './pages/Admin/AdminFaqPageEdit';
 import AdminServiceHoverBoxPage from './pages/Admin/AdminServices/AdminServiceHoverBoxPage';
 import InvoiceX from './pages/invoiceX';
+import AdminMatrixEdit from './pages/Admin/AdminMatrixEdit';
 
 function App() {
 
@@ -158,8 +159,10 @@ function App() {
 
           <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage />} />
 
+          <Route path="/IPC-admin-portal/matrix"  element={<AdminMatrixEdit />} />
 
-           {/* Site Content Edit */}
+
+          {/* Site Content Edit */}
           <Route path="/IPC-admin-portal/home/edit" element={<AdminHomePageContentEdit />} />
           <Route path="/IPC-admin-portal/about/who-we-are/edit" element={<AdminWhoWeArePageContentEdit />} />
           <Route path="IPC-admin-portal/about/licensing/edit" element={<AdminLicensingPageEdit />} />
