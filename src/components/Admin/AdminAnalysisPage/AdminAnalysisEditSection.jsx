@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateAnalysis } from "../../../actions/analysisAction";
 import { useAlert } from 'react-alert';
+import axios from 'axios';
 
 const AdminAnalysisEditSection = ({thisAnalysis}) => {
 
@@ -11,13 +12,15 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const dispatch = useDispatch()
     const alert = useAlert()
 
+    const [matrixSearchKey, setMatrixSearchKey] = useState("")
+    const [matrixArr,setMatrixArr] = useState([])
+
     const [name, setName] = useState(thisAnalysis.name);
     const [testingCode, setTestingCode] = useState(thisAnalysis.testingCode);
     const [categories, setCategories] = useState(thisAnalysis.categories);
     const [type, setType] = useState(thisAnalysis.type.toString());
     const [componentList, setComponentList] = useState(thisAnalysis.componentList)
-    const [matrixForm, setMatrixForm] = useState(thisAnalysis.matrixForm.toString());
-    const [subMatrixForm, setSubMatrixForm] = useState(thisAnalysis.subMatrixForm.toString())
+    const [matrixForm, setMatrixForm] = useState(thisAnalysis.matrixForm);
     const [description, setDescription] = useState(thisAnalysis.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisAnalysis.uspNotUsedHeldDescOnly);
     const [uspAmtReq, setUspAmtReq] = useState(thisAnalysis.uspAmtReq);
@@ -31,7 +34,22 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const [sampleRequired, setSampleRequired] = useState(thisAnalysis.sampleRequired);
     const [unit, setUnit] = useState(thisAnalysis.unit);
 
-    // Reset add New Turnaround Fields 
+    const addMatrixToAnalysis = (matrix) => {
+      let con = true
+      matrixForm.forEach((item)=>{
+        if(item._id === matrix._id){
+          alert.error(matrix.name +' is already included')
+          con = false
+        }
+      })
+      if(con){
+        setMatrixForm([...matrixForm,matrix])
+      }
+    }
+  
+    const deleteMatrixFromAnalysis = (id) => {
+      setMatrixForm([...matrixForm.filter((matrix)=>matrix._id != id)])
+    }
 
     const updateThisAnalysis = () => {
     //   if(title.trim() === ""){
@@ -53,7 +71,6 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
        type,
        componentList,
        matrixForm,
-       subMatrixForm,
        description,
        uspNotUsedHeldDescOnly,
        uspAmtReq,
@@ -70,7 +87,14 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
       dispatch(updateAnalysis(analysis,thisAnalysis._id))
       navigate("/IPC-admin-portal/analyses")
     }
-
+    async function fetchData(){
+      const {data} =  await axios.get('http://localhost:8080/api/v1/matrix/all')
+      setMatrixArr(data.matrix)
+    }
+  
+    useEffect(() => {
+        fetchData()
+    }, []);
   return (
 
     <div>
@@ -124,15 +148,36 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
 
             <div className='mb-10'>
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Form</label>
+            </div>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixForm} onChange={(e)=>setMatrixForm(e.target.value)} required/>
+            {matrixForm.map((matrix,idx)=>(
+              <div className='m-5 flex'>
+                <span className='pr-2'>&#8226;</span>
+                <h2>{matrix.name}</h2>
+                <button onClick={() => deleteMatrixFromAnalysis(matrix._id)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
+
+              </div>
+            ))}
+
+            <div className="col-span-3 mt-10 sm:order-2">
+              
+              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
+              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
+
             </div>
             
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sub Matrix Form</label>
+            {matrixArr && matrixArr.filter( matrix => matrix.name.toLowerCase().includes(matrixSearchKey.toLowerCase())).map((matrix,idx) => (
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={subMatrixForm} onChange={(e)=>setSubMatrixForm(e.target.value)} required/>
-            </div>
+              matrixSearchKey.length > 0 ?<>
+                <div className='m-5 flex'>
+                  <span className='pr-2'>&#8226;</span>
+                  <h2>{matrix.name}</h2>
+                  <button onClick={() => addMatrixToAnalysis(matrix)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
+                </div>
+              </>:<></>
+
+            ))}
+            <div className='mb-10'></div>
 
             <div className='mb-10'>
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Categories</label>

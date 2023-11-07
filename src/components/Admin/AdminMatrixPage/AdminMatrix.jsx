@@ -38,7 +38,8 @@ const Matrix = ({matrix,setMatrixArr})=>{
             alert.error(error.response.data.error)
         }
     };
-
+    
+    // Delete Matrix
     async function deleteMatrix(id){
         try {
 

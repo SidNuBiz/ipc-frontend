@@ -15,6 +15,8 @@ const TestsPricingPage = () => {
     const {analyses} = useSelector(state=>state.analyses)
     const {packages} = useSelector(state=>state.packages)
 
+    console.log(analyses)
+
     useEffect(() => {
         // 👇️ scroll to top on page load
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -74,6 +76,8 @@ const TestsPricingPage = () => {
 
                                     <th className="text-left text-xl font-semibold border-2 px-3 py-1">Description</th>
 
+                                    {/* <th className="text-left text-xl font-semibold border-2 px-3 py-1">Matrix</th> */}
+
                                     {/* <th className="text-left text-xl font-semibold border-2 px-3 py-1">Sample Required</th> */}
 
                                     <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard Price</th>
@@ -113,6 +117,16 @@ const TestsPricingPage = () => {
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.description}</td>
 
+                                            {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">
+                                                {test.matrixForm.map((matrix, index) => (
+                                                    (
+                                                        <span key={index}>
+                                                            {index == 0 ? matrix.name : ", "+matrix.name} 
+                                                        </span>
+                                                    )
+                                                ))}
+                                            </td> */}
+
                                             {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.sampleRequired}</td> */}
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricing}</td>
@@ -125,7 +139,7 @@ const TestsPricingPage = () => {
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl3}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.sushedPricingLvl3}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl3}</td>
                                         </tr>
                                     ))}
 {/* 

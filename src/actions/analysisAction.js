@@ -15,8 +15,8 @@ import {
   } from "../constants/analysisConstants";
   import Cookies from "js-cookie";
   import axios from "axios";
-  const api = 'http://34.202.67.106:8080'
-  // const api = 'http://localhost:8080'
+  // const api = 'http://34.202.67.106:8080'
+  const api = 'http://localhost:8080'
   
   //Get All Analysis
   export const getAnalyses = ()=>async (dispatch)=>{  
@@ -29,16 +29,6 @@ import {
           if(data.type !== undefined){
             let editType =data.type.split(", ")
             data.type = editType
-          }
-      
-          if(data.matrixForm !== undefined){
-            let editMatrixForm =data.matrixForm.split(",")
-            data.matrixForm = editMatrixForm
-          }
-      
-          if(data.subMatrixForm !== undefined){
-            let editSubMatrixForm = data.subMatrixForm.split(",")
-            data.subMatrixForm = editSubMatrixForm
           }
         
           return data

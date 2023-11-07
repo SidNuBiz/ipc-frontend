@@ -1,9 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updatePackage } from "../../../actions/packageAction";
 import { useAlert } from 'react-alert';
+import axios from 'axios';
 
 const AdminPackageEditSection = ({thisPackage}) => {
 
@@ -14,16 +15,17 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const alert = useAlert()
 
     const [searchKey, setSearchKey] = useState("")
+    const [matrixSearchKey, setMatrixSearchKey] = useState("")
 
     const {analyses} = useSelector(state => state.analyses)
+    const [matrixArr,setMatrixArr] = useState([])
 
     const [name, setName] = useState(thisPackage.name);
     const [testingCode, setTestingCode] = useState(thisPackage.testingCode);
     const [categories, setCategories] = useState(thisPackage.categories);
     const [type, setType] = useState(thisPackage.type.toString());
     const [componentList, setComponentList] = useState(thisPackage.componentList)
-    const [matrixForm, setMatrixForm] = useState(thisPackage.matrixForm.toString());
-    const [subMatrixForm, setSubMatrixForm] = useState(thisPackage.subMatrixForm.toString())
+    const [packageMatrix, setPackageMatrix] = useState(thisPackage.matrixForm);
     const [description, setDescription] = useState(thisPackage.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisPackage.uspNotUsedHeldDescOnly);
     const [uspAmtReq, setUspAmtReq] = useState(thisPackage.uspAmtReq);
@@ -56,6 +58,23 @@ const AdminPackageEditSection = ({thisPackage}) => {
       setPackageTests([...packageTests.filter((analysis)=>analysis._id != id)])
     }
 
+    const addMatrixToPackage = (matrix) => {
+      let con = true
+      packageMatrix.forEach((item)=>{
+        if(item._id === matrix._id){
+          alert.error(matrix.name +' is already included')
+          con = false
+        }
+      })
+      if(con){
+        setPackageMatrix([...packageMatrix,matrix])
+      }
+    }
+  
+    const deleteMatrixFromPackage = (id) => {
+      setPackageMatrix([...packageMatrix.filter((matrix)=>matrix._id != id)])
+    }
+
     const updateThisPackage = () => {
     //   if(title.trim() === ""){
     //     alert.error("Give a name for the service")
@@ -75,8 +94,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
        categories,
        type,
        componentList,
-       matrixForm,
-       subMatrixForm,
+       matrixForm:packageMatrix,
        description,
        uspNotUsedHeldDescOnly,
        uspAmtReq,
@@ -94,6 +112,16 @@ const AdminPackageEditSection = ({thisPackage}) => {
       dispatch(updatePackage(pack,thisPackage._id))
       navigate("/IPC-admin-portal/packages")
     }
+
+    async function fetchData(){
+      const {data} =  await axios.get('http://localhost:8080/api/v1/matrix/all')
+      setMatrixArr(data.matrix)
+    }
+  
+    useEffect(() => {
+        fetchData()
+    }, []);
+  
 
   return (
 
@@ -147,16 +175,38 @@ const AdminPackageEditSection = ({thisPackage}) => {
             </div>
 
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Form</label>
+              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form</label>
+            </div>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixForm} onChange={(e)=>setMatrixForm(e.target.value)} required/>
+            {packageMatrix.map((matrix,idx)=>(
+              <div className='m-5 flex'>
+                <span className='pr-2'>&#8226;</span>
+                <h2>{matrix.name}</h2>
+                <button onClick={() => deleteMatrixFromPackage(matrix._id)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
+
+              </div>
+            ))}
+
+            <div className="col-span-3 mt-10 sm:order-2">
+              
+              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
+              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
+
             </div>
             
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sub Matrix Form</label>
+            {matrixArr && matrixArr.filter( matrix => matrix.name.toLowerCase().includes(matrixSearchKey.toLowerCase())).map((matrix,idx) => (
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={subMatrixForm} onChange={(e)=>setSubMatrixForm(e.target.value)} required/>
-            </div>
+              matrixSearchKey.length > 0 ?<>
+                <div className='m-5 flex'>
+                  <span className='pr-2'>&#8226;</span>
+                  <h2>{matrix.name}</h2>
+                  <button onClick={() => addMatrixToPackage(matrix)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
+                </div>
+              </>:<></>
+
+            ))}
+            <div className='mb-10'></div>
+  
 
             <div className='mb-10'>
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Categories</label>
