@@ -15,8 +15,8 @@ const AdminNotificationsPageSection = () => {
 
   async function fetchNotifications() {
     if(loading) return
-    const data = await axios.post('http://localhost:8080/api/v1/notification',{id:user._id})
-    await axios.patch('http://localhost:8080/api/v1/notification/all',{id:user._id})
+    const data = await axios.post('http://34.202.67.106:8080/api/v1/notification',{id:user._id})
+    await axios.patch('http://34.202.67.106:8080/api/v1/notification/all',{id:user._id})
     setNotifications(data.data.notifications)
   }
 

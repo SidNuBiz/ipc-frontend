@@ -48,8 +48,13 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         let matrixArr = []
         typeTests = newMap.filter(data => (data.Type2 !== undefined ? data.Type2.includes(e.value):false))
         typeTests.forEach(data => data.MatrixForm !== undefined ? matrixArr.push(...data.MatrixForm):false)
-        const selectMatrixArr = removeDuplicate(matrixArr).map((data) => {
-            return {label:data,value:data}
+        const uniqueObjects = {};
+        const result = matrixArr.filter(obj => {
+            const key = JSON.stringify(obj);
+            return uniqueObjects.hasOwnProperty(key) ? false : (uniqueObjects[key] = true);
+        });
+        const selectMatrixArr = result.map((data) => {
+            return {label:data.name,value:data.phraseId}
         })
         setMatrixFormList(selectMatrixArr)
        
@@ -64,7 +69,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setIsAddOn(false)
         setAddOns([])
         let categoriesArr = []
-        matrixFormTests = typeTests.filter(data => data.MatrixForm !== undefined ? data.MatrixForm.includes(e.value):false)
+        matrixFormTests = typeTests.filter(data => data.MatrixForm !== undefined ? data.MatrixForm.some(item => item.name === e.label):false)
         matrixFormTests.forEach(data => data.MatrixForm !== undefined ? categoriesArr.push(data.Categories):false)
         const selectCategoriesArr = removeDuplicate(categoriesArr).map((data) => {
             return {label:data,value:data}
@@ -119,7 +124,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         sampleDataMerged({td:[...filteredTestFormData,{
             id:testDataId,
             type:type.value,
-            matrixForm:matrixForm.value,
+            matrixForm:matrixForm.label,
+            matrixPhraseId:matrixForm.value,
             category:category.value,
             test:nameTests[0],
             addOn:addOns
@@ -137,7 +143,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         sampleDataMerged({td:[...filteredTestFormData,{
             id:testDataId,
             type:type.value,
-            matrixForm:matrixForm.value,
+            matrixForm:matrixForm.label,
+            matrixPhraseId:matrixForm.value,
             category:category.value,
             test:test,
             addOn:addOns
@@ -210,7 +217,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Matrix Form<span className='text-red-500'>*</span></label>
                     {
                         idx == 0 ? <Select options={matrixFormList} value={matrixForm} onChange={(e) => {handleMatrixChange(e); setMatrixForm(e);}} className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix /> : 
-                        <input type='text' value={matrixForm.value} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
+                        <input type='text' value={matrixForm.label} name='static-matrix' id='static-matrix' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                     }
                     
                 </div>

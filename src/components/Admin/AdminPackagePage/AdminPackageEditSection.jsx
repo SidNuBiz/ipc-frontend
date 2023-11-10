@@ -114,7 +114,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
     }
 
     async function fetchData(){
-      const {data} =  await axios.get('http://localhost:8080/api/v1/matrix/all')
+      const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/matrix/all')
       setMatrixArr(data.matrix)
     }
   

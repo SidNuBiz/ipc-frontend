@@ -28,7 +28,7 @@ const Matrix = ({matrix,setMatrixArr})=>{
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
-            const {data} = await axios.put(`http://localhost:8080/api/v1/matrix/update/${id}`,{name:matrixName,phraseId:matrixPhraseId},config)
+            const {data} = await axios.put(`http://34.202.67.106:8080/api/v1/matrix/update/${id}`,{name:matrixName,phraseId:matrixPhraseId},config)
             
             if(data.success){
                 alert.success("Successfully updated")
@@ -49,7 +49,7 @@ const Matrix = ({matrix,setMatrixArr})=>{
                 headers: { 'Authorization': `Bearer ${token}` },
             }
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/matrix/delete/${id}`,config)
+            const {data} = await axios.delete(`http://34.202.67.106:8080/api/v1/matrix/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

@@ -28,8 +28,8 @@ import Cookies from 'js-cookie'
 import axios from "axios"
 import socket from "../utils/socket"
 // 
-// const api = 'http://34.202.67.106:8080'
-const api = 'http://localhost:8080'
+const api = 'http://34.202.67.106:8080'
+// const api = 'http://localhost:8080'
 
 const options = {
     expires:new Date(

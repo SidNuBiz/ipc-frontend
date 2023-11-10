@@ -32,7 +32,7 @@ const AdminMatrixEdit = () => {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
-            const {data} = await axios.post(`http://localhost:8080/api/v1/matrix/create`,{name:matrixName,phraseId:matrixPhraseId},config)
+            const {data} = await axios.post(`http://34.202.67.106:8080/api/v1/matrix/create`,{name:matrixName,phraseId:matrixPhraseId},config)
             
             if(data.success){
                 alert.success("Successfully Created")
@@ -48,7 +48,7 @@ const AdminMatrixEdit = () => {
 
     // Fetch Matrix
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/matrix/all')
+        const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/matrix/all')
         setMatrixArr(data.matrix)
     }
 

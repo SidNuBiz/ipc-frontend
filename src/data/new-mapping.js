@@ -1622,8 +1622,18 @@ export const newMap = mapping.map(data => {
       
       let matrixWithPhrase = editMatrixForm.map(matrix => {
         let matrixName = matrixPhrase.find(phrase => phrase.name === matrix)
+
+        let correctName = matrix == "Dried Flower" ? "Dry Flower" : matrix
+        correctName = matrix == "Distilate" ? "Distillate" : correctName
+        correctName = matrix == "Extract(Solvent Based)" ? "Extrats (Solvent Based)" : correctName
+        correctName = matrix == "Tincture/Oil(Alcohol Based)" ? "Tincture/Oil (Alcohol Based)" : correctName
+        correctName = matrix == "Beverage" ? "Beverage (Non Cannabis)" : correctName
+        correctName = matrix == "Food" ? "Food Submission" : correctName
+       
+
+        
   
-        return {name:matrix,phraseID:matrixName.phraseId}
+        return {name:correctName,phraseId:matrixName.phraseId}
       })
       data.MatrixForm = matrixWithPhrase
     }
