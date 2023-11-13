@@ -34,7 +34,7 @@ const AdminPackageCreateSection = () => {
   const [rushedPricingLvl2, setRushedPricingLvl2] = useState(0);
   const [standardPricingLvl3, setStandardPricingLvl3] = useState(0);
   const [rushedPricingLvl3, setRushedPricingLvl3] = useState(0);
-  const [sampleRequired, setSampleRequired] = useState(0);
+  const [sampleRequired, setSampleRequired] = useState("");
   const [unit, setUnit] = useState("");
   const [packageTests,setPackageTests] = useState([])
 
@@ -278,7 +278,7 @@ const AdminPackageCreateSection = () => {
             <div className='mb-10'>
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sample Required</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
+              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
             </div>
 
             <div className='mb-10'>

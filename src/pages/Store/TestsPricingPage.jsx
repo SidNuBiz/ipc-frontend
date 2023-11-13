@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
-import {newMap} from "../../data/mapping-json.js"
 import { Link } from "react-router-dom";
 import {useSelector} from "react-redux"
 
@@ -13,9 +12,8 @@ const TestsPricingPage = () => {
     const [searchKey,setSearchKey] = useState('')
 
     const {analyses} = useSelector(state=>state.analyses)
-    const {packages} = useSelector(state=>state.packages)
+    // const {packages} = useSelector(state=>state.packages)
 
-    console.log(analyses)
 
     useEffect(() => {
         // 👇️ scroll to top on page load
@@ -106,8 +104,8 @@ const TestsPricingPage = () => {
                                     <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].sampleRequired}</td>
                                 </tr> */}
 
-                                {analyses && packages &&
-                                    [...analyses,...packages].filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
+                                {analyses && 
+                                    analyses.filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                         <tr
                                             key={index}
                                             className="border-b-2 border-gray-300">

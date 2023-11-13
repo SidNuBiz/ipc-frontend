@@ -71,7 +71,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
     store.dispatch(getService());
-    store.dispatch(mySample())
+    // store.dispatch(mySample())
     store.dispatch(getPackages());
     store.dispatch(getAnalyses());
     Aos.init({duration: 1500});

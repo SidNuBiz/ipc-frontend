@@ -27,7 +27,7 @@ import {
 
         data.analyses = data.analyses.map(data => {
           if(data.type !== undefined){
-            let editType =data.type.split(", ")
+            let editType =data.type.split(",")
             data.type = editType
           }
         

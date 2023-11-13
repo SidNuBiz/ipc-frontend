@@ -149,7 +149,7 @@ const ProfileSection = ({user}) => {
                                 Upload
                             </button>
 
-                            <input type="file" id="profile-photo-upload" className="hidden" accept="image/*" onChange={addUserImage}/>
+                            <input type="file" id="profile-photo-upload" className="hidden" accept="pdf/*" onChange={addUserImage}/>
                         </div>
                     </div>
 

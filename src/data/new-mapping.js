@@ -1629,10 +1629,7 @@ export const newMap = mapping.map(data => {
         correctName = matrix == "Tincture/Oil(Alcohol Based)" ? "Tincture/Oil (Alcohol Based)" : correctName
         correctName = matrix == "Beverage" ? "Beverage (Non Cannabis)" : correctName
         correctName = matrix == "Food" ? "Food Submission" : correctName
-       
 
-        
-  
         return {name:correctName,phraseId:matrixName.phraseId}
       })
       data.MatrixForm = matrixWithPhrase
