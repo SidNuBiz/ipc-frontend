@@ -4,7 +4,7 @@ import 'react-light-accordion/demo/css/index.css';
 
 
 const FaqAccordion = ({ data }) => {
-    console.log(data)
+
     return (
         <div className="lg:text-2xl md:text-2xl sm:text-xl">
             {data[0]!== undefined && <Accordion atomic={false}>

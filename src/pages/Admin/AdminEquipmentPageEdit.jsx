@@ -5,6 +5,7 @@ import axios from 'axios';
 import Equipment from '../../components/Admin/AdminEquipmentPage/AdminEquipment';
 import noImg from "../../assets/no-img.jpg"
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 
 const AdminEquipmentPageEdit = () => {
@@ -22,7 +23,7 @@ const AdminEquipmentPageEdit = () => {
         const config = {
             headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
         }
-        const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{equipment:e.target.value},config)
+        const {data} = await axios.put(`${url}/api/v1/updated/update`,{equipment:e.target.value},config)
         if(data.success){
         // alert.success("Date updated successfully")
         }
@@ -83,8 +84,8 @@ const AdminEquipmentPageEdit = () => {
       
             fileData.append('equipmentImage',equipmentImage)
           
-            const {data} = await axios.post(`http://localhost:8080/api/v1/equipment-details/create/`,{name,img:'no-img',description,model},config2)
-            const {data:equipment} = await axios.post(`http://localhost:8080/api/v1/equipment-details/image/${data.equipment._id}`,fileData,config)
+            const {data} = await axios.post(`${url}/api/v1/equipment-details/create/`,{name,img:'no-img',description,model},config2)
+            const {data:equipment} = await axios.post(`${url}/api/v1/equipment-details/image/${data.equipment._id}`,fileData,config)
             if(equipment.success){
               alert.success("Successfully Created")
               setEquipmentsArr([...equipmentsArr,equipment.equipment])
@@ -101,8 +102,8 @@ const AdminEquipmentPageEdit = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/equipment-details/all')
-        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
+        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
         setEquipmentsArr(data.equipments)
         setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
         dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()

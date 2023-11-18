@@ -3,6 +3,7 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import FaqAccordion from "./FaqAccordion";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import url from "../../../utils/baseApi";
 
 
 
@@ -54,7 +55,7 @@ const FaqSection = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/faq/all')
+        const {data} =  await axios.get(`${url}/api/v1/faq/all`)
         setFaq(data.faqs)
         const arr = faq.map((item)=> {if(item.category === 'General'){return item}})
         console.log(arr)

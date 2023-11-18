@@ -11,6 +11,7 @@ import axios from 'axios';
 import AdminServiceHoverBoxSection from '../../../components/Admin/AdminServicesPage/AdminServiceHoverBoxSection';
 import {getService} from "../../../actions/serviceAction"
 import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 
 const AdminServiceHoverBoxPage = () => {
@@ -93,7 +94,7 @@ const AdminServiceHoverBoxPage = () => {
             fileData.append('hoverBoxImage',hoverBoxImg)
             
     
-            const {data} = await axios.post(`http://localhost:8080/api/v1/service-hoverbox/create/${services[selectedServiceIdx]._id}`,fileData,config)
+            const {data} = await axios.post(`${url}/api/v1/service-hoverbox/create/${services[selectedServiceIdx]._id}`,fileData,config)
             if(data.success){
                 alert.success("created successfully")
                     

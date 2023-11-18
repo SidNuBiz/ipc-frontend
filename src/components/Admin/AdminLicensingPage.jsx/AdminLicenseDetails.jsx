@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
@@ -84,8 +85,8 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
       
             fileData.append('licenseImage',licenseImage)
           
-            await axios.put(`http://localhost:8080/api/v1/license-details/update/${id}`,{name,img:licenseDetails.img,description,'points':pointsArr},config2)
-            const {data:license} = await axios.post(`http://localhost:8080/api/v1/license-details/image/${id}`,fileData,config)
+            await axios.put(`${url}/api/v1/license-details/update/${id}`,{name,img:licenseDetails.img,description,'points':pointsArr},config2)
+            const {data:license} = await axios.post(`${url}/api/v1/license-details/image/${id}`,fileData,config)
             if(license.success){
               alert.success("Successfully Updated")
              
@@ -105,7 +106,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/license-details/delete/${id}`,config)
+            const {data} = await axios.delete(`${url}/api/v1/license-details/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

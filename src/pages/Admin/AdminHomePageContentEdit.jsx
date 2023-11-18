@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert';
 import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 const AdminHomePageContentEdit = () => {
   const alert = useAlert();
@@ -31,7 +32,7 @@ const AdminHomePageContentEdit = () => {
       const config = {
         headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` },
       };
-      const { data } = await axios.put("http://localhost:8080/api/v1/home-page-overview-details/update",
+      const { data } = await axios.put(`${url}/api/v1/home-page-overview-details/update`,
         {
           mission: { title: section1title, content: section1content },
           vision: { title: section2title, content: section2content },
@@ -57,7 +58,7 @@ const AdminHomePageContentEdit = () => {
       const config = {
         headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` },
       };
-      const { data } = await axios.put("http://localhost:8080/api/v1/home-page-contact-details/update",
+      const { data } = await axios.put(`${url}/api/v1/home-page-contact-details/update`,
         {
           location,
           email,
@@ -75,7 +76,7 @@ const AdminHomePageContentEdit = () => {
   }
 
   async function fetchData() {
-    const { data } = await axios.get('http://localhost:8080/api/v1/home-page-details');
+    const { data } = await axios.get(`${url}/api/v1/home-page-details`);
     const overviewSection = data.details[1].overviewSection;
     const contactSection = data.details[0].contactSection;
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 const Equipment = ({equipment,setEquipmentsArr})=>{
 
@@ -54,8 +55,8 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
       
             fileData.append('equipmentImage',equipmentImage)
            
-            await axios.put(`http://localhost:8080/api/v1/equipment-details/update/${id}`,{name,img:equipment.img,description,model},config2)
-            const {data:status} = await axios.post(`http://localhost:8080/api/v1/equipment-details/image/${id}`,fileData,config)
+            await axios.put(`${url}/api/v1/equipment-details/update/${id}`,{name,img:equipment.img,description,model},config2)
+            const {data:status} = await axios.post(`${url}/api/v1/equipment-details/image/${id}`,fileData,config)
             if(status.success){
               alert.success("Successfully Updated")
             }
@@ -73,7 +74,7 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
             const config = {
                 headers: { 'Authorization': `Bearer ${token}` },
             }
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/equipment-details/delete/${id}`,config)
+            const {data} = await axios.delete(`${url}/api/v1/equipment-details/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

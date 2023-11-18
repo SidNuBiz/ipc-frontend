@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import noImg from "../../assets/no-img.jpg"
 import TeamMember from '../../components/Admin/AdminWhoWeArePage/AdminTeamMember';
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 const AdminWhoWeArePageContentEdit = () => {
 
@@ -37,7 +38,7 @@ const AdminWhoWeArePageContentEdit = () => {
             const config = {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
-            const {data} = await axios.put("http://localhost:8080/api/v1/who-we-are-details/update",
+            const {data} = await axios.put(`${url}/api/v1/who-we-are-details/update`,
                 {
                     whoWeAre:[whoWeAre1,whoWeAre2,whoWeAre3]
                 },
@@ -70,7 +71,7 @@ const AdminWhoWeArePageContentEdit = () => {
             const config = {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
-            const {data} = await axios.put("http://localhost:8080/api/v1/our-story-details/update",
+            const {data} = await axios.put(`${url}/api/v1/our-story-details/update`,
                 {
                     ourStory:[ourStory1,ourStory2,ourStory3]
                 },
@@ -171,8 +172,8 @@ const AdminWhoWeArePageContentEdit = () => {
       
             fileData.append('memberImage',memberImage)
           
-            const {data} = await axios.post(`http://localhost:8080/api/v1//team-member/create/`,{name,img:"no-img",about,designations:designationsArr},config2)
-            const {data:member} = await axios.post(`http://localhost:8080/api/v1/team-member/image/${data.member._id}`,fileData,config)
+            const {data} = await axios.post(`${url}/api/v1//team-member/create/`,{name,img:"no-img",about,designations:designationsArr},config2)
+            const {data:member} = await axios.post(`${url}/api/v1/team-member/image/${data.member._id}`,fileData,config)
             if(member.success){
               alert.success("Successfully Created")
               setMembersArr([...membersArr,member.member])
@@ -189,14 +190,14 @@ const AdminWhoWeArePageContentEdit = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/who-we-are-page-details')
+        const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
         setWhoWeAre1(data.details[1].whoWeAreSection.whoWeAre[0])
         setWhoWeAre2(data.details[1].whoWeAreSection.whoWeAre[1])
         setWhoWeAre3(data.details[1].whoWeAreSection.whoWeAre[2])
         setOurStory1(data.details[0].ourStorySection.ourStory[0])
         setOurStory2(data.details[0].ourStorySection.ourStory[1])
         setOurStory3(data.details[0].ourStorySection.ourStory[2])
-        const {data:team} =  await axios.get('http://localhost:8080/api/v1/team-member/all')
+        const {data:team} =  await axios.get(`${url}/api/v1/team-member/all`)
         setMembersArr(team.details)
   
     }

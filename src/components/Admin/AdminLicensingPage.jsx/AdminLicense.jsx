@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 
 const License = ({license,setLicenseArr})=>{
@@ -28,7 +29,7 @@ const License = ({license,setLicenseArr})=>{
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
-            const {data} = await axios.put(`http://localhost:8080/api/v1/license/update/${id}`,{name:licenseName,number:licenseNumber},config)
+            const {data} = await axios.put(`${url}/api/v1/license/update/${id}`,{name:licenseName,number:licenseNumber},config)
             
             if(data.success){
                 alert.success("Successfully updated")
@@ -48,7 +49,7 @@ const License = ({license,setLicenseArr})=>{
                 headers: { 'Authorization': `Bearer ${token}` },
             }
 
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/license/delete/${id}`,config)
+            const {data} = await axios.delete(`${url}/api/v1/license/delete/${id}`,config)
             
             if(data.success){
                 alert.success("Successfully Deleted")

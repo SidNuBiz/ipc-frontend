@@ -10,6 +10,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import { useAlert } from "react-alert";
 import {clearErrors} from "../actions/orderAction.js"
+import url from "../utils/baseApi.js";
 
 
 const HomePage = () => {
@@ -30,7 +31,7 @@ const HomePage = () => {
     const [homePageDetails,setHomePageDetails] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/home-page-details')
+        const {data} =  await axios.get(`${url}/api/v1/home-page-details`)
         setHomePageDetails(data.details)
        
     }

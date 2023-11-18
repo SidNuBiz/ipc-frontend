@@ -7,6 +7,7 @@ import License from '../../components/Admin/AdminLicensingPage.jsx/AdminLicense'
 import AdminLicenseDetails from '../../components/Admin/AdminLicensingPage.jsx/AdminLicenseDetails';
 import noImg from "../../assets/no-img.jpg"
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 
 
@@ -24,7 +25,7 @@ const AdminLicensingPageEdit = () => {
             const config = {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
-            const {data} = await axios.put("http://localhost:8080/api/v1/updated/update",{license:e.target.value},config)
+            const {data} = await axios.put(`${url}/api/v1/updated/update`,{license:e.target.value},config)
             if(data.success){
             //   alert.success("Date updated successfully")
             }
@@ -114,7 +115,7 @@ const AdminLicensingPageEdit = () => {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
-            const {data} = await axios.post(`http://localhost:8080/api/v1/license/create`,{name:licenseName,number:licenseNumber},config)
+            const {data} = await axios.post(`${url}/api/v1/license/create`,{name:licenseName,number:licenseNumber},config)
             
             if(data.success){
                 alert.success("Successfully Created")
@@ -154,8 +155,8 @@ const AdminLicensingPageEdit = () => {
       
             fileData.append('licenseImage',licenseImage)
           
-            const {data} = await axios.post(`http://localhost:8080/api/v1/license-details/create/`,{name,img:'no-img',description,'points':pointsArr},config2)
-            const {data:license} = await axios.post(`http://localhost:8080/api/v1/license-details/image/${data.license._id}`,fileData,config)
+            const {data} = await axios.post(`${url}/api/v1/license-details/create/`,{name,img:'no-img',description,'points':pointsArr},config2)
+            const {data:license} = await axios.post(`${url}/api/v1/license-details/image/${data.license._id}`,fileData,config)
             if(license.success){
               alert.success("Successfully Created")
               setLicenseDetailsArr([...licenseDetailsArr,license.license])
@@ -175,13 +176,13 @@ const AdminLicensingPageEdit = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/license/all')
+        const {data} =  await axios.get(`${url}/api/v1/license/all`)
         setLicenseArr(data.licenses)
 
-        const {data:license} =  await axios.get('http://localhost:8080/api/v1/license-details/all')
+        const {data:license} =  await axios.get(`${url}/api/v1/license-details/all`)
         setLicenseDetailsArr(license.details)
 
-        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
         setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
         dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()
 

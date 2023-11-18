@@ -4,6 +4,7 @@ import Loader from "../../../pages/Loader";
 import {Fragment} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
+import url from '../../../utils/baseApi';
 
 const AdminNotificationsPageSection = () => {
 
@@ -15,8 +16,8 @@ const AdminNotificationsPageSection = () => {
 
   async function fetchNotifications() {
     if(loading) return
-    const data = await axios.post('http://34.202.67.106:8080/api/v1/notification',{id:user._id})
-    await axios.patch('http://34.202.67.106:8080/api/v1/notification/all',{id:user._id})
+    const data = await axios.post(`${url}/api/v1/notification`,{id:user._id})
+    await axios.patch(`${url}/api/v1/notification/all`,{id:user._id})
     setNotifications(data.data.notifications)
   }
 

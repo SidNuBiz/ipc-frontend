@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import Logo from '../../assets/header-logo.png';
 import { useState,useEffect } from "react";
 import axios from "axios";
-
+import url from "../../utils/baseApi";
 
 const Footer = () => {
 
     const [homePageDetails,setHomePageDetails] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/home-page-details')
+        const {data} =  await axios.get(`${url}/api/v1/home-page-details`)
         setHomePageDetails(data.details)
        
     }

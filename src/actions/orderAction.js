@@ -22,8 +22,7 @@ import {
   import Cookies from 'js-cookie'
   import axios from "axios";
 
-  const api = 'http://34.202.67.106:8080'
-// const api = 'http://localhost:8080'
+  import api from '../utils/baseApi'
   
   // Create Order
   export const createOrder = (order) => async (dispatch) => {

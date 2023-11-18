@@ -4,6 +4,7 @@ import SideBar from '../../components/Admin/Misc/SideBar';
 import axios from 'axios';
 import Matrix from '../../components/Admin/AdminMatrixPage/AdminMatrix';
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 const AdminMatrixEdit = () => {
 
@@ -32,7 +33,7 @@ const AdminMatrixEdit = () => {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
             
-            const {data} = await axios.post(`http://34.202.67.106:8080/api/v1/matrix/create`,{name:matrixName,phraseId:matrixPhraseId},config)
+            const {data} = await axios.post(`${url}/api/v1/matrix/create`,{name:matrixName,phraseId:matrixPhraseId},config)
             
             if(data.success){
                 alert.success("Successfully Created")
@@ -48,7 +49,7 @@ const AdminMatrixEdit = () => {
 
     // Fetch Matrix
     async function fetchData(){
-        const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/matrix/all')
+        const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
         setMatrixArr(data.matrix)
     }
 

@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import {getService} from '../../../actions/serviceAction'
 import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 
 const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serviceId })=>{
@@ -81,7 +82,7 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
                 fileData.set('img',hoverBox.img)
             }
 
-            const {data} = await axios.put(`http://localhost:8080/api/v1/service-hoverbox/update/${serviceId}`,fileData,config)
+            const {data} = await axios.put(`${url}/api/v1/service-hoverbox/update/${serviceId}`,fileData,config)
             if(data.success){
 
                 alert.success("updated successfully")
@@ -98,7 +99,7 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
     async function deleteServiceHoverBox(){
         
         try{
-            const {data} = await axios.delete(`http://localhost:8080/api/v1/service-hoverbox/delete/${serviceId}/${idx}`)
+            const {data} = await axios.delete(`${url}/api/v1/service-hoverbox/delete/${serviceId}/${idx}`)
             if(data.success){
                 alert.success("deleted successfully")
                 // dispatch({type:'ALL_SERVICE_SUCCESS',payload:data.services})

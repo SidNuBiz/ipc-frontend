@@ -2,6 +2,7 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 // import Loader from '../../../Loader.jsx';
+import url from "../../../utils/baseApi";
 
 const LicensingAndAccreditationsSection = () => {
 
@@ -10,11 +11,11 @@ const LicensingAndAccreditationsSection = () => {
     const [date,setDate] = useState('')
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/license-details/all')
+        const {data} =  await axios.get(`${url}/api/v1/license-details/all`)
         setLicenseDetails(data.details)
-        const {data:license} = await axios.get('http://localhost:8080/api/v1//license/all')
+        const {data:license} = await axios.get(`${url}/api/v1//license/all`)
         setLicenses(license.licenses)
-        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
         setDate(new Date(updated.updated.license).getDate()+"/"+(new Date(updated.updated.license).getMonth()+1)+"/"+new Date(updated.updated.license).getFullYear()) 
        
        

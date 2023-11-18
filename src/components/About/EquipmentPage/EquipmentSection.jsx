@@ -1,6 +1,7 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 import axios from "axios";
 import { useState,useEffect } from "react";
+import url from "../../../utils/baseApi";
 
 const EquipmentSection = () => {
 
@@ -8,9 +9,9 @@ const EquipmentSection = () => {
     const [date,setDate] = useState('')
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/equipment-details/all')
+        const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
         setEquipments(data.equipments)
-        const {data:updated} =  await axios.get('http://localhost:8080/api/v1/updated/all')
+        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
         setDate(new Date(updated.updated.equipment).getDate()+"/"+(new Date(updated.updated.equipment).getMonth()+1)+"/"+new Date(updated.updated.equipment).getFullYear()) 
     }
 

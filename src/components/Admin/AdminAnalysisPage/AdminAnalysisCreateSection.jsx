@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { createAnalysis } from "../../../actions/analysisAction";
 import { useAlert } from 'react-alert';
 import axios from 'axios';
+import url from '../../../utils/baseApi';
 
 const AdminAnalysisCreateSection = () => {
 
@@ -91,7 +92,7 @@ const AdminAnalysisCreateSection = () => {
     }
 
     async function fetchData(){
-      const {data} =  await axios.get('http://34.202.67.106:8080/api/v1/matrix/all')
+      const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
       setMatrixArr(data.matrix)
     }
   

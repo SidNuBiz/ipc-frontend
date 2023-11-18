@@ -4,6 +4,7 @@ import SideBar from '../../components/Admin/Misc/SideBar';
 import { v4 as uuidv4 } from 'uuid';
 import { useAlert } from 'react-alert';
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 const AdminLegalPageEdit = () => {
 
@@ -49,7 +50,7 @@ const AdminLegalPageEdit = () => {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
 
-            const{data} = await axios.put("http://localhost:8080/api/v1/legal/update",{subHeading,description:paragraphsArr},config)
+            const{data} = await axios.put(`${url}/api/v1/legal/update`,{subHeading,description:paragraphsArr},config)
             if(data.success){
                 alert.success("Successfully updated")
             }
@@ -59,7 +60,7 @@ const AdminLegalPageEdit = () => {
     }
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/legal/get')
+        const {data} =  await axios.get(`${url}/api/v1/legal/get`)
         console.log(data)
         setSubHeading(data.legal.subHeading)
         setParagraphsArr(data.legal.description)

@@ -1,7 +1,7 @@
 import { useRef,useState,useEffect } from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
 import axios from 'axios';
-
+import url from "../../../utils/baseApi";
 
 const LegalSection = () => {
 
@@ -16,7 +16,7 @@ const LegalSection = () => {
     const [legal,setLegal] = useState({})
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/legal/get')
+        const {data} =  await axios.get(`${url}/api/v1/legal/get`)
 
         setLegal(data.legal)
        

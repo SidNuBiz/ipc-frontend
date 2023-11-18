@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import { deleteService } from "../../../actions/serviceAction";
 import { useAlert } from 'react-alert';
-
+import url from "../../../utils/baseApi";
 
 
 const AdminServiceList = ({searchKey}) => {

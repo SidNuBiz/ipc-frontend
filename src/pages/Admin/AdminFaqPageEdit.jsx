@@ -5,6 +5,7 @@ import axios from 'axios';
 import Faq from '../../components/Admin/AdminFaqPage/AdminFaq';
 import Select from 'react-select'
 import Cookies from 'js-cookie';
+import url from '../../utils/baseApi';
 
 const AdminFaqPageEdit = () => {
 
@@ -64,7 +65,7 @@ const AdminFaqPageEdit = () => {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
          
-            const {data} = await axios.post(`http://localhost:8080/api/v1/faq/create/`,{question,answer,category},config)
+            const {data} = await axios.post(`${url}/api/v1/faq/create/`,{question,answer,category},config)
           
             if(data.success){
               alert.success("Successfully Updated")
@@ -80,7 +81,7 @@ const AdminFaqPageEdit = () => {
     };
 
     async function fetchData(){
-        const {data} =  await axios.get('http://localhost:8080/api/v1/faq/all')
+        const {data} =  await axios.get(`${url}/api/v1/faq/all`)
         setFaqArr(data.faqs)
      
 

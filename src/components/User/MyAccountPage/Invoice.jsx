@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import axios from "axios";
 import Cookies from 'js-cookie'
 import { Document,Text,View, Page, PDFViewer,StyleSheet,Font,Link } from '@react-pdf/renderer';
+import url from '../../../utils/baseApi';
 
 
 const Invoice = () => {
@@ -30,7 +31,7 @@ const Invoice = () => {
                 'Authorization': `Bearer ${token}` 
               },
             };
-            const {data} = await axios.get(`http://34.202.67.106:8080/api/v1/invoice/${invoiceId}`,config)
+            const {data} = await axios.get(`${url}/api/v1/invoice/${invoiceId}`,config)
             console.log(data.invoice)
             setInvoice(data.invoice)
         }catch(error){
