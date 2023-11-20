@@ -77,7 +77,7 @@ export const createService = (serviceData,mainImage,icon,imageGallery) => async 
 };
 
 // Update Service
-export const updateService = (serviceData,mainImage,icon,imageGallery, id) => async (dispatch) => {
+export const updateService = (serviceData,mainImage,icon,imageGallery,prevImageGallery,id) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_SERVICE_REQUEST });
     const token = Cookies.get('token')
@@ -92,6 +92,7 @@ export const updateService = (serviceData,mainImage,icon,imageGallery, id) => as
 
     fileData.append('mainImage',mainImage)
     fileData.append('icon',icon)
+    fileData.append('prevImageGallery',JSON.stringify(prevImageGallery))
     imageGallery.forEach(image => {
       fileData.append('imageGallery',image)
     })

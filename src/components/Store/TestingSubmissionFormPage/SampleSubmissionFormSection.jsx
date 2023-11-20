@@ -123,12 +123,12 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     }
 
     const turnaroundList = [
-        {label:"Standard", value: "StandardPricing"},
-        {label:"Rushed", value: "RushedPricing"},
-        {label:"Standard Level 2", value: "StandardPricingLvl2"},
-        {label:"Rushed Level 2", value: "RushedPricingLvl2"},
-        {label:"Standard Level 3", value: "StandardPricingLvl3"},
-        {label:"Rushed Level 3", value: "RushedPricingLvl3"},
+        {label:"Standard", value: "standardPricing"},
+        {label:"Rushed", value: "rushedPricing"},
+        {label:"Standard Level 2", value: "standardPricingLvl2"},
+        {label:"Rushed Level 2", value: "rushedPricingLvl2"},
+        {label:"Standard Level 3", value: "standardPricingLvl3"},
+        {label:"Rushed Level 3", value: "rushedPricingLvl3"},
     ]
 
     const addTest = ()=>{  

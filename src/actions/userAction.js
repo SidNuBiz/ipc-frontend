@@ -88,7 +88,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
         socket.emit('setUserId', data.user._id);
       }else{
-        dispatch({ type: LOAD_USER_FAIL, payload: "Need to Login" }); 
+        dispatch({ type: LOAD_USER_FAIL, payload: null }); 
       }
       
     } catch (error) {

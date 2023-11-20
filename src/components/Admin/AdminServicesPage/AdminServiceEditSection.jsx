@@ -245,7 +245,7 @@ const AdminServiceEditSection = ({thisService}) => {
         icon:thisService.icon,
         imageGallery:dbImageGallery
       }
-      dispatch(updateService(service,mainImage,icon,imageGallery,thisService._id))
+      dispatch(updateService(service,mainImage,icon,imageGallery,thisService.imageGallery,thisService._id))
      
       navigate("/IPC-admin-portal/services")
     }

@@ -37,9 +37,9 @@ const CheckoutSection = ({user}) => {
     let taxPriceValue = 0
     mainFormData.sampleFormData.forEach(sample =>{
         sample.testFormData.forEach(tests=>{
-            console.log(parseFloat(tests.test[sample.selectedTurnaround.value]))
-            subTotalPriceValue = subTotalPriceValue + parseFloat(tests.test[sample.selectedTurnaround.value])
-            taxPriceValue = taxPriceValue + (parseFloat(tests.test[sample.selectedTurnaround.value]) * taxPercentage)/100
+            console.log(parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value])))
+            subTotalPriceValue = subTotalPriceValue + parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value]))
+            taxPriceValue = taxPriceValue + (parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value])) * taxPercentage)/100
         })
       })
      
