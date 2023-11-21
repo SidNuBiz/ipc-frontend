@@ -75,7 +75,7 @@ const CheckoutSection = ({user}) => {
         alert.error("Please fill up all the shipping address fields")
     }
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData,signatureBlob:mainFormData.signatureBlob}))
     dispatch({type:'MAIN_FORM_DATA',payload:{}})
     dispatch({type:'SAMPLE_FORM_DATA',payload:[]})
     navigate('/')

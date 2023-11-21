@@ -60,8 +60,8 @@ const TestingSubmissionFormPageSection = () => {
                 if(sample.testFormData[idx].test.packageTests !== undefined){        
                     sample.testFormData[idx].test.packageTests.forEach((singleTest) => {
                         sample.testFormData.forEach((item)=>{                        
-                            if(item.test.Name == singleTest.Name ){
-                                alert.error(`${sample.testFormData[idx].test.Name} has ${item.test.Name} included`)
+                            if(item.test.name == singleTest.name ){
+                                alert.error(`${sample.testFormData[idx].test.name} has ${item.test.name} included`)
                                 closeSubmit = false
                             }
                         })
@@ -81,7 +81,7 @@ const TestingSubmissionFormPageSection = () => {
 
         dispatch({type:'MAIN_FORM_DATA',payload:{
             sampleFormData,
-            // signature,
+            signatureBlob:signature.getTrimmedCanvas().toDataURL("image/png"),
             additionalInfo,
             acknowledgementCheck
         }})
