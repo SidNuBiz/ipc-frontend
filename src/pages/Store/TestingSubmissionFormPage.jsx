@@ -19,7 +19,7 @@ const TestingSubmissionFormPage = () => {
     dispatch({type:'MAIN_FORM_DATA_EMPTY'})
 
     useEffect(() => {
-        console.log(user)
+        
         if(user.address.zip.trim() == "" || user.address.city.trim() == "" || user.address.state.trim() == "" || user.address.country.trim() == "" || user.address.details.trim() == ""){
             navigate("/user/profile")
             alert.error("Please fill up billing information to submit a sample")

@@ -330,7 +330,7 @@ const CheckoutSection = ({user}) => {
 
                                     <td className="text-gray-600 text-2xl font-semibold">Total</td>
 
-                                    <td className="text-gray-600 text-right font-semibold text-2xl">C${subTotalPrice+shippingPrice+taxPrice}</td>
+                                    <td className="text-gray-600 text-right font-semibold text-2xl">C${(subTotalPrice+shippingPrice+taxPrice).toFixed(2)}</td>
 
                                 </tr>
 

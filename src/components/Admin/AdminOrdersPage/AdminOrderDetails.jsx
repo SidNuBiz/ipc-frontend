@@ -234,7 +234,7 @@ const AdminOrderDetails = ({ order }) => {
                                         {/* Name */}
 
                                         <div>
-                                        <h2 className=" text-md">{test.test.Name}
+                                        <h2 className=" text-md">{test.test.name}
                                             
                                             <p className="text-red-600" >
                                             {test.addOn.length > 0 && <>[</>}
@@ -254,7 +254,7 @@ const AdminOrderDetails = ({ order }) => {
                                         {/* Price */}
 
                                         <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2>
+                                        <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushedPricing' ? test.test.rushedPricing:test.test.standardPricing}</h2>
                                         </div>
 
                                     </div>

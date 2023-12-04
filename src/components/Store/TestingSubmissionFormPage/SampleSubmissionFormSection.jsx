@@ -4,6 +4,7 @@ import Select from 'react-select'
 import { useState,useEffect,useId } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
 import {useAlert} from "react-alert"
+import { v4 as uuidv4 } from 'uuid';
 
 const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
@@ -11,6 +12,8 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const alert = useAlert()
 
     const {sampleFormData} = useSelector(state => state.sampleFormSubmit)
+
+    const [thisSampleFormData,setThisSampleFormData] = useState(sampleFormData)
 
     const [type, setType] = useState(null)
     const [matrixForm, setMatrixForm] = useState(null)
@@ -60,15 +63,17 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const checkboxData = (e)=>{
        
         storageType[e.target.name].value = e.target.name === 'others' ?  e.target.value : e.target.checked
-        // setStorageType({
-        //     ...storageType,
-        //     [e.target.name]:e.target.name=='others' ?  e.target.value : e.target.checked
-        // })
         sampleDataMerged({sStorageType:storageType})
 
     }
-    let sampleData = {
-        id:useId()
+    
+    let selectStorageKeyId = {id:uuidv4()}
+
+    const [sampleData,setSampleData] = useState()
+    
+    const createUniqueID = (id)=>{ 
+        setThisSampleFormData([...sampleFormData,{id:id}])
+        setSampleData({id:id})
     }
     const sampleDataMerged = ({td=testFormData,sName=sampleName,sBatch=sampleBatch,sTurnaround=selectedTurnaround,sStorageType=storageType}={})=>{
         setTestFormData(td)
@@ -76,8 +81,8 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
         setSampleBatch(sBatch)
         setSelectedTurnaround(sTurnaround)
         setStorageType(sStorageType)
-        const updateSampleData = sampleFormData.map(sample => {
-  
+        const updateSampleData = thisSampleFormData.map(sample => {
+            console.log(sample.id,sampleData.id)
             if(sample.id===sampleData.id){
                 return {
                     id:sample.id,
@@ -91,8 +96,11 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                 return sample
             }
         })
-        
+
+       
+        setThisSampleFormData(updateSampleData)
         dispatch({type:'SAMPLE_FORM_DATA',payload:updateSampleData})
+        
 
     }
 
@@ -141,6 +149,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
     useEffect(()=>{
         dispatch({type:'SAMPLE_FORM_DATA',payload:[...sampleFormData,sampleData]})
+        createUniqueID(uuidv4())
     },[])
 
   return (
@@ -304,50 +313,50 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                         {/* Away From Light */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name='awayFromLight' id={'awayFromLight'+sampleData.id} />
-                            <label htmlFor={"awayFromLight"+sampleData.id}>Away From Light</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name='awayFromLight' id={'awayFromLight'+selectStorageKeyId.id} />
+                            <label htmlFor={"awayFromLight"+selectStorageKeyId.id}>Away From Light</label>
                         </div>
 
                         {/* Freezer */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="freezer"id={"freezer"+sampleData.id} />
-                            <label htmlFor={"freezer"+sampleData.id}> Freezer</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="freezer"id={"freezer"+selectStorageKeyId.id} />
+                            <label htmlFor={"freezer"+selectStorageKeyId.id}> Freezer</label>
                         </div>
 
                         {/* Hazardous */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hazardous" id={"hazardous"+sampleData.id} />
-                            <label htmlFor={"hazardous"+sampleData.id}> Hazardous</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hazardous" id={"hazardous"+selectStorageKeyId.id} />
+                            <label htmlFor={"hazardous"+selectStorageKeyId.id}> Hazardous</label>
                         </div>
 
                         {/* Hygroscopic */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hygroscopic" id={"hygroscopic"+sampleData.id} />
-                            <label htmlFor={"hygroscopic"+sampleData.id}> Hygroscopic</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="hygroscopic" id={"hygroscopic"+selectStorageKeyId.id} />
+                            <label htmlFor={"hygroscopic"+selectStorageKeyId.id}> Hygroscopic</label>
                         </div>
 
                         {/* Refrigeration */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="refrigeration" id={"refrigeration"+sampleData.id} />
-                            <label htmlFor={"refrigeration"+sampleData.id}> Refrigeration</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="refrigeration" id={"refrigeration"+selectStorageKeyId.id} />
+                            <label htmlFor={"refrigeration"+selectStorageKeyId.id}> Refrigeration</label>
                         </div>
 
                         {/* Room Temperature */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="roomTemperature" id={"roomTemperature"+sampleData.id} />
-                            <label htmlFor={"roomTemperature"+sampleData.id}>Room Temperature</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="roomTemperature" id={"roomTemperature"+selectStorageKeyId.id} />
+                            <label htmlFor={"roomTemperature"+selectStorageKeyId.id}>Room Temperature</label>
                         </div>
 
                         {/* N/​A */}
 
                         <div className='mb-2'>
-                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="na" id={"na"+sampleData.id} />
-                            <label htmlFor={"na"+sampleData.id}> N/A</label>
+                            <input type="checkbox" onChange={(e)=>{checkboxData(e)}} name="na" id={"na"+selectStorageKeyId.id} />
+                            <label htmlFor={"na"+selectStorageKeyId.id}> N/A</label>
                         </div>
 
                     </div>

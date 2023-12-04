@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
 import Select from 'react-select'
 import { useState } from 'react'
-import { newMap } from "../../../data/new-mapping";
 import {useSelector} from "react-redux"
 
 
 
 let typeTests
 let matrixFormTests
-let categoriesTests
 
 const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type, setType, matrixForm, setMatrixForm, testDataId, sampleDataMerged, testFormData}) => {
 
     const {analyses} = useSelector(state=>state.analyses)
-    console.log(analyses)
+  
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
           return i === self.indexOf(v);
@@ -21,6 +19,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
       
         return outputArray;
     }
+
+    const [categoriesTests,setCategoriesTests] = useState([])
       
     const [test,setTest] = useState(null)
 
@@ -72,6 +72,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setUnit('')
         setIsAddOn(false)
         setAddOns([])
+        setTestList([testList[0]])
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.matrixForm !== undefined ? data.matrixForm.some(item => item.name === e.label):false)
         matrixFormTests.forEach(data => data.matrixForm !== undefined ? categoriesArr.push(data.categories):false)
@@ -90,8 +91,10 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setIsAddOn(false)
         setAddOns([])
         let testNameArr = []
-        categoriesTests = matrixFormTests.filter(data => data.categories === e.value)
-        categoriesTests.forEach(data => data.name !== undefined ? testNameArr.push(data.name):false)
+        let filteredArr = matrixFormTests.filter(data => data.categories === e.value)
+        // categoriesTests = 
+        setCategoriesTests(filteredArr)
+        filteredArr.forEach(data => data.name !== undefined ? testNameArr.push(data.name):false)
         const selectTestNameArr = removeDuplicate(testNameArr).map((data) => {
             return {label:data,value:data}
         })
@@ -102,6 +105,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
+        console.log(categoriesTests)
         const nameTests = categoriesTests.filter(data => data.name === e.value)
         console.log(nameTests)
         setTest(nameTests[0])
@@ -184,7 +188,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     useEffect(()=>{
         let typeArr = []
         analyses && analyses.forEach(test => {
-            console.log(test)
             typeArr.push(...test.type)
         })
         setTypeFormList(
