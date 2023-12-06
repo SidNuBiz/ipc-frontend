@@ -44,6 +44,8 @@ import AdminPackagesPage from './pages/Admin/AdminPackages/AdminPacckagePage';
 import AdminPackageCreatePage from './pages/Admin/AdminPackages/AdminPackageCreatePage';
 import AdminPackageEditPage from './pages/Admin/AdminPackages/AdminPackageEditPage';
 import AdminOrdersPage from './pages/Admin/AdminOrders/AdminOrdersPage';
+import AdminOrderSamplesPage from './pages/Admin/AdminOrderSamples/AdminOrderSamplesPage.jsx';
+import AdminOrderSampleDetails from './components/Admin/AdminOrderSamplesPage/AdminOrderSampleDetails.jsx';
 import AdminOrderView from './components/Admin/AdminOrdersPage/AdminOrderView';
 import AdminMembersPage from './pages/Admin/AdminMembers/AdminMembersPage';
 import AdminNotificationsPage from './pages/Admin/AdminNotifications/AdminNotificationsPage';
@@ -71,7 +73,7 @@ function App() {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
     store.dispatch(getService());
-    // store.dispatch(mySample())
+    store.dispatch(mySample())
     store.dispatch(getPackages());
     store.dispatch(getAnalyses());
     Aos.init({duration: 1500});
@@ -160,6 +162,12 @@ function App() {
           <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage />} />
 
           <Route path="/IPC-admin-portal/matrix"  element={<AdminMatrixEdit />} />
+
+          <Route path="/IPC-admin-portal/order/samples/:id"  element={<AdminOrderSamplesPage />} />
+
+          <Route path="/IPC-admin-portal/order/sample/:id"  element={<AdminOrderSampleDetails />} />
+
+
 
 
           {/* Site Content Edit */}

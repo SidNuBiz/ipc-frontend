@@ -152,27 +152,26 @@ import {
   };
   
   // Get Order Details
-  // export const getOrderDetails = (id) => async (dispatch) => {
-  //   try {
-  //     dispatch({ type: ORDER_DETAILS_REQUEST });
-  //     const token = Cookies.get('token')
-  //     const config = {
-  //       headers: {
-  //         'Authorization': `Bearer ${token}` 
-  //       },
-  //     };
+  export const getOrderDetails = (id) => async (dispatch) => {
+    try {
+      dispatch({ type: ORDER_DETAILS_REQUEST });
+      const token = Cookies.get('token')
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}` 
+        },
+      };
   
-  //     // const { data } = await axios.get(`/api/v1/order/${id}`);
-  //     const { data } = await axios.get(`${api}/api/v1/order/${id}`);
-  
-  //     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
-  //   } catch (error) {
-  //     dispatch({
-  //       type: ORDER_DETAILS_FAIL,
-  //       payload: error.response.data.error,
-  //     });
-  //   }
-  // };
+      // const { data } = await axios.get(`/api/v1/order/${id}`);
+      const { data } = await axios.get(`${api}/api/v1/admin/order/${id}`,config);
+      dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
+    } catch (error) {
+      dispatch({
+        type: ORDER_DETAILS_FAIL,
+        payload: error.response.data.error,
+      });
+    }
+  };
 
   // export const getInvoice = (id) => async() => {
 

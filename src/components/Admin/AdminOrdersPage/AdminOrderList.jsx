@@ -65,7 +65,7 @@ const AdminOrderList = ({searchKey}) => {
                             {/* View Details Button */}
 
                             <div className="w-fit mt-3 ml-auto">
-                                <Link to={`/IPC-admin-portal/orders/${index}`} className="inline-block">
+                                <Link to={`/IPC-admin-portal/orders/${order._id}`} className="inline-block">
                                     <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                 </Link>
                             </div>

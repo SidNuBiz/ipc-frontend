@@ -249,7 +249,7 @@ const OrderDetails = ({order,oId}) => {
                             {/* Name */}
 
                             <div>
-                              <h2 className=" text-md">{test.test.Name}</h2>
+                              <h2 className=" text-md">{test.test.name}</h2>
                             </div>
 
                             {/* Price */}

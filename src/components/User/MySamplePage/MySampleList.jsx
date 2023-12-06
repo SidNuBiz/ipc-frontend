@@ -4,10 +4,12 @@ import Loader from "../../../pages/Loader";
 import {mySample} from "../../../actions/limsAction"
 import {useDispatch,useSelector} from "react-redux"
 import {useEffect,Fragment} from "react"
+import { useAlert } from "react-alert";
 
 const SampleList = () => {
     // const loading = false
     const dispatch = useDispatch()
+    const alert = useAlert();
     const { samples,loading } = useSelector(
         (state) => state.mySample
     );
@@ -47,13 +49,34 @@ const SampleList = () => {
                             >
                                 <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5">
 
-                                    {/* OrderId */}
+                                    {/* Sample Name */}
 
                                     <div className="mb-3 px-5">
 
                                         <div className="">
                                             <b>Sample</b> <br />
                                             {sample.SAMPLE_NAME}
+                                        </div>
+
+                                    </div>
+
+                                    <div className="mb-3 px-5">
+
+                                        <div className="">
+                                            <b>Statue</b> <br />
+                                            {
+                                                sample.STATUS === 'V' ? 'Available' :
+                                                sample.STATUS === 'P' ? 'In Progress' :
+                                                sample.STATUS === 'C' ? 'Complete' :
+                                                sample.STATUS === 'U' ? 'Unavailable' :
+                                                sample.STATUS === 'W' ? 'Waiting for Preparation' :
+                                                sample.STATUS === 'X' ? 'Cancelled' :
+                                                sample.STATUS === 'I' ? 'Inspection' :
+                                                sample.STATUS === 'A' ? 'Authorised' :
+                                                sample.STATUS === 'S' ? 'Suspended' :
+                                                sample.STATUS === 'R' ? 'Rejected' :
+                                                "Status Unavailable "
+                                            }
                                         </div>
 
                                     </div>
@@ -72,9 +95,16 @@ const SampleList = () => {
                                 {/* View Details Button */}
 
                                 <div className="w-fit mt-5 ml-auto">
-                                    <Link to={`sample/${index}`} className="inline-block">
+                                    {
+                                        sample.STATUS === 'C' ?
+                                        (<Link to={`sample/${index}`}  className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
-                                    </Link>
+                                        </Link>) :
+                                        (<Link to={`sample/${index}`} onClick={ (event) => {event.preventDefault(); alert.error("Report can not be seen unless status is complete") }  } className="inline-block">
+                                        <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
+                                        </Link>)
+                                    }
+                                    
                                 </div>
                             </li>
                         ))}
