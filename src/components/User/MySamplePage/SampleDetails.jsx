@@ -2,10 +2,16 @@ import Loader from "../../../pages/Loader";
 import {mySampleResult} from "../../../actions/limsAction"
 import {useDispatch,useSelector} from "react-redux"
 import {useEffect,Fragment} from "react"
+import { useAlert } from "react-alert";
+import axios from "axios";
+import Cookies from "js-cookie";
+import url from "../../../utils/baseApi";
 
 const SampleDetails = ({ sample }) => {
 
     const dispatch = useDispatch()
+    const alert = useAlert();
+
     const { results,loading } = useSelector(
         (state) => state.mySampleResult
     );
@@ -13,6 +19,28 @@ const SampleDetails = ({ sample }) => {
     const { user } = useSelector(
         (state) => state.user
     );
+
+    async function downloadReport() {
+        const token = Cookies.get('token');
+        const config = {
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Authorization': `Bearer ${token}`,
+          },
+          responseType: 'arraybuffer', // Specify responseType as 'arraybuffer'
+        };
+      
+        try {
+          const response = await axios.get(`${url}/api/v1/cov/report`, config);
+      
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+          const report_url = URL.createObjectURL(blob);
+      
+          window.open(report_url, '_blank');
+        } catch (error) {
+          console.error('Error downloading report:', error.message);
+        }
+      }
 
 
     useEffect(()=>{
@@ -38,11 +66,18 @@ const SampleDetails = ({ sample }) => {
                     </button>
                 </div>
 
-                {/* Print Invoice Button */}
+                {/* Print Report Button */}
 
                 <div className=" w-fit ml-auto">
 
-                    <button  id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Report</button>
+                    {/* {
+                        sample.STATUS === 'C' ?
+                        <button  id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Download Report</button> : 
+                        <button  id="add-to-cart-btn" onClick={ (event) => {event.preventDefault(); alert.error("Report can not be downloaded unless status is complete") }}  className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Download Report</button>
+                    } */}
+
+                    <button  id="add-to-cart-btn" onClick={downloadReport} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>
+                    
    
                 </div>
 
@@ -137,7 +172,7 @@ const SampleDetails = ({ sample }) => {
                     </div>
 
                     <div>
-                        <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-3">Sample Result List <br/> <span className="text-red-500 text-sm">Result space empty means its not provided yet</span></h2>
+                        <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-3">Sample Test List</h2>
                        
                     </div>
 

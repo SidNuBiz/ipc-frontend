@@ -4,12 +4,12 @@ import Loader from "../../../pages/Loader";
 import {mySample} from "../../../actions/limsAction"
 import {useDispatch,useSelector} from "react-redux"
 import {useEffect,Fragment} from "react"
-import { useAlert } from "react-alert";
+
 
 const SampleList = () => {
     // const loading = false
     const dispatch = useDispatch()
-    const alert = useAlert();
+    
     const { samples,loading } = useSelector(
         (state) => state.mySample
     );
@@ -95,7 +95,7 @@ const SampleList = () => {
                                 {/* View Details Button */}
 
                                 <div className="w-fit mt-5 ml-auto">
-                                    {
+                                    {/* {
                                         sample.STATUS === 'C' ?
                                         (<Link to={`sample/${index}`}  className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
@@ -103,7 +103,11 @@ const SampleList = () => {
                                         (<Link to={`sample/${index}`} onClick={ (event) => {event.preventDefault(); alert.error("Report can not be seen unless status is complete") }  } className="inline-block">
                                         <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                         </Link>)
-                                    }
+                                    } */}
+
+                                        <Link to={`sample/${index}`}  className="inline-block">
+                                            <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
+                                        </Link>
                                     
                                 </div>
                             </li>
