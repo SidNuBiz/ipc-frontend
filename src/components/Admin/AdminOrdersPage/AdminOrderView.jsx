@@ -280,7 +280,7 @@ const AdminOrderView = () => {
                                                 {/* Price */}
 
                                                 <div className="text-right h-fit my-auto">
-                                                <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushedPricing' ? test.test.rushedPricing:test.test.standardPricing}</h2>
+                                                <h2 className=" text-md font-bold">C$ {test.test[item.selectedTurnaround.value]}</h2>
                                                 </div>
 
                                             </div>

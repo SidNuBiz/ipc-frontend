@@ -188,6 +188,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     useEffect(()=>{
         let typeArr = []
         analyses && analyses.forEach(test => {
+        
             typeArr.push(...test.type)
         })
         setTypeFormList(

@@ -212,8 +212,6 @@ const AdminServiceEditSection = ({thisService}) => {
     }
 
 
-    // Reset add New Turnaround Fields 
-
     const updateThisService = () => {
       if(title.trim() === ""){
         alert.error("Give a name for the service")

@@ -20,6 +20,8 @@ const AdminWhoWeArePageContentEdit = () => {
     const [whoWeAre2,setWhoWeAre2] = useState('')
     const [whoWeAre3,setWhoWeAre3] = useState('')
 
+    const [ourClients,setOurClients] = useState([]) 
+
 
     async function updateWhoWeAre(){
         if(whoWeAre1.trim() === ""){
@@ -189,6 +191,64 @@ const AdminWhoWeArePageContentEdit = () => {
     };
 
 
+    // Our Clients Image Gallery
+
+    const [imageGallery,setImageGallery] = useState([])
+    const [previewImageGallery,setPreviewImageGallery] = useState(ourClients.map((item,idx)=>{return{id:idx,image:item}}))
+    const [dbImageGallery,setDbImageGallery] = useState(ourClients)
+
+    const addToImageGallery = (e) => {
+      const files = Array.from(e.target.files);
+
+      files.forEach((file) => {
+        const reader = new FileReader();
+  
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+      
+            setPreviewImageGallery((old) => [...old, {id:e.target.files[0].name,image:reader.result}]);
+            setImageGallery((old) => [...old, e.target.files[0]]);
+         
+          }
+        };
+  
+        reader.readAsDataURL(file);
+      });
+    };
+
+    function deleteImage(image,id) {
+      setDbImageGallery(dbImageGallery.filter(item => item !== image))
+      setPreviewImageGallery(previewImageGallery.filter(item => item.image !== image))
+      setImageGallery(imageGallery.filter(item=>item.name !== id))
+    }
+
+    async function ourClientsImageGalleryUpdate(){
+        try{
+            const token = Cookies.get('token')
+
+            const config = {
+                headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
+            }
+
+            let fileData = new FormData()
+            fileData.append('newImageGallery',JSON.stringify(dbImageGallery))
+            fileData.append('oldImageGallery',JSON.stringify(ourClients))
+            imageGallery.forEach(image => {
+            fileData.append('imageGallery',image)
+            })
+
+            const {data} = await axios.post(`${url}/api/v1/our-clients/images`,fileData,config)
+
+            if(data.success){
+                alert.success("Gallery Updated Successfully ")
+            }
+
+        }catch (error) {
+            alert.error(error.response.data.error)
+        }
+    }
+
+
     async function fetchData(){
         const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
         setWhoWeAre1(data.details[1].whoWeAreSection.whoWeAre[0])
@@ -199,7 +259,11 @@ const AdminWhoWeArePageContentEdit = () => {
         setOurStory3(data.details[0].ourStorySection.ourStory[2])
         const {data:team} =  await axios.get(`${url}/api/v1/team-member/all`)
         setMembersArr(team.details)
-  
+        const {data:client} =  await axios.get(`${url}/api/v1/our-clients/images`)
+        setOurClients(client.item.imageGallery)
+        setPreviewImageGallery(client.item.imageGallery.map((item,idx)=>{return{id:idx,image:item}}))
+        setDbImageGallery(client.item.imageGallery)
+        
     }
 
     useEffect(() => {
@@ -219,8 +283,6 @@ const AdminWhoWeArePageContentEdit = () => {
                 <SideBar />
 
             </div>
-
-        
 
             <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
 
@@ -335,72 +397,72 @@ const AdminWhoWeArePageContentEdit = () => {
                     <div >
 
 
-                    <div> 
+                        <div> 
 
-                        <table className='w-full pt-1 mt-1 '>
+                            <table className='w-full pt-1 mt-1 '>
 
-                            <tbody>
+                                <tbody>
 
-                                <tr className=' text-gray-600 font-semibold'>
+                                    <tr className=' text-gray-600 font-semibold'>
 
-                                <td>
+                                    <td>
 
-                                    <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory1(e.target.value)}} value={ourStory1} placeholder='Slide 1' required />
-                                
+                                        <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory1(e.target.value)}} value={ourStory1} placeholder='Slide 1' required />
+                                    
 
-                                </td>
+                                    </td>
 
-                                </tr>
+                                    </tr>
 
-                            </tbody>
+                                </tbody>
 
-                        </table>
-
-                        </div>
-
-                        <div className='mt-5'> 
-
-                        <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
-
-                            <tbody>
-
-                                <tr className=' text-gray-600 font-semibold'>
-
-                                <td>
-
-                                    <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory2(e.target.value)}} value={ourStory2} placeholder='Slide 2' required />
-                                
-
-                                </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
+                            </table>
 
                         </div>
 
                         <div className='mt-5'> 
 
-                        <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
+                            <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
 
-                            <tbody>
+                                <tbody>
 
-                                <tr className=' text-gray-600 font-semibold'>
+                                    <tr className=' text-gray-600 font-semibold'>
 
-                                <td>
+                                    <td>
 
-                                    <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory3(e.target.value)}} value={ourStory3} placeholder='Slide 3' required />
-                                
+                                        <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory2(e.target.value)}} value={ourStory2} placeholder='Slide 2' required />
+                                    
 
-                                </td>
+                                    </td>
 
-                                </tr>
+                                    </tr>
 
-                            </tbody>
+                                </tbody>
 
-                        </table>
+                            </table>
+
+                        </div>
+
+                        <div className='mt-5'> 
+
+                            <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
+
+                                <tbody>
+
+                                    <tr className=' text-gray-600 font-semibold'>
+
+                                    <td>
+
+                                        <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setOurStory3(e.target.value)}} value={ourStory3} placeholder='Slide 3' required />
+                                    
+
+                                    </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
 
                         </div>
                     
@@ -561,6 +623,33 @@ const AdminWhoWeArePageContentEdit = () => {
                         
                     </div>
                 </div>
+
+
+                <h2 className='text-2xl text-[#397f77] font-semibold mb-5 mt-5'>Our Clients</h2>
+                <button onClick={() => {document.getElementById("client-img-gallery").click()}} className=" bottom-0 shadow-lg w-[200px] rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 ">Add Clietns Image</button>
+                <div>   
+                    <input id='client-img-gallery' type="file" className='hidden' accept="image/*" onChange={addToImageGallery}/>
+                </div>
+
+                <div className='mt-10 flex flex-wrap'> 
+
+                    {previewImageGallery.map((item,idx)=>(
+                        <div key={item.image} className=' m-5'>
+
+                    
+                        {/* Image */}
+            
+                        <div className=' h-fit relative  group'>
+                            <img src={item.image}  alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+                            <button onClick={() => deleteImage(item.image,item.id)} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#D10000] text-white hover:bg-[#FF0000] duration-300 lg:hidden md:hidden group-hover:block">Delete</button>
+                        </div>
+            
+            
+                        </div>
+                    ))}
+                </div>
+
+                <button onClick={ourClientsImageGalleryUpdate} className=" bottom-0 shadow-lg w-[200px] rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 ">Update</button>
             
 
             </div>

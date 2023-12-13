@@ -49,6 +49,7 @@ const SideBar = () => {
     
             timer = setInterval(() => {
                 socket.emit('getNotificationsLength', user._id);
+                console.log('getNotificationsLength');
             }, 1000);
         }
     

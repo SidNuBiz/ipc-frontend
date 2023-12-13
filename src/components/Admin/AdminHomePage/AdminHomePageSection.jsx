@@ -81,7 +81,7 @@ const AdminHomePageSection = () => {
                 <h2 className="text-xl text-gray-600 mb-5">Total Sales</h2>
 
                 {/* <h2 className="text-4xl text-[#397f77]">C${orders && orders.map(order =>(totalSale = totalSale + (+order.totalPrice)) )}</h2> */}
-                <h2 className="text-4xl text-[#397f77]">C${totalSale}</h2>
+                <h2 className="text-4xl text-[#397f77]">C${totalSale.toFixed(2)}</h2>
 
             </div>
 
