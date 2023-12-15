@@ -49,7 +49,7 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     }
   
     const deleteMatrixFromAnalysis = (id) => {
-      setMatrixForm([...matrixForm.filter((matrix)=>matrix._id != id)])
+      setMatrixForm([...matrixForm.filter((matrix)=>matrix.phraseId != id)])
     }
 
     const updateThisAnalysis = () => {
@@ -155,7 +155,7 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
               <div className='m-5 flex'>
                 <span className='pr-2'>&#8226;</span>
                 <h2>{matrix.name}</h2>
-                <button onClick={() => deleteMatrixFromAnalysis(matrix._id)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
+                <button onClick={() => deleteMatrixFromAnalysis(matrix.phraseId)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
 
               </div>
             ))}

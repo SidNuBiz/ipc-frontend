@@ -37,7 +37,6 @@ const CheckoutSection = ({user}) => {
     let taxPriceValue = 0
     mainFormData.sampleFormData.forEach(sample =>{
         sample.testFormData.forEach(tests=>{
-            console.log(parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value])))
             subTotalPriceValue = subTotalPriceValue + parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value]))
             taxPriceValue = taxPriceValue + (parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value])) * taxPercentage)/100
         })
@@ -75,7 +74,7 @@ const CheckoutSection = ({user}) => {
         alert.error("Please fill up all the shipping address fields")
     }
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice),products:mainFormData.sampleFormData,signatureBlob:mainFormData.signatureBlob,additionalInfo:mainFormData.additionalInfo}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice).toFixed(2),products:mainFormData.sampleFormData,signatureBlob:mainFormData.signatureBlob,additionalInfo:mainFormData.additionalInfo}))
     dispatch({type:'MAIN_FORM_DATA',payload:{}})
     dispatch({type:'SAMPLE_FORM_DATA',payload:[]})
     navigate('/')

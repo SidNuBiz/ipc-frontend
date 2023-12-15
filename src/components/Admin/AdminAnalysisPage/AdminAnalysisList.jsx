@@ -69,7 +69,7 @@ const AdminAnalysisList = ({searchKey}) => {
                                 {/* Edit Button */}
 
                                 <div className="inline-block align-middle mr-3 mb-3">
-                                    <Link to={`/IPC-admin-portal/analyses/${idx}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
+                                    <Link to={`/IPC-admin-portal/analyses/${analysis._id}`}><button className="bg-[#397f77] text-white px-5 py-2 rounded-lg hover:bg-[#18debb] duration-300"><img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/28/ffffff/external-edit-social-media-ui-tanah-basah-basic-outline-tanah-basah.png" alt=""/></button></Link>
                                 </div>
 
                                 {/* Delete Button */}

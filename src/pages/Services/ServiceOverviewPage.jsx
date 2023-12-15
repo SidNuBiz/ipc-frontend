@@ -44,9 +44,9 @@ const ServiceOverviewPage = () => {
 
                 {/* Testimonial Section */}
 
-                <div>
+                {/* <div>
                     <TestimonialSection />
-                </div>
+                </div> */}
 
             </div>
 
