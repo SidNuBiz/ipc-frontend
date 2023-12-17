@@ -1,6 +1,6 @@
 
 import HeroBackground from "../../assets/hero-background.mp4";
-import LogoWhite from "../../assets/logo-white.webp";
+import Logo from "../../assets/logo-white.png";
 import SectionBottomCurve from "../../assets/section-bottom-curve.png";
 
 const HeroSection = ({scrollToRef}) => {
@@ -11,7 +11,7 @@ const HeroSection = ({scrollToRef}) => {
                 <span data-aos="fade-in" data-aos-delay="200" className="block lg:text-6xl md:text-6xl sm:text-4xl w-fit mx-auto text-center mb-5">Welcome to</span>
 
                 <span data-aos="fade-in" data-aos-delay="600" className="block w-fit mx-auto">
-                    <img src={LogoWhite} alt="logo" />
+                    <img src={Logo} alt="logo" />
                 </span>
 
                 <span data-aos="fade-in" data-aos-delay="900" className="block lg:text-7xl md:text-7xl sm:text-5xl font-bold w-fit mx-auto text-center mb-2">Innovate</span>
