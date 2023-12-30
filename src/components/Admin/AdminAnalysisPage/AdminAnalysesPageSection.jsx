@@ -4,17 +4,19 @@ import AdminAnalysisList from "./AdminAnalysisList"
 import { useSelector, useDispatch } from "react-redux";
 import { getAnalyses } from "../../../actions/analysisAction";
 import Loader from "../../../pages/Loader";
+import { useAlert } from "react-alert";
 
 
 const AdminAnalysesSection = () => {
   const dispatch = useDispatch()
+  const alert = useAlert()  
 
   const[searchKey,setSearchKey] = useState('')
 
   const {loading} = useSelector(
     (state) => state.analyses
   );
-  const {loading:newAnalysisLoading} = useSelector(
+  const {error,success,loading:newAnalysisLoading} = useSelector(
     (state) => state.newAnalysis
   );
   const {loading:updateAnalysisLoading} = useSelector(
@@ -23,7 +25,16 @@ const AdminAnalysesSection = () => {
 
   useEffect(()=>{
     dispatch(getAnalyses())
+    if(success){
+      alert.success("Analysis created successfully")
+      dispatch({type:'NEW_ANALYSIS_RESET'})
+    }
+    if(error){
+      alert.error(error)
+      dispatch({type:'CLEAR_ERRORS'})
+    }
   },[dispatch,newAnalysisLoading])
+
 
   return (
 

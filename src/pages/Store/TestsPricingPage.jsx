@@ -80,13 +80,8 @@ const TestsPricingPage = () => {
 
                                     <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed Price</th>
 
-                                    <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard2 Price</th>
+                                    <th className="text-left text-xl font-semibold border-2 px-3 py-1">Urgent Price</th>
 
-                                    <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed2 Price</th>
-
-                                    <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard3 Price</th>
-
-                                    <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed3 Price</th>
                                 </tr>
                             </thead>
 
@@ -129,13 +124,8 @@ const TestsPricingPage = () => {
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl2}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.urgentPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl2}</td>
-
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl3}</td>
-
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl3}</td>
                                         </tr>
                                     ))}
 {/* 

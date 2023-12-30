@@ -28,6 +28,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const [testName, setTestName] = useState(null)
     const [description, setDescription] = useState('')
     const [amount, setAmount] = useState('')
+    const [testingMethod, setTestingMethod] = useState(null)
     const [unit, setUnit] = useState('')
 
     const [typeFormList,setTypeFormList] = useState([])
@@ -35,13 +36,17 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     const [isAddOn, setIsAddOn] = useState(false)
     const [addOns,setAddOns] = useState([])
     const [testNameList, setTestNameList] = useState(null) 
+    const [testingMethodList, setTestingMethodList] = useState([])
     
 
     function handleTypeChange(e) {
         
         setMatrixForm(null);
+        setMatrixFormList([])
         setCategory(null)
+        setCategoryList([])
         setTestName(null)
+        setTestNameList([])
         setDescription('')
         setAmount('')
         setUnit('')
@@ -49,6 +54,9 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setAddOns([])
         setTestList([testList[0]])
         setType(e.value)
+        setTestingMethod(null)
+        setTestingMethodList([])
+        setTest(null)
         let matrixArr = []
         typeTests = analyses && analyses.filter(data => (data.type !== undefined ? data.type.includes(e.value):false))
         typeTests.forEach(data => data.matrixForm !== undefined ? matrixArr.push(...data.matrixForm):false)
@@ -66,13 +74,18 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
 
     function handleMatrixChange(e) {
         setCategory(null)
+        setCategoryList([])
         setTestName(null)
+        setTestNameList([])
         setDescription('')
         setAmount('')
         setUnit('')
         setIsAddOn(false)
         setAddOns([])
         setTestList([testList[0]])
+        setTestingMethod(null)
+        setTestingMethodList([])
+        setTest(null)
         let categoriesArr = []
         matrixFormTests = typeTests.filter(data => data.matrixForm !== undefined ? data.matrixForm.some(item => item.name === e.label):false)
         matrixFormTests.forEach(data => data.matrixForm !== undefined ? categoriesArr.push(data.categories):false)
@@ -85,11 +98,15 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
 
     function handleCategoryChange(e) {
         setTestName(null)
+        setTestNameList([])
         setDescription('')
         setAmount('')
         setUnit('')
         setIsAddOn(false)
         setAddOns([])
+        setTestingMethod(null)
+        setTestingMethodList([])
+        setTest(null)
         let testNameArr = []
         let filteredArr = matrixFormTests.filter(data => data.categories === e.value)
         // categoriesTests = 
@@ -105,13 +122,23 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setDescription('')
         setAmount('')
         setUnit('')
-        console.log(categoriesTests)
+        setTest(null)
         const nameTests = categoriesTests.filter(data => data.name === e.value)
-        console.log(nameTests)
         setTest(nameTests[0])
         setDescription(nameTests[0].description)
         setAmount(nameTests[0].sampleRequired)
         setUnit(nameTests[0].unit)
+        setTestingMethod(null)
+        setTestingMethodList([])
+        
+        const testingMethodArr = []
+        if(nameTests[0].uspAmtReq !== null){
+            testingMethodArr.push({label:'USP',value:'USP'})
+        }
+        if(nameTests[0].euAmtReq !== null){
+            testingMethodArr.push({label:'EU',value:'EU'})
+        }
+        setTestingMethodList(testingMethodArr)
         if(nameTests[0].name == "Cannabis Potency Add On"){
             const addOnArr = []
           
@@ -142,6 +169,16 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
       
     }
 
+    const handleTestingMethodChange = (e) => {
+
+        if(e.label === 'USP'){
+            setAmount(test.uspAmtReq)
+        }
+        if(e.label === 'EU'){
+            setAmount(test.euAmtReq)
+        }
+    }
+
     const checkAddOn = (e,idx)=>{
         const addOnArr = addOns
         addOnArr[idx].value = e.target.checked
@@ -156,6 +193,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
             matrixPhraseId:matrixForm.value,
             category:category.value,
             test:test,
+            method:testingMethod,
             addOn:addOns
         }]})
     }
@@ -263,8 +301,10 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                     <input type='text' value={amount + ' ' + unit} name='amount' id='amount' className='w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none' disabled />
                 </div>
 
-               
-                
+                <div>
+                    <label htmlFor='testMethod' className='block mb-2 text-sm font-semibold'>Method<span className='text-red-500'>*</span></label>
+                    <Select options={testingMethodList} value={testingMethod}  onChange={(e)=>{setTestingMethod(e);handleTestingMethodChange(e)}} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
+                </div>
 
             </div>
 

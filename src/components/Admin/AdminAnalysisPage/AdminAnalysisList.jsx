@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import { deleteAnalysis } from "../../../actions/analysisAction";
@@ -8,6 +8,7 @@ const AdminAnalysisList = ({searchKey}) => {
     const dispatch = useDispatch()
 
     const alert = useAlert()
+
 
     const {analyses} = useSelector(
         (state) => state.analyses
@@ -20,22 +21,28 @@ const AdminAnalysisList = ({searchKey}) => {
 
     const deleteThisAnalysis = (analysisId,idx) => {
         dispatch(deleteAnalysis(analysisId))
-        console.log(analyses)
-        analysesList.splice(idx, 1)
-        console.log(analysesList)
-        setAnalysesList(analysesList)
-        dispatch({type:'ALL_ANALYSIS_SUCCESS',payload:{analyses:analysesList}})
+        const updateAnalysisList = analysesList.filter((analysis) => analysis._id !== analysisId);
+        setAnalysesList([...updateAnalysisList])
+        dispatch({type:'ALL_ANALYSIS_SUCCESS',payload:{analyses:updateAnalysisList}})
     }
 
     useEffect(()=>{
-       
+
         if(isUpdated){
-          alert.success("Analysis updated successfully")
-          dispatch({
-            type: 'UPDATE_ANALYSIS_SUCCESS',
-            payload: false,
-          });
+            alert.success("Analysis updated successfully")
+            dispatch({
+                type: 'UPDATE_ANALYSIS_RESET',
+            });
         }
+
+        if(isDeleted){
+            alert.error("Analysis deleted successfully")
+            dispatch({
+                type: 'DELETE_ANALYSIS_RESET',
+            });
+        }
+        
+       
     },[isUpdated,isDeleted,analysesList])
 
     return (

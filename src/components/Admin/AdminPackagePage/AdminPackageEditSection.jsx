@@ -28,15 +28,12 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [componentList, setComponentList] = useState(thisPackage.componentList)
     const [packageMatrix, setPackageMatrix] = useState(thisPackage.matrixForm);
     const [description, setDescription] = useState(thisPackage.description);
-    const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisPackage.uspNotUsedHeldDescOnly);
-    const [uspAmtReq, setUspAmtReq] = useState(thisPackage.uspAmtReq);
-    const [euAmtReq, setEuAmtReq] = useState(thisPackage.euAmtReq);
+    const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisPackage.uspNotUsedHeldDescOnly == "" ? null : thisPackage.uspNotUsedHeldDescOnly);
+    const [uspAmtReq, setUspAmtReq] = useState(thisPackage.uspAmtReq == null ? 0 : thisPackage.uspAmtReq);
+    const [euAmtReq, setEuAmtReq] = useState(thisPackage.euAmtReq == null ? 0 : thisPackage.euAmtReq);
     const [standardPricing, setStandardPricing] = useState(thisPackage.standardPricing);
     const [rushedPricing, setRushedPricing] = useState(thisPackage.rushedPricing);
-    const [standardPricingLvl2, setStandardPricingLvl2] = useState(thisPackage.standardPricingLvl2);
-    const [rushedPricingLvl2, setRushedPricingLvl2] = useState(thisPackage.rushedPricingLvl2);
-    const [standardPricingLvl3, setStandardPricingLvl3] = useState(thisPackage.standardPricingLvl3);
-    const [rushedPricingLvl3, setRushedPricingLvl3] = useState(thisPackage.rushedPricingLvl3);
+    const [urgentPricing, setUrgentPricing] = useState(thisPackage.urgentPricing);
     const [sampleRequired, setSampleRequired] = useState(thisPackage.sampleRequired);
     const [unit, setUnit] = useState(thisPackage.unit);
     const [packageTests,setPackageTests] = useState(thisPackage.packageTests)
@@ -94,18 +91,15 @@ const AdminPackageEditSection = ({thisPackage}) => {
        testingCode,
        categories,
        type,
-       componentList,
+       componentList:componentList == "" ? null : componentList,
        matrixForm:packageMatrix,
        description,
-       uspNotUsedHeldDescOnly,
-       uspAmtReq,
-       euAmtReq,
+       uspNotUsedHeldDescOnly:uspNotUsedHeldDescOnly == "" ? null : uspNotUsedHeldDescOnly,
+       uspAmtReq:uspAmtReq == 0 ? null : uspAmtReq,
+       euAmtReq:euAmtReq == 0 ? null : euAmtReq,
        standardPricing,
        rushedPricing,
-       standardPricingLvl2,
-       rushedPricingLvl2,
-       standardPricingLvl3,
-       rushedPricingLvl3,
+       urgentPricing,
        sampleRequired,
        unit,
        packageTests
@@ -252,27 +246,9 @@ const AdminPackageEditSection = ({thisPackage}) => {
             </div>
 
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Standard Price Level Two</label>
+              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricingLvl2} onChange={(e)=>setStandardPricingLvl2(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Rushed Price Level Two</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricingLvl2} onChange={(e)=>setRushedPricingLvl2(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Standard Price Level Three</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricingLvl3} onChange={(e)=>setStandardPricingLvl3(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Rushed Price Level Three</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricingLvl3} onChange={(e)=>setRushedPricingLvl3(e.target.value)} required/>
+              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
             </div>
 
             <div className='mb-10'>

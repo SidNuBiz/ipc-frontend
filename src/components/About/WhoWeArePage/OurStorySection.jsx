@@ -3,8 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GrayLogo from "../../../assets/logo-gray.png";
 import ParentCompanyLogo from "../../../assets/parent-company-logo.png";
 
-
-
 const OurStorySection = ({ourStorySlides}) => {
 
 return (

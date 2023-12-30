@@ -133,10 +133,8 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
     const turnaroundList = [
         {label:"Standard", value: "standardPricing"},
         {label:"Rushed", value: "rushedPricing"},
-        {label:"Standard Level 2", value: "standardPricingLvl2"},
-        {label:"Rushed Level 2", value: "rushedPricingLvl2"},
-        {label:"Standard Level 3", value: "standardPricingLvl3"},
-        {label:"Rushed Level 3", value: "rushedPricingLvl3"},
+        {label:"Urgent", value: "urgentPricing"},
+      
     ]
 
     const addTest = ()=>{  
@@ -291,7 +289,15 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
 
                         <p className=' text-md mb-3'>Standard: 5-10 <br /> Business Days</p>
 
-                        <p className=' text-md'>Rushed: Within 5 <br /> Business Days</p>
+                        <p className=' text-md mb-3'>Rushed: Within 5 <br /> Business Days</p>
+
+                        <p className=' text-md mb-3'>Urgent: 1-2 <br /> Business Days <span className=' text-md text-[red]'>[Not subject to MicroTesting] </span> </p>
+
+                        <p className=' text-md mb-3'>*Day 1 is the day after samples are received.</p>
+
+                        {/* <p className=' text-md text-[red]'>Urgent: **Not subject to MicroTesting </p> */}
+
+                        
 
                     </div>
                 </div>

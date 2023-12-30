@@ -107,25 +107,17 @@ const ServiceView = () => {
                                             <table className=" table-auto w-full">
                                                 <thead>
                                                     <tr className="border-b-2 border-gray-300">
-                                                        {/* <th className="text-left text-xl font-semibold border-2 px-3 py-1">Test Code</th> */}
 
                                                         <th className="text-left text-xl font-semibold border-2 px-3 py-1">Test Name</th>
 
                                                         <th className="text-left text-xl font-semibold border-2 px-3 py-1">Description</th>
 
-                                                        {/* <th className="text-left text-xl font-semibold border-2 px-3 py-1">Sample Required</th> */}
-
                                                         <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard Price</th>
 
                                                         <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed Price</th>
 
-                                                        <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard2 Price</th>
+                                                        <th className="text-left text-xl font-semibold border-2 px-3 py-1">Urgent Price</th>
 
-                                                        <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed2 Price</th>
-
-                                                        <th className="text-left text-xl font-semibold border-2 px-3 py-1">Standard3 Price</th>
-
-                                                        <th className="text-left text-xl font-semibold border-2 px-3 py-1">Rushed3 Price</th>
                                                     </tr>
                                                 </thead>
 
@@ -149,13 +141,8 @@ const ServiceView = () => {
 
                                                                 <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricing}</td>
 
-                                                                <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl2}</td>
+                                                                <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.urgentPricing}</td>
 
-                                                                <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl2}</td>
-
-                                                                <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricingLvl3}</td>
-
-                                                                <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricingLvl3}</td>
                                                             </tr>
                                                         ))}
                    

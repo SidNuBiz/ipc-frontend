@@ -3,7 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GrayLogo from "../../../assets/logo-gray.png";
 
 
-
 const WhoWeAreSection = ({whoWeAreSlides}) => {
 
 return (

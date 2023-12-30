@@ -1,7 +1,6 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
-// import Loader from '../../../Loader.jsx';
 import url from "../../../utils/baseApi";
 
 const LicensingAndAccreditationsSection = () => {

@@ -65,9 +65,10 @@ import {
         
     
       } catch (error) {
+        console.log(error)
         dispatch({
           type: NEW_ANALYSIS_FAIL,
-          payload: error
+          payload: error.response.data.error
         });
       }
   };
@@ -94,7 +95,7 @@ import {
     } catch (error) {
       dispatch({
         type: UPDATE_ANALYSIS_FAIL,
-        payload: error
+        payload: error.response.data.error
       });
     }
   };

@@ -17,6 +17,8 @@ import {
     DELETE_ANALYSIS_FAIL,
 
     CLEAR_ERRORS,
+    DELETE_ANALYSIS_RESET,
+    NEW_ANALYSIS_RESET,
   } from "../constants/analysisConstants";
   
   export const analysesReducer = (state = { analyses: [] }, action) => {
@@ -75,6 +77,11 @@ import {
           loading: false,
           error: action.payload,
         };
+      case NEW_ANALYSIS_RESET:
+        return {
+          ...state,
+          success: false,
+        };
       case CLEAR_ERRORS:
         return {
           ...state,
@@ -117,6 +124,11 @@ import {
         return {
           ...state,
           isUpdated: false,
+        };
+      case DELETE_ANALYSIS_RESET:
+        return {
+          ...state,
+          isDeleted: false,
         };
       case CLEAR_ERRORS:
         return {

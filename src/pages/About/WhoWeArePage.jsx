@@ -1,7 +1,6 @@
 import { useEffect,useState,Fragment } from 'react';
 import NavBar from '../../components/Misc/NavBar.jsx';
 import Footer from '../../components/Misc/Footer.jsx';
-import { whoWeArePageContents } from '../../data/siteContent.js';
 import WhoWeAreSection from '../../components/About/WhoWeArePage/WhoWeAreSection.jsx';
 import OurStorySection from '../../components/About/WhoWeArePage/OurStorySection.jsx';
 import MeetTheTeamSection from '../../components/About/WhoWeArePage/MeetTheTeamSection.jsx';
@@ -33,15 +32,12 @@ const WhoWeArePage = () => {
     }, []);
 
 
-    const pageContent = whoWeArePageContents;
-
-
   return (
-    // <Fragment>
-    // {whoWeArePageDetails.length === 0 || teamMembers.length === 0  ? (
-    //   <Loader />
-    // ) : (
-    // <Fragment>
+    <Fragment>
+    {whoWeArePageDetails.length === 0 || teamMembers.length === 0  ? (
+      <Loader />
+    ) : (
+    <Fragment>
         <div className='bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen'>
         
             {/* NavBar */}
@@ -109,9 +105,9 @@ const WhoWeArePage = () => {
 
         </div>
     
-    // </Fragment>
-    //   )}
-    // </Fragment>
+    </Fragment>
+      )}
+    </Fragment>
   );
 }
 

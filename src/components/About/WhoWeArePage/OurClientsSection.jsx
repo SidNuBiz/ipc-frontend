@@ -2,9 +2,6 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import GrayLogo from "../../../assets/logo-gray.png";
 
-
-
-
 const OurClientsSection = ({clients}) => {
 
     const responsive = {

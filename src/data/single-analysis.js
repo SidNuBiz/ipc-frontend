@@ -77,7 +77,7 @@ const mapping = [
     "RushedPricingLvl2": 60.8,
     "StandardPricingLvl3": 28.8,
     "RushedPricingLvl3": 57.6,
-    "SampleRequired": "No",
+    "SampleRequired": "N/A",
     "Unit": "g"
     },
     {
