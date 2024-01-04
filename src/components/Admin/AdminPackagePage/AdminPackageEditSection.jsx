@@ -6,6 +6,7 @@ import { updatePackage } from "../../../actions/packageAction";
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import url from '../../../utils/baseApi';
+import noImg from '../../../assets/no-img.jpg'
 
 const AdminPackageEditSection = ({thisPackage}) => {
 
@@ -37,6 +38,24 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [sampleRequired, setSampleRequired] = useState(thisPackage.sampleRequired);
     const [unit, setUnit] = useState(thisPackage.unit);
     const [packageTests,setPackageTests] = useState(thisPackage.packageTests)
+
+    const [mainImage,setMainImage] = useState()
+    const [previewMainImage,setPreviewMainImage] = useState(thisPackage.img)
+
+    const addPackageMainImage = (e) =>{
+      const files = Array.from(e.target.files);
+      console.log(files)
+      setPreviewMainImage('');
+      setMainImage(files[0]);
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setPreviewMainImage( reader.result);
+          
+        }
+      };
+    }
 
     const addTestToPackage = (analysis) => {
       let con = true
@@ -88,6 +107,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
     //   }
       const pack = {
        name,
+       img:thisPackage.img,
        testingCode,
        categories,
        type,
@@ -104,7 +124,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
        unit,
        packageTests
       }
-      dispatch(updatePackage(pack,thisPackage._id))
+      dispatch(updatePackage(pack,mainImage,thisPackage._id))
       navigate("/IPC-admin-portal/packages")
     }
 
@@ -134,6 +154,28 @@ const AdminPackageEditSection = ({thisPackage}) => {
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
             <button onClick={updateThisPackage} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+        </div>
+
+        {/* Service Main Image */}
+
+        <div className='h-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-5'>
+
+          {/* Image */}
+
+          <div className='block relative h-fit group'>
+            <img src={previewMainImage !== '' ? previewMainImage : noImg} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+
+            {/* Image Upload Button */}
+
+            <button onClick={() => {document.getElementById("package-img-upload").click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Main Image</button>
+          </div>
+
+          {/* Image Upload reference input for Button */}
+
+          <div>
+            <input id='package-img-upload' type="file" className='hidden' accept="image/*" onChange={addPackageMainImage}/>
+          </div>
+
         </div>
 
 
@@ -254,7 +296,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
             <div className='mb-10'>
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sample Required</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
+              <input id='service-code' type="text"  className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
             </div>
 
             <div className='mb-10'>

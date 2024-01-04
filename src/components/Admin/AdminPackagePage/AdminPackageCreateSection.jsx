@@ -6,6 +6,7 @@ import { createPackage } from "../../../actions/packageAction";
 import { useAlert } from 'react-alert';
 import axios from 'axios';
 import url from '../../../utils/baseApi';
+import noImg from '../../../assets/no-img.jpg'
 
 const AdminPackageCreateSection = () => {
 
@@ -35,6 +36,24 @@ const AdminPackageCreateSection = () => {
   const [sampleRequired, setSampleRequired] = useState("");
   const [unit, setUnit] = useState("");
   const [packageTests,setPackageTests] = useState([])
+
+  const [mainImage,setMainImage] = useState()
+  const [previewMainImage,setPreviewMainImage] = useState('')
+
+  const addPackageMainImage = (e) =>{
+    const files = Array.from(e.target.files);
+    console.log(files)
+    setPreviewMainImage('');
+    setMainImage(files[0]);
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setPreviewMainImage( reader.result);
+        
+      }
+    };
+  }
 
   const addTestToPackage = (analysis) => {
     let con = true
@@ -86,6 +105,7 @@ const AdminPackageCreateSection = () => {
   //   }
     const pack = {
       name,
+      img:"no-img",
       testingCode,
       categories,
       type,
@@ -102,7 +122,7 @@ const AdminPackageCreateSection = () => {
       unit,
       packageTests
     }
-    dispatch(createPackage(pack))
+    dispatch(createPackage(pack,mainImage))
     navigate("/IPC-admin-portal/packages")
   }
 
@@ -116,8 +136,7 @@ const AdminPackageCreateSection = () => {
   }, []);
 
   useEffect(()=>{
-    console.log("Data Updated")
-    console.log(matrixArr)
+
   },[packageTests.length,matrixArr.length])
 
   return (
@@ -138,6 +157,28 @@ const AdminPackageCreateSection = () => {
             <button onClick={addThisPackage} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
         </div>
 
+        {/* Service Main Image */}
+
+        <div className='h-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-5'>
+
+          {/* Image */}
+
+          <div className='block relative h-fit group'>
+            <img src={previewMainImage !== '' ? previewMainImage : noImg} alt="" className=" relative w-full h-64 object-cover rounded-xl" />
+
+            {/* Image Upload Button */}
+
+            <button onClick={() => {document.getElementById("package-img-upload").click()}} className=" absolute bottom-0 shadow-lg w-full rounded-xl px-5 py-3 bg-[#397f77] text-white hover:bg-[#18debb] duration-300 lg:hidden md:hidden group-hover:block">Change Main Image</button>
+          </div>
+
+          {/* Image Upload reference input for Button */}
+
+          <div>
+            <input id='package-img-upload' type="file" className='hidden' accept="image/*" onChange={addPackageMainImage}/>
+          </div>
+
+        </div>
+        
 
         {/* Service Info */}
 

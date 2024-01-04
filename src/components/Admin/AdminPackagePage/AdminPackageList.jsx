@@ -23,7 +23,6 @@ const AdminPackageList = ({searchKey}) => {
         dispatch(deletePackage(packageId))
       
         packagesList.splice(idx, 1)
-        console.log(packagesList)
         setPackagesList(packagesList)
         dispatch({type:'ALL_PACKAGE_SUCCESS',payload:{packages:packagesList}})
     }

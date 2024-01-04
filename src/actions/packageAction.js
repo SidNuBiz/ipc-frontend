@@ -24,27 +24,16 @@ import {
      
         const {data} = await axios.get(`${api}/api/v1/package/all`)
 
-        data.packages = data.packages.map(data => {
-          if(data.type !== undefined){
-            let editType =data.type.split(", ")
-            data.type = editType
-          }
-      
-          if(data.matrixForm !== undefined){
-            let editMatrixForm =data.matrixForm.split(",")
-            data.matrixForm = editMatrixForm
-          }
-      
-          if(data.subMatrixForm !== undefined){
-            let editSubMatrixForm = data.subMatrixForm.split(",")
-            data.subMatrixForm = editSubMatrixForm
+        data.packages = data.packages.map(packageData => {
+          if(packageData.type !== undefined){
+            let editType =packageData.type.split(", ")
+            packageData.type = editType
           }
         
-          return data
+          return packageData
         
         })
 
-  
         dispatch({type:ALL_PACKAGE_SUCCESS,payload:data})
     }catch(error){
         dispatch({
@@ -56,17 +45,25 @@ import {
   
   
   // Create Package
-  export const createPackage = (packageData,) => async (dispatch) => {
+  export const createPackage = (packageData,mainImage) => async (dispatch) => {
   
       try {
         dispatch({ type: NEW_PACKAGE_REQUEST });
         const token = Cookies.get('token')
 
         const config = {
+          headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
+        };
+
+        const config2 = {
             headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
         }
+
+        let fileData = new FormData()
+        fileData.append('mainImage',mainImage)
        
-        const {data} = await axios.post(`${api}/api/v1/package/create`,packageData,config)
+        const {data} = await axios.post(`${api}/api/v1/package/create`,packageData,config2)
+        await axios.post(`${api}/api/v1/package/image/${data.package._id}`,fileData,config)
         
         dispatch({
           type: NEW_PACKAGE_SUCCESS,
@@ -83,19 +80,25 @@ import {
   };
   
   // Update Package
-  export const updatePackage = (packageData,id) => async (dispatch) => {
+  export const updatePackage = (packageData,mainImage,id) => async (dispatch) => {
     try {
       dispatch({ type: UPDATE_PACKAGE_REQUEST });
       const token = Cookies.get('token')
   
    
       const config = {
+        headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
+      };
+
+      const config2 = {
           headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
       }
      
+      let fileData = new FormData()
+      fileData.append('mainImage',mainImage)
      
-      const {data} = await axios.put(`${api}/api/v1/package/update/${id}`,packageData,config)
-    
+      const {data} = await axios.put(`${api}/api/v1/package/update/${id}`,packageData,config2)
+      await axios.post(`${api}/api/v1/package/image/${data.package._id}`,fileData,config)
       dispatch(getPackages())
       dispatch({
         type: UPDATE_PACKAGE_SUCCESS,

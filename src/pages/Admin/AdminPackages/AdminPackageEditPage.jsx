@@ -38,7 +38,7 @@ const AdminPackageEditPage = () => {
 
               <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
 
-              <AdminPackageEditSection thisPackage = {packages.filter((pack)=>pack._id === packageId)}/>
+              <AdminPackageEditSection thisPackage = {packages.filter((pack)=>pack._id === packageId)[0]}/>
             
 
               </div>

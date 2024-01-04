@@ -164,6 +164,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
             matrixPhraseId:matrixForm.value,
             category:category.value,
             test:nameTests[0],
+            method:testingMethod,
             addOn:addOns
         }]})
       
@@ -177,6 +178,22 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         if(e.label === 'EU'){
             setAmount(test.euAmtReq)
         }
+
+        const filteredTestFormData = testFormData.filter(test => {
+            return test.id !== testDataId
+        })
+        sampleDataMerged({td:[...filteredTestFormData,{
+            id:testDataId,
+            type:type.value,
+            matrixForm:matrixForm.label,
+            matrixPhraseId:matrixForm.value,
+            category:category.value,
+            test:test,
+            method:e.label,
+            addOn:addOns
+        }]})
+
+
     }
 
     const checkAddOn = (e,idx)=>{
