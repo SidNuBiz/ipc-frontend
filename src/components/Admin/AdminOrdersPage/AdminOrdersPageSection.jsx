@@ -10,14 +10,38 @@ const AdminOrdersPageSection = () => {
   const dispatch = useDispatch()
 
   const[searchKey,setSearchKey] = useState('')
+  const [page, setPage] = useState(1);
 
-  const { loading } = useSelector(
+  const { loading,totalOrder } = useSelector(
       (state) => state.allOrders
   );
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        search();
+    }
+  };
+
+  function search(){
+    dispatch(getAllOrders(page,searchKey))
+  }
+
+  function setNextPage(){
+    console.log(totalOrder)
+    if(page*5 < totalOrder){
+      setPage(page+1)
+    }
+  }
+
+  function setPrevPage(){
+    if(page>1){
+      setPage(page-1) 
+    }
+  }
+
   useEffect(()=>{
-      dispatch(getAllOrders())
-  },[dispatch])
+      dispatch(getAllOrders(page))
+  },[dispatch,page])
 
   return (
     <Fragment>
@@ -40,7 +64,13 @@ const AdminOrdersPageSection = () => {
 
               <div className="">
 
-                <input type="text" placeholder="Search Orders" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)}/>
+                <input type="text" placeholder="Search Orders" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} onKeyDown={handleKeyDown}/>
+                <button
+                    className="text-[#397f77] text-md font-bold px-5 hover:underline rounded-full bg-[#397f77] text-white"
+                    onClick={search}
+                >
+                    Search
+                </button>
 
               </div>
 
@@ -49,7 +79,10 @@ const AdminOrdersPageSection = () => {
             {/* Services */}
 
             <div className="">
-              <AdminOrderList  searchKey = {searchKey} />
+              <AdminOrderList />
+              <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setNextPage}>Next</button>
+              <h1>{page}</h1>
+              <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setPrevPage}>Prev</button>
             </div>
           </div>
         </Fragment>

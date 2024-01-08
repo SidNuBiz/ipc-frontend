@@ -99,7 +99,8 @@ import {
       case ALL_ORDERS_SUCCESS:
         return {
           loading: false,
-          orders: action.payload,
+          orders: action.payload.orders,
+          totalOrder: action.payload.totalOrder,
         };
   
       case ALL_ORDERS_FAIL:

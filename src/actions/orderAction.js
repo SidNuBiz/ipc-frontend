@@ -75,7 +75,7 @@ import {
   };
   
   // Get All Orders (admin)
-  export const getAllOrders = () => async (dispatch) => {
+  export const getAllOrders = (page,searchKey = "") => async (dispatch) => {
     try {
       dispatch({ type: ALL_ORDERS_REQUEST });
 
@@ -87,9 +87,8 @@ import {
       };
   
      
-      const { data } = await axios.get(`${api}/api/v1/admin/orders`,config);
-  
-      dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
+      const { data } = await axios.get(`${api}/api/v1/admin/orders?page=${page}&searchKey=${searchKey}`,config);
+      dispatch({ type: ALL_ORDERS_SUCCESS, payload: {orders:data.orders,totalOrder:data.totalOrder} });
     } catch (error) {
       dispatch({
         type: ALL_ORDERS_FAIL,

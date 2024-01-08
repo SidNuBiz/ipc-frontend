@@ -158,15 +158,15 @@ export const addImage = (file) => async (dispatch) => {
 }
 
 // get All Users
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = (page,searchKey = "") => async (dispatch) => {
   try {
   
     dispatch({ type: ALL_USERS_REQUEST });
     const token = Cookies.get('token')
         
     const config = { headers:{'Authorization': `Bearer ${token}` }}
-    const { data } = await axios.get(`${api}/api/v1/users/all`,config);
-    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+    const { data } = await axios.get(`${api}/api/v1/users/all?page=${page}&searchKey=${searchKey}`,config);
+    dispatch({ type: ALL_USERS_SUCCESS, payload:{ users:data.users, totalUser:data.totalUser }});
   } catch (error) {
     
     dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.error });

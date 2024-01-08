@@ -1,17 +1,16 @@
 // import { useState } from "react";
 import LineChart from "./LineChart";
-import { members, orders } from "../../../data/siteContent";
-import { notifications } from "../../../data/siteContent";
-import AdminNotificationList from "../AdminNotificationsPage/AdminNotificationList";
 import { Link } from "react-router-dom";
 import AdminServiceList from "../AdminServicesPage/AdminServiceList";
 import { useState, useEffect } from "react";
 import AdminOrderList from "../AdminOrdersPage/AdminOrderList";
+import axios from "axios";
+import Cookies from "js-cookie";
+import url from "../../../utils/baseApi";
 
 import { useSelector, useDispatch } from "react-redux";
 import {getAllOrders} from "../../../actions/orderAction.js"
-import { getProduct } from "../../../actions/productAction.js";
-import {getAllUsers} from "../../../actions/userAction"
+import { getAllService } from "../../../actions/serviceAction.js";
 
 
 
@@ -19,32 +18,66 @@ const AdminHomePageSection = () => {
 
     const dispatch = useDispatch()
 
+    const[totalSale,setTotalSale] = useState(0)
+    const[totalOrder,setTotalOrder] = useState(0)
+    const[totalUser,setTotalUser] = useState(0)
+
     const[serviceSearchKey,setSearchKey] = useState('');
 
     const[orderSearchKey,setOrderSearchKey] = useState('');
 
-    let totalSale = 0
-
-    const {products} = useSelector(
-        (state) => state.products
-    );
-
-    const { orders } = useSelector(
-        (state) => state.allOrders
+    const {services} = useSelector(
+        (state) => state.services
     );
 
     const { users } = useSelector(
         (state) => state.allUsers
     );
 
-    orders && orders.forEach(order => {
-        totalSale = totalSale + order.totalPrice
-    });
+    async function totalSalesAndOrders(){
+        try {
+
+            const token = Cookies.get('token')
+            const config = {
+              headers: {
+                'Authorization': `Bearer ${token}` 
+              },
+            };
+          
+            const { data } = await axios.get(`${url}/api/v1/admin/orders/total-sales`,config);
+            setTotalSale(data.totalSales)
+            setTotalOrder(data.totalOrders)
+
+
+          }catch (error) {
+            console.log(error.response.data.error)
+          }
+    }
+
+    async function totalUsers(){
+        try {
+
+            const token = Cookies.get('token')
+            const config = {
+              headers: {
+                'Authorization': `Bearer ${token}` 
+              },
+            };
+          
+            const { data } = await axios.get(`${url}/api/v1/users/total`,config);
+            setTotalUser(data.totalUsers)  
+
+
+          }catch (error) {
+            console.log(error.response.data.error)
+          }
+    }
 
     useEffect(()=>{
-        dispatch(getAllOrders())
-        dispatch(getAllUsers())
-        dispatch(getProduct())
+        totalSalesAndOrders()
+        totalUsers()
+        dispatch(getAllOrders(1))
+        dispatch(getAllService())
 
     },[dispatch])
 
@@ -70,7 +103,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Orders</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{orders && orders.length}</h2>
+                <h2 className="text-4xl text-[#397f77]">{totalOrder}</h2>
 
             </div>
 
@@ -91,7 +124,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Services</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{products && products.length}</h2>
+                <h2 className="text-4xl text-[#397f77]">{services && services.length}</h2>
 
             </div>
 
@@ -101,7 +134,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Members</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{users && users.length}</h2>
+                <h2 className="text-4xl text-[#397f77]">{totalUser}</h2>
 
             </div>
 

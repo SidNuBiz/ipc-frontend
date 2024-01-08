@@ -11,9 +11,6 @@ import {
   DELETE_SERVICE_REQUEST,
   DELETE_SERVICE_SUCCESS,
   DELETE_SERVICE_FAIL,
-//   SERVICE_DETAILS_REQUEST,
-//   PRODUCT_DETAILS_FAIL,
-//   PRODUCT_DETAILS_SUCCESS,
   CLEAR_ERRORS,
 } from "../constants/serviceConstants";
 import Cookies from "js-cookie";
@@ -21,7 +18,7 @@ import axios from "axios";
 import api from '../utils/baseApi'
 
 //Get All Service
-export const getService = ()=>async (dispatch)=>{  
+export const getAllService = ()=>async (dispatch)=>{  
   try{
       dispatch({type:ALL_SERVICE_REQUEST})
    
@@ -100,7 +97,7 @@ export const updateService = (serviceData,mainImage,icon,imageGallery,prevImageG
    
     const {data} = await axios.put(`${api}/api/v1/service/update/${id}`,serviceData,config2)
     await axios.post(`${api}/api/v1/service/image/${data.service._id}`,fileData,config)
-    dispatch(getService())
+    dispatch(getAllService())
     dispatch({
       type: UPDATE_SERVICE_SUCCESS,
       payload: data.success,

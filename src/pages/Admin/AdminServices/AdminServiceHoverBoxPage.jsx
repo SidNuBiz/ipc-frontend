@@ -9,7 +9,7 @@ import Loader from "../../../pages/Loader";
 import Select from 'react-select'
 import axios from 'axios';
 import AdminServiceHoverBoxSection from '../../../components/Admin/AdminServicesPage/AdminServiceHoverBoxSection';
-import {getService} from "../../../actions/serviceAction"
+import {getAllService} from "../../../actions/serviceAction"
 import Cookies from 'js-cookie';
 import url from '../../../utils/baseApi';
 
@@ -104,7 +104,7 @@ const AdminServiceHoverBoxPage = () => {
                 setHoverBoxDescription('')
                 setHoverBoxBulletPointsArr([])
                 setHoverBoxBulletPoints('')
-                dispatch(getService())
+                dispatch(getAllService())
             }
         }catch(error){
             alert.error(error.response.data.error)

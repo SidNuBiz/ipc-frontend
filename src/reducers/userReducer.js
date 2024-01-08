@@ -172,7 +172,8 @@ import {
         return {
           ...state,
           loading: false,
-          users: action.payload,
+          users: action.payload.users,
+          totalUser: action.payload.totalUser
         };
   
       case ALL_USERS_FAIL:

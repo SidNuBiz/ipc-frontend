@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import {getService} from '../../../actions/serviceAction'
+import {getAllService} from '../../../actions/serviceAction'
 import Cookies from 'js-cookie';
 import url from '../../../utils/baseApi';
 
@@ -87,7 +87,7 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
 
                 alert.success("updated successfully")
                 // dispatch({type:'ALL_SERVICE_SUCCESS',payload:data.services})
-                dispatch(getService())
+                dispatch(getAllService())
             }
         }catch(error){
             alert.error(error.response.data.error)
@@ -103,7 +103,7 @@ const AdminServiceHoverBoxSection = ({idx, hoverBox, setSelectedServiceIdx, serv
             if(data.success){
                 alert.success("deleted successfully")
                 // dispatch({type:'ALL_SERVICE_SUCCESS',payload:data.services})
-                dispatch(getService())
+                dispatch(getAllService())
             }
         }catch(error){
             alert.error(error.response.data.error)

@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import AdminServiceList from "./AdminServiceList"
 import { useSelector, useDispatch } from "react-redux";
-import { getService } from "../../../actions/serviceAction";
+import { getAllService } from "../../../actions/serviceAction";
 import Loader from "../../../pages/Loader";
 
 
@@ -22,7 +22,7 @@ const AdminServicesSection = () => {
   )
 
   useEffect(()=>{
-    dispatch(getService())
+    dispatch(getAllService())
   },[dispatch,newServiceLoading])
 
   return (

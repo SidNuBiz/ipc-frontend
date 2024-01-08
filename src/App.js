@@ -6,7 +6,7 @@ import './App.css';
 import { loadUser } from "./actions/userAction";
 import { myOrders } from "./actions/orderAction";
 import { mySample } from "./actions/limsAction";
-import { getService } from './actions/serviceAction';
+import { getAllService } from './actions/serviceAction';
 import {getAnalyses} from './actions/analysisAction';
 import {getPackages} from './actions/packageAction'
 import store from "./store";
@@ -131,7 +131,7 @@ function App() {
   useEffect ( () => {
     store.dispatch(loadUser());
     store.dispatch(myOrders());
-    store.dispatch(getService());
+    store.dispatch(getAllService());
     store.dispatch(mySample())
     store.dispatch(getPackages());
     store.dispatch(getAnalyses());
