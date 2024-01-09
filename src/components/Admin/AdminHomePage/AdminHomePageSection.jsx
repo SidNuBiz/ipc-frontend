@@ -103,7 +103,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Orders</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{totalOrder}</h2>
+                <h2 className="text-2xl text-[#397f77]">{totalOrder}</h2>
 
             </div>
 
@@ -114,7 +114,8 @@ const AdminHomePageSection = () => {
                 <h2 className="text-xl text-gray-600 mb-5">Total Sales</h2>
 
                 {/* <h2 className="text-4xl text-[#397f77]">C${orders && orders.map(order =>(totalSale = totalSale + (+order.totalPrice)) )}</h2> */}
-                <h2 className="text-4xl text-[#397f77]">C${totalSale.toFixed(2)}</h2>
+                <h2 className="text-2xl text-[#397f77]">C${totalSale.toFixed(2)}</h2>
+                
 
             </div>
 
@@ -124,7 +125,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Services</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{services && services.length}</h2>
+                <h2 className="text-2xl text-[#397f77]">{services && services.length}</h2>
 
             </div>
 
@@ -134,7 +135,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Members</h2>
 
-                <h2 className="text-4xl text-[#397f77]">{totalUser}</h2>
+                <h2 className="text-2xl text-[#397f77]">{totalUser}</h2>
 
             </div>
 

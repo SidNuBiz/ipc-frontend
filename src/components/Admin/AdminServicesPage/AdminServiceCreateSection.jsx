@@ -263,7 +263,7 @@ const AdminServiceCreateSection = () => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button onClick={addThisService} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Create</button>
+            <button onClick={addThisService} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Create Service</button>
         </div>
 
 
@@ -835,6 +835,13 @@ const AdminServiceCreateSection = () => {
 
           </div>
 
+        </div>
+
+
+        {/* Create button */}
+
+        <div className="mt-10 flex justify-center">
+            <button onClick={addThisService} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Create Service</button>
         </div>
 
     </div>

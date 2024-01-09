@@ -53,13 +53,11 @@ export const login = (userData) => async (dispatch) => {
 }
 
 // Register
-export const register = (userData) => async (dispatch) => {
+export const register = (token) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_USER_REQUEST });
-
-      const config = { headers: { "Content-Type": "multipart/form-data" } };
   
-      const { data } = await axios.post(`${api}/api/v1/register`, userData, config);
+      const { data } = await axios.get(`${api}/api/v1/register/${token}`);
       // const { data } = await axios.post(`http://localhost:8080/api/v1/register`, userData, config);
       Cookies.set('token', data.token,options) 
   

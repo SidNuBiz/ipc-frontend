@@ -121,6 +121,7 @@ const AdminLegalPageEdit = lazy(() => import('./pages/Admin/AdminLegalPageEdit')
 const AdminFaqPageEdit = lazy(() => import('./pages/Admin/AdminFaqPageEdit'));
 const AdminServiceHoverBoxPage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceHoverBoxPage'));
 const AdminMatrixEdit = lazy(() => import('./pages/Admin/AdminMatrixEdit'));
+const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 // const InvoiceX = lazy(() => import('./pages/invoiceX'));
 
 
@@ -247,6 +248,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/signup" element={<SignUpPage />} />
+
+        <Route path="/verify-email/:token" element={<VerifyEmail />} />
 
         <Route path="/reset-pass/:token" element={<ResetPassPage />} />
 

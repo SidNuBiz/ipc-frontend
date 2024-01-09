@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, register } from "../actions/userAction";
 import {useNavigate} from "react-router-dom"
 import { useAlert } from "react-alert";
+import axios from "axios";
+import url from "../utils/baseApi";
 
 
 const SignUpPage = () => {
@@ -23,13 +25,26 @@ const SignUpPage = () => {
         (state) => state.user
     );
 
-    const registerUser = (e) => {
+    const registerUser = async (e) => {
         e.preventDefault()
         if(password === confirmPasswword){
-            dispatch(register({firstname,lastname,email,password}));
+            // dispatch(register({firstname,lastname,email,password}));
+            try{
+               
+                const config = { headers: { "Content-Type": "multipart/form-data" } };
+    
+                const { data } = await axios.post(`${url}/api/v1/verify`, {firstname,lastname,email,password}, config);
+                if(data.success){
+                    alert.success(data.message)
+                }
+
+            }catch(error){
+                console.log(error)
+                alert.error(error.message)
+            }
+
         }else{
-            alert.error("Password and confirm password did not mathc") 
-        
+            alert.error("Password and confirm password did not match")  
         }
         
     }
