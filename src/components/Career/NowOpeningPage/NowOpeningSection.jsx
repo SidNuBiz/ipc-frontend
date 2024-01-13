@@ -1,8 +1,6 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 
-
-
-const NowOpeningSection = ({nowOpening}) => {
+const NowOpeningSection = () => {
 
     return (
 

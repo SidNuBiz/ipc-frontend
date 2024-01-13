@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import NavBar from "../../components/Misc/NavBar.jsx";
 import FaqSection from "../../components/Store/FaqPage/FaqSection.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
-import { faq } from "../../data/siteContent.js";
-
-
 
 const FaqPage = () => {
 
@@ -28,7 +25,7 @@ const FaqPage = () => {
             {/* Page Section */}
 
             <div className="animate-crossfade">
-                <FaqSection faq={faq}/>
+                <FaqSection />
             </div>
 
             {/* Footer */}

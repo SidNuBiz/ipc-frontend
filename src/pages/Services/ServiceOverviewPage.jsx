@@ -1,7 +1,7 @@
 import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import ServiceOverviewSection from "../../components/Services/ServiceOverviewPage/ServiceOverviewSection.jsx";
-import TestimonialSection from "../../components/Services/ServiceOverviewPage/TestimonialSection.jsx";
+// import TestimonialSection from "../../components/Services/ServiceOverviewPage/TestimonialSection.jsx";
 import { useEffect , Fragment} from "react";
 import { useSelector} from "react-redux";
 import Loader from "../Loader.jsx";

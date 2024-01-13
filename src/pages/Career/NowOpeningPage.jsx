@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import NavBar from "../../components/Misc/NavBar.jsx";
 import Footer from "../../components/Misc/Footer.jsx";
 import NowOpeningSection from "../../components/Career/NowOpeningPage/NowOpeningSection.jsx";
-import { nowOpening } from "../../data/siteContent.js";
+// import { nowOpening } from "../../data/siteContent.js";
 
 
 
@@ -13,7 +13,7 @@ const NowOpeningPage = () => {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);
 
-    var pageContent = nowOpening;
+    // var pageContent = nowOpening;
 
     return (
 
@@ -29,7 +29,7 @@ const NowOpeningPage = () => {
             {/* Page Sections */}
 
             <div className="animate-crossfade">
-                <NowOpeningSection nowOpening={pageContent} />
+                <NowOpeningSection />
             </div>
 
 
