@@ -231,23 +231,6 @@ const ProfileSection = ({user}) => {
                         </div>
                     </div>
 
-                    {/* Birth Date */}
-
-                    {/* <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5">
-                        <div>
-                            <label htmlFor="birth-date" className="block text-lg text-gray-600 font-semibold mb-2">
-                                Birth Date
-                            </label>
-
-                            <input
-                                type="date"
-                                name="birth-date"
-                                id="birth-date"
-                                className=" bg-transparent w-full px-3 py-2 border-[1px] border-gray-300 focus:outline-none focus:border-[#397f77]"
-                            />
-                        </div>
-                    </div> */}
-
                     {/* Update Button */}
 
                     <div className="w-fit ml-auto my-10">

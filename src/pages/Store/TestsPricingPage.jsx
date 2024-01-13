@@ -86,39 +86,16 @@ const TestsPricingPage = () => {
                             </thead>
 
                             <tbody>
-                                {/* <tr className="border-b-2 border-gray-300">
-
-                                    <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].testCode}</td>
-
-                                    <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].name}</td>
-
-                                    <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].description}</td>
-
-                                    <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].sampleRequired}</td>
-                                </tr> */}
 
                                 {analyses && 
                                     analyses.filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                         <tr
                                             key={index}
                                             className="border-b-2 border-gray-300">
-                                            {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.testCode}</td> */}
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.name}</td>
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.description}</td>
-
-                                            {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">
-                                                {test.matrixForm.map((matrix, index) => (
-                                                    (
-                                                        <span key={index}>
-                                                            {index == 0 ? matrix.name : ", "+matrix.name} 
-                                                        </span>
-                                                    )
-                                                ))}
-                                            </td> */}
-
-                                            {/* <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.sampleRequired}</td> */}
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricing}</td>
 
@@ -128,54 +105,10 @@ const TestsPricingPage = () => {
 
                                         </tr>
                                     ))}
-{/* 
-                                <tr className="border-b-2 border-gray-300">
-                                    <td
-                                        colSpan={4}
-                                        className="text-left text-xl font-semibold border-2 px-3 py-1">
-                                        Regular Price
-                                    </td>
 
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalStandardPrice}</td>
-
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalStandard2Price}</td>
-
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalStandard3Price}</td>
-
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalRushedPrice}</td>
-
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalRushed2Price}</td>
-
-                                    <td className="text-left text-xl font-normal border-2 px-3 py-1">C${totalRushed3Price}</td>
-                                </tr> */}
-{/* 
-                                <tr className="border-b-2 border-gray-300">
-                                    <td
-                                        colSpan={4}
-                                        className="text-left text-xl font-semibold border-2 px-3 py-1">
-                                        Package Price
-                                    </td>
-
-                                    {thisPackage.turnaroundTypes &&
-                                        thisPackage.turnaroundTypes.map((turnaroundType, index) => (
-                                            <td
-                                                key={index}
-                                                className="text-left text-xl font-semibold border-2 px-3 py-1">
-                                                C${turnaroundType.price}
-                                            </td>
-                                        ))}
-                                </tr> */}
                             </tbody>
                         </table>
 
-                        {/* Description */}
-
-                        {/* <p className="lg:text-lg md:text-lg sm:text-base text-gray-600 mt-10">{thisPackage && thisPackage.description}</p>
-                        <Link to="/testing-submission">
-                            <div className="mt-10">
-                                <button id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Submit a Sample</button>
-                            </div>
-                        </Link> */}
                     </div>
                 </div>
 

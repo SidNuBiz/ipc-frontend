@@ -152,17 +152,6 @@ const LicensingAndAccreditationsSection = () => {
                                 }
 
 
-                                {/* {             
-
-                                    licenseType.description && (
-
-                                        <div>
-                                            <p>{licenseType.description}</p>
-                                        </div>
-
-                                    )
-                                } */}
-
                             </div>
 
                             {/* Image */}

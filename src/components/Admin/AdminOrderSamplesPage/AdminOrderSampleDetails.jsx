@@ -151,9 +151,7 @@ const AdminOrderSampleDetails = ({ sample }) => {
                                     <th scope="col" className="px-6 py-3">
                                         Component Name
                                     </th>
-                                    {/* <th scope="col" className="px-6 py-3">
-                                        Result
-                                    </th> */}
+
                                     <th scope="col" className="px-6 py-3">
                                         Status
                                     </th>

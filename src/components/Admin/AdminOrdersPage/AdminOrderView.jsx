@@ -214,12 +214,6 @@ const AdminOrderView = () => {
                                         <h2 className=" text-md"><b>Name:</b> <br /> {item.sampleName}</h2>
                                         </div>
 
-                                        {/* Price */}
-
-                                        {/* <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C${item.price}</h2>
-                                        </div> */}
-
                                     </div>
 
                                     {/* Item turnaround Type */}
@@ -231,12 +225,6 @@ const AdminOrderView = () => {
                                         <div>
                                         <h2 className=" text-md"><b>Turnaround Type:</b> <br /> {item.selectedTurnaround.label}</h2>
                                         </div>
-
-                                        {/* Price
-
-                                        <div className="text-right h-fit my-auto">
-                                        <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
-                                        </div> */}
 
                                     </div>
 
@@ -370,24 +358,6 @@ const AdminOrderView = () => {
                         </div>
                     </div>
 
-
-
-
-                    {/* Result */}
-
-                    {/* <div className=""> */}
-                        {/* Heading */}
-
-                        {/* <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-5">Test Result</h2> */}
-
-                        {/* Result */}
-                        {/* <div className="w-full">
-
-                            <h2 className="text-xl text-gray-600 font-semibold w-full text-center">[ Result not published ]</h2>
-
-                        </div> */}
-
-                    {/* </div> */}
                 </div>
                         
                 </div>

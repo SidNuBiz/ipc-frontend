@@ -11,9 +11,6 @@ const FaqAccordion = ({ data }) => {
                 {data.map((item, index) => (
                     <AccordionItem title={item.question} key={index} className="mr-20">
                         <ul key={item._id} className='p-5 list-disc h-auto lg:text-lg md:text-lg sm:text-sm border-b-2'>
-                            {/* {item.ans.map((ans, index) => (
-                                <li key={index} className="ml-5 mb-5">{ans}</li>
-                            ))} */}
                             <li className="ml-5 mb-5">{item.answer}</li>
                         </ul>
                     </AccordionItem>

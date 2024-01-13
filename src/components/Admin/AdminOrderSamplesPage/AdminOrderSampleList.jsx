@@ -62,65 +62,6 @@ const AdminOrderList = ({jobWebId}) => {
                                 key={index}
                                 className="text-gray-600 border-b-[1px] border-b-gray-200 py-5"
                             >
-                                {/* <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5"> */}
-
-                                    {/* Sample Name */}
-{/* 
-                                    <div className="mb-3 px-5">
-
-                                        <div className="">
-                                            <b>Sample</b> <br />
-                                            {sample.SAMPLE_NAME}
-                                        </div>
-
-                                    </div>
-
-                                    <div className="mb-3 px-5">
-
-                                        <div className="">
-                                            <b>Statue</b> <br />
-                                            {
-                                                sample.STATUS === 'V' ? 'Available' :
-                                                sample.STATUS === 'P' ? 'In Progress' :
-                                                sample.STATUS === 'C' ? 'Complete' :
-                                                sample.STATUS === 'U' ? 'Unavailable' :
-                                                sample.STATUS === 'W' ? 'Waiting for Preparation' :
-                                                sample.STATUS === 'X' ? 'Cancelled' :
-                                                sample.STATUS === 'I' ? 'Inspection' :
-                                                sample.STATUS === 'A' ? 'Authorised' :
-                                                sample.STATUS === 'S' ? 'Suspended' :
-                                                sample.STATUS === 'R' ? 'Rejected' :
-                                                "Status Unavailable "
-                                            }
-                                        </div>
-
-                                    </div> */}
-
-                                    {/* Sample Date */}
-
-                                    {/* <div className=" italic px-5">
-                                        <b className=" not-italic">Date</b> <br />
-                                        {new Date(sample.LOGIN_DATE).toLocaleDateString()}
-                                    </div>
-
-                                   
-
-                                </div> */}
-
-                                {/* View Details Button */}
-
-                                {/* <div className="w-fit mt-5 ml-auto">
-                                    
-                                   
-                                    <a href={`/IPC-admin-portal/order/sample/${sample.ID_NUMERIC.trim()}`}  className="inline-block">
-                                        <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
-                                    </a>
-                                   
-                                    
-                                    
-                                </div> */}
-                               
-
                                 <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-5 mb-10">
                                     <div>
                                     <div className="">

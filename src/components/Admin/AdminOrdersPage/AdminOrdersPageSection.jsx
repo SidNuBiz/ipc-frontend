@@ -80,14 +80,10 @@ const AdminOrdersPageSection = () => {
 
             <div className="">
               <AdminOrderList />
-
-              {/* Pagination */}
-              
-              
-             
-              
             </div>
             
+            {/* Pagination */}
+
             <div className='w-fit mx-auto'>
               <div className='flex justified-center'>
                 <span><button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setPrevPage}>Prev</button></span>

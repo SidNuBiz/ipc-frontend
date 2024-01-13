@@ -132,10 +132,6 @@ const AdminMemberList = () => {
                     <div className="grid lg:grid-cols-3 gap-10 mx-5 ">
                         {/* Member Image */}
 
-                        {/* <div className="lg:col-span-1 w-fit mx-auto h-fit my-auto">
-                            <img src={thisMember.avatar.url} alt="" className="h-52 w-52 mx-auto rounded-full object-cover" />
-                        </div> */}
-
                         <div className=" lg:col-span-2 md:col-span-1 sm:col-span-1 ">
                             {/* Heading */}
 

@@ -100,13 +100,6 @@ const TestingSubmissionFormPageSection = () => {
         
         navigate('/checkout')
 
-        // dispatch(createSamples({
-        //     sampleFormData,
-        //     // signature,
-        //     additionalInfo,
-        //     acknowledgementCheck
-        // }))
-
     }
 
     return (

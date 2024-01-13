@@ -25,9 +25,6 @@ const Package = ({pkg}) => {
 
             {/* Add to cart Button */}
 
-            {/* <div className="mt-5">
-                <button onClick={addToCart} className="bg-[#397f77] px-10 py-3 w-full text-white hover:bg-[#18debb] duration-500 lg:opacity-0 md:opacity-0 sm:opacity-100 group-hover:opacity-100">Add to Cart</button>
-            </div> */}
         </div>
     );
 };

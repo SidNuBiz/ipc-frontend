@@ -211,11 +211,7 @@ const OrderDetails = ({order,oId}) => {
                       <h2 className=" text-md"><b>Turnaround Type:</b> <br /> {item.selectedTurnaround.label}</h2>
                     </div>
 
-                    {/* Price
-
-                    <div className="text-right h-fit my-auto">
-                      <h2 className=" text-md font-bold">C${item.turnaroundType.addOnPrice}</h2>
-                    </div> */}
+                    {/* Price */}
 
                   </div>
 

@@ -95,16 +95,7 @@ const SampleList = () => {
                                 {/* View Details Button */}
 
                                 <div className="w-fit mt-5 ml-auto">
-                                    {/* {
-                                        sample.STATUS === 'C' ?
-                                        (<Link to={`sample/${index}`}  className="inline-block">
-                                        <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
-                                        </Link>) :
-                                        (<Link to={`sample/${index}`} onClick={ (event) => {event.preventDefault(); alert.error("Report can not be seen unless status is complete") }  } className="inline-block">
-                                        <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
-                                        </Link>)
-                                    } */}
-
+                                    
                                         <Link to={`sample/${index}`}  className="inline-block">
                                             <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline">View Details &#8594;</button>
                                         </Link>

@@ -25,14 +25,8 @@ const AdminHomePageSection = () => {
 
     const[serviceSearchKey,setSearchKey] = useState('');
 
-    const[orderSearchKey,setOrderSearchKey] = useState('');
-
     const {services} = useSelector(
         (state) => state.services
-    );
-
-    const { users } = useSelector(
-        (state) => state.allUsers
     );
 
     async function totalSalesAndOrders(){
@@ -152,31 +146,7 @@ const AdminHomePageSection = () => {
                 {/* <LineChart  /> */}
             </div>
 
-            {/* Notification List */}
-
-            {/* <div className="p-5 bg-white rounded-xl shadow-lg ">
-              
-
-                <div className="flex justify-between mb-10">
-
-                    <h2 className="inline-block align-middle w-fit text-2xl font-semibold text-gray-600">Notifications</h2>
-
-             
-
-                    <Link to="/IPC-admin-portal/notifications">
-
-                        <button className="inline-block align-middle w-fit text-[#397f77] text-md font-bold hover:underline">See all</button>
-
-                    </Link>  
-
-                </div>
-
-                <div className=" min-h-[200px] max-h-[300px] overflow-y-auto w-full">
-                    <AdminNotificationList notifications={orders} />
-                </div>
-
-                
-            </div> */}
+           
 
         </div>
 
@@ -203,7 +173,7 @@ const AdminHomePageSection = () => {
             {/* Service List */}
 
             <div className="min-h-[200px] max-h-[300px] overflow-y-auto w-full">
-                <AdminOrderList searchKey = {orderSearchKey} />
+                <AdminOrderList />
             </div>
 
         </div>

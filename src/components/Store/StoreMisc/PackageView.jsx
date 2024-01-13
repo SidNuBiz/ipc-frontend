@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import Loader from "../../../pages/Loader";
 
 const PackageView = () => {
-    //   const [notification, setNotification] = useState({trigger:false,notificationMessage:""})
 
     const packageId = useParams().packageId;
     const {loading,packages} = useSelector(state => state.packages)
@@ -50,30 +49,14 @@ const PackageView = () => {
     }
 
 
-    // const [calculatedPrice, setCalculatedPrice] = useState();
-
-    // const [turnaround, setTurnaround] = useState(thisPackage && thisPackage.turnaroundTypes[0].price);
-
-    // let calculatedPrice = parseFloat(turnaround);
-
-
     useEffect(() => {
 
-        // setTurnaround(thisPackage && thisPackage.turnaroundTypes[0].price);
-        // setCalculatedPrice(thisPackage && thisPackage.turnaroundTypes[0].price);
         calculateTotalStandardPrice();
         calculateTotalRushedPrice();
         calculateTotalUrgentPrice()
 
     }, []);
 
-    
-
-    // const onTurnaroundValueChange = (e) => {
-    //     setTurnaround(e.target.value);
-        // setCalculatedPrice(turnaround);
-        // setTurnaroundTitle(e.target.selectedOptions[0].innerText)
-    // };
 
     return (
 
@@ -146,16 +129,6 @@ const PackageView = () => {
                                         </thead>
 
                                         <tbody>
-                                            {/* <tr className="border-b-2 border-gray-300">
-
-                                                <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].testCode}</td>
-
-                                                <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].name}</td>
-
-                                                <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].description}</td>
-
-                                                <td className="text-left text-xl font-semibold border-2 px-3 py-1">{thisPackage && thisPackage.tests[0].sampleRequired}</td>
-                                            </tr> */}
 
                                             {thisPackage.packageTests &&
                                                 thisPackage.packageTests.map((test, index) => (
@@ -198,15 +171,6 @@ const PackageView = () => {
                                                     Package Price
                                                 </td>
 
-                                                {/* {thisPackage.turnaroundTypes &&
-                                                    thisPackage.turnaroundTypes.map((turnaroundType, index) => (
-                                                        <td
-                                                            key={index}
-                                                            className="text-left text-xl font-semibold border-2 px-3 py-1">
-                                                            C${turnaroundType.price}
-                                                        </td>
-                                                    ))} */}
-
                                                 <td className="text-left text-xl font-normal border-2 px-3 py-1">C${thisPackage.standardPricing}</td>
 
                                                 <td className="text-left text-xl font-normal border-2 px-3 py-1">C${thisPackage.rushedPricing}</td>
@@ -216,14 +180,6 @@ const PackageView = () => {
                                         </tbody>
                                     </table>
 
-                                    {/* Description */}
-
-                                    {/* <p className="lg:text-lg md:text-lg sm:text-base text-gray-600 mt-10">{thisPackage && thisPackage.description}</p>
-                                    <Link to="/testing-submission">
-                                        <div className="mt-10">
-                                            <button id="add-to-cart-btn" className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">Submit a Sample</button>
-                                        </div>
-                                    </Link> */}
                                 </div>
                             </div>
 
@@ -246,32 +202,6 @@ const PackageView = () => {
                                     </Link>
                                 </div>
 
-                                {/* Turnaround */}
-
-                                {/* <div className="mb-10 w-fit mr-0 ml-auto">
-                                    <label
-                                        htmlFor="turnaround"
-                                        className="block text-xl font-semibold mb-5">
-                                        Turnaround Type
-                                    </label>
-
-                                    <select
-                                        name="turnaround"
-                                        id="turnaround"
-                                        value={turnaround}
-                                        onChange={(e) => onTurnaroundValueChange(e)}
-                                        className="p-3 text-lg focus:outline-none w-full">
-                                        {thisPackage &&
-                                            thisPackage.turnaroundTypes.map((turnaroundType, index) => (
-                                                <option
-                                                    key={index}
-                                                    value={turnaroundType.price}
-                                                    className="text-lg">
-                                                    {turnaroundType.title}
-                                                </option>
-                                            ))}
-                                    </select>
-                                </div> */}
                             </div>
                         </div>
                     </div>

@@ -201,20 +201,6 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                 <input type='text' value={sampleBatch} onChange={(e)=>{sampleDataMerged({sBatch:e.target.value})}} name='sampleBatchLot' id='sampleBatchLot' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
             </div>
 
-            {/* Sample Date */}
-
-            {/* <div>
-                <label htmlFor='sampleDate' className='block mb-2 text-lg font-semibold'>Sample Date</label>
-                <input type='date' name='sampleDate' id='sampleDate' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
-            </div> */}
-
-            {/* Sample Time */}
-
-            {/* <div>
-                <label htmlFor='sampleTime' className='block mb-2 text-lg font-semibold'>Sample Time</label>
-                <input type='time' name='sampleTime' id='sampleTime' className='w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none' />
-            </div> */}
-
         </div>
 
         {/* Testing Selection */}
@@ -377,20 +363,6 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
                 {/* Total Amount Required */}
 
                 <div className='mt-10'>
-
-                    {/* Heading */}
-
-                    {/* <div className='mb-3'>
-                        <p className='font-semibold text-lg'>Total Amount Required for Sample 1</p>
-                    </div> */}
-
-                    {/* Amount */}
-
-                    {/* <div className='mb-5'>
-                        <p className='text-lg text-[#397f77]'>03 grams</p>
-                    </div> */}
-
-                    {/* Note */}
 
                     <div className='mb-5'>
 

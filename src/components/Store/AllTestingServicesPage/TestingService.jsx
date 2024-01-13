@@ -1,13 +1,5 @@
-import { useDispatch } from "react-redux";
-import {addItemsToCart} from "../../../actions/cartAction"
 
 const TestingService = ({ service }) => {
-
-    const dispatch = useDispatch()
-
-    const addToCart = () => {
-        dispatch(addItemsToCart({thisService:service,calculatedPrice:service.price,turnaroundType:{title:"Standard (7 buisness days)",addOnPrice:0},strainsType:[]}))
-    }
 
     return (
 
@@ -28,12 +20,6 @@ const TestingService = ({ service }) => {
             {/* Border */}
 
             <div className="h-[2px] w-[40px] bg-gray-600"></div>
-
-            {/* Add to cart Button */}
-
-            {/* <div className="mt-5">
-                <button onClick={addToCart} className="bg-[#397f77] px-10 py-3 w-full text-white hover:bg-[#18debb] duration-500 lg:opacity-0 md:opacity-0 sm:opacity-100 group-hover:opacity-100">Add to Cart</button>
-            </div> */}
 
         </div>
 

@@ -70,14 +70,7 @@ const SampleDetails = ({ sample }) => {
 
                 <div className=" w-fit ml-auto">
 
-                    {/* {
-                        sample.STATUS === 'C' ?
-                        <button  id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Download Report</button> : 
-                        <button  id="add-to-cart-btn" onClick={ (event) => {event.preventDefault(); alert.error("Report can not be downloaded unless status is complete") }}  className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Download Report</button>
-                    } */}
-
-                    <button  id="add-to-cart-btn" onClick={downloadReport} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>
-                    
+                    <button  id="add-to-cart-btn" onClick={downloadReport} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>   
    
                 </div>
 
@@ -186,9 +179,6 @@ const SampleDetails = ({ sample }) => {
                                     <th scope="col" className="px-6 py-3">
                                         Component Name
                                     </th>
-                                    {/* <th scope="col" className="px-6 py-3">
-                                        Result
-                                    </th> */}
                                     <th scope="col" className="px-6 py-3">
                                         Status
                                     </th>
@@ -217,9 +207,7 @@ const SampleDetails = ({ sample }) => {
                                             result.TEST_STATUS === 'S' ? 'Suspended' :
                                             result.TEST_STATUS === 'R' ? 'Rejected' :
                                             "Status Unavailable "
-                                         
-                                            
-                                            
+     
                                         }
                                     </td>
                                 </tr>

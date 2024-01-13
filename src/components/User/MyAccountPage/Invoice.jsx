@@ -300,21 +300,7 @@ const Invoice = () => {
                       ar@invp-lab.com
                     </Link>
                   </Text>
-                  {/*<Text style={styles.text}>*/}
-                      {/*<Text style={styles.strong}>{'\n'}4. Click the button below to pay this invoice online.</Text> */}
-                    {/* {'\n'} */}
-                    {/* <a style={styles.button} href="https://money.sage.com/#/paynow/b333d35c-299b-4345-ba1e-d7c556159d60">
-                      Pay Now
-                    </a> */}
-                    
-                    
-                    
-                  {/*</Text> */}
-                  {/*<View style={styles.button}>
-                    <Link target="_blank" style={{color:'white',textDecoration:'none',fontSize:'12px'}} src='https://money.sage.com/#/paynow/b333d35c-299b-4345-ba1e-d7c556159d60'>
-                      Pay Now
-                    </Link>
-                  </View>*/}
+
                   </View>
                   <View style={[styles.section,{textAlign:'right',textDecoration:'right'}]}>
                     <Text style={styles.text}>

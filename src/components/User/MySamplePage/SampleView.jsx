@@ -22,8 +22,6 @@ const SampleView = () => {
 
     const {sampleId} = useParams();
 
-    // const sample = samples.find(sample => sample.id_text === sampleId);
-
   return (
     <Fragment>
     {loading ? (

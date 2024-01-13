@@ -137,9 +137,6 @@ const AdminServiceHoverBoxPage = () => {
 
     }
 
-
-
-    
     return(
 
     <Fragment>{loading ? (
@@ -172,7 +169,6 @@ const AdminServiceHoverBoxPage = () => {
                             <div>
                                 
                                 <AdminServiceHoverBoxSection idx={index}  hoverBox={item} setSelectedServiceIdx={setSelectedServiceIdx} serviceId={services[selectedServiceIdx]._id} />
-                                
 
                             </div>
                             

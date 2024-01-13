@@ -84,14 +84,12 @@ const NowOpeningPage = lazy(() => import('./pages/Career/NowOpeningPage.jsx'));
 const FaqPage = lazy(() => import('./pages/Store/FaqPage.jsx'));
 const AllTestingServicesPage = lazy(() => import('./pages/Store/AllTestingServicesPage.jsx'));
 const ServiceView = lazy(() => import('./components/Store/StoreMisc/ServiceView.jsx'));
-const CartPage = lazy(() => import('./pages/Store/CartPage.jsx'));
 const CheckoutPage = lazy(() => import('./pages/Store/CheckoutPage.jsx'));
 const ProfilePage = lazy(() => import('./pages/User/ProfilePage.jsx'));
 const MyAccountPage = lazy(() => import('./pages/User/MyAccountPage.jsx'));
 const MySamplePage = lazy(() => import('./pages/User/MySamplePage'));
 const OrderView = lazy(() => import('./components/User/MyAccountPage/OrderView.jsx'));
 const AdminHomePage = lazy(() => import('./pages/Admin/AdminHomePage.jsx'));
-const AdminLoginPage = lazy(() => import('./pages/Admin/AdminLoginPage.jsx'));
 const AdminServicesPage = lazy(() => import('./pages/Admin/AdminServices/AdminServicesPage.jsx'));
 const AdminServiceEditPage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceEditPage'));
 const AdminServiceCreatePage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceCreatePage'));
@@ -151,12 +149,6 @@ function App() {
      
 
       <Routes>
-
-        {/* Admin Routes */}
-
-       
-        <Route path="/IPC-admin-portal/login" element={<AdminLoginPage />} />
-
 
         {/* Protected Routes */}
 
@@ -252,8 +244,6 @@ function App() {
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
 
         <Route path="/reset-pass/:token" element={<ResetPassPage />} />
-
-        <Route path="/cart" element={<CartPage />} />
         
 
         {/* About Dropdown Pages */}

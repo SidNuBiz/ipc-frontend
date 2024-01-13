@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {useSelector} from "react-redux"
 
 
-const AdminOrderList = ({searchKey}) => {
+const AdminOrderList = () => {
     
 
     const { orders } = useSelector(

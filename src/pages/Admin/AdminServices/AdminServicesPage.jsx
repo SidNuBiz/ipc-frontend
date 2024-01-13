@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import AdminServicesPageSection from "../../../components/Admin/AdminServicesPage/AdminServicesPageSection";
 import SideBar from "../../../components/Admin/Misc/SideBar";
 
-
-
 const AdminServicesPage = () => {
 
   useEffect(() => {

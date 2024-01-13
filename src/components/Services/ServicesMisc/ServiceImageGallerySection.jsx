@@ -1,6 +1,3 @@
-
-
-
 const ServiceImageGallerySection = ({ images }) => {
 
     return (

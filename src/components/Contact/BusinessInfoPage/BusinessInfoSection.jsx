@@ -2,7 +2,7 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import {submitContactForm} from '../../../actions/userAction'
 import { useAlert } from "react-alert";
 
-const BusinessInfoSection = ({phoneCodes}) => {
+const BusinessInfoSection = () => {
 
     const alert = useAlert()
 
@@ -102,16 +102,6 @@ const BusinessInfoSection = ({phoneCodes}) => {
                         <div className="mt-10 w-full">
                             
                             <div className="grid grid-cols-4 gap-3 w-full">
-
-                                {/* Code */}
-{/* 
-                                <div className="lg:col-span-1 md:col-span-1 sm:col-span-2 w-full">
-
-                                    <label htmlFor="code" className="block text-lg font-semibold mb-[10px]">Code</label>
-
-                                    <Select options={phoneCodes} className=" border-b-2 border-gray-600 border-0 text-gray-600" styles={selectCustomStyles}  classNamePrefix />
-
-                                </div> */}
 
                                 {/* Phone */}
 

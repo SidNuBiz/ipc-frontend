@@ -341,9 +341,6 @@ const CheckoutSection = ({user}) => {
 
                   </div>
                 </div>
-
-                {/* pay now Button */}
-
             </div>
 
         </div>
