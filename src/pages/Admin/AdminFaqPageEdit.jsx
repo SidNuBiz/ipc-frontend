@@ -81,10 +81,13 @@ const AdminFaqPageEdit = () => {
     };
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/faq/all`)
-        setFaqArr(data.faqs)
-     
-
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/faq/all`)
+            setFaqArr(data.faqs)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
     }
 
     useEffect(() => {

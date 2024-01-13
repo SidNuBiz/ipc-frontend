@@ -2,20 +2,27 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import url from "../../../utils/baseApi";
+import { useAlert } from "react-alert";
 
 const LicensingAndAccreditationsSection = () => {
 
+    const alert = useAlert()
     const [licenses,setLicenses] = useState([])
     const [licenseDetails,setLicenseDetails] = useState([])
     const [date,setDate] = useState('')
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/license-details/all`)
-        setLicenseDetails(data.details)
-        const {data:license} = await axios.get(`${url}/api/v1//license/all`)
-        setLicenses(license.licenses)
-        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
-        setDate(new Date(updated.updated.license).getDate()+"/"+(new Date(updated.updated.license).getMonth()+1)+"/"+new Date(updated.updated.license).getFullYear()) 
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/license-details/all`)
+            setLicenseDetails(data.details)
+            const {data:license} = await axios.get(`${url}/api/v1//license/all`)
+            setLicenses(license.licenses)
+            const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
+            setDate(new Date(updated.updated.license).getDate()+"/"+(new Date(updated.updated.license).getMonth()+1)+"/"+new Date(updated.updated.license).getFullYear()) 
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
        
        
     }

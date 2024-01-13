@@ -7,7 +7,7 @@ import AdminOrderList from "../AdminOrdersPage/AdminOrderList";
 import axios from "axios";
 import Cookies from "js-cookie";
 import url from "../../../utils/baseApi";
-
+import { useAlert } from "react-alert";
 import { useSelector, useDispatch } from "react-redux";
 import {getAllOrders} from "../../../actions/orderAction.js"
 import { getAllService } from "../../../actions/serviceAction.js";
@@ -17,6 +17,7 @@ import { getAllService } from "../../../actions/serviceAction.js";
 const AdminHomePageSection = () => {
 
     const dispatch = useDispatch()
+    const alert = useAlert()   
 
     const[totalSale,setTotalSale] = useState(0)
     const[totalOrder,setTotalOrder] = useState(0)
@@ -50,7 +51,7 @@ const AdminHomePageSection = () => {
 
 
           }catch (error) {
-            console.log(error.response.data.error)
+            alert.error(error.response.data.error)
           }
     }
 
@@ -67,9 +68,8 @@ const AdminHomePageSection = () => {
             const { data } = await axios.get(`${url}/api/v1/users/total`,config);
             setTotalUser(data.totalUsers)  
 
-
           }catch (error) {
-            console.log(error.response.data.error)
+            alert.error(error.response.data.error)
           }
     }
 

@@ -9,7 +9,6 @@ const AdminAnalysisList = ({searchKey}) => {
 
     const alert = useAlert()
 
-
     const {analyses} = useSelector(
         (state) => state.analyses
     );

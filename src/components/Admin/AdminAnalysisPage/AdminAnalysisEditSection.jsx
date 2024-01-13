@@ -83,8 +83,13 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
       navigate("/IPC-admin-portal/analyses")
     }
     async function fetchData(){
-      const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
-      setMatrixArr(data.matrix)
+      try{
+        const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
+        setMatrixArr(data.matrix)
+      }catch(error){
+        alert.error(error.response.data.message)
+      }
+     
     }
   
     useEffect(() => {

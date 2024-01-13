@@ -3,19 +3,25 @@ import Logo from '../../assets/header-logo.png';
 import { useState,useEffect } from "react";
 import axios from "axios";
 import url from "../../utils/baseApi";
+import { useAlert } from "react-alert";
+
 
 const Footer = () => {
+
+    const alert = useAlert()
 
     const [homePageDetails,setHomePageDetails] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/home-page-details`)
-        setHomePageDetails(data.details)
-       
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/home-page-details`)
+            setHomePageDetails(data.details)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
     }
 
     useEffect(() => {
-
         fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);

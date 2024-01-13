@@ -2,10 +2,11 @@ import { useRef,useState,useEffect } from "react";
 import GrayLogo from "../../../assets/logo-gray.png";
 import axios from 'axios';
 import url from "../../../utils/baseApi";
+import { useAlert } from "react-alert";
 
 const LegalSection = () => {
 
-    // Scroll fuctions
+    const alert = useAlert()
 
     const ref = useRef(null);
 
@@ -16,16 +17,16 @@ const LegalSection = () => {
     const [legal,setLegal] = useState({})
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/legal/get`)
-
-        setLegal(data.legal)
-       
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/legal/get`)
+            setLegal(data.legal)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }    
     }
 
     useEffect(() => {
-
         fetchData()
-       
     }, []);
 
     return (

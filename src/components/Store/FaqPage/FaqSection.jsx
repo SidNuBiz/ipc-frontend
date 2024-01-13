@@ -4,10 +4,13 @@ import FaqAccordion from "./FaqAccordion";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import url from "../../../utils/baseApi";
+import { useAlert } from "react-alert";
 
 
 
 const FaqSection = () => {
+
+    const alert = useAlert()
 
     const[faq,setFaq] = useState([])
 
@@ -55,18 +58,20 @@ const FaqSection = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/faq/all`)
-        setFaq(data.faqs)
-        const arr = faq.map((item)=> {if(item.category === 'General'){return item}})
-        console.log(arr)
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/faq/all`)
+            setFaq(data.faqs)
+            const arr = faq.map((item)=> {if(item.category === 'General'){return item}})
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
 
        
     }
 
     useEffect(() => {
-
         fetchData()
-    
     }, []);
 
     return (

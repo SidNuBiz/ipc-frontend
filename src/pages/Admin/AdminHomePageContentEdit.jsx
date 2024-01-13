@@ -76,20 +76,25 @@ const AdminHomePageContentEdit = () => {
   }
 
   async function fetchData() {
-    const { data } = await axios.get(`${url}/api/v1/home-page-details`);
-    const overviewSection = data.details[1].overviewSection;
-    const contactSection = data.details[0].contactSection;
+    try{
+      const { data } = await axios.get(`${url}/api/v1/home-page-details`);
+      const overviewSection = data.details[1].overviewSection;
+      const contactSection = data.details[0].contactSection;
 
-    setSection1Title(overviewSection.mission.title);
-    setSection1Content(overviewSection.mission.content);
-    setSection2Title(overviewSection.vision.title);
-    setSection2Content(overviewSection.vision.content);
-    setSection3Title(overviewSection.quality.title);
-    setSection3Content(overviewSection.quality.content);
-    setLocation(contactSection.location);
-    setEmail(contactSection.email);
-    setPhone(contactSection.phone);
-    setMap(contactSection.map);
+      setSection1Title(overviewSection.mission.title);
+      setSection1Content(overviewSection.mission.content);
+      setSection2Title(overviewSection.vision.title);
+      setSection2Content(overviewSection.vision.content);
+      setSection3Title(overviewSection.quality.title);
+      setSection3Content(overviewSection.quality.content);
+      setLocation(contactSection.location);
+      setEmail(contactSection.email);
+      setPhone(contactSection.phone);
+      setMap(contactSection.map);
+    }catch(error){
+      alert.error(error.response.data.message)
+    }
+    
   }
 
   useEffect(() => {

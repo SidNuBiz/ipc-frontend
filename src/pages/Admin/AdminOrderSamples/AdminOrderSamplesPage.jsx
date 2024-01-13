@@ -7,7 +7,6 @@ import AdminOrderSamplesPageSection from '../../../components/Admin/AdminOrderSa
 const AdminOrderSamplesPage = () => {
 
     const {id} = useParams()
-    console.log(id)
 
     useEffect(() => {
         // 👇️ scroll to top on page load

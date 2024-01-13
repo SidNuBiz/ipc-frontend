@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import AdminNotificationList from './AdminNotificationList'
 import Loader from "../../../pages/Loader";
 import {Fragment} from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from 'axios';
 import url from '../../../utils/baseApi';
+import { useAlert } from "react-alert";
 
 const AdminNotificationsPageSection = () => {
+
+  const alert = useAlert()
 
   const [notifications, setNotifications] = useState([])
 
@@ -16,9 +19,14 @@ const AdminNotificationsPageSection = () => {
 
   async function fetchNotifications() {
     if(loading) return
-    const data = await axios.post(`${url}/api/v1/notification`,{id:user._id})
-    await axios.patch(`${url}/api/v1/notification/all`,{id:user._id})
-    setNotifications(data.data.notifications)
+    try{
+      const data = await axios.post(`${url}/api/v1/notification`,{id:user._id})
+      await axios.patch(`${url}/api/v1/notification/all`,{id:user._id})
+      setNotifications(data.data.notifications)
+    }catch(error){
+      alert.error(error.response.data.message)
+    }
+    
   }
 
   useEffect(() => {

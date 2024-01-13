@@ -250,19 +250,24 @@ const AdminWhoWeArePageContentEdit = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
-        setWhoWeAre1(data.details[1].whoWeAreSection.whoWeAre[0])
-        setWhoWeAre2(data.details[1].whoWeAreSection.whoWeAre[1])
-        setWhoWeAre3(data.details[1].whoWeAreSection.whoWeAre[2])
-        setOurStory1(data.details[0].ourStorySection.ourStory[0])
-        setOurStory2(data.details[0].ourStorySection.ourStory[1])
-        setOurStory3(data.details[0].ourStorySection.ourStory[2])
-        const {data:team} =  await axios.get(`${url}/api/v1/team-member/all`)
-        setMembersArr(team.details)
-        const {data:client} =  await axios.get(`${url}/api/v1/our-clients/images`)
-        setOurClients(client.item.imageGallery)
-        setPreviewImageGallery(client.item.imageGallery.map((item,idx)=>{return{id:idx,image:item}}))
-        setDbImageGallery(client.item.imageGallery)
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
+            setWhoWeAre1(data.details[1].whoWeAreSection.whoWeAre[0])
+            setWhoWeAre2(data.details[1].whoWeAreSection.whoWeAre[1])
+            setWhoWeAre3(data.details[1].whoWeAreSection.whoWeAre[2])
+            setOurStory1(data.details[0].ourStorySection.ourStory[0])
+            setOurStory2(data.details[0].ourStorySection.ourStory[1])
+            setOurStory3(data.details[0].ourStorySection.ourStory[2])
+            const {data:team} =  await axios.get(`${url}/api/v1/team-member/all`)
+            setMembersArr(team.details)
+            const {data:client} =  await axios.get(`${url}/api/v1/our-clients/images`)
+            setOurClients(client.item.imageGallery)
+            setPreviewImageGallery(client.item.imageGallery.map((item,idx)=>{return{id:idx,image:item}}))
+            setDbImageGallery(client.item.imageGallery)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
         
     }
 

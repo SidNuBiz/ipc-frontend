@@ -8,25 +8,33 @@ import OurClientsSection from '../../components/About/WhoWeArePage/OurClientsSec
 import axios from 'axios';
 import Loader from '../Loader.jsx';
 import url from '../../utils/baseApi.js';
+import { useAlert } from 'react-alert';
+
 
 const WhoWeArePage = () => {
+
+    const alert = useAlert()
 
     const [whoWeArePageDetails,setWhoWeArePageDetails] = useState([])
     const [teamMembers,setTeamMembers] = useState([])
     const [ourClients,setOurClients] = useState([])
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
-        setWhoWeArePageDetails(data.details)
-        const {data:team} = await axios.get(`${url}/api/v1/team-member/all`)
-        setTeamMembers(team.details)
-        const {data:clients} = await axios.get(`${url}/api/v1/our-clients/images`)
-        setOurClients(clients.item.imageGallery)
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/who-we-are-page-details`)
+            setWhoWeArePageDetails(data.details)
+            const {data:team} = await axios.get(`${url}/api/v1/team-member/all`)
+            setTeamMembers(team.details)
+            const {data:clients} = await axios.get(`${url}/api/v1/our-clients/images`)
+            setOurClients(clients.item.imageGallery)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
        
     }
 
     useEffect(() => {
-
         fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, []);

@@ -2,17 +2,24 @@ import GrayLogo from "../../../assets/logo-gray.png";
 import axios from "axios";
 import { useState,useEffect } from "react";
 import url from "../../../utils/baseApi";
+import { useAlert } from "react-alert";
 
 const EquipmentSection = () => {
 
+    const alert = useAlert()
     const [equipments,setEquipments] = useState([])
     const [date,setDate] = useState('')
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
-        setEquipments(data.equipments)
-        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
-        setDate(new Date(updated.updated.equipment).getDate()+"/"+(new Date(updated.updated.equipment).getMonth()+1)+"/"+new Date(updated.updated.equipment).getFullYear()) 
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
+            setEquipments(data.equipments)
+            const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
+            setDate(new Date(updated.updated.equipment).getDate()+"/"+(new Date(updated.updated.equipment).getMonth()+1)+"/"+new Date(updated.updated.equipment).getFullYear()) 
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
     }
 
     useEffect(() => {

@@ -78,24 +78,24 @@ const TeamMember = ({member,setMembersArr})=>{
 
         try {
         
-        const token = Cookies.get('token')
+            const token = Cookies.get('token')
 
-        const config = {
-            headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
-        };
+            const config = {
+                headers: { "Content-Type":"multipart/form-data",'Authorization': `Bearer ${token}` },
+            };
 
-        const config2 = {
-            headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
-        }
-        let fileData = new FormData()
+            const config2 = {
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
+            }
+            let fileData = new FormData()
 
-        fileData.append('memberImage',memberImage)
-        
-        await axios.put(`${url}/api/v1/team-member/update/${id}`,{name,img:member.img,about,designationsArr},config2)
-        const {data:team} = await axios.post(`${url}/api/v1/team-member/image/${id}`,fileData,config)
-        if(team.success){
-            alert.success("Successfully updated")
-        }
+            fileData.append('memberImage',memberImage)
+            
+            await axios.put(`${url}/api/v1/team-member/update/${id}`,{name,img:member.img,about,designationsArr},config2)
+            const {data:team} = await axios.post(`${url}/api/v1/team-member/image/${id}`,fileData,config)
+            if(team.success){
+                alert.success("Successfully updated")
+            }
         
         } catch (error) {
             alert.error(error.response.data.error)

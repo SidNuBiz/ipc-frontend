@@ -2,16 +2,6 @@ import { Link } from "react-router-dom";
 
 const OrderDetails = ({order,oId}) => {
 
-  
-    // var printContents = document.getElementById(divName).innerHTML;
-    //  var originalContents = document.body.innerHTML;
-
-    //  document.body.innerHTML = printContents;
-
-    //  window.print();
-
-    //  document.body.innerHTML = originalContents;
-
   return (
 
     <div>

@@ -15,8 +15,6 @@ const PackageView = () => {
 
     const thisPackage = packages && packages.find((pkg) => pkg._id === packageId);
 
-    console.log(thisPackage)
-
     const [totalStandardPrice, setTotalStandardPrice] = useState(0);
 
     function calculateTotalStandardPrice() {

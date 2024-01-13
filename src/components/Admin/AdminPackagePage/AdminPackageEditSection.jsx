@@ -10,8 +10,6 @@ import noImg from '../../../assets/no-img.jpg'
 
 const AdminPackageEditSection = ({thisPackage}) => {
 
-    console.log(thisPackage)
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const alert = useAlert()
@@ -129,8 +127,13 @@ const AdminPackageEditSection = ({thisPackage}) => {
     }
 
     async function fetchData(){
-      const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
-      setMatrixArr(data.matrix)
+      try{
+        const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
+        setMatrixArr(data.matrix)
+      }catch(error){
+        alert.error(error.response.data.message)
+      }
+      
     }
   
     useEffect(() => {

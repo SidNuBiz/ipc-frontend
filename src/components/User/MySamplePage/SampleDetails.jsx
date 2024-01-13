@@ -27,7 +27,7 @@ const SampleDetails = ({ sample }) => {
             'Content-Type': 'application/pdf',
             'Authorization': `Bearer ${token}`,
           },
-          responseType: 'arraybuffer', // Specify responseType as 'arraybuffer'
+          responseType: 'arraybuffer',
         };
       
         try {
@@ -38,7 +38,7 @@ const SampleDetails = ({ sample }) => {
       
           window.open(report_url, '_blank');
         } catch (error) {
-          console.error('Error downloading report:', error.message);
+          alert.error('Error downloading report:', error.message);
         }
       }
 

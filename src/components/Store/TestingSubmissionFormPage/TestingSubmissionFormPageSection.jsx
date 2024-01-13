@@ -57,6 +57,11 @@ const TestingSubmissionFormPageSection = () => {
         sampleFormData.forEach(sample => {
             sample.testFormData.forEach((test,idx) => {
                 console.log(sample.testFormData[idx].test.packageTests !== undefined)
+                if(sample.testFormData[idx].method == null){
+                    alert.error(`${sample.testFormData[idx].test.name} has no method selected`)
+                    closeSubmit = false
+                    return
+                }
                 if(sample.testFormData[idx].test.packageTests !== undefined){        
                     sample.testFormData[idx].test.packageTests.forEach((singleTest) => {
                         sample.testFormData.forEach((item)=>{                        

@@ -102,12 +102,15 @@ const AdminEquipmentPageEdit = () => {
 
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
-        const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
-        setEquipmentsArr(data.equipments)
-        setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
-        dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()
-
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/equipment-details/all`)
+            const {data:updated} =  await axios.get(`${url}/api/v1/updated/all`)
+            setEquipmentsArr(data.equipments)
+            setDate((new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()+"-"+new Date(updated.updated.equipment).getFullYear() )
+            dateInputRef.current.value = new Date(updated.updated.equipment).getFullYear()+"-"+(new Date(updated.updated.equipment).getMonth()+1)+"-"+new Date(updated.updated.equipment).getDate()
+        }catch(error){
+            alert.error(error.response.data.error)
+        }
     }
 
     useEffect(() => {

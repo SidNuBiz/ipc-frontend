@@ -11,6 +11,7 @@ let matrixFormTests
 const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCategoryList, type, setType, matrixForm, setMatrixForm, testDataId, sampleDataMerged, testFormData}) => {
 
     const {analyses} = useSelector(state=>state.analyses)
+    const {packages} = useSelector(state => state.packages)
   
     function removeDuplicate(arr) {
         let outputArray = arr.filter(function(v, i, self){
@@ -58,7 +59,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setTestingMethodList([])
         setTest(null)
         let matrixArr = []
-        typeTests = analyses && analyses.filter(data => (data.type !== undefined ? data.type.includes(e.value):false))
+        typeTests = analyses && packages &&  [...analyses,...packages].filter(data => (data.type !== undefined ? data.type.includes(e.value):false))
         typeTests.forEach(data => data.matrixForm !== undefined ? matrixArr.push(...data.matrixForm):false)
         const uniqueObjects = {};
         const result = matrixArr.filter(obj => {
@@ -126,8 +127,8 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         const nameTests = categoriesTests.filter(data => data.name === e.value)
         setTest(nameTests[0])
         setDescription(nameTests[0].description)
-        setAmount(nameTests[0].sampleRequired)
-        setUnit(nameTests[0].unit)
+        // setAmount(nameTests[0].sampleRequired)
+        // setUnit(nameTests[0].unit)
         setTestingMethod(null)
         setTestingMethodList([])
         
@@ -174,9 +175,11 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
 
         if(e.label === 'USP'){
             setAmount(test.uspAmtReq)
+            setUnit(test.unit)
         }
         if(e.label === 'EU'){
             setAmount(test.euAmtReq)
+            setUnit(test.unit)
         }
 
         const filteredTestFormData = testFormData.filter(test => {
@@ -243,7 +246,9 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     useEffect(()=>{
         let typeArr = []
         analyses && analyses.forEach(test => {
-        
+            typeArr.push(...test.type)
+        })
+        packages && packages.forEach(test => {
             typeArr.push(...test.type)
         })
         setTypeFormList(
@@ -251,7 +256,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
                 return {label:data,value:data}
             })
         )
-    },[analyses])
+    },[analyses,packages])
 
    
 

@@ -60,10 +60,15 @@ const AdminLegalPageEdit = () => {
     }
 
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/legal/get`)
-        console.log(data)
-        setSubHeading(data.legal.subHeading)
-        setParagraphsArr(data.legal.description)
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/legal/get`)
+            console.log(data)
+            setSubHeading(data.legal.subHeading)
+            setParagraphsArr(data.legal.description)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+       
 
     }
 

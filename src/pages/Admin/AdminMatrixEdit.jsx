@@ -49,8 +49,13 @@ const AdminMatrixEdit = () => {
 
     // Fetch Matrix
     async function fetchData(){
-        const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
-        setMatrixArr(data.matrix)
+        try{
+            const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
+            setMatrixArr(data.matrix)
+        }catch(error){
+            alert.error(error.response.data.message)
+        }
+        
     }
 
     useEffect(() => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from "react-router-dom";
 import Loader from "../../../pages/Loader";
 import {useDispatch} from "react-redux"
 import {useEffect,Fragment,useState} from "react"
@@ -13,7 +12,6 @@ const AdminOrderList = ({jobWebId}) => {
     const [loading, setLoading] = useState(true)
     const [samples, setSamples] = useState([])
 
-    const dispatch = useDispatch()
     const alert = useAlert();
     
     async function fetchSamples() {
@@ -32,7 +30,7 @@ const AdminOrderList = ({jobWebId}) => {
             
             setLoading(false)
         } catch (error) {
-            console.log(error);
+            alert.error(error.response.data.message)
         }
     
     }

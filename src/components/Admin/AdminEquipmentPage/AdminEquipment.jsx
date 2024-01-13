@@ -62,7 +62,7 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
             }
             
         } catch (error) {
-            alert.error(error)
+            alert.error(error.response.data.error)
         }
     };
 

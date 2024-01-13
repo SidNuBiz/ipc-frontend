@@ -16,10 +16,7 @@ const ServiceView = () => {
     );
     const {analyses} = useSelector(state=>state.analyses)
 
-    console.log(analyses)
-
     const thisService = services && services.find(service => service._id.toString() === serviceId);
-
    
     useEffect(() => {
         // 👇️ scroll to top on page load
