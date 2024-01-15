@@ -64,11 +64,11 @@ const AdminMembersPageSection = () => {
 
                     {/* Search Box */}
 
-                    <div className="">
+                    <div className="flex">
 
-                        <input type="text" placeholder="Search Members" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)}  onKeyDown={handleKeyDown}/>
+                        <input type="text" placeholder="Search Members" className="bg-white shadow-lg rounded-2xl p-3 mr-2 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)}  onKeyDown={handleKeyDown}/>
                         <button
-                            className="text-[#397f77] text-md font-bold px-5 hover:underline rounded-full bg-[#397f77] text-white"
+                            className="text-[#397f77] text-md font-bold px-5 rounded-full bg-[#397f77] text-white"
                             onClick={search}
                         >
                             Search
@@ -83,9 +83,16 @@ const AdminMembersPageSection = () => {
 
                     <AdminMemberList searchKey = {searchKey}/>
 
-                    <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setNextPage}>Next</button>
-                    <h1>{page}</h1>
-                    <button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setPrevPage}>Prev</button>
+                     {/* Pagination */}
+
+                    <div className='w-fit mx-auto'>
+                      <div className='flex justified-center'>
+                        <span><button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setPrevPage}>Prev</button></span>
+                        <span className='px-2'> <h1>{page}</h1></span>
+                        <span><button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setNextPage}>Next</button></span>
+                        
+                      </div>
+                    </div>
 
                 </div>
 

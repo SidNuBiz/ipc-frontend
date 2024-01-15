@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {updateProfile,loadUser,addImage,clearErrors} from "../../../actions/userAction"
 import {UPDATE_PROFILE_RESET} from "../../../constants/userConstatns"
 import {useAlert} from "react-alert"
-// import Select from 'react-select'
-// import { Country, State, City }  from 'country-state-city';
+import axios from "axios"
+import Select from 'react-select'
 
 const ProfileSection = ({user}) => {
     
@@ -47,23 +47,31 @@ const ProfileSection = ({user}) => {
     const [city,setCity] = useState('');
     const [zip,setZip] = useState('');
 
-    // const [countries,setCountries] = useState(Country.getAllCountries())
+    const [countries,setCountries] = useState([])
     const [states,setStates] = useState([])
     const [cities,setCitites] = useState([])
-    // const filterStateCity = (isCountry,country,state=null)=> {
+    const filterStateCity = async (isCountry,country,state=null)=> {
         
-    //     if(isCountry){
-    //         setStates(State.getStatesOfCountry(countries.filter((c)=>c.name === country)[0].isoCode))
-    //     }else{
-    //         setCitites(City.getCitiesOfState(countries.filter((c)=>c.name === country.value)[0].isoCode,states.filter((c)=>c.name === state)[0].isoCode))
-    //     }
-    // }
+        if(isCountry){
+            const {data} = await axios.post('https://countriesnow.space/api/v0.1/countries/states', { country: country })
+            setStates(data.data.states)
+        }else{
+            
+            const {data} =await axios.post('https://countriesnow.space/api/v0.1/countries/state/cities', { country: country.value,state:state })
+            setCitites(data.data)
+        }
+    }
   
     const { loading } = useSelector(
         (state) => state.user
     );
 
     const { isUpdated,error, } = useSelector((state) => state.profile);
+
+    const fetchCountries = async () => {
+        const { data } = await axios.get('https://countriesnow.space/api/v0.1/countries/info?returns=name')
+        setCountries(data.data)
+    }
 
     const updateProfileSubmit = (e) => {
 
@@ -107,6 +115,10 @@ const ProfileSection = ({user}) => {
             dispatch(clearErrors())
         }
     },[dispatch,loading,isUpdated,error])
+
+    useEffect(()=>{
+        fetchCountries()
+    },[])
   
     return (
         <div>
@@ -256,59 +268,59 @@ const ProfileSection = ({user}) => {
 
                 <form onSubmit={updateProfileAddress} className="lg:w-2/3 md:w-5/6 sm:w-full mx-auto">
 
-                    {/* <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5"> */}
+                    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5">
 
                         {/* Country Label & Input */}
 
-                        {/* <div className="mb-5">
+                        <div className="mb-5">
                             <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>Country<span className='text-red-500'>*</span></label>
                             <Select options={countries.map(country => {return {label:country.name,value:country.name}})} onChange={(e)=>{setCountry(e); filterStateCity(true,e.value)}} value={country}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
-                        </div> */}
+                        </div>
 
 
                         {/* State Label & Input */}
 
-                        {/* <div className="mb-5">
+                        <div className="mb-5">
                         <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>State<span className='text-red-500'>*</span></label>
                             <Select options={states.map(state => {return {label:state.name,value:state.name}})} onChange={(e)=>{setState(e); filterStateCity(false,country,e.value)}} value={state}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
                         </div>
 
-                    </div> */}
+                    </div>
                     
-                    {/* <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5"> */}
+                    <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5">
 
                         {/* City Label & Input */}
-{/* 
+
                         <div className="mb-5">
                             <label htmlFor='testType' className='block mb-2 text-sm font-semibold'>City<span className='text-red-500'>*</span></label>
-                            <Select options={cities.map(city => {return {label:city.name,value:city.name}})} onChange={(e)=>setCity(e)} value={city}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
-                        </div> */}
+                            <Select options={cities.map(city => {return {label:city,value:city}})} onChange={(e)=>setCity(e)} value={city}  className=" rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />   
+                        </div>
 
                         {/* Zip Label & Input */}
 
-                        {/* <div className="mb-5">
+                        <div className="mb-5">
                             <label htmlFor="address" className='block mb-2 text-sm font-semibold'>Zip<span className='text-red-500'>*</span></label>
 
                             <input type="text" name="address" id="address" style={{backgroundColor: 'white',outline: 'none',border: '1px solid #cccccc',boxShadow: 'none',borderRadius: '6px',height:'40px',paddingLeft:'10px',paddingRight:'10px', width: '100%',}} value={zip} onChange={(e)=>setZip(e.target.value)} />
                         </div>
 
-                    </div> */}
+                    </div>
 
                     {/* Address Label & Input */}
 
-                    {/* <div className="mb-5">
+                    <div className="mb-5">
                         <label htmlFor="address" className='block mb-2 text-sm font-semibold'>Address<span className='text-red-500'>*</span></label>
 
                         <input type="text" name="address" id="address" style={{backgroundColor: 'white',outline: 'none',border: '1px solid #cccccc',boxShadow: 'none',borderRadius: '6px',height:'40px',paddingLeft:'10px',paddingRight:'10px', width: '100%',}} value={details} onChange={(e)=>setDetails(e.target.value)} />
-                    </div> */}
+                    </div>
 
                     {/* Update Button */}
-{/* 
+
                     <div className="w-fit ml-auto my-10">
 
                         <button type="submit" className="px-10 py-2 bg-[#397f77] text-white text-lg font-semibold rounded-lg mb-5 hover:bg-[#18debb] duration-300">Update</button>
                         
-                    </div> */}
+                    </div>
 
                 </form>
 
