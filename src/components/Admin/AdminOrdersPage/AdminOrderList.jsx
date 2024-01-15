@@ -59,7 +59,7 @@ const AdminOrderList = () => {
                                 <div className="text-left px-5">
                                     <div className="mb-3">
                                         <b>Total</b> <br />
-                                        C${order.totalPrice}
+                                        C${order.status == "Dynamic" ? <> {order.totalPrice}  +<br /> Dynamic Price</> : order.totalPrice}
                                     </div>
                                 </div>
                             </div>

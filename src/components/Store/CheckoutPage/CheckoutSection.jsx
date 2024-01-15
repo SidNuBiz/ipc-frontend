@@ -10,6 +10,8 @@ const CheckoutSection = ({user}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const alert = useAlert()
+
+  const [isDynamic,setIsDynamic] = useState(false)
   
   const [shippingPrice,setShippingPrice] = useState(0)
   const [taxPrice,setTaxPrice] = useState(0)
@@ -37,6 +39,7 @@ const CheckoutSection = ({user}) => {
     let taxPriceValue = 0
     mainFormData.sampleFormData.forEach(sample =>{
         sample.testFormData.forEach(tests=>{
+            if(JSON.parse(tests.test[sample.selectedTurnaround.value] == 0)){ setIsDynamic(true) }
             subTotalPriceValue = subTotalPriceValue + parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value]))
             taxPriceValue = taxPriceValue + (parseFloat(JSON.parse(tests.test[sample.selectedTurnaround.value])) * taxPercentage)/100
         })
@@ -74,7 +77,7 @@ const CheckoutSection = ({user}) => {
         alert.error("Please fill up all the shipping address fields")
     }
     e.preventDefault();
-    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice).toFixed(2),products:mainFormData.sampleFormData,signatureBlob:mainFormData.signatureBlob,additionalInfo:mainFormData.additionalInfo}))
+    dispatch(createOrder({shipping:{shippingDetails,shippingCountry,shippingState,shippingCity,shippingZip},billing:{details,country,state,city,zip},shippingPrice,taxPrice,subTotalPrice,totalPrice:(shippingPrice+taxPrice+subTotalPrice).toFixed(2),products:mainFormData.sampleFormData,signatureBlob:mainFormData.signatureBlob,additionalInfo:mainFormData.additionalInfo,status: isDynamic ? "Dynamic" : "Placed"}))
     dispatch({type:'MAIN_FORM_DATA',payload:{}})
     dispatch({type:'SAMPLE_FORM_DATA',payload:[]})
     navigate('/')
@@ -303,7 +306,7 @@ const CheckoutSection = ({user}) => {
                                 <tr className=" border-b-8 border-transparent">
                                     <td className="text-gray-600 ">Subtotal</td>
                                     
-                                    <td className="text-gray-600 text-right ">C${subTotalPrice}</td>
+                                    <td className="text-gray-600 text-right ">C${ isDynamic ? <>{subTotalPrice} <br /> + Dynamic Price</> : subTotalPrice}</td>
                                 </tr>
 
                                 <tr className="border-b-8 border-transparent">
@@ -329,7 +332,8 @@ const CheckoutSection = ({user}) => {
 
                                     <td className="text-gray-600 text-2xl font-semibold">Total</td>
 
-                                    <td className="text-gray-600 text-right font-semibold text-2xl">C${(subTotalPrice+shippingPrice+taxPrice).toFixed(2)}</td>
+                                    <td className="text-gray-600 text-right font-semibold text-2xl">C${ isDynamic ? <>{(subTotalPrice+shippingPrice+taxPrice).toFixed(2)} <br /> + Dynamic Price</>  : (subTotalPrice+shippingPrice+taxPrice).toFixed(2)}</td>
+
 
                                 </tr>
 

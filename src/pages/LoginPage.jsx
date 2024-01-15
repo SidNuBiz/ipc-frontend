@@ -114,8 +114,10 @@ const LoginPage = () => {
                     <h2 className="mt-10 text-center w-full">Don't have any account? <Link to="/signup"><b className=" text-[#397f77] hover:underline duration-300">Sign Up</b></Link></h2>
 
                     {/* Back Button */}
-
-                    <button onClick={() => {window.history.go(-1)}} type="button" className="mt-10 text-[#397f77] font-semibold w-full text-center text-xl hover:-translate-x-5 duration-300">&#x2190; Go Back</button>
+                    <Link to="/">
+                        <button  type="button" className="mt-10 text-[#397f77] font-semibold w-full text-center text-xl hover:-translate-x-5 duration-300">&#x2190; Go Back</button>
+                    </Link>
+                    
 
                     
 

@@ -1,33 +1,64 @@
 import React from "react";
-import { useEffect,Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect,Fragment,useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import Loader from "../../../pages/Loader";
 import SideBar from "../Misc/SideBar";
-import { getOrderDetails } from "../../../actions/orderAction";
+import { getOrderDetails,createOrder} from "../../../actions/orderAction";
 import { Link } from 'react-router-dom'
-import SignatureCanvas from "react-signature-canvas";
+import { useAlert } from "react-alert";
 
 
 const AdminOrderView = () => {
     
     const dispatch = useDispatch()
-
+    const alert = useAlert();
+    const navigate = useNavigate();
     const orderId = useParams().id;
 
-    const { order,loading } = useSelector(
+    const [order,setOrder] = useState(null)
+
+    const { order:orderDetails,loading } = useSelector(
         (state) => state.orderDetails
     );
 
-    
+ 
+    const calculatePrice = (e,sampleIndex,testIndex)=>{
+        let newOrder = {...order}
+        newOrder.products[sampleIndex].testFormData[testIndex].test[order.products[sampleIndex].selectedTurnaround.value] = e.target.value
+        setOrder(newOrder)
+    }
+
+    const updateOrder = ()=>{
+        let isDynamic = false
+        order.products.forEach(sample =>{
+            sample.testFormData.forEach(tests=>{
+                if(JSON.parse(tests.test[sample.selectedTurnaround.value] == 0)){ isDynamic = true  }
+              
+            })
+          })
+        if(isDynamic){
+            alert.error("Please Enter Price for all Tests")
+            return
+        }
+        dispatch(createOrder({...order,status:"placed",shipping:order.shippingAddress,billing:order.billingAddress,signatureBlob:order.signature}))
+        navigate('/IPC-admin-portal/orders')
+        
+    }
 
     useEffect(() => {
-        console.log("game")
+
         // 👇️ scroll to top on page load
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         dispatch(getOrderDetails(orderId))
 
     }, [dispatch,orderId]);
+
+    useEffect(() => {
+       
+        setOrder(orderDetails)
+
+    }, [orderDetails]);
 
     return (
     <Fragment>
@@ -58,13 +89,24 @@ const AdminOrderView = () => {
                         </button>
                     </div>
 
-                    {/* Print Invoice Button */}
-
+                    {/* Order Samples Button */}
+                    {order && order.status === "Dynamic" ?
+                    <div className=" w-fit ml-auto">
+                        
+                        <button id="add-to-cart-btn" onClick={updateOrder} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Update</button>
+                        
+                    </div>
+                    :
                     <div className=" w-fit ml-auto">
                         <Link to={`/IPC-admin-portal/order/samples/${order && order.job_web_id}`}>
                         <button id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Samples</button>
                         </Link>
                     </div>
+                    
+                
+                }
+                    
+                    
 
                     {/* Order Details */}
 
@@ -74,7 +116,7 @@ const AdminOrderView = () => {
                         <div className="mb-10">
                             <h2 className=" text-xl">
                                 <b>Order #</b>
-                                {order._id}
+                                {order && order._id}
                             </h2>
                         </div>
 
@@ -94,7 +136,7 @@ const AdminOrderView = () => {
 
                                 <div className="mb-3">
                                     <h2 className=" text-md">                                
-                                        <b>Order Date:</b> {`${new Date(order.created).getDate()}-${new Date(order.created).getMonth()+1}-${new Date(order.created).getFullYear()}`}
+                                        <b>Order Date:</b> {`${new Date(order && order.created).getDate()}-${new Date(order && order.created).getMonth()+1}-${new Date(order && order.created).getFullYear()}`}
                                     </h2>
                                 </div>
 
@@ -102,7 +144,7 @@ const AdminOrderView = () => {
 
                                 <div>
                                     <h2 className=" text-md">
-                                        <b>Order Status:</b> {order.status}
+                                        <b>Order Status:</b> {order && order.status}
                                     </h2>
                                 </div>
                             </div>
@@ -121,7 +163,7 @@ const AdminOrderView = () => {
                                 <div className="mb-3">
                                     <h2 className=" text-md">
                                         <b>Client Name: </b>
-                                        {order.firstname}
+                                        {order && order.firstname}
                                     </h2>
                                 </div>
 
@@ -130,7 +172,7 @@ const AdminOrderView = () => {
                                 <div>
                                     <h2 className=" text-md">
                                         <b>Client Email: </b>
-                                        {order.email}
+                                        {order && order.email}
                                     </h2>
                                 </div>
                             </div>
@@ -153,7 +195,7 @@ const AdminOrderView = () => {
                                 <div className="">
                                     <div className="">
                                         <b>Address</b> <br />
-                                        {order.shippingAddress && order.shippingAddress.shippingDetails}
+                                        {order  && order.shippingAddress.shippingDetails}
                                     </div>
                                 </div>
 
@@ -162,7 +204,7 @@ const AdminOrderView = () => {
                                 <div className="">
                                     <div className="">
                                         <b>Country</b> <br />
-                                        {order.shippingAddress && order.shippingAddress.shippingCountry}
+                                        {order && order.shippingAddress.shippingCountry}
                                     </div>
                                 </div>
 
@@ -171,7 +213,7 @@ const AdminOrderView = () => {
                                 <div className="">
                                     <div className="">
                                         <b>City</b> <br />
-                                        {order.shippingAddress && order.shippingAddress.shippingCity}
+                                        {order && order.shippingAddress.shippingCity}
                                     </div>
                                 </div>
 
@@ -180,7 +222,7 @@ const AdminOrderView = () => {
                                 <div className="">
                                     <div className="">
                                         <b>Zip</b> <br />
-                                        {order.shippingAddress && order.shippingAddress.shippingZip}
+                                        {order && order.shippingAddress.shippingZip}
                                     </div>
                                 </div>
                             </div>
@@ -200,9 +242,9 @@ const AdminOrderView = () => {
                             <div className="">
 
                                 {
-                                order.products && order.products.map ((item, index) => (
+                                order && order.products.map ((item, sampleIndex) => (
 
-                                    <div key={index} className="mb-5 pb-5 border-b-[1px] border-b-black-900" >
+                                    <div key={sampleIndex} className="mb-5 pb-5 border-b-[1px] border-b-black-900" >
 
                                     {/* Item Name */}
 
@@ -241,9 +283,9 @@ const AdminOrderView = () => {
                                         <div>
 
                                         {
-                                            item.testFormData.map((test, index) => (
+                                            item.testFormData.map((test, testIndex) => (
 
-                                            <div key={index} className="grid grid-cols-2 gap-5">
+                                            <div key={testIndex} className="grid grid-cols-2 gap-5">
 
                                                 {/* Name */}
 
@@ -268,7 +310,13 @@ const AdminOrderView = () => {
                                                 {/* Price */}
 
                                                 <div className="text-right h-fit my-auto">
-                                                <h2 className=" text-md font-bold">C$ {test.test[item.selectedTurnaround.value]}</h2>
+                                                {order && order.status === "Dynamic" ?
+                                                    <input type="number" className="border-gray-300 border-[1px] focus:outline-none" min={0} defaultValue={test.test[item.selectedTurnaround.value]} onChange={(e)=>calculatePrice(e,sampleIndex,testIndex)}  />
+                                                    :
+                                                    <h2 className=" text-md font-bold">C$ {test.test[item.selectedTurnaround.value]}</h2>
+                                                }
+                                               
+                                                
                                                 </div>
 
                                             </div>
@@ -305,7 +353,7 @@ const AdminOrderView = () => {
                                     rows="3"
                                     className="w-full border border-gray-300 rounded-md p-2 py-[9px] text-sm focus:outline-none"
                                     disabled
-                                    value={order.additionalInfo}
+                                    value={order && order.additionalInfo}
                                     >
 
                                 </textarea>
@@ -313,46 +361,50 @@ const AdminOrderView = () => {
 
                              {/* Total */}
 
-                             <div className="">
-                                {/* Subtotal */}
+                            {order && order.status !== "Dynamic" ?
+                                <div className="">
+                                   {/* Subtotal */}
+   
+                                   <div className="grid grid-cols-2 gap-5">
+                                       <h2 className=" text-md font-bold">Subtotal:</h2>
+   
+                                       <h2 className=" text-md text-right font-bold">C${order && order.subTotalPrice}</h2>
+                                   </div>
+   
+                                   {/* Shipping */}
+   
+                                   <div className="grid grid-cols-2 gap-5">
+                                       <h2 className=" text-md font-bold">Shipping:</h2>
+   
+                                       <h2 className=" text-md text-right font-bold">C${order && order.shippingPrice}</h2>
+                                   </div>
+   
+                                   {/* TAX */}
+   
+                                   <div className="grid grid-cols-2 gap-5 mb-5 pb-5 border-b-[1px] border-b-gray-200">
+                                       <h2 className=" text-md font-bold">Tax:</h2>
+   
+                                       <h2 className=" text-md text-right font-bold">C${order && order.taxPrice}</h2>
+                                   </div>
+   
+                                   {/* Total */}
+   
+                                   <div className="grid grid-cols-2 gap-5 mt-5">
+                                       <h2 className=" text-xl font-bold">Total:</h2>
+   
+                                       <h2 className=" text-xl text-right font-bold">C${order && order.totalPrice}</h2>
+                                   </div>
+                               </div>
+                            :
+                            <></>}
 
-                                <div className="grid grid-cols-2 gap-5">
-                                    <h2 className=" text-md font-bold">Subtotal:</h2>
-
-                                    <h2 className=" text-md text-right font-bold">C${order.subTotalPrice}</h2>
-                                </div>
-
-                                {/* Shipping */}
-
-                                <div className="grid grid-cols-2 gap-5">
-                                    <h2 className=" text-md font-bold">Shipping:</h2>
-
-                                    <h2 className=" text-md text-right font-bold">C${order.shippingPrice}</h2>
-                                </div>
-
-                                {/* TAX */}
-
-                                <div className="grid grid-cols-2 gap-5 mb-5 pb-5 border-b-[1px] border-b-gray-200">
-                                    <h2 className=" text-md font-bold">Tax:</h2>
-
-                                    <h2 className=" text-md text-right font-bold">C${order.taxPrice}</h2>
-                                </div>
-
-                                {/* Total */}
-
-                                <div className="grid grid-cols-2 gap-5 mt-5">
-                                    <h2 className=" text-xl font-bold">Total:</h2>
-
-                                    <h2 className=" text-xl text-right font-bold">C${order.totalPrice}</h2>
-                                </div>
-                            </div>
                             <div>
-                                {/* Heading */}
+         
 
                                 <div>
                                     <p className="font-semibold text-xl mb-5 text-gray-600">Signature</p>
                                 </div>
-                                    <img className="border border-gray-300 p-5" src={order.signature} alt="" />
+                                <img className="border border-gray-300 p-5" src={order && order.signature} alt="" />
 
                             </div>
                         </div>

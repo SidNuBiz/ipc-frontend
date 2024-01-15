@@ -55,7 +55,12 @@ const OrderList = () => {
                                 <div className="text-left px-5">
                                     <div className="mb-3">
                                         <b>Total</b> <br />
-                                        C${order.totalPrice}
+                                        {order.status === "Dynamic" ? 
+                                        <>Dynamic Price</>
+                                        :
+                                        <>C${order.totalPrice}</>
+                                        }
+                                        
                                     </div>
                                 </div>
                             </div>

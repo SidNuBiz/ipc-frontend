@@ -16,6 +16,10 @@ const AdminOrdersPageSection = () => {
       (state) => state.allOrders
   );
 
+  const { loading:newLoading } = useSelector(
+    (state) => state.newOrder
+);
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
         search();
@@ -27,7 +31,6 @@ const AdminOrdersPageSection = () => {
   }
 
   function setNextPage(){
-    console.log(totalOrder)
     if(page*5 < totalOrder){
       setPage(page+1)
     }
@@ -40,12 +43,16 @@ const AdminOrdersPageSection = () => {
   }
 
   useEffect(()=>{
-      dispatch(getAllOrders(page))
+      
   },[dispatch,page])
+
+  useEffect(() => {
+    dispatch(getAllOrders(1))
+  }, [newLoading]);
 
   return (
     <Fragment>
-    {loading ? (
+    {loading || newLoading ? (
       <Loader />
     ) : (
         <Fragment>

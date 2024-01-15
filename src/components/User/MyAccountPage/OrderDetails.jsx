@@ -18,14 +18,15 @@ const OrderDetails = ({order,oId}) => {
       </div>
 
       {/* Print Invoice Button */}
-
+      {order.status === 'Dynamic' ?
+      <></>
+      :
       <div className=" w-fit ml-auto">
         <Link to={'/invoice/'+order.invoiceNumber+'/'+oId}>
         <button id="add-to-cart-btn" className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">Invoice</button>
         </Link>
       </div>
-
-      
+      }
 
       {/* Order Details */}
 
@@ -242,7 +243,7 @@ const OrderDetails = ({order,oId}) => {
 
                             <div className="text-right h-fit my-auto">
                               {/* <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2> */}
-                              <h2 className=" text-md font-bold">C$ { test.test[item.selectedTurnaround.value]}</h2>
+                              <h2 className=" text-md font-bold">{ test.test[item.selectedTurnaround.value] == 0 ? 'Dynamic Price' : 'C$'+test.test[item.selectedTurnaround.value]}</h2>
                             </div>
 
                           </div>
@@ -263,7 +264,10 @@ const OrderDetails = ({order,oId}) => {
 
           {/* Total */}
 
-          <div className="">
+          {order.status === 'Dynamic' ? 
+            <h2 className=" text-xl font-bold text-[#880000] text-center">You will be able to see the pricing details and invoice when order status is placed </h2>
+            :
+            <div className="">
 
             {/* Subtotal */}
 
@@ -306,6 +310,10 @@ const OrderDetails = ({order,oId}) => {
             </div>
 
           </div>
+        
+        }
+
+          
 
 
 

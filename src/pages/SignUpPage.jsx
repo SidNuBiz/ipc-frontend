@@ -28,7 +28,7 @@ const SignUpPage = () => {
     const registerUser = async (e) => {
         e.preventDefault()
         if(password === confirmPasswword){
-            // dispatch(register({firstname,lastname,email,password}));
+            
             try{
                
                 const config = { headers: { "Content-Type": "multipart/form-data" } };
@@ -149,7 +149,9 @@ const SignUpPage = () => {
 
                         {/* Back Button */}
 
-                        <button onClick={() => {window.history.go(-1)}} type="button" className="mt-10 text-[#397f77] font-semibold w-full text-center text-xl hover:-translate-x-5 duration-300">&#x2190; Go Back</button>
+                        <Link to="/">
+                            <button type="button" className="mt-10 text-[#397f77] font-semibold w-full text-center text-xl hover:-translate-x-5 duration-300">&#x2190; Go Back</button>
+                        </Link>
 
                         
 

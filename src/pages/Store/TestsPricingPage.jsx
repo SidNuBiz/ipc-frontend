@@ -97,11 +97,11 @@ const TestsPricingPage = () => {
 
                                             <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.description}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.standardPricing}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.standardPricing == 0 ? <p className="text-[#880000]">Dynamic Price</p> : 'C$'+test.standardPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.rushedPricing}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.rushedPricing == 0 ? <p className="text-[#880000]">Dynamic Price</p> : 'C$'+test.rushedPricing}</td>
 
-                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">C${test.urgentPricing}</td>
+                                            <td className="text-left text-lg font-normal border-2 px-3 py-1">{test.urgentPricing == 0 ? <p className="text-[#880000]">Dynamic Price</p>  : 'C$'+test.urgentPricing}</td>
 
                                         </tr>
                                     ))}
