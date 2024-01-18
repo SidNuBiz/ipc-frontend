@@ -33,7 +33,6 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [standardPricing, setStandardPricing] = useState(thisPackage.standardPricing);
     const [rushedPricing, setRushedPricing] = useState(thisPackage.rushedPricing);
     const [urgentPricing, setUrgentPricing] = useState(thisPackage.urgentPricing);
-    const [sampleRequired, setSampleRequired] = useState(thisPackage.sampleRequired);
     const [unit, setUnit] = useState(thisPackage.unit);
     const [packageTests,setPackageTests] = useState(thisPackage.packageTests)
 
@@ -118,7 +117,6 @@ const AdminPackageEditSection = ({thisPackage}) => {
        standardPricing,
        rushedPricing,
        urgentPricing,
-       sampleRequired,
        unit,
        packageTests
       }
@@ -294,12 +292,6 @@ const AdminPackageEditSection = ({thisPackage}) => {
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
 
               <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sample Required</label>
-
-              <input id='service-code' type="text"  className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
             </div>
 
             <div className='mb-10'>

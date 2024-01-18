@@ -29,7 +29,6 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const [standardPricing, setStandardPricing] = useState(thisAnalysis.standardPricing);
     const [rushedPricing, setRushedPricing] = useState(thisAnalysis.rushedPricing);
     const [urgentPricing, setUrgentPricing] = useState(thisAnalysis.urgentPricing);
-    const [sampleRequired, setSampleRequired] = useState(thisAnalysis.sampleRequired);
     const [unit, setUnit] = useState(thisAnalysis.unit);
 
     const addMatrixToAnalysis = (matrix) => {
@@ -76,7 +75,6 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
         standardPricing,
         rushedPricing,
         urgentPricing,
-        sampleRequired,
         unit
       }
       dispatch(updateAnalysis(analysis,thisAnalysis._id))
@@ -225,12 +223,6 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
               <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
 
               <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Sample Required</label>
-
-              <input id='service-code' type="text"  className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={sampleRequired} onChange={(e)=>setSampleRequired(e.target.value)} required/>
             </div>
 
             <div className='mb-10'>
