@@ -20,7 +20,7 @@ const ServiceDetailsSection = ({ serviceTitle, serviceSubHeading, serviceDescrip
                 serviceSubHeading && (          // If there is a sub heading, render it
 
                     <div>
-                        <h3 className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl italic">{serviceSubHeading}</h3>
+                        <h3 className="block mb-10 text-gray-600 lg:text-2xl md:text-xl sm:text-xl italic">{serviceSubHeading}</h3>
                     </div>
 
                 )
@@ -32,7 +32,7 @@ const ServiceDetailsSection = ({ serviceTitle, serviceSubHeading, serviceDescrip
                 serviceDescription.paragraphs && (     // Check if there are any paragraphs
 
                     <div>
-                        <p className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl">
+                        <p className="block mb-10 text-gray-600 lg:text-2xl md:text-xl sm:text-xl">
 
                             {
                                 serviceDescription.paragraphs.map((item) => (
@@ -61,7 +61,7 @@ const ServiceDetailsSection = ({ serviceTitle, serviceSubHeading, serviceDescrip
                         
                             serviceDescription.bulletPoints.map((item) => (
 
-                                <ul key={item.id} className="text-2xl text-gray-600 list-disc list-outside ml-10">
+                                <ul key={item.id} className="lg:text-2xl md:text-xl sm:text-xl text-gray-600 list-disc list-outside ml-10">
 
                                     <li className="mb-2">{item.bulletPoint}</li>
 

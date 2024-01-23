@@ -1,6 +1,6 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 
-const NowOpeningSection = () => {
+const NowOpeningSection = ({nowOpening}) => {
 
     return (
 
@@ -20,8 +20,8 @@ const NowOpeningSection = () => {
 
             {/* Sub Heading */}
 
-            <div className="mb-10">
-                <h2 className="text-center text-[#397f77] font-semibold lg:text-2xl md:text-2xl sm:text-xl">We're not hiring at the moment, but we're glad you're interested in joining our team! Keep an eye on this page for future opportunities.</h2>
+            <div className="mb-10 px-[100px] pb-[100px]">
+                <h2 className="text-center text-[#397f77] lg:text-2xl md:text-2xl sm:text-xl">We're not hiring at the moment, but we're glad you're interested in joining our team! Keep an eye on this page for future opportunities.</h2>
             </div>
 
         </div>

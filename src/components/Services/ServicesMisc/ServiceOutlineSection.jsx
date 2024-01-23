@@ -22,7 +22,7 @@ const ServiceOutlineSection = ({ outline }) => {
                 outline.outlineSubHeading && (          // If there is a sub heading, render it
 
                     <div>
-                        <h3 className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl italic">{outline.outlineSubHeading}</h3>
+                        <h3 className="block mb-10 text-gray-600 lg:text-2xl md:text-xl sm:text-xl italic">{outline.outlineSubHeading}</h3>
                     </div>
 
                 )
@@ -34,7 +34,7 @@ const ServiceOutlineSection = ({ outline }) => {
                 outline.outlineParagraph && (          // If there is a paragraph, render it
 
                     <div>
-                        <div className="block mb-10 text-gray-600 lg:text-2xl md:text-2xl sm:text-xl">
+                        <div className="block mb-10 text-gray-600 lg:text-2xl md:text-xl sm:text-xl">
                             <p>{outline.outlineParagraph}</p>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ const ServiceOutlineSection = ({ outline }) => {
                         {
                             outline.outlineBulletPoints.map((item) => (
 
-                                <ul key={item.id} className="text-2xl text-gray-600 list-disc list-outside ml-10">
+                                <ul key={item.id} className="lg:text-2xl md:text-xl sm:text-xl text-gray-600 list-disc list-outside ml-10">
 
                                     <li className="mb-2">{item.bulletpoint}</li>
 

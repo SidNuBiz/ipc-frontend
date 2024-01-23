@@ -1954,3 +1954,53 @@
         },
 
     ]
+
+    export const nowOpening = {
+
+        info: "Our Medical Clinic is known for the most attentive care in the San Francisco area. With a wide range of services, there’s a great chance for professionals to join our team. Submit your resume for general consideration or browse our list of openings below.",
+
+        jobs: [
+
+            {
+                img: "https://static.wixstatic.com/media/352b81_fc1d4de42cd848ba9475aa8056e5c642~mv2.jpg/v1/fill/w_940,h_440,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/DSC07841-1.jpg",
+
+                title: "Nurse Practitioner",
+
+                type: "Part-Time",
+
+                details: "Enter information about this job vacancy here. Be sure to include both educational and experiential requirements of the position, as well as details about the type of person you are looking for.",
+            },
+
+
+            {
+                img: "https://static.wixstatic.com/media/352b81_51cb94d29be0478f930ea3a512667f90~mv2.jpg/v1/crop/x_0,y_1515,w_4000,h_1872/fill/w_940,h_440,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/DSC07673-1.jpg",
+
+                title: "Patient Service Representative",
+
+                type: "Full-Time",
+
+                details: "Enter information about this job vacancy here. Be sure to include both educational and experiential requirements of the position, as well as details about the type of person you are looking for.",
+            },
+
+
+            {
+                img: "https://static.wixstatic.com/media/352b81_2caebe7b1dc1400fadde36e051e1f269~mv2.jpg/v1/crop/x_0,y_2064,w_4000,h_1872/fill/w_940,h_440,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/DSC07803-1.jpg",
+
+                title: "Medical Assistant",
+
+                type: "Part-Time",
+
+                details: "Enter information about this job vacancy here. Be sure to include both educational and experiential requirements of the position, as well as details about the type of person you are looking for.",
+            },
+
+        ],
+
+        formTitle: "Apply",
+
+        formSubTitle: "Join Our Team",
+
+        formParagraph: "This is your Custom Form section paragraph. Encourage your users to fill out all the sections before submitting their information.",
+
+        formImg: "https://static.wixstatic.com/media/352b81_dfa2d45ab7fe4854880d27f5ab6bf6f4~mv2.jpg/v1/fill/w_948,h_1000,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/352b81_dfa2d45ab7fe4854880d27f5ab6bf6f4~mv2.jpg",
+
+    }

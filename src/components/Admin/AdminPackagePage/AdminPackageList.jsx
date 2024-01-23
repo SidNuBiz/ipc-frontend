@@ -59,7 +59,13 @@ const AdminPackageList = ({searchKey}) => {
                             </div>
 
                             <div className="col-span-2">
-                                <h2 className="text-xl text-[#397f77]">{pack.type}</h2>
+                                <h2 className="text-xl text-[#397f77]">
+                                {
+                                    pack.type.map((type,idx) => (
+                                        (idx ? ', ' : '') + type
+                                    ))
+                                }
+                                </h2>
                             </div>
 
                           

@@ -52,18 +52,7 @@ const AdminAnalysisCreateSection = () => {
 
 
     const addThisAnalysis = () => {
-    //   if(title.trim() === ""){
-    //     alert.error("Give a name for the service")
-    //     return
-    //   }
-    //   if(paragraphsArr.length === 0){
-    //     alert.error("Give a description paragraph for the service")
-    //     return
-    //   }
-    //   if(overviewPointsArr.length === 0){
-    //     alert.error("Give at least one overview point")
-    //     return
-    //   }
+
       const analysis = {
        name,
        testingCode,

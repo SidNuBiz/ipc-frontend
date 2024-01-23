@@ -53,6 +53,8 @@ const NowOpeningPage = lazy(() => import('./pages/Career/NowOpeningPage.jsx'));
 const AdminServicesPage = lazy(() => import('./pages/Admin/AdminServices/AdminServicesPage.jsx'));
 const AdminServiceEditPage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceEditPage'));
 const AdminServiceCreatePage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceCreatePage'));
+// const AdminJobPage = lazy(() => import('./pages/Admin/AdminCareer/AdminJobPage'));
+// const AdminJobCreatePage = lazy(() => import('./pages/Admin/AdminCareer/AdminJobCreatePage'));
 const AdminAnalysesPage = lazy(() => import('./pages/Admin/AdminAnalyses/AdminAnalysisPage'));
 const AdminAnalysisCreatePage = lazy(() => import('./pages/Admin/AdminAnalyses/AdminAnalysisCreatePage'));
 const AdminAnalysisEditPage = lazy(() => import('./pages/Admin/AdminAnalyses/AdminAnalysisEditPage'));
@@ -68,8 +70,6 @@ const AdminFaqPageEdit = lazy(() => import('./pages/Admin/AdminFaqPageEdit'));
 const AdminServiceHoverBoxPage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceHoverBoxPage'));
 const AdminMatrixEdit = lazy(() => import('./pages/Admin/AdminMatrixEdit'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
-// const InvoiceX = lazy(() => import('./pages/invoiceX'));
-
 
 
 
@@ -140,6 +140,12 @@ function App() {
           <Route path="/IPC-admin-portal/services/create"  element={<AdminServiceCreatePage />} />
 
           <Route path="/IPC-admin-portal/services/:id"  element={<AdminServiceEditPage />} />
+{/* 
+          <Route path="/IPC-admin-portal/jobs"  element={<AdminJobPage />} />
+
+          <Route path="/IPC-admin-portal/job/create"  element={<AdminJobCreatePage />} /> */}
+
+          {/* <Route path="/IPC-admin-portal/job/:id"  element={<AdminJobEditPage />} /> */}
 
           <Route path="/IPC-admin-portal/analyses"  element={<AdminAnalysesPage />} />
 
@@ -230,9 +236,6 @@ function App() {
 
         <Route path="/services/overview" element={<ServiceOverviewPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
-
-        {/* <Route path="/invoicex" element={<InvoiceX />} /> */}
-
        
 
       </Routes>

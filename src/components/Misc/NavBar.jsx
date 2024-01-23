@@ -1,4 +1,4 @@
-import HeaderLogo from "../../assets/header-logo.png";
+import NavLogo from "../../assets/nav-logo.png";
 import SectionBottomCurve from "../../assets/section-bottom-curve.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect , Fragment } from "react";
@@ -45,12 +45,12 @@ const NavBar = () => {
           <Loader />
         ) : (
         <Fragment>
-            <nav className="lg:mx-10 md:mx-10 sm:mx-2 py-3 fixed z-40 bg-white min-w-screen left-0 right-0 top-2 rounded-2xl shadow-lg text-gray-600">
+            <nav className="mt-8 lg:mx-10 md:mx-10 sm:mx-2 py-3 fixed z-40 bg-white min-w-screen left-0 right-0 top-2 rounded-2xl shadow-lg text-gray-600">
                 <div className="flex flex-cols-8 w-11/12 mx-auto justify-between">
                     {/* Brand */}
 
                     <div className=" lg:col-span-2 md:col-span-3 sm:col-span-3 h-fit my-auto">
-                        <Link to="/"> <img src={HeaderLogo} alt="" className="w-20" /> </Link>
+                        <Link to="/"> <img src={NavLogo} alt="" className="w-25 " /> </Link>
                     </div>
 
                     {/* Menu */}

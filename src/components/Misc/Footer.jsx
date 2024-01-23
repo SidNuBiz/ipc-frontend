@@ -60,15 +60,30 @@ const Footer = () => {
 
                         {/* Social */}
 
-                        <button className=" bg-[#00acee] px-3 pb-1 rounded-full hover:bg-[#168ab8] duration-300 w-fit mx-auto">
+                        {/* Instagram Button */}
+                        <button className="bg-[#e4405f] px-3 pb-1 rounded-full hover:bg-[#d62976] duration-300 w-fit mx-auto mr-5">
 
-                            <a  href="https://twitter.com/intent/follow?original_referer=https%3A%2F%2Fjocelynlee8.wixsite.com%2F&ref_src=twsrc%5Etfw%7Ctwcamp%5Ebuttonembed%7Ctwterm%5Efollow%7Ctwgr%5Einvp_lab&screen_name=invp_lab" target="_blank" rel="noreferrer">
+                            <a href="https://www.instagram.com/invplab/" target="_blank" rel="noreferrer">
 
-                                <span className=" inline-block align-middle mr-2">
-                                    <img src="https://img.icons8.com/ios-filled/20/ffffff/twitter.png" alt=""/>
+                                <span className="inline-block align-middle mr-2">
+                                    <img src="https://img.icons8.com/ios-filled/20/ffffff/instagram-new.png" alt="" />
                                 </span>
 
-                                <span className=" inline-block align-middle text-white">Follow</span>
+                                <span className="inline-block align-middle text-white">Follow</span>
+                            </a>
+
+                        </button>
+                      
+                        {/* LinkedIn Button */}
+                        <button className="bg-[#0077b5] px-3 pb-1 rounded-full hover:bg-[#168ab8] duration-300 w-fit mx-auto">
+
+                            <a href="https://www.linkedin.com/company/18523294" target="_blank" rel="noreferrer">
+
+                                <span className="inline-block align-middle mr-2">
+                                    <img src="https://img.icons8.com/ios-filled/20/ffffff/linkedin.png" alt="" />
+                                </span>
+
+                                <span className="inline-block align-middle text-white">Connect</span>
                             </a>
 
                         </button>
@@ -132,7 +147,7 @@ const Footer = () => {
 
 
                 <div>
-                    <h2 className=" text-gray-400 w-fit mx-auto mt-3">©2022 by Innovate Phytoceuticals.</h2>
+                    <h2 className=" text-gray-400 w-fit mx-auto mt-3">©{(new Date()).getFullYear()} by Innovate Phytoceuticals. All rights reserved.</h2>
                 </div>
 
             </div>

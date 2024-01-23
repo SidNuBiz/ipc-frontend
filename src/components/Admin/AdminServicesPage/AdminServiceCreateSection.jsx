@@ -255,7 +255,7 @@ const AdminServiceCreateSection = () => {
         {/* Heading */}
 
         <div className="mb-5 pb-5 border-b-[1px] border-b-slate-300">
-            <h2 className=" text-4xl font-semibold text-gray-600">Create New Service</h2>
+            <h2 className=" text-4xl font-semibold text-gray-600">Create Service</h2>
         </div>
 
         {/* Go Back Button */}

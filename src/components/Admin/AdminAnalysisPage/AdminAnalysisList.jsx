@@ -65,7 +65,13 @@ const AdminAnalysisList = ({searchKey}) => {
                             </div>
 
                             <div className="col-span-2">
-                                <h2 className="text-xl text-[#397f77]">{analysis.type}</h2>
+                                <h2 className="text-xl text-[#397f77]">
+                                {
+                                    analysis.type.map((type,idx) => (
+                                        (idx ? ', ' : '') + type
+                                    ))
+                                }
+                                </h2>
                             </div>
 
                           

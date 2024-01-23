@@ -53,10 +53,8 @@ const Faq = ({faq,setFaqArr})=>{
                 return alert.error("Please Enter Answer")
             }
             if(category === null){
-                console.log("Fsdf")
                 return alert.error("Please Select Category")
             }
-            console.log("hola")
             const token = Cookies.get('token')
         
             const config = {

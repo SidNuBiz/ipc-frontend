@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import HeaderBackground from '../../../assets/service-overview-header-bg.webp';
+import GrayLogo from '../../../assets/logo-gray.png';
 
 
 const ServiceOverviewSection = ({services}) => {
@@ -12,14 +13,18 @@ const ServiceOverviewSection = ({services}) => {
 
             <div className=' relative flex items-center justify-center h-full overflow-hidden pt-60 pb-20'>
 
-                {/* Header Text */}
+            {/* Header Text */}
+
+           
 
                 <div className=' relative z-30 p-10 lg:w-1/2 md:w-2/3 sm:w-5/6 rounded-xl bg-white bg-opacity-95'>
 
+             
                     <h2>
+                        
                         <span data-aos="fade-in" className="block mb-5 text-gray-600 lg:text-7xl md:text-7xl sm:text-4xl text-center font-semibold">Services Overview</span>
 
-                        <span data-aos="fade-in" data-aos-delay="500" className="block lg:text-xl md:text-xl sm:text-lg text-center text-[#397f77] italic">Testing Services provided by Innovate Phytoceuticals - the lab.</span>
+                        <span data-aos="fade-in" data-aos-delay="500" className="block lg:text-xl md:text-xl sm:text-lg text-center text-[#397f77] italic">Services provided by Innovate Phytoceuticals.</span>
                     </h2>
 
                 </div>

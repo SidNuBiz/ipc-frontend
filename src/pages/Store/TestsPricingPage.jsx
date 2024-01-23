@@ -114,22 +114,19 @@ const TestsPricingPage = () => {
 
                 {/* Selection & Price Column */}
 
-                <div className=" mt-10 w-full grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 lg:mx-auto md:mx-auto ">
-                    <div>
-                        {/* Price */}
-
-                       
-
-                        <Link to="/testing-submission">
-                            <div className="mt-5">
-                                <button
-                                    id="add-to-cart-btn"
-                                    className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 ">
-                                    Submit a Sample
-                                </button>
-                            </div>
-                        </Link>
-                    </div>
+                <div className=" ">
+                    
+                    {/* Price */}
+                    
+                    <Link to="/testing-submission">
+                        <div className="mt-5 w-full flex justify-center">
+                            <button
+                                id="add-to-cart-btn"
+                                className="bg-[#397f77] px-20 py-3 text-white hover:bg-[#18debb] duration-500 disabled:bg-gray-500 center ">
+                                Submit a Sample
+                            </button>
+                        </div>
+                    </Link>
 
                 </div>
             </div>

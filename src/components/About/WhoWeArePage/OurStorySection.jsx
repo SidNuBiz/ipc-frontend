@@ -30,7 +30,7 @@ return (
 
             {/* Who We Are Slider */}
 
-            <div className="bg-gradient-to-r from-[#18debb] to-[#0283bb] text-white lg:text-4xl md:text-4xl sm:text-2xl">
+            <div className="bg-gradient-to-r from-[#18debb] to-[#0283bb] text-white lg:text-4xl md:text-2xl sm:text-2xl">
 
                 <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true} interval= {3000} showIndicators={false} showArrows={false} className="p-10 lg:w-2/3 md:w-5/6 sm:w-full mx-auto italic">
 
@@ -38,7 +38,7 @@ return (
 
                         ourStorySlides.map((slide, index) => (
 
-                            <div key={index} className="lg:p-20 md:p-20 h-fit text-left">
+                            <div key={index} className="lg:p-10 md:p-10 h-fit text-left">
 
                                 <p>{slide}</p>
 

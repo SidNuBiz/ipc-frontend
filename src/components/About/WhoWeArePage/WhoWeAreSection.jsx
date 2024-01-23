@@ -1,6 +1,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GrayLogo from "../../../assets/logo-gray.png";
+import InvpBuilding from "../../../assets/invp-building.png";
 
 
 const WhoWeAreSection = ({whoWeAreSlides}) => {
@@ -22,7 +23,7 @@ return (
 
             {/* Who We Are Slider */}
 
-            <div className="bg-gradient-to-r from-[#18debb] to-[#0283bb] text-white lg:text-4xl md:text-4xl sm:text-2xl">
+            <div className="bg-gradient-to-r from-[#18debb] to-[#0283bb] text-white lg:text-4xl md:text-2xl sm:text-2xl">
 
                 {/* Heading */}
 
@@ -34,7 +35,7 @@ return (
 
                         whoWeAreSlides.map((slide, index) => (
 
-                            <div key={index} className="lg:p-20 md:p-20 h-fit text-left">
+                            <div key={index} className="lg:p-10 md:p-10 h-fit text-left">
 
                                 <p>{slide}</p>
 
@@ -52,7 +53,7 @@ return (
 
             <div className="w-full-h-screen">
                 
-                <img src="https://static.wixstatic.com/media/352b81_9be9fe6d2bf84497883a7ef04de1f06f~mv2.png/v1/fill/w_1894,h_1025,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/352b81_9be9fe6d2bf84497883a7ef04de1f06f~mv2.png" alt="" className="w-full h-full object-cover" />
+                <img src={InvpBuilding} alt="" className="w-full h-full object-cover" />
 
             </div>
 

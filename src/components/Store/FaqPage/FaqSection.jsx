@@ -66,8 +66,6 @@ const FaqSection = () => {
             alert.error(error.response.data.message)
         }
         
-
-       
     }
 
     useEffect(() => {
@@ -123,7 +121,7 @@ const FaqSection = () => {
                         generalTab ? (
                             
                             <div>
-                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'General'){return item}})} />
+                                {faq.length > 0 && <FaqAccordion data={faq.filter((item)=> (item.category === 'General'))} />}
                             </div>
                         
                         ) 
@@ -131,7 +129,7 @@ const FaqSection = () => {
                         : samplesTab ? (
 
                             <div>
-                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'Samples'){return item}})} />
+                                {faq.length > 0 && <FaqAccordion data={faq.filter((item)=> (item.category === 'Samples'))} />}
                             </div>
 
                         )
@@ -139,7 +137,7 @@ const FaqSection = () => {
                         : (
 
                             <div>
-                                <FaqAccordion data={faq.map((item)=> {if(item.category === 'Results'){return item}})} />
+                                {faq.length > 0 && <FaqAccordion data={faq.filter((item)=> (item.category === 'Results'))} />}
                             </div>
 
                         )

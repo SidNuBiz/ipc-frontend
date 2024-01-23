@@ -90,18 +90,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
     }
 
     const updateThisPackage = () => {
-    //   if(title.trim() === ""){
-    //     alert.error("Give a name for the service")
-    //     return
-    //   }
-    //   if(paragraphsArr.length === 0){
-    //     alert.error("Give a description paragraph for the service")
-    //     return
-    //   }
-    //   if(overviewPointsArr.length === 0){
-    //     alert.error("Give at least one overview point")
-    //     return
-    //   }
+
       const pack = {
        name,
        img:thisPackage.img,
@@ -154,7 +143,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
         <div className="mb-5 flex justify-between">
             <button onClick={() => {window.history.go(-1)}} className=" text-[#397f77] text-xl font-semibold hover:-translate-x-5 duration-300 p-2">&#x2190;Back</button>
 
-            <button onClick={updateThisPackage} className=" bg-[#397f77] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+            <button onClick={updateThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Update Package</button>
         </div>
 
         {/* Service Main Image */}
@@ -326,6 +315,11 @@ const AdminPackageEditSection = ({thisPackage}) => {
               </div>
             ))}
          
+        </div>
+
+        <div className="mt-10 flex justify-center">
+           
+            <button onClick={updateThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Update Package</button>
         </div>
 
     </div>

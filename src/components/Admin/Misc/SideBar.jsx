@@ -252,6 +252,19 @@ const SideBar = () => {
                                         </NavLink>
                                     </li> */}
 
+                                    {/* <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
+                                        <NavLink to="/IPC-admin-portal/jobs">
+                                            <div className="pb-2">
+                                                <img
+                                                    src="https://img.icons8.com/windows/40/ffffff/groups.png"
+                                                    alt="team-member-icon"
+                                                    className="inline-block mr-4 w-fit mx-auto"
+                                                />
+                                                Jobs
+                                            </div>
+                                        </NavLink>
+                                    </li> */}
+
                                     <li className="w-full mb-5 border-b-2 border-transparent hover:border-white duration-100">
                                         <NavLink to="/IPC-admin-portal/members">
                                             <div className="pb-2">

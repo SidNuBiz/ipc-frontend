@@ -1,6 +1,7 @@
 
 import SectionTopCurveDark from '../../assets/section-top-curve-dark.png';
 import GrayLogo from "../../assets/logo-gray.png";
+import { Link } from 'react-router-dom';
 
 const ContactSection = ({details}) => {
 
@@ -24,11 +25,11 @@ const ContactSection = ({details}) => {
 
                     <div className='h-fit my-auto'>
 
-                        {/* Heading */}
 
                         <div className='mb-10 text-center'>
 
                             <img src={GrayLogo} alt=""  className="inline-block align-top mb-5 opacity-50 -ml-10 lg:w-32 md:w-32 sm:w-20"/>
+                            
                             <h2 className="inline-block align-bottom mb-5 text-gray-600 lg:text-7xl md:text-7xl sm:text-4xl text-center font-semibold -ml-10">Contact Us</h2>
 
                         </div>
@@ -52,8 +53,11 @@ const ContactSection = ({details}) => {
                         {/* Submit Request Button */}
 
                         <div className=' w-fit mx-auto'>
-                            <button className=' px-5 py-2 bg-[#397f77] text-white text-xl rounded-full hover:bg-[#18debb] duration-300'>Submit Request</button>
-                        </div>
+                            <Link to='/contact/business-information'>
+                                <button className=' px-5 py-2 bg-[#397f77] text-white text-xl rounded-full hover:bg-[#18debb] duration-300'>Submit Request</button>
+                            </Link>
+                            </div>
+                           
 
 
                     </div>
