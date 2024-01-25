@@ -27,7 +27,7 @@ const OverviewSection = ({details}) => {
 
                     <div data-aos="slide-left" className=" w-full lg:rounded-l-full bg-[#18debb] lg:py-10 md:py-2 h-fit my-auto lg:order-1 ">
 
-                        <img src="https://img.icons8.com/ios/200/000000/mission-of-a-company.png" alt="" className="block w-fit mx-auto mb-5 "/>
+                        <img src="https://img.icons8.com/ios/150/000000/mission-of-a-company.png" alt="" className="block w-fit mx-auto mb-5 "/>
 
                     </div>
 
@@ -49,7 +49,7 @@ const OverviewSection = ({details}) => {
                 <div className="lg:grid lg:grid-cols-2 bg-transparent mt-32 text-gray-300">
 
                     <div data-aos="slide-right" className=" w-full lg:rounded-r-full bg-[#18debb] lg:py-10 md:py-2 h-fit my-auto md:mb-10 sm:mb-10">
-                        <img src="https://img.icons8.com/ios/200/000000/opera-glasses.png" alt="" className="block w-fit mx-auto mb-5"/>
+                        <img src="https://img.icons8.com/ios/150/000000/opera-glasses.png" alt="" className="block w-fit mx-auto mb-5"/>
                     </div>
 
 
@@ -70,7 +70,7 @@ const OverviewSection = ({details}) => {
 
                     <div data-aos="slide-left" className=" w-full lg:rounded-l-full bg-[#18debb] lg:py-10 md:py-2 h-fit my-auto lg:order-1 md:mb-10 sm:mb-10">
 
-                        <img src="https://img.icons8.com/ios/200/000000/guarantee--v2.png" alt="" className="block w-fit mx-auto mb-5"/>
+                        <img src="https://img.icons8.com/ios/150/000000/guarantee--v2.png" alt="" className="block w-fit mx-auto mb-5"/>
 
                     </div>
 

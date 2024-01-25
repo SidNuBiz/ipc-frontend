@@ -38,19 +38,19 @@ const ServiceOverviewSection = ({services}) => {
 
             {/* Services */}
 
-            <div className='lg:w-2/3 md:w-1/2 sm:w-5/6 mx-auto mt-10'>
+            <div className='lg:w-2/3 md:w-2/3 sm:w-5/6 mx-auto mt-10'>
 
                 {/* Cannabis */}
 
                 {services && services.map((service,index)=>(
                     <Link to={`/services/${index}`} key={service._id}>
 
-                        <div className='grid lg:grid-cols-2 gap-10 mt-10 w-full'>
+                        <div className='grid lg:grid-cols-2 md:grid-cols-2 gap-10 mt-10 w-full'>
     
                         
     
-                            <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) !== 0 ? 'lg:order-1':""}`}>
-                                <img src={service.mainImage} alt="" className='w-full h-[450px] object-cover rounded-2xl' />
+                            <div className={`mx-auto h-fit my-auto w-full shadow-xl rounded-2xl  ${(index%2) !== 0 ? 'lg:order-1 md:order-1':""}`}>
+                                <img src={service.mainImage} alt="" className='w-full lg:h-[450px] md:h-[250px] object-cover rounded-2xl' />
                             </div>
     
                 

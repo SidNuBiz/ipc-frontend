@@ -28,9 +28,9 @@ const ContactSection = ({details}) => {
 
                         <div className='mb-10 text-center'>
 
-                            <img src={GrayLogo} alt=""  className="inline-block align-top mb-5 opacity-50 -ml-10 lg:w-32 md:w-32 sm:w-20"/>
+                            <img src={GrayLogo} alt=""  style={{zIndex:1}}  className="inline-block align-top mb-5 opacity-50 -ml-10 lg:w-32 md:w-32 sm:w-20"/>
                             
-                            <h2 className="inline-block align-bottom mb-5 text-gray-600 lg:text-7xl md:text-7xl sm:text-4xl text-center font-semibold -ml-10">Contact Us</h2>
+                            <h2 style={{zIndex:1000}} className="inline-block align-bottom mb-5 text-gray-600 lg:text-7xl md:text-7xl sm:text-4xl text-center font-semibold -ml-10">Contact Us</h2>
 
                         </div>
 

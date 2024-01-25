@@ -61,7 +61,7 @@ const Footer = () => {
                         {/* Social */}
 
                         {/* Instagram Button */}
-                        <button className="bg-[#e4405f] px-3 pb-1 rounded-full hover:bg-[#d62976] duration-300 w-fit mx-auto mr-5">
+                        <button className="bg-[#d62976] px-3 pb-1 rounded-full hover:bg-[#e4405f] duration-300 w-fit mx-auto mr-5">
 
                             <a href="https://www.instagram.com/invplab/" target="_blank" rel="noreferrer">
 

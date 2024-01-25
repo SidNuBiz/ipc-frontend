@@ -23,6 +23,7 @@ const AdminAnalysesSection = () => {
     (state) => state.analysis
   )
 
+
   useEffect(()=>{
     dispatch(getAnalyses())
     if(success){

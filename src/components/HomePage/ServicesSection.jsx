@@ -33,9 +33,9 @@ const ServicesSection = ({services}) => {
                     <div className="hover:scale-110 duration-300 ">
                         <Link to={"/services/"+idx}>
 
-                            <div className=" bg-white p-3 drop-shadow-xl rounded-2xl border-2 border-gray-50 h-full">
+                            <div className=" bg-white p-3  drop-shadow-xl rounded-2xl border-2 border-gray-50 h-full">
 
-                                <span className="block w-fit mx-auto mb-5 opacity-80">
+                                <span className="block w-fit mx-auto lg:mb-5 opacity-80">
                                     <img src={service.icon} alt="" className="scale-75"/>
                                 </span>
 

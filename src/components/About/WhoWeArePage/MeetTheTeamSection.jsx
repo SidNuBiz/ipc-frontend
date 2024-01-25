@@ -30,11 +30,15 @@ const MeetTheTeamSection = ({teamMembers}) => {
                 {
                     teamMembers.map((member, index) => (
 
-                        <div key={index} className="group block relative lg:flex lg:w-5/6 mx-auto lg:text-white md:text-gray-600 sm:text-gray-600 text-lg lg:hover:scale-110 duration-300 min-h-[500px] min-w-full mb-20 overflow-hidden lg:rounded-2xl lg:shadow-2xl">
+                        <div key={index} className="group block relative lg:flex lg:w-5/6 mx-auto text-gray-600 text-lg lg:hover:scale-110 lg:hover:text-white duration-300 min-h-[500px] min-w-full mb-20 overflow-hidden lg:rounded-2xl lg:shadow-2xl">
 
                             {/* Background Image */}
 
-                            <img src={member.img} alt="" className=" z-10 lg:absolute md:block sm:block object-cover object-fit w-full h-full "/>
+                            {/* <div className="lg:absolute lg:bottom-14"> */}
+                            <img src={member.img} alt="" className="border-solid border-4 border-[#53b2a7] rounded-full z-10 lg:mt-6 lg:absolute lg:left-0 lg:right-0 lg:ml-auto lg:mr-auto md:m-auto  md:block sm:block object-cover object-fit "/>
+                            {/* </div> */}
+
+                            
 
                             {/* Content */}
 
@@ -42,16 +46,18 @@ const MeetTheTeamSection = ({teamMembers}) => {
 
                                 {/* Member Name */}
 
-                                <h2 className=" text-2xl font-semibold mb-10 lg:italic">{member.name}</h2>
+                                
 
                                 {/* Member Designation */}
 
-                                <div className=" lg:absolute lg:bottom-14 lg:text-4xl font-bold">
+                                <div className=" lg:absolute lg:bottom-8 lg:text-3xl font-bold">
+
+                                    <h2 className=" text-2xl font-semibold  lg:italic">{member.name}</h2>
 
                                     {
                                         member.designations.map((item, index) => (
 
-                                            <p key={index} className="mb-5">{item.designation}</p>
+                                            <p key={index} className="mb-3">{item.designation}</p>
 
                                         ))
                                     }
