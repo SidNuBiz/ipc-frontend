@@ -7,12 +7,15 @@ import { useAlert } from 'react-alert';
 import axios from 'axios';
 import url from '../../../utils/baseApi';
 import noImg from '../../../assets/no-img.jpg'
+import { v4 as uuidv4 } from 'uuid';
 
 const AdminPackageEditSection = ({thisPackage}) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const alert = useAlert()
+
+    console.log(thisPackage)
 
     const [searchKey, setSearchKey] = useState("")
     const [matrixSearchKey, setMatrixSearchKey] = useState("")
@@ -28,8 +31,6 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [packageMatrix, setPackageMatrix] = useState(thisPackage.matrixForm);
     const [description, setDescription] = useState(thisPackage.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisPackage.uspNotUsedHeldDescOnly == "" ? null : thisPackage.uspNotUsedHeldDescOnly);
-    const [uspAmtReq, setUspAmtReq] = useState(thisPackage.uspAmtReq == null ? 0 : thisPackage.uspAmtReq);
-    const [euAmtReq, setEuAmtReq] = useState(thisPackage.euAmtReq == null ? 0 : thisPackage.euAmtReq);
     const [standardPricing, setStandardPricing] = useState(thisPackage.standardPricing);
     const [rushedPricing, setRushedPricing] = useState(thisPackage.rushedPricing);
     const [urgentPricing, setUrgentPricing] = useState(thisPackage.urgentPricing);
@@ -89,8 +90,44 @@ const AdminPackageEditSection = ({thisPackage}) => {
       setPackageMatrix([...packageMatrix.filter((matrix)=>matrix._id != id)])
     }
 
-    const updateThisPackage = () => {
+    //Test Method
+    const [methodsArr,setMethodsArr] = useState(thisPackage.methods)
+    const [methodName,setMethodName] = useState('')
+    const [methodAmount,setMethodAmount] = useState(0)
+    
+    const addNewMethod = () => {
+      if(methodName == ""){
+        alert.error("Method name is required")
+        return
+      }
+      let newMethodsArr = [...methodsArr]   
+      newMethodsArr.push({id:uuidv4(),name:methodName,amount:methodAmount})
+      setMethodName('')
+      setMethodAmount(0)
+      setMethodsArr(newMethodsArr)
+    }
 
+    const editMethod = (idx,value,label) => {
+      if(value == ""){
+        alert.error(label+" is required")
+        return
+      }
+      let editedMethodsArr = methodsArr
+      editedMethodsArr[idx][label] = value
+      setMethodsArr(editedMethodsArr)
+    }
+
+    const deleteMethod = (value) => {
+      setMethodsArr(
+        methodsArr.filter((item) => item.id !== value)
+      );
+    }
+
+    const updateThisPackage = () => {
+      if(methodsArr.length == 0){
+        alert.error("At least one method is required")
+        return
+      }
       const pack = {
        name,
        img:thisPackage.img,
@@ -101,8 +138,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
        matrixForm:packageMatrix,
        description,
        uspNotUsedHeldDescOnly:uspNotUsedHeldDescOnly == "" ? null : uspNotUsedHeldDescOnly,
-       uspAmtReq:uspAmtReq == 0 ? null : uspAmtReq,
-       euAmtReq:euAmtReq == 0 ? null : euAmtReq,
+       methods:methodsArr,
        standardPricing,
        rushedPricing,
        urgentPricing,
@@ -253,16 +289,99 @@ const AdminPackageEditSection = ({thisPackage}) => {
               <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
             </div>
 
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>USP Amount Required</label>
+            <div className='my-5'>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspAmtReq} onChange={(e)=>setUspAmtReq(e.target.value)} required/>
-            </div>
 
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>EU Amount Required</label>
+              <table className='w-full'>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={euAmtReq} onChange={(e)=>setEuAmtReq(e.target.value)} required/>
+
+                <thead >
+
+                  {
+
+                      methodsArr.length > 0 && (
+
+                          <tr className='text-gray-600 font-semibold'>
+
+                              <th className='text-left'><h2 className=' underline text-2xl text-[#397f77] font-semibold mb-2'>Testing Methods</h2></th>
+                              
+
+                          </tr>
+
+                      )
+
+                  }
+
+                </thead>
+
+                <tbody>
+
+                  {
+                    methodsArr.map((item,index) => {
+                      return (
+                        <tr key={item.id} className=''>
+
+                          <div className='my-5'>
+                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+
+                            <input id='service-code' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
+                          </div>
+
+                          <div >
+                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+
+                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
+                          </div>
+
+                          <button onClick={() => deleteMethod(item.id)} className=" my-5 bg-[#D10000] text-white px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#FF0000]  duration-300">Delete</button>
+
+                        </tr>
+                      )
+                    })
+                  } 
+
+                </tbody>
+
+              </table>
+
+              <div className=' mt-5 '>
+
+                <h2 className='text-2xl text-[#397f77] font-semibold' >Add Method</h2>
+
+                <table className='w-full pt-1 mt-1 border-t-[1px] border-t-slate-300'>
+
+                  <tbody>
+
+                    <tr className=' text-gray-600 font-semibold'>
+
+                      <td>
+
+                          <div className='mb-10'>
+                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+
+                            <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
+                          </div>
+
+                          <div className='mb-10'>
+                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+
+                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
+                          </div>
+                      
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+              <div className=' w-full mx-auto'>
+                <button onClick={addNewMethod} className='bg-[#397f77] px-10 py-2 rounded-xl text-white text-xl font-semibold duration-300 hover:bg-[#18debb] w-full '>+Add</button>
+              </div>
+
             </div>
 
             <div className='mb-10'>
@@ -307,12 +426,14 @@ const AdminPackageEditSection = ({thisPackage}) => {
             </div>
             
             {analyses && analyses.filter( analysis => analysis.name.toLowerCase().includes(searchKey.toLowerCase())).map((analysis,idx) => (
-              <div className='m-5 flex'>
-                {searchKey.length > 0 ?<>
-                  <h2>{analysis.name}</h2>
-                  <button onClick={() => addTestToPackage(analysis)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
-                </>:<></>}
-              </div>
+              
+                searchKey.length > 0 ?<>
+                  <div className='m-5 flex'>
+                    <h2>{analysis.name}</h2>
+                    <button onClick={() => addTestToPackage(analysis)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
+                  </div>
+                </>:<></>
+             
             ))}
          
         </div>
