@@ -133,13 +133,13 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setTestingMethodList([])
         
         const testingMethodArr = []
-        if(nameTests[0].uspAmtReq !== null){
-            testingMethodArr.push({label:'USP',value:'USP'})
-        }
-        if(nameTests[0].euAmtReq !== null){
-            testingMethodArr.push({label:'EU',value:'EU'})
-        }
+        nameTests[0].methods.forEach((method)=>{
+            testingMethodArr.push({label:method.name,value:method.amount})
+        
+        })
+
         setTestingMethodList(testingMethodArr)
+
         if(nameTests[0].name == "Cannabis Potency Add On"){
             const addOnArr = []
           
@@ -172,16 +172,10 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     }
 
     const handleTestingMethodChange = (e) => {
-
-        if(e.label === 'USP'){
-            setAmount(test.uspAmtReq)
-            setUnit(test.unit)
-        }
-        if(e.label === 'EU'){
-            setAmount(test.euAmtReq)
-            setUnit(test.unit)
-        }
-
+       
+        setAmount(e.value)
+        setUnit(test.unit)
+      
         const filteredTestFormData = testFormData.filter(test => {
             return test.id !== testDataId
         })
