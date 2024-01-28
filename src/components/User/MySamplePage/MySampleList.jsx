@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import {samples} from "../../../data/sampleResult"
 import Loader from "../../../pages/Loader";
 import {mySample} from "../../../actions/limsAction"
 import {useDispatch,useSelector} from "react-redux"
@@ -7,7 +6,7 @@ import {useEffect,Fragment} from "react"
 
 
 const SampleList = () => {
-    // const loading = false
+
     const dispatch = useDispatch()
     
     const { samples,loading } = useSelector(
@@ -36,10 +35,9 @@ const SampleList = () => {
                         &#x2190;Back
                     </button>
                 </div>
-                {/* Order List */}
+                {/* Sample List */}
 
                 <div className="w-full mb-10">
-                    {/* Order 1 */}
 
                     <ul>
                         {samples && samples.sort(function(a, b){return JSON.parse(b.ID_NUMERIC) - JSON.parse(a.ID_NUMERIC)}).map((sample, index) => (

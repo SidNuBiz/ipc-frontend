@@ -9,9 +9,7 @@ const PackageListSection = () => {
     
     return (
 
-
-        <Fragment>{loading === false ?
-                
+        <Fragment>{loading === false ?     
             <Fragment>
                 <div>
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
@@ -30,7 +28,6 @@ const PackageListSection = () => {
             <Loader /> 
         }</Fragment>
 
-        
     );
 };
 

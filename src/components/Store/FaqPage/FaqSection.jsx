@@ -7,7 +7,6 @@ import url from "../../../utils/baseApi";
 import { useAlert } from "react-alert";
 
 
-
 const FaqSection = () => {
 
     const alert = useAlert()
@@ -19,9 +18,6 @@ const FaqSection = () => {
     var [samplesTab, setSamplesTab] = useState(false);
 
     var [resultsTab, setResultsTab] = useState(false);
-
-
-    
 
     //Tab Functions
     

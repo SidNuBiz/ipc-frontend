@@ -22,9 +22,7 @@ const LicensingAndAccreditationsSection = () => {
         }catch(error){
             alert.error(error.response.data.message)
         }
-        
-       
-       
+ 
     }
 
     useEffect(() => {

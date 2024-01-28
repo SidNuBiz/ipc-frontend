@@ -7,13 +7,11 @@ const AdminMemberList = () => {
 
     const dispatch = useDispatch()
 
+    var [showModal, setShowModal] = useState(false);
+
     const { users } = useSelector(
         (state) => state.allUsers
     );
-
-    var [showModal, setShowModal] = useState(false);
-    const [userStatus,setUserStatus] = useState("")
-    const [userTaxCode,setUserTaxCode] = useState("")
 
     var [thisMember, setThisMember] = useState({
 
@@ -35,17 +33,8 @@ const AdminMemberList = () => {
         }
     });
 
-    const changeUserStatus = (e) =>{
-        setUserStatus(e.target.value)
-        dispatch(updateStatus(e.target.value,thisMember._id))
-        
-    }
-
-    const changeUserTaxCode = (e) =>{
-        setUserTaxCode(e.target.value)
-        dispatch(updateTaxCode(e.target.value,thisMember._id))
-        
-    }
+    // Options for user status and states and functions
+    const [userStatus,setUserStatus] = useState("")
 
     const options = [
         {
@@ -57,7 +46,15 @@ const AdminMemberList = () => {
           value: "active",
         },
        
-      ];
+    ];
+
+    const changeUserStatus = (e) =>{
+        setUserStatus(e.target.value)
+        dispatch(updateStatus(e.target.value,thisMember._id)) 
+    }
+
+    // Options for user tax code and states and functions
+    const [userTaxCode,setUserTaxCode] = useState("")
 
     const taxOptions = [
         {
@@ -85,6 +82,11 @@ const AdminMemberList = () => {
             value: "HS",
         },
     ]
+
+    const changeUserTaxCode = (e) =>{
+        setUserTaxCode(e.target.value)
+        dispatch(updateTaxCode(e.target.value,thisMember._id))  
+    }
 
     return (
         <div className="h-full">

@@ -76,12 +76,11 @@ const SampleDetails = ({ sample }) => {
 
               
 
-                {/* Order Details */}
+                {/* Sample Details */}
 
                 <div
                     id="result"
                     className="py-10 text-gray-600">
-                    {/* Order Id */}
 
                     <div className="mb-10">
                         <h2 className=" text-xl">
@@ -89,9 +88,7 @@ const SampleDetails = ({ sample }) => {
                             
                         </h2>
                     </div>
-
-                  
-
+                    
                     {/* Info */}
 
                     {/* Heading */}
@@ -102,7 +99,7 @@ const SampleDetails = ({ sample }) => {
 
                     <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-5 mb-10">
                         <div>
-                             {/* Sampled Date */}
+                             {/* Client Name */}
 
                             <div className="">
                                 <h2 className=" text-md">
@@ -111,7 +108,7 @@ const SampleDetails = ({ sample }) => {
                                 </h2>
                             </div>
 
-                            {/* Sample Name */}
+                            {/* Client Email */}
 
                             <div className="">
                                 <h2 className=" text-md">

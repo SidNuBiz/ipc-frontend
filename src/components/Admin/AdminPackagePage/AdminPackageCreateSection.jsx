@@ -18,9 +18,6 @@ const AdminPackageCreateSection = () => {
   const [searchKey, setSearchKey] = useState("")
   const [matrixSearchKey, setMatrixSearchKey] = useState("")
 
-  const {analyses} = useSelector(state => state.analyses)
-  const [matrixArr,setMatrixArr] = useState([])
-
   const [name, setName] = useState("");
   const [testingCode, setTestingCode] = useState("");
   const [categories, setCategories] = useState("");
@@ -35,6 +32,8 @@ const AdminPackageCreateSection = () => {
   const [unit, setUnit] = useState("");
   const [packageTests,setPackageTests] = useState([])
 
+
+  // Adding image to package
   const [mainImage,setMainImage] = useState()
   const [previewMainImage,setPreviewMainImage] = useState('')
 
@@ -53,6 +52,8 @@ const AdminPackageCreateSection = () => {
     };
   }
 
+  // Adding tests to package state and functions
+  const {analyses} = useSelector(state => state.analyses)
   const addTestToPackage = (analysis) => {
     let con = true
     packageTests.forEach((analysisTest)=>{
@@ -71,6 +72,8 @@ const AdminPackageCreateSection = () => {
     setPackageTests([...packageTests.filter((analysis)=>analysis._id != id)])
   }
 
+  // Adding matrix to package state and functions
+  const [matrixArr,setMatrixArr] = useState([])
   const addMatrixToPackage = (matrix) => {
     let con = true
     packageMatrix.forEach((item)=>{
@@ -88,7 +91,7 @@ const AdminPackageCreateSection = () => {
     setPackageMatrix([...packageMatrix.filter((matrix)=>matrix._id != id)])
   }
 
-  //Test Method
+  //Adding methods to package state and functions
   const [methodsArr,setMethodsArr] = useState([])
   const [methodName,setMethodName] = useState('')
   const [methodAmount,setMethodAmount] = useState(0)
@@ -193,7 +196,7 @@ const AdminPackageCreateSection = () => {
             <button onClick={addThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Create Package</button>
         </div>
 
-        {/* Service Main Image */}
+        {/* Package Main Image */}
 
         <div className='h-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-5'>
 
@@ -216,40 +219,39 @@ const AdminPackageCreateSection = () => {
         </div>
         
 
-        {/* Service Info */}
-
         <div className='mt-10'>
 
-           {/* Service Name */}
-
+           {/* Package Name */}
            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
+              <label htmlFor="package-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
 
-              <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
+              <input id='package-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
             </div>
 
-            {/* Code Name */}
-
+            {/* Package Unique code */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Testing Code</label>
+              <label htmlFor="package-code" className='text-2xl text-[#397f77] font-semibold'>Testing Code</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
+              <input id='package-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
             </div>
 
+            {/* Package Type */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Type</label>
+              <label htmlFor="package-type" className='text-2xl text-[#397f77] font-semibold'>Type</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
+              <input id='package-type' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
             </div>
 
+            {/* Package Component List */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Component List</label>
+              <label htmlFor="package-component" className='text-2xl text-[#397f77] font-semibold'>Component List</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
+              <input id='package-component' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
             </div>
 
+            {/* Package Matrix Form */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form</label>
+              <label htmlFor="package-matrix-list" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form</label>
             </div>
 
             {packageMatrix.map((matrix,idx)=>(
@@ -263,8 +265,8 @@ const AdminPackageCreateSection = () => {
 
             <div className="col-span-3 mt-10 sm:order-2">
               
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
-              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
+              <label htmlFor="package-matrix" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
+              <input type="text" id='package-matrix' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
 
             </div>
             
@@ -280,48 +282,46 @@ const AdminPackageCreateSection = () => {
 
             ))}
             <div className='mb-10'></div>
-
+            
+            {/* Package Categories */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Categories</label>
+              <label htmlFor="package-categories" className='text-2xl text-[#397f77] font-semibold'>Categories</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
+              <input id='package-categories' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
             </div>
 
+            {/* Package Description */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Description</label>
+              <label htmlFor="package-description" className='text-2xl text-[#397f77] font-semibold'>Description</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
+              <input id='package-description' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
             </div>
 
+            {/* Package USP Not Used Held Desc Only */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only</label>
+              <label htmlFor="package-usp" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
+              <input id='package-usp' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
             </div>
 
+            {/* Package Methods */}
             <div className='my-5'>
-
 
               <table className='w-full'>
 
-
                 <thead >
-
                   {
+                    methodsArr.length > 0 && (
 
-                      methodsArr.length > 0 && (
+                        <tr className='text-gray-600 font-semibold'>
 
-                          <tr className='text-gray-600 font-semibold'>
+                            <th className='text-left'><h2 className=' underline text-2xl text-[#397f77] font-semibold mb-2'>Testing Methods</h2></th>
+                            
 
-                              <th className='text-left'><h2 className=' underline text-2xl text-[#397f77] font-semibold mb-2'>Testing Methods</h2></th>
-                              
+                        </tr>
 
-                          </tr>
-
-                      )
-
+                    )
                   }
-
                 </thead>
 
                 <tbody>
@@ -332,15 +332,15 @@ const AdminPackageCreateSection = () => {
                         <tr key={item.id} className=''>
 
                           <div className='my-5'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+                            <label htmlFor="package-method-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
+                            <input id='package-method-name' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
                           </div>
 
                           <div >
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+                            <label htmlFor="package-amount-required" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
+                            <input id='package-amount-required' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
                           </div>
 
                           <button onClick={() => deleteMethod(item.id)} className=" my-5 bg-[#D10000] text-white px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#FF0000]  duration-300">Delete</button>
@@ -370,15 +370,15 @@ const AdminPackageCreateSection = () => {
                       <td>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+                            <label htmlFor="package-method-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
+                            <input id='package-method-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
                           </div>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+                            <label htmlFor="package-amount-required" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
+                            <input id='package-amount-required' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
                           </div>
                       
                       </td>
@@ -397,30 +397,35 @@ const AdminPackageCreateSection = () => {
 
             </div>
 
+            {/* Package Standard Pricing */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Standard Price</label>
+              <label htmlFor="package-standard-pricing" className='text-2xl text-[#397f77] font-semibold'>Standard Price</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Rushed Price</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
+              <input id='package-standard-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
             </div>
             
+            {/* Package Rushed Pricing */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Unit</label>
+              <label htmlFor="package-rushed-pricing" className='text-2xl text-[#397f77] font-semibold'>Rushed Price</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
+              <input id='package-rushed-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
             </div>
 
+            {/* Package Urgent Pricing */}
+            <div className='mb-10'>
+              <label htmlFor="package-urgent-pricing" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
+
+              <input id='package-urgent-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
+            </div>
+
+            {/* Package Unit */}
+            <div className='mb-10'>
+              <label htmlFor="package-unit" className='text-2xl text-[#397f77] font-semibold'>Unit</label>
+
+              <input id='package-unit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
+            </div>
+
+            {/* Package Tests */}
             <h1 className='text-2xl  text-[#397f77] font-semibold'>Added Tests</h1>
 
             {packageTests.map((analysis,idx)=>(
@@ -432,11 +437,10 @@ const AdminPackageCreateSection = () => {
               </div>
             ))}
 
-
             <div className="col-span-3 mt-10 sm:order-2">
               
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Test</label>
-              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
+              <label htmlFor="package-tests" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Test</label>
+              <input type="text" id='package-tests' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
 
             </div>
             
@@ -454,9 +458,9 @@ const AdminPackageCreateSection = () => {
             
          
         </div>
-
+        
+        {/* Create Package Button */}
         <div className="mt-10 flex justify-center">
-           
             <button onClick={addThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Create Package</button>
         </div>
 

@@ -5,13 +5,12 @@ import { Fragment } from "react"
 import Loader from "../../../pages/Loader"
 
 
-
 const AllTestingServicesSection = () => {
 
-      
     const {services,loading} = useSelector(
         (state) => state.services
     );
+    
     return (
         <Fragment>{loading === false ?
           

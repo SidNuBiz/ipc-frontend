@@ -1,8 +1,6 @@
 import GrayLogo from "../../../assets/logo-gray.png";
 
-
 const MeetTheTeamSection = ({teamMembers}) => {
-
 
     return (
 
@@ -34,19 +32,13 @@ const MeetTheTeamSection = ({teamMembers}) => {
 
                             {/* Background Image */}
 
-                            {/* <div className="lg:absolute lg:bottom-14"> */}
                             <img src={member.img} alt="" className="border-solid border-4 border-[#53b2a7] rounded-full z-10 lg:mt-6 lg:absolute lg:left-0 lg:right-0 lg:ml-auto lg:mr-auto md:m-auto  md:block sm:block object-cover object-fit "/>
-                            {/* </div> */}
-
-                            
 
                             {/* Content */}
 
                             <div className="animate-crossfade  lg:top-0 lg:bottom-0 z-30 lg:max-w-2/3 lg:p-10 lg:my-0 md:my-10 sm:my-10 lg:group-hover:hidden duration-300 ">
 
                                 {/* Member Name */}
-
-                                
 
                                 {/* Member Designation */}
 
@@ -62,12 +54,9 @@ const MeetTheTeamSection = ({teamMembers}) => {
                                         ))
                                     }
 
-                                </div>
-
-                                
+                                </div>     
 
                             </div>
-
 
                             {/* Hover Box Bullet Points */}
 

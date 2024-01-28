@@ -21,6 +21,7 @@ const Invoice = () => {
         (state) => state.myOrders
     );
 
+    //Fetch invoice details
     async function fetchData(){
       
         try{
@@ -33,7 +34,6 @@ const Invoice = () => {
               },
             };
             const {data} = await axios.get(`${url}/api/v1/invoice/${invoiceId}`,config)
-            console.log(data.invoice)
             setInvoice(data.invoice)
         }catch(error){
             alert.error(error.response.data.message)

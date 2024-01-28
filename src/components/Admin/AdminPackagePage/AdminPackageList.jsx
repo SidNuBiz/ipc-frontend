@@ -47,7 +47,7 @@ const AdminPackageList = ({searchKey}) => {
                     <div className="grid grid-cols-8 mb-5 pb-3 border-b-[1px] border-b-slate-200">
 
                     
-                        {/* Service Info */}
+                        {/* Package Info */}
 
                         <div className=" lg:col-span-7 md:col-span-6 sm:col-span-5 grid lg:grid-cols-6 md:grid-cols-6 sm:grid-cols-2 gap-5 ml-5">
                             <div className="col-span-2">
@@ -69,7 +69,7 @@ const AdminPackageList = ({searchKey}) => {
                             </div>
 
                           
-                            {/* Service Actions */}
+                            {/* Package Actions */}
 
                             <div className=" col-span-2">
                                 {/* Edit Button */}

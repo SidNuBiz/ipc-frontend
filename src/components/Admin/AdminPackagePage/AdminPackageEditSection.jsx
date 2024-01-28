@@ -15,13 +15,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const dispatch = useDispatch()
     const alert = useAlert()
 
-    console.log(thisPackage)
-
     const [searchKey, setSearchKey] = useState("")
     const [matrixSearchKey, setMatrixSearchKey] = useState("")
-
-    const {analyses} = useSelector(state => state.analyses)
-    const [matrixArr,setMatrixArr] = useState([])
 
     const [name, setName] = useState(thisPackage.name);
     const [testingCode, setTestingCode] = useState(thisPackage.testingCode);
@@ -37,6 +32,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
     const [unit, setUnit] = useState(thisPackage.unit);
     const [packageTests,setPackageTests] = useState(thisPackage.packageTests)
 
+    // Adding image to package
     const [mainImage,setMainImage] = useState()
     const [previewMainImage,setPreviewMainImage] = useState(thisPackage.img)
 
@@ -55,6 +51,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
       };
     }
 
+    // Adding tests to package state and functions
+    const {analyses} = useSelector(state => state.analyses)
     const addTestToPackage = (analysis) => {
       let con = true
       packageTests.forEach((analysisTest)=>{
@@ -73,6 +71,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
       setPackageTests([...packageTests.filter((analysis)=>analysis._id != id)])
     }
 
+    // Adding matrix to package state and functions
+    const [matrixArr,setMatrixArr] = useState([])
     const addMatrixToPackage = (matrix) => {
       let con = true
       packageMatrix.forEach((item)=>{
@@ -90,7 +90,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
       setPackageMatrix([...packageMatrix.filter((matrix)=>matrix._id != id)])
     }
 
-    //Test Method
+    //Adding methods to package state and functions
     const [methodsArr,setMethodsArr] = useState(thisPackage.methods)
     const [methodName,setMethodName] = useState('')
     const [methodAmount,setMethodAmount] = useState(0)
@@ -194,7 +194,7 @@ const AdminPackageEditSection = ({thisPackage}) => {
             <button onClick={updateThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Update Package</button>
         </div>
 
-        {/* Service Main Image */}
+        {/* Package Main Image */}
 
         <div className='h-full grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-5'>
 
@@ -217,40 +217,39 @@ const AdminPackageEditSection = ({thisPackage}) => {
         </div>
 
 
-        {/* Service Info */}
-
         <div className='mt-10'>
 
-           {/* Service Name */}
-
+           {/* Package Name Edit*/}
            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
+              <label htmlFor="package-name-edit" className='text-2xl text-[#397f77] font-semibold'>Name</label>
 
-              <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
+              <input id='package-name-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
             </div>
 
-            {/* Code Name */}
-
+             {/* Package Unique code Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Testing Code</label>
+              <label htmlFor="package-code-edit" className='text-2xl text-[#397f77] font-semibold'>Testing Code</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
+              <input id='package-code-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
             </div>
 
+            {/* Package Type Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Type</label>
+              <label htmlFor="package-type-edit" className='text-2xl text-[#397f77] font-semibold'>Type</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
+              <input id='package-type-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
             </div>
 
+            {/* Package Component List Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Component List</label>
+              <label htmlFor="ackage-component-edit" className='text-2xl text-[#397f77] font-semibold'>Component List</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
+              <input id='ackage-component-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
             </div>
 
+            {/* Package Matrix Form Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form</label>
+              <label htmlFor="package-matrix-list-edit" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form</label>
             </div>
 
             {packageMatrix.map((matrix,idx)=>(
@@ -264,8 +263,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
 
             <div className="col-span-3 mt-10 sm:order-2">
               
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
-              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
+              <label htmlFor="package-matrix-edit" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
+              <input type="text" id='package-matrix-edit' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
 
             </div>
             
@@ -282,25 +281,28 @@ const AdminPackageEditSection = ({thisPackage}) => {
             ))}
             <div className='mb-10'></div>
   
-
+            {/* Package Categories Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Categories</label>
+              <label htmlFor="package-categories-edit" className='text-2xl text-[#397f77] font-semibold'>Categories</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
+              <input id='package-categories-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
             </div>
 
+            {/* Package Description Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Description</label>
+              <label htmlFor="package-description-edit" className='text-2xl text-[#397f77] font-semibold'>Description</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
+              <input id='package-description-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
             </div>
 
+             {/* Package USP Not Used Held Desc Only Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only</label>
+              <label htmlFor="package-usp-edit" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only</label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
+              <input id='package-usp-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
             </div>
 
+            {/* Package Methods Edit */}
             <div className='my-5'>
 
 
@@ -334,15 +336,15 @@ const AdminPackageEditSection = ({thisPackage}) => {
                         <tr key={item.id} className=''>
 
                           <div className='my-5'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+                            <label htmlFor="package-method-name-edit" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
+                            <input id='package-method-name-edit' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
                           </div>
 
                           <div >
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+                            <label htmlFor="package-amount-required-edit" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
+                            <input id='package-amount-required-edit' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
                           </div>
 
                           <button onClick={() => deleteMethod(item.id)} className=" my-5 bg-[#D10000] text-white px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#FF0000]  duration-300">Delete</button>
@@ -369,15 +371,15 @@ const AdminPackageEditSection = ({thisPackage}) => {
                       <td>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+                            <label htmlFor="package-method-name-edit" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
+                            <input id='package-method-name-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
                           </div>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+                            <label htmlFor="package-amount-required-edit" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
+                            <input id='package-amount-required-edit' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
                           </div>
                       
                       </td>
@@ -396,30 +398,35 @@ const AdminPackageEditSection = ({thisPackage}) => {
 
             </div>
 
+            {/* Package Standard Pricing Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Standard Price</label>
+              <label htmlFor="package-standard-pricing-edit" className='text-2xl text-[#397f77] font-semibold'>Standard Price</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
+              <input id='package-standard-pricing-edit' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
             </div>
 
+            {/* Package Rushed Pricing Edit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Rushed Price</label>
+              <label htmlFor="package-rushed-pricing-edit" className='text-2xl text-[#397f77] font-semibold'>Rushed Price</label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
-
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
-            </div>
-
-            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Unit</label>
-
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
+              <input id='package-rushed-pricing-edit' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
             </div>
             
+            {/* Package Urgent Pricing Edit */}
+            <div className='mb-10'>
+              <label htmlFor="package-urgent-pricing-edit" className='text-2xl text-[#397f77] font-semibold'>Urgent Price</label>
+
+              <input id='package-urgent-pricing-edit' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
+            </div>
+
+            {/* Package Unit Edit */}
+            <div className='mb-10'>
+              <label htmlFor="package-unit-edit" className='text-2xl text-[#397f77] font-semibold'>Unit</label>
+
+              <input id='package-unit-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
+            </div>
+            
+            {/* Package Tests Edit */}
             <h1 className='text-2xl  text-[#397f77] font-semibold'>Added Tests</h1>
             {packageTests.map((analysis,idx)=>(
               <div className='m-5 flex'>
@@ -432,8 +439,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
           
 
             <div className="col-span-3 mt-10 sm:order-2">
-            <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Test</label>
-              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
+            <label htmlFor="package-tests-edit" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Test</label>
+              <input type="text" id='package-tests-edit' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={searchKey} onChange={(e)=>setSearchKey(e.target.value)} />
 
             </div>
             
@@ -450,8 +457,8 @@ const AdminPackageEditSection = ({thisPackage}) => {
          
         </div>
 
+        {/* Update Package Button Edit */}
         <div className="mt-10 flex justify-center">
-           
             <button onClick={updateThisPackage} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Update Package</button>
         </div>
 

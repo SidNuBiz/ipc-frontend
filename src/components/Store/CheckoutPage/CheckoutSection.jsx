@@ -37,6 +37,7 @@ const CheckoutSection = ({user}) => {
   const calculatePrices = () => {
     let subTotalPriceValue = 0
     let taxPriceValue = 0
+
     mainFormData.sampleFormData.forEach(sample =>{
         sample.testFormData.forEach(tests=>{
             if(JSON.parse(tests.test[sample.selectedTurnaround.value] == 0)){ setIsDynamic(true) }
@@ -45,8 +46,8 @@ const CheckoutSection = ({user}) => {
         })
       })
      
-      setSubTotalPrice(parseFloat(subTotalPriceValue.toFixed(2)))
-      setTaxPrice(parseFloat(taxPriceValue.toFixed(2)))
+    setSubTotalPrice(parseFloat(subTotalPriceValue.toFixed(2)))
+    setTaxPrice(parseFloat(taxPriceValue.toFixed(2)))
   }
 
 

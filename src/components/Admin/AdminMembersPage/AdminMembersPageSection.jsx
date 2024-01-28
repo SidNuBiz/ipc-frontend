@@ -8,40 +8,40 @@ import {useEffect,Fragment,useState} from "react"
 
 const AdminMembersPageSection = () => {
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    const[searchKey,setSearchKey] = useState('')
-    const [page, setPage] = useState(1);
+  const[searchKey,setSearchKey] = useState('')
+  const [page, setPage] = useState(1);
 
-    const {loading, totalUser } = useSelector(
-      (state) => state.allUsers
-    );
+  const {loading, totalUser } = useSelector(
+    (state) => state.allUsers
+  );
 
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-          search();
-      }
-    };
-
-    function search(){
-      dispatch(getAllUsers(page,searchKey))
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        search();
     }
+  };
 
-    function setNextPage(){
-      if(page*20 < totalUser){
-        setPage(page+1)
-      }
-    }
-    
-    function setPrevPage(){
-      if(page>1){
-        setPage(page-1) 
-      }
-    }
+  function search(){
+    dispatch(getAllUsers(page,searchKey))
+  }
 
-    useEffect(()=>{
-        dispatch(getAllUsers(page))
-    },[dispatch,page])
+  function setNextPage(){
+    if(page*20 < totalUser){
+      setPage(page+1)
+    }
+  }
+  
+  function setPrevPage(){
+    if(page>1){
+      setPage(page-1) 
+    }
+  }
+
+  useEffect(()=>{
+      dispatch(getAllUsers(page))
+  },[dispatch,page])
 
 
   return (
@@ -83,14 +83,12 @@ const AdminMembersPageSection = () => {
 
                     <AdminMemberList searchKey = {searchKey}/>
 
-                     {/* Pagination */}
-
+                    {/* Pagination */}
                     <div className='w-fit mx-auto'>
                       <div className='flex justified-center'>
                         <span><button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setPrevPage}>Prev</button></span>
                         <span className='px-2'> <h1>{page}</h1></span>
                         <span><button className=" text-[#397f77]  text-md font-bold px-5 hover:underline" onClick={setNextPage}>Next</button></span>
-                        
                       </div>
                     </div>
 

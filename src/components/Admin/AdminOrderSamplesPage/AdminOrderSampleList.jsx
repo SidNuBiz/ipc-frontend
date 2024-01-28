@@ -1,6 +1,5 @@
 import React from 'react'
 import Loader from "../../../pages/Loader";
-import {useDispatch} from "react-redux"
 import {useEffect,Fragment,useState} from "react"
 import { useAlert } from "react-alert";
 import axios from 'axios';
@@ -153,11 +152,7 @@ const AdminOrderList = ({jobWebId}) => {
                                             </h2>
                                         </div>
 
-
-
                                     </div>
-
-                                
 
                                 </div>
                                 

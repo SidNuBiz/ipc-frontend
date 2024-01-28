@@ -12,8 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {getAllOrders} from "../../../actions/orderAction.js"
 import { getAllService } from "../../../actions/serviceAction.js";
 
-
-
 const AdminHomePageSection = () => {
 
     const dispatch = useDispatch()
@@ -29,6 +27,7 @@ const AdminHomePageSection = () => {
         (state) => state.services
     );
 
+    //Fetch total sales amount and order count
     async function totalSalesAndOrders(){
         try {
 
@@ -49,6 +48,7 @@ const AdminHomePageSection = () => {
           }
     }
 
+    // Fetch total users count
     async function totalUsers(){
         try {
 
@@ -70,7 +70,7 @@ const AdminHomePageSection = () => {
     useEffect(()=>{
         totalSalesAndOrders()
         totalUsers()
-        dispatch(getAllOrders(1))
+        dispatch(getAllOrders(1)) // Fetch only 1st page of orders
         dispatch(getAllService())
 
     },[dispatch])
@@ -107,9 +107,7 @@ const AdminHomePageSection = () => {
 
                 <h2 className="text-xl text-gray-600 mb-5">Total Sales</h2>
 
-                {/* <h2 className="text-4xl text-[#397f77]">C${orders && orders.map(order =>(totalSale = totalSale + (+order.totalPrice)) )}</h2> */}
-                <h2 className="text-2xl text-[#397f77]">C${totalSale.toFixed(2)}</h2>
-                
+                <h2 className="text-2xl text-[#397f77]">C${totalSale.toFixed(2)}</h2>      
 
             </div>
 
@@ -146,8 +144,6 @@ const AdminHomePageSection = () => {
                 {/* <LineChart  /> */}
             </div>
 
-           
-
         </div>
 
         {/* Order List */}
@@ -170,7 +166,7 @@ const AdminHomePageSection = () => {
 
             </div>
 
-            {/* Service List */}
+            {/* Order List */}
 
             <div className="min-h-[200px] max-h-[300px] overflow-y-auto w-full">
                 <AdminOrderList />
@@ -205,7 +201,6 @@ const AdminHomePageSection = () => {
             </div>
 
         </div>
-
 
     </div>
 

@@ -10,6 +10,7 @@ import socket from "../../../utils/socket";
 const SideBar = () => {
 
     const [state, setState] = useState(false);
+
     const [pageContentDropDown,setPageContentDropDown] = useState(false)
     const [notificationCount,setNotificationCount] = useState(0)
 
@@ -18,18 +19,17 @@ const SideBar = () => {
         (state) => state.user
     );
 
+    //Menu Toggle
     const toggle = () => {
         setState(!state);
-        console.log(state);
     };
 
     function logoutUser() {
         dispatch(logout());
-       
     }
 
     useEffect(() => {
-        console.log("loading", loading);
+        //Notification states and functions
     
         let timer;
         let notificationsListener;
@@ -297,7 +297,7 @@ const SideBar = () => {
 
                                         </div>
 
-                                        {/* Dropdown */}
+                                        {/* Page Content Dropdown */}
 
                                         <div className={"overflow-hidden my-2 " + ( pageContentDropDown ? " h-full " : "h-0")}>
                                             <ul>

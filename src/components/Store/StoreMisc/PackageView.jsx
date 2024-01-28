@@ -64,9 +64,6 @@ const PackageView = () => {
                 
             <Fragment>
                 <div className="bg-gradient-to-b from-white via-[#eaf8f5] to-white min-h-screen">
-                    {/* Notification Popup */}
-
-                    {/* <NotificationPopup notification={notification}/> */}
 
                     {/* NavBar */}
 
@@ -89,7 +86,7 @@ const PackageView = () => {
                             </button>
                         </div>
 
-                        {/* Service Image */}
+                        {/* Package Image */}
 
                         <div className="w-full h-[250px]">
                             <img
@@ -99,7 +96,7 @@ const PackageView = () => {
                             />
                         </div>
 
-                        {/* Service Name */}
+                        {/* Package Name */}
 
                         <div className="mt-10 text-gray-600">
                             {/* Name */}

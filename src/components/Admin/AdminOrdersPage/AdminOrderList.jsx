@@ -5,7 +5,6 @@ import {useSelector} from "react-redux"
 
 const AdminOrderList = () => {
     
-
     const { orders } = useSelector(
         (state) => state.allOrders
     );

@@ -37,7 +37,7 @@ const AdminPackagesSection = () => {
                 <h2 className=" text-4xl font-semibold text-gray-600">Packages</h2>
             </div>
 
-            {/* search & create services */}
+            {/* search & create package */}
 
             <div className="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 lg:gap-10 md:gap-10 sm:gap-5 mb-20">
 
@@ -49,7 +49,7 @@ const AdminPackagesSection = () => {
 
               </div>
 
-              {/* Create Service Button */}
+              {/* Create Package Button */}
 
               <div className="lg:col-span-1 md:col-span-1 sm:col-span-3 ">
 
@@ -63,7 +63,7 @@ const AdminPackagesSection = () => {
 
             </div>
 
-            {/* Services */}
+            {/* Packages */}
 
             <div className="">
               <AdminPackageList  searchKey = {searchKey} />

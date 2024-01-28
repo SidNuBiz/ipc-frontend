@@ -11,7 +11,6 @@ const Matrix = ({matrix,setMatrixArr})=>{
     const [matrixName,setMatrixName] = useState(matrix.name)
     const [matrixPhraseId,setMatrixPhraseId] = useState(matrix.phraseId)
     
-    // Update Matrix
     async function updateMatrix (id)  {
         if(matrixName.trim() === ""){
             return alert.error("Matrix name can not be empty")
@@ -39,7 +38,6 @@ const Matrix = ({matrix,setMatrixArr})=>{
         }
     };
     
-    // Delete Matrix
     async function deleteMatrix(id){
         try {
 
@@ -65,18 +63,17 @@ const Matrix = ({matrix,setMatrixArr})=>{
     return(
         <div>
             <div>
+                {/* Marix Name */}
                 <div className='mt-5'>
-
-                    <label htmlFor="license-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Name<span className="text-[red]" >*</span></label>
-                    <input id='license-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixName} onChange={(e)=>{setMatrixName(e.target.value)}} required/>
+                    <label htmlFor="matrix-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Name<span className="text-[red]" >*</span></label>
+                    <input id='matrix-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixName} onChange={(e)=>{setMatrixName(e.target.value)}} required/>
                 </div>
 
+                {/* Matrix Phrase Id */}
                 <div className='mt-5'>
-                    
-                    <label htmlFor="license-number" className='text-2xl text-[#397f77] font-semibold'>Phrase Id<span className="text-[red]" >*</span></label>
-                    <input id='license-number' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixPhraseId} onChange={(e)=>{setMatrixPhraseId(e.target.value)}} required/>
+                    <label htmlFor="phrase-id" className='text-2xl text-[#397f77] font-semibold'>Phrase Id<span className="text-[red]" >*</span></label>
+                    <input id='phrase-id' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixPhraseId} onChange={(e)=>{setMatrixPhraseId(e.target.value)}} required/>
                 </div>
-
 
             </div>
 

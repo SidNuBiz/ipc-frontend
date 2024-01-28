@@ -16,13 +16,14 @@ const AdminAnalysesSection = () => {
   const {loading} = useSelector(
     (state) => state.analyses
   );
+
   const {error,success,loading:newAnalysisLoading} = useSelector(
     (state) => state.newAnalysis
   );
+
   const {loading:updateAnalysisLoading} = useSelector(
     (state) => state.analysis
   )
-
 
   useEffect(()=>{
     dispatch(getAnalyses())
@@ -49,7 +50,7 @@ const AdminAnalysesSection = () => {
                 <h2 className=" text-4xl font-semibold text-gray-600">Tests</h2>
             </div>
 
-            {/* search & create services */}
+            {/* search & create analysis */}
 
             <div className="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 lg:gap-10 md:gap-10 sm:gap-5 mb-20">
 
@@ -61,7 +62,7 @@ const AdminAnalysesSection = () => {
 
               </div>
 
-              {/* Create Service Button */}
+              {/* Create analysis Button */}
 
               <div className="lg:col-span-1 md:col-span-1 sm:col-span-3 ">
 
@@ -75,7 +76,7 @@ const AdminAnalysesSection = () => {
 
             </div>
 
-            {/* Services */}
+            {/* Analyses */}
 
             <div className="">
               <AdminAnalysisList  searchKey = {searchKey} />

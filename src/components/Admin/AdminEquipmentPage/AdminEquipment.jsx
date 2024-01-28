@@ -11,7 +11,6 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
     const [model,setModel] = useState(equipment.model)
     const [description,setDescription] = useState(equipment.description)
 
-
     const [equipmentImage,setEquipmentImage] = useState()
     const [previewEquipmentImage,setPreviewEquipmentImage] = useState(equipment.img)
 
@@ -29,7 +28,6 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
             }
         };
     }
-
 
     async function updateEquipmentDetails (id)  {
         if(name.trim() === ""){
@@ -110,19 +108,17 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
             </div>
         </div>
 
+        {/* Equipment Name */}
         <div className='mt-5'>
-        
             <label htmlFor="equipment-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
             <input id='equipment-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>{setName(e.target.value)}} required/>
         </div>
 
-        
+        {/* Equipment Model */}
         <div className='mt-5'>
-        
             <label htmlFor="equipment-model" className='text-2xl text-[#397f77] font-semibold'>Model</label>
             <input id='equipment-model' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={model} onChange={(e)=>{setModel(e.target.value)}} required/>
         </div>
-
 
         <div>
 
@@ -152,10 +148,9 @@ const Equipment = ({equipment,setEquipmentsArr})=>{
 
         </div>
 
-        {/* <div className="mb-5 mt-10 flex justify-between"> */}
-            <button onClick={()=>updateEquipmentDetails(equipment._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-            <button onClick={()=>deleteEquipmentDetails(equipment._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
-        {/* </div> */}
+        <button onClick={()=>updateEquipmentDetails(equipment._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+        <button onClick={()=>deleteEquipmentDetails(equipment._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
+
     </div>
     )
 }

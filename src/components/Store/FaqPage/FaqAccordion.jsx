@@ -1,8 +1,6 @@
 import { Accordion, AccordionItem } from 'react-light-accordion';
 import 'react-light-accordion/demo/css/index.css';
 
-
-
 const FaqAccordion = ({ data }) => {
 
     return (

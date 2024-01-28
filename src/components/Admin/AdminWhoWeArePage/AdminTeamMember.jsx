@@ -9,15 +9,10 @@ const TeamMember = ({member,setMembersArr})=>{
 
     const alert = useAlert()
 
-
-    // Team Members
-
     const [name,setName] = useState(member.name)
     const [about,setAbout] = useState(member.about)
 
-
-    //Designations
-
+    //Adding designations states and functions
     const [designationsArr,setDesignationsArr] = useState(member.designations)
     const [designations,setDesignations] = useState('')
     
@@ -45,8 +40,9 @@ const TeamMember = ({member,setMembersArr})=>{
         
     );
 
-    }
 
+    }
+    // Adding member iamge
     const [memberImage,setMemberImage] = useState()
     const [previewMemberImage,setPreviewMemberImage] = useState(member.img)
 
@@ -151,16 +147,16 @@ return(
             </div>
         </div>
 
+        {/* Member Name */}
         <div className='mt-5'>
-        
-            <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
-            <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>{setName(e.target.value)}} required/>
+            <label htmlFor="member-name" className='text-2xl text-[#397f77] font-semibold'>Name</label>
+            <input id='member-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>{setName(e.target.value)}} required/>
         </div>
 
+        {/* Member Designation */}
         <div className='mt-5'>
 
             <h2 className='text-2xl text-[#397f77] font-semibold'>Designations</h2>
-
 
             <table className='w-full'>
 
@@ -202,7 +198,7 @@ return(
 
                         <td>
 
-                        <input id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setDesignations(e.target.value)}} value={designations} placeholder='Designation' required />
+                        <input id='new-Designation' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setDesignations(e.target.value)}} value={designations} placeholder='Designation' required />
                         
 
                         </td>
@@ -235,7 +231,7 @@ return(
 
                         <td>
 
-                            <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setAbout(e.target.value)}} value={about} placeholder='About' required />
+                            <textarea rows="6" id='new-designation' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setAbout(e.target.value)}} value={about} placeholder='About' required />
                         
                         </td>
 
@@ -249,10 +245,9 @@ return(
 
         </div>
 
-        {/* <div className="mb-5 mt-10 flex justify-between"> */}
-            <button onClick={()=>updateTeamMember(member._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-            <button onClick={()=>deleteTeamMember(member._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
-        {/* </div> */}
+        <button onClick={()=>updateTeamMember(member._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+        <button onClick={()=>deleteTeamMember(member._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
+    
     </div>
 )
 }

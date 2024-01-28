@@ -6,6 +6,7 @@ import {useEffect,Fragment} from "react"
 const AdminOrderSampleDetails = ({ sample }) => {
 
     const dispatch = useDispatch()
+
     const { results,loading } = useSelector(
         (state) => state.mySampleResult
     );
@@ -14,8 +15,8 @@ const AdminOrderSampleDetails = ({ sample }) => {
         (state) => state.user
     );
 
-
     useEffect(()=>{
+        // Fetch singe sample result
         dispatch(mySampleResult(sample.ID_NUMERIC))
     },[dispatch])
 
@@ -46,35 +47,26 @@ const AdminOrderSampleDetails = ({ sample }) => {
    
                 </div>
 
-              
+                {/* Sample Details */}
 
-                {/* Order Details */}
+                <div id="result" className="py-10 text-gray-600">
 
-                <div
-                    id="result"
-                    className="py-10 text-gray-600">
-                    {/* Order Id */}
-
+                    {/* Heading */}
                     <div className="mb-10">
                         <h2 className=" text-xl">
                             <b>Sample Report</b>
-                            
                         </h2>
                     </div>
 
-                  
-
                     {/* Info */}
-
-                    {/* Heading */}
-
                     <div>
                         <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-3">Sample Information</h2>
                     </div>
 
                     <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-5 mb-10">
                         <div>
-                             {/* Sampled Date */}
+
+                            {/* Client Name */}
 
                             <div className="">
                                 <h2 className=" text-md">
@@ -83,7 +75,7 @@ const AdminOrderSampleDetails = ({ sample }) => {
                                 </h2>
                             </div>
 
-                            {/* Sample Name */}
+                            {/* Client Email */}
 
                             <div className="">
                                 <h2 className=" text-md">
@@ -93,52 +85,52 @@ const AdminOrderSampleDetails = ({ sample }) => {
                             </div>
 
                         </div>
-                        <div>
+                    <div>
 
-                            <div className="">
-                                <h2 className=" text-md">
-                                    <b>Sampled Id: </b>
-                                    {sample.ID_TEXT}
-                                </h2>
-                            </div>
+                    {/* Sample Id */}
+                    <div className="">
+                        <h2 className=" text-md">
+                            <b>Sampled Id: </b>
+                            {sample.ID_TEXT}
+                        </h2>
+                    </div>
 
-                            {/* Sample Name */}
+                    {/* Sample Name */}
 
-                            <div className="">
-                                <h2 className=" text-md">
-                                    <b>Sample Name: </b>
-                                    {sample.SAMPLE_NAME}
-                                </h2>
-                            </div>
+                    <div className="">
+                        <h2 className=" text-md">
+                            <b>Sample Name: </b>
+                            {sample.SAMPLE_NAME}
+                        </h2>
+                    </div>
 
-                            {/* Sample Status */}
+                    {/* Sample Status */}
 
-                            <div>
-                                <h2 className=" text-md">
-                                    <b>Sample Status: </b>
-                                    {sample.STATUS}
-                                </h2>
-                            </div>
+                    <div>
+                        <h2 className=" text-md">
+                            <b>Sample Status: </b>
+                            {sample.STATUS}
+                        </h2>
+                    </div>
 
-                            {/* Sample Description */}
+                    {/* Sample Description */}
 
-                            <div className="lg:col-span-2">
-                                <h2 className=" text-md">
-                                    <b>Sample Description: </b>
-                                    {sample.DESCRIPTION}
-                                </h2>
-                            </div>
+                    <div className="lg:col-span-2">
+                        <h2 className=" text-md">
+                            <b>Sample Description: </b>
+                            {sample.DESCRIPTION}
+                        </h2>
+                    </div>
 
 
-                        </div>
+                </div>
 
                        
-
-                    </div>
+                {/* Sample Result Info */}
+                </div>
 
                     <div>
                         <h2 className=" text-xl pb-3 border-b-[2px] border-b-gray-200 mb-3">Sample Result List <br/> <span className="text-red-500 text-sm">Result space empty means its not provided yet</span></h2>
-                       
                     </div>
 
                     <div className="relative overflow-x-auto">
@@ -166,7 +158,7 @@ const AdminOrderSampleDetails = ({ sample }) => {
                                     <td className="px-6 py-4">
                                         {result.name}
                                     </td>
-                                   
+                                    
                                     <td className="px-6 py-4">
                                         {
                                             result.TEST_STATUS === 'V' ? 'Available' :
@@ -180,13 +172,13 @@ const AdminOrderSampleDetails = ({ sample }) => {
                                             result.TEST_STATUS === 'S' ? 'Suspended' :
                                             result.TEST_STATUS === 'R' ? 'Rejected' :
                                             "Status Unavailable "
-                                         
+                                            
                                             
                                             
                                         }
                                     </td>
                                 </tr>
-                  
+                    
                             </tbody>
                             ))}
                         </table>

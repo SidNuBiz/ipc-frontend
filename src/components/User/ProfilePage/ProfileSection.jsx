@@ -50,6 +50,7 @@ const ProfileSection = ({user}) => {
     const [countries,setCountries] = useState([])
     const [states,setStates] = useState([])
     const [cities,setCitites] = useState([])
+
     const filterStateCity = async (isCountry,country,state=null)=> {
         
         if(isCountry){
@@ -61,17 +62,17 @@ const ProfileSection = ({user}) => {
             setCitites(data.data)
         }
     }
+
+    const fetchCountries = async () => {
+        const { data } = await axios.get('https://countriesnow.space/api/v0.1/countries/info?returns=name')
+        setCountries(data.data)
+    }
   
     const { loading } = useSelector(
         (state) => state.user
     );
 
     const { isUpdated,error, } = useSelector((state) => state.profile);
-
-    const fetchCountries = async () => {
-        const { data } = await axios.get('https://countriesnow.space/api/v0.1/countries/info?returns=name')
-        setCountries(data.data)
-    }
 
     const updateProfileSubmit = (e) => {
 

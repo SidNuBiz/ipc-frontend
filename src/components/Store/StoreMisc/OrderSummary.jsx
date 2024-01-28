@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
-
 const OrderSummary = () => {
 
     const [shippingPrice,setShippingPrice] = useState(0)
@@ -10,7 +9,9 @@ const OrderSummary = () => {
     const { cartItems } = useSelector(
         (state) => state.cart
     );
+
     let totalPrice = 0
+
     cartItems.map(item =>{
         totalPrice = totalPrice + item.price
     })

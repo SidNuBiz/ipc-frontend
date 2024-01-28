@@ -15,8 +15,6 @@ const ServiceOverviewSection = ({services}) => {
 
             {/* Header Text */}
 
-           
-
                 <div className=' relative z-30 p-10 lg:w-1/2 md:w-2/3 sm:w-5/6 rounded-xl bg-white bg-opacity-95'>
 
              

@@ -14,9 +14,6 @@ const AdminAnalysisCreateSection = () => {
     const dispatch = useDispatch()
     const alert = useAlert()
 
-    const [matrixSearchKey, setMatrixSearchKey] = useState("")
-    const [matrixArr,setMatrixArr] = useState([])
-
     const [name, setName] = useState("");
     const [testingCode, setTestingCode] = useState("");
     const [categories, setCategories] = useState("");
@@ -30,6 +27,9 @@ const AdminAnalysisCreateSection = () => {
     const [urgentPricing, setUrgentPricing] = useState(0);
     const [unit, setUnit] = useState("");
 
+    // Adding matrix to analysis states and functions
+    const [matrixSearchKey, setMatrixSearchKey] = useState("")
+    const [matrixArr,setMatrixArr] = useState([])
 
     const addMatrixToAnalysis = (matrix) => {
       let con = true
@@ -49,7 +49,7 @@ const AdminAnalysisCreateSection = () => {
       setMatrixForm([...matrixForm.filter((matrix)=>matrix._id != id)])
     }
 
-    //Test Method
+    //Adding methods to analysis states and functions
     const [methodsArr,setMethodsArr] = useState([])
     const [methodName,setMethodName] = useState('')
     const [methodAmount,setMethodAmount] = useState(0)
@@ -146,40 +146,41 @@ const AdminAnalysisCreateSection = () => {
         </div>
 
 
-        {/* Service Info */}
+        {/* Analysis Info */}
 
         <div className='mt-10'>
 
-           {/* Service Name */}
-
+           {/* Analysis Name */}
            <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Name<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-name" className='text-2xl text-[#397f77] font-semibold'>Name<span className="text-[red]" >*</span></label>
 
-              <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
+              <input id='analysis-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>setName(e.target.value)} required/>
             </div>
 
-            {/* Code Name */}
-
+            {/* Analysis Unique code */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Testing Code<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-code" className='text-2xl text-[#397f77] font-semibold'>Testing Code<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
+              <input id='analysis-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={testingCode} onChange={(e)=>setTestingCode(e.target.value)} required/>
             </div>
 
+            {/* Analysis Type */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Type<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-type" className='text-2xl text-[#397f77] font-semibold'>Type<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
+              <input id='analysis-type' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
             </div>
 
+            {/* Analysis Component List */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Component List<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-component" className='text-2xl text-[#397f77] font-semibold'>Component List<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
+              <input id='analysis-component' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>
             </div>
 
+            {/* Analysis Matrix Form */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-matrix-list" className='text-2xl text-[#397f77] font-semibold'>Added Matrix Form<span className="text-[red]" >*</span></label>
             </div>
   
             {matrixForm.map((matrix,idx)=>(
@@ -193,8 +194,8 @@ const AdminAnalysisCreateSection = () => {
 
             <div className="col-span-3 mt-10 sm:order-2">
               
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
-              <input type="text" placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
+              <label htmlFor="analysis-matrix" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Matrix</label>
+              <input type="text" id='analysis-matrix' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={matrixSearchKey} onChange={(e)=>setMatrixSearchKey(e.target.value)} />
 
             </div>
             
@@ -211,48 +212,40 @@ const AdminAnalysisCreateSection = () => {
             ))}
             <div className='mb-10'></div>
 
+            {/* Analysis Categories */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Categories<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-categories" className='text-2xl text-[#397f77] font-semibold'>Categories<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
+              <input id='analysis-categories' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={categories} onChange={(e)=>setCategories(e.target.value)} required/>
             </div>
 
+            {/* Analysis Description */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Description<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-description" className='text-2xl text-[#397f77] font-semibold'>Description<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
+              <input id='analysis-description' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={description} onChange={(e)=>setDescription(e.target.value)} required/>
             </div>
 
+            {/* Analysis USP Not Used Held Desc Only */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-usp" className='text-2xl text-[#397f77] font-semibold'>USP Not Used Held Desc Only<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
+              <input id='analysis-usp' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={uspNotUsedHeldDescOnly} onChange={(e)=>setUspNotUsedHeldDescOnly(e.target.value)} required/>
             </div>
 
-
+            {/* Analysis Methods */}
             <div className='my-5'>
-
 
               <table className='w-full'>
 
-
                 <thead >
-
                   {
-
-                      methodsArr.length > 0 && (
-
-                          <tr className='text-gray-600 font-semibold'>
-
-                              <th className='text-left'><h2 className=' underline text-2xl text-[#397f77] font-semibold mb-2'>Testing Methods<span className="text-[red]" >*</span></h2></th>
-                              
-
-                          </tr>
-
-                      )
-
+                    methodsArr.length > 0 && (
+                      <tr className='text-gray-600 font-semibold'>
+                        <th className='text-left'><h2 className=' underline text-2xl text-[#397f77] font-semibold mb-2'>Testing Methods<span className="text-[red]" >*</span></h2></th>
+                      </tr>
+                    )
                   }
-
                 </thead>
 
                 <tbody>
@@ -263,15 +256,15 @@ const AdminAnalysisCreateSection = () => {
                         <tr key={item.id} className=''>
 
                           <div className='my-5'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
+                            <label htmlFor="analysis-method-name" className='text-xl text-[#397f77] font-semibold'>Method Name</label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
+                            <input id='analysis-method-name' type="text" className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.name} onChange={(e)=>editMethod(index,e.target.value,'name')} required/>
                           </div>
 
                           <div >
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
+                            <label htmlFor="analysis-amount-required" className='text-xl text-[#397f77] font-semibold'>Amount Required</label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
+                            <input id='analysis-amount-required' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={item.amount} onChange={(e)=>editMethod(index,e.target.value,'amount')} required/>
                           </div>
 
                           <button onClick={() => deleteMethod(item.id)} className=" my-5 bg-[#D10000] text-white px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#FF0000]  duration-300">Delete</button>
@@ -285,10 +278,7 @@ const AdminAnalysisCreateSection = () => {
 
               </table>
 
-
-
               <div className=' mt-5 '>
-
 
                 <h2 className='text-2xl text-[#397f77] font-semibold' >Add Method</h2>
 
@@ -301,15 +291,15 @@ const AdminAnalysisCreateSection = () => {
                       <td>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Method Name<span className="text-[red]" >*</span></label>
+                            <label htmlFor="analysis-method-name" className='text-xl text-[#397f77] font-semibold'>Method Name<span className="text-[red]" >*</span></label>
 
-                            <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
+                            <input id='analysis-method-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodName} placeholder='Name' onChange={(e)=>setMethodName(e.target.value)} required/>
                           </div>
 
                           <div className='mb-10'>
-                            <label htmlFor="service-name" className='text-xl text-[#397f77] font-semibold'>Amount Required<span className="text-[red]" >*</span></label>
+                            <label htmlFor="analysis-amount-required" className='text-xl text-[#397f77] font-semibold'>Amount Required<span className="text-[red]" >*</span></label>
 
-                            <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
+                            <input id='analysis-amount-required' type="number" min={0} className='w-full bg-transparent mt-1 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={methodAmount} placeholder={0} onChange={(e)=>setMethodAmount(e.target.value)} required/>
                           </div>
                       
                       </td>
@@ -328,32 +318,37 @@ const AdminAnalysisCreateSection = () => {
 
             </div>
 
+            {/* Analysis Standard Pricing */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Standard Price<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-standard-pricing" className='text-2xl text-[#397f77] font-semibold'>Standard Price<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
+              <input id='analysis-standard-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={standardPricing} onChange={(e)=>setStandardPricing(e.target.value)} required/>
             </div>
 
+            {/* Analysis Rushed Pricing */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Rushed Price<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-rushed-pricing" className='text-2xl text-[#397f77] font-semibold'>Rushed Price<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
+              <input id='analysis-rushed-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={rushedPricing} onChange={(e)=>setRushedPricing(e.target.value)} required/>
             </div>
 
+            {/* Analysis Urgent Pricing */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Urgent Price<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-urgent-pricing" className='text-2xl text-[#397f77] font-semibold'>Urgent Price<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
+              <input id='analysis-urgent-pricing' type="number" min={0} className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={urgentPricing} onChange={(e)=>setUrgentPricing(e.target.value)} required/>
             </div>
 
+            {/* Analysis Unit */}
             <div className='mb-10'>
-              <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Unit<span className="text-[red]" >*</span></label>
+              <label htmlFor="analysis-unit" className='text-2xl text-[#397f77] font-semibold'>Unit<span className="text-[red]" >*</span></label>
 
-              <input id='service-code' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
+              <input id='analysis-unit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={unit} onChange={(e)=>setUnit(e.target.value)} required/>
             </div>
          
         </div>
 
+        {/* Create Analysis Button */}
         <div className="mt-10 flex justify-center">
             <button onClick={addThisAnalysis} className=" bg-transparent text-[#397f77] border-[#397f77] border-[1px] px-7 py-3 text-lg rounded-xl font-semibold hover:bg-[#18debb] hover:text-white hover:border-white duration-300">Create Test</button>
         </div>

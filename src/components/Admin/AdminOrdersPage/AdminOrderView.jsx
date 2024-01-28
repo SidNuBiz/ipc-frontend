@@ -29,6 +29,7 @@ const AdminOrderView = () => {
         setOrder(newOrder)
     }
 
+    // If the order is dynamic means the price is not set for all tests then admin will update the order with the price
     const updateOrder = ()=>{
         let isDynamic = false
         order.products.forEach(sample =>{
@@ -270,8 +271,6 @@ const AdminOrderView = () => {
 
                                     </div>
 
-                                    {/* Item Ordered Strains */}
-
                                     <div className="mb-3">
 
                                         {/* Heading */}
@@ -293,7 +292,7 @@ const AdminOrderView = () => {
                                                 <h2 className=" text-md">{test.test.name}
                                                     
                                                     <p className="text-red-600" >
-                                                    {test.addOn.length > 0 && <>[</>}
+                                                    {test.addOn.length > 0 && <>[</>}  {/* If there is any addon then show them for the test} */}
                                                     {test.addOn.map((addon)=>(
                                                     
                                                     <span >{addon.value ? addon.name+",":null} </span>
@@ -308,14 +307,14 @@ const AdminOrderView = () => {
                                                 </div>
 
                                                 {/* Price */}
-
-                                                <div className="text-right h-fit my-auto">
-                                                {order && order.status === "Dynamic" ?
+                                                
+                                                {/* If the order is dynamic then let the admin set an price in the input field*/}
+                                                <div className="text-right h-fit my-auto"> 
+                                                {order && order.status === "Dynamic" ? 
                                                     <input type="number" className="border-gray-300 border-[1px] focus:outline-none" min={0} defaultValue={test.test[item.selectedTurnaround.value]} onChange={(e)=>calculatePrice(e,sampleIndex,testIndex)}  />
                                                     :
                                                     <h2 className=" text-md font-bold">C$ {test.test[item.selectedTurnaround.value]}</h2>
                                                 }
-                                               
                                                 
                                                 </div>
 
@@ -399,7 +398,6 @@ const AdminOrderView = () => {
                             <></>}
 
                             <div>
-         
 
                                 <div>
                                     <p className="font-semibold text-xl mb-5 text-gray-600">Signature</p>

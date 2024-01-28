@@ -242,7 +242,6 @@ const OrderDetails = ({order,oId}) => {
                             {/* Price */}
 
                             <div className="text-right h-fit my-auto">
-                              {/* <h2 className=" text-md font-bold">C$ {item.selectedTurnaround.value === 'rushed' ? test.test.RushedPricing:test.test.StandardPricing}</h2> */}
                               <h2 className=" text-md font-bold">{ test.test[item.selectedTurnaround.value] == 0 ? 'Dynamic Price' : 'C$'+test.test[item.selectedTurnaround.value]}</h2>
                             </div>
 

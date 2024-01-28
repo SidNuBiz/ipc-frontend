@@ -4,7 +4,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import url from '../../../utils/baseApi';
 
-
 const License = ({license,setLicenseArr})=>{
 
     const alert = useAlert()
@@ -12,29 +11,22 @@ const License = ({license,setLicenseArr})=>{
     const [licenseName,setLicenseName] = useState(license.name)
     const [licenseNumber,setLicenseNumber] = useState(license.number)
     
-    // Update License
     async function updateLicense (id)  {
         if(licenseName.trim() === ""){
             return alert.error("License Name can not be empty")
         }
-
         if(licenseNumber.trim() === ""){
             return alert.error("License Number can not be empty")
         }
-
         try {
             const token = Cookies.get('token')
-        
             const config = {
                 headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
             }
-            
             const {data} = await axios.put(`${url}/api/v1/license/update/${id}`,{name:licenseName,number:licenseNumber},config)
-            
             if(data.success){
                 alert.success("Successfully updated")
             }
-        
         } catch (error) {
             alert.error(error.response.data.error)
         }
@@ -42,20 +34,15 @@ const License = ({license,setLicenseArr})=>{
 
     async function deleteLicense(id){
         try {
-
             const token = Cookies.get('token')
-        
             const config = {
                 headers: { 'Authorization': `Bearer ${token}` },
             }
-
             const {data} = await axios.delete(`${url}/api/v1/license/delete/${id}`,config)
-            
             if(data.success){
                 alert.success("Successfully Deleted")
                 setLicenseArr(data.licenses)
             }
-        
         } catch (error) {
             alert.error(error.response.data.error)
         }

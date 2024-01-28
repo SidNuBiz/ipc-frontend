@@ -12,8 +12,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
     const [description,setDescription] = useState(licenseDetails.description)
 
 
-    //Designations
-
+    // Adding license details points states and functions
     const [pointsArr,setPointsArr] = useState(licenseDetails.points)
     const [points,setPoints] = useState('')
     
@@ -43,6 +42,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
     }
 
+    // Adding license details image states and functions
     const [licenseImage,setLicenseImage] = useState()
     const [previewLicenseImage,setPreviewLicenseImage] = useState(licenseDetails.img)
 
@@ -142,21 +142,16 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
             </div>
         </div>
 
+        {/* License Details Name */}
         <div className='mt-5'>
-        
-            <label htmlFor="service-name" className='text-2xl text-[#397f77] font-semibold'>Title</label>
-            <input id='service-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>{setName(e.target.value)}} required/>
+            <label htmlFor="licenses-details-name" className='text-2xl text-[#397f77] font-semibold'>Title</label>
+            <input id='license-details-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={name} onChange={(e)=>{setName(e.target.value)}} required/>
         </div>
 
         <div className='mt-5'>
-
+        {/* License Details Points */}
         <h2 className='text-2xl text-[#397f77] font-semibold'>Points</h2>
-
-
             <table className='w-full'>
-
-
-
                 <tbody>
 
                     {
@@ -181,8 +176,6 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
             </table>
 
-
-
             <div >
 
                 <table className='w-full pt-1 mt-1 '>
@@ -193,7 +186,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
                         <td>
 
-                        <input id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setPoints(e.target.value)}} value={points} placeholder='points' required />
+                        <input id='license-details-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setPoints(e.target.value)}} value={points} placeholder='points' required />
 
                         </td>
 
@@ -211,6 +204,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
         </div>
 
+        {/* License Detials Description */}
         <div>
 
             <div className='mt-5'> 
@@ -225,7 +219,7 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
                         <td>
 
-                            <textarea rows="6" id='new-service-point' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setDescription(e.target.value)}} value={description} placeholder='Description' required />
+                            <textarea rows="6" id='license-details-description' type="text" className=' mr-2 w-full bg-white mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' onChange={(e) => {setDescription(e.target.value)}} value={description} placeholder='Description' required />
                         
                         </td>
 
@@ -239,10 +233,9 @@ const AdminLicenseDetails = ({licenseDetails,setLicenseDetailsArr})=>{
 
         </div>
 
-        {/* <div className="mb-5 mt-10 flex justify-between"> */}
-            <button onClick={()=>updateLicenseDetails(licenseDetails._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-            <button onClick={()=>deleteLicenseDetails(licenseDetails._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
-        {/* </div> */}
+        <button onClick={()=>updateLicenseDetails(licenseDetails._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+        <button onClick={()=>deleteLicenseDetails(licenseDetails._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
+
     </div>
     )
 }

@@ -95,33 +95,26 @@ const Faq = ({faq,setFaqArr})=>{
     return (
     <div>
      
-
-        <div className='mt-5'>
-        
-            <label htmlFor="equipment-name" className='text-2xl text-[#397f77] font-semibold'>Question</label>
-            <input id='equipment-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={question} placeholder='Question' onChange={(e)=>{setQuestion(e.target.value)}} required/>
+        {/* Question */}
+        <div className='mt-5'>    
+            <label htmlFor="question" className='text-2xl text-[#397f77] font-semibold'>Question</label>
+            <input id='question' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={question} placeholder='Question' onChange={(e)=>{setQuestion(e.target.value)}} required/>
         </div>
 
-        
+        {/*Answer  */}
         <div className='mt-5'>
-        
-            <label htmlFor="equipment-model" className='text-2xl text-[#397f77] font-semibold'>Answer</label>
-            <input id='equipment-model' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={answer} placeholder='Answer' onChange={(e)=>{setAnswer(e.target.value)}} required/>
+            <label htmlFor="answer" className='text-2xl text-[#397f77] font-semibold'>Answer</label>
+            <input id='answer' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' value={answer} placeholder='Answer' onChange={(e)=>{setAnswer(e.target.value)}} required/>
         </div>
 
-             
+        {/* Category */}
         <div className='mt-5'>
-
-        
             <Select options={categoryList} defaultValue={category} placeholder={category} onChange={(e)=>setCategory(e.value)} className="rounded-md border border-gray-300 text-gray-600 w-full" styles={selectCustomStyles}  classNamePrefix />
         </div>
 
+        <button onClick={()=>updateFaq(faq._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
+        <button onClick={()=>deleteFaq(faq._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
 
-
-        {/* <div className="mb-5 mt-10 flex justify-between"> */}
-            <button onClick={()=>updateFaq(faq._id)}  className=" bg-[#397f77] text-white px-5 py-3  text-lg rounded-xl font-semibold hover:bg-[#18debb] duration-300">Update</button>
-            <button onClick={()=>deleteFaq(faq._id)} className=" my-10 ml-5 bg-[#D10000] text-white px-5 py-3 text-lg rounded-xl font-semibold hover:bg-[#FF0000] duration-300">Delete</button>
-        {/* </div> */}
     </div>
     )
 }
