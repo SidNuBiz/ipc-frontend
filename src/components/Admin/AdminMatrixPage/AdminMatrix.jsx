@@ -67,13 +67,13 @@ const Matrix = ({matrix,setMatrixArr})=>{
             <div>
                 <div className='mt-5'>
 
-                    <label htmlFor="license-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Name</label>
+                    <label htmlFor="license-name" className='text-2xl text-[#397f77] font-semibold'>Matrix Name<span className="text-[red]" >*</span></label>
                     <input id='license-name' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixName} onChange={(e)=>{setMatrixName(e.target.value)}} required/>
                 </div>
 
                 <div className='mt-5'>
                     
-                    <label htmlFor="license-number" className='text-2xl text-[#397f77] font-semibold'>Phrase Id</label>
+                    <label htmlFor="license-number" className='text-2xl text-[#397f77] font-semibold'>Phrase Id<span className="text-[red]" >*</span></label>
                     <input id='license-number' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={matrixPhraseId} onChange={(e)=>{setMatrixPhraseId(e.target.value)}} required/>
                 </div>
 

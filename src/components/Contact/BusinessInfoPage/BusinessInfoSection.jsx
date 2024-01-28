@@ -71,8 +71,7 @@ const BusinessInfoSection = () => {
 
                             <span className="block text-center w-fit mx-auto mb-3">Closed: Weekends and Stat Holidays</span>
 
-                            <span className="block text-center w-fit px-20 mx-auto mb-3">* Daily sample submission cutoff time is 3:30 PM.<br></br> If you need to drop samples outside of regular work hours please contact us to arrange a time.
-</span>
+                            <span className="block text-center w-fit px-20 mx-auto mb-3">* Daily sample submission cutoff time is 3:30 PM.<br></br> If you need to drop samples outside of regular work hours please contact us to arrange a time.</span>
                         </h2>
                     </div>
                    

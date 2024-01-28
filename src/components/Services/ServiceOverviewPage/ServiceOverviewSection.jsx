@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import HeaderBackground from '../../../assets/service-overview-header-bg.webp';
+import HeaderBackground from '../../../assets/service-overview-header-bg.png';
 import GrayLogo from '../../../assets/logo-gray.png';
 
 

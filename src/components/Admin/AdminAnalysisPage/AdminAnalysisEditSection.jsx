@@ -83,9 +83,16 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
 
     const updateThisAnalysis = () => {
 
+      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || type.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || unit.trim() == ""){
+        return alert.error("All required fields must be filled")
+      }
+
       if(methodsArr.length == 0){
-        alert.error("At least one method is required")
-        return
+        return alert.error("At least one method is required")
+      }
+  
+      if(matrixArr.length == 0){
+        return alert.error("At least one matrix is required")
       }
 
       const analysis = {

@@ -124,9 +124,21 @@ const AdminPackageEditSection = ({thisPackage}) => {
     }
 
     const updateThisPackage = () => {
-      if(methodsArr.length == 0){
-        alert.error("At least one method is required")
+      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || type.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || standardPricing == 0 || rushedPricing == 0 || urgentPricing == 0 || unit.trim() == "" ){
+        alert.error("All required fields must be filled")
         return
+      }
+  
+      if(methodsArr.length == 0){
+        return alert.error("At least one method is required")
+      }
+  
+      if(matrixArr.length == 0){
+        return alert.error("At least one matrix is required")
+      }
+  
+      if(packageTests.length == 0){
+        return alert.error("At least one test is required in the package")
       }
       const pack = {
        name,
