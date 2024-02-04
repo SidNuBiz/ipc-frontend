@@ -31,13 +31,15 @@ const SampleDetails = ({ sample }) => {
         };
       
         try {
-          const response = await axios.get(`${url}/api/v1/cov/report`, config);
+        //   const response = await axios.get(`${url}/api/v1/cov/report?id_text=${sample.ID_TEXT}&name=${sample.SAMPLE_NAME}`,config);
       
-          const blob = new Blob([response.data], { type: 'application/pdf' });
-          const report_url = URL.createObjectURL(blob);
+        //   const blob = new Blob([response.data], { type: 'application/pdf' });
+        //   const report_url = URL.createObjectURL(blob);
+        const report_url = `https://ipc-frontend.s3.us-west-2.amazonaws.com/lims_cov/${sample.ID_TEXT}-${sample.SAMPLE_NAME}.pdf`
       
           window.open(report_url, '_blank');
         } catch (error) {
+            console.log(error)
           alert.error('Error downloading report:', error.message);
         }
       }

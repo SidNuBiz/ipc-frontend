@@ -32,11 +32,28 @@ const TestingSubmissionFormPageSection = () => {
         
         let closeSubmit = true
         sampleFormData.forEach(sample =>{
-          
+            
+
             if(sample.sampleName === "" || sample.sampleName === undefined ){
+                
                 alert.error("Please Enter Sample Name")
                 closeSubmit = false
             }
+
+            const isValidName = /^[A-Z_\- ]{1,30}$/.test(sample.sampleName);
+            
+            if(!isValidName){
+                alert.error("Sample name should be (A-Z letter. 30 characters max. Special characters: space, underscore, hyphen only)")
+                closeSubmit = false
+            }
+
+            const isValidBatch = /^[A-Z_\- ]{1,30}$/.test(sample.sampleBatch);
+
+            if(!isValidBatch){
+                alert.error("Batch/Lot name should be (A-Z letter. 30 characters max. Special characters: space, underscore, hyphen only)")
+                closeSubmit = false
+            }
+
             let check = true
             for (const key in sample.storageType){
                 if((sample.storageType[key].value || (key === 'others' ? (sample.storageType[key].value !=='' ? true : false) : false))){ 

@@ -1,9 +1,6 @@
 import { useEffect } from "react";
-
 import AdminPackagesPageSection from "../../../components/Admin/AdminPackagePage/AdminPackagesPageSection";
 import SideBar from "../../../components/Admin/Misc/SideBar";
-
-
 
 const AdminPackagesPage = () => {
 

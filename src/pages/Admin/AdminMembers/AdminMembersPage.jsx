@@ -5,11 +5,11 @@ import SideBar from '../../../components/Admin/Misc/SideBar';
 
 const AdminMembersPage = () => {
     
-    useEffect(() => {
-        // 👇️ scroll to top on page load
-        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    
-      }, []);
+  useEffect(() => {
+      // 👇️ scroll to top on page load
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  
+  }, []);
 
   return (
     <div className="lg:grid lg:grid-cols-5">
