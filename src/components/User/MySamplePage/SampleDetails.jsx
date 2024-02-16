@@ -6,6 +6,7 @@ import { useAlert } from "react-alert";
 import axios from "axios";
 import Cookies from "js-cookie";
 import url from "../../../utils/baseApi";
+import s3 from "../../../utils/s3"
 
 const SampleDetails = ({ sample }) => {
 
@@ -21,27 +22,47 @@ const SampleDetails = ({ sample }) => {
     );
 
     async function downloadReport() {
-        const token = Cookies.get('token');
-        const config = {
-          headers: {
-            'Content-Type': 'application/pdf',
-            'Authorization': `Bearer ${token}`,
-          },
-          responseType: 'arraybuffer',
+
+
+        console.log('lims_cov/'+sample.ID_TEXT+'-'+sample.SAMPLE_NAME)
+        const params = {
+            Bucket: 'ipc-frontend',
+            Key: 'lims_cov/'+sample.ID_TEXT+'-'+sample.SAMPLE_NAME+'.pdf'
+            // Key: 'lims_cov/000301-1-ls-2024-01.pdf'
         };
+
+        s3.getObject(params, (err, data) => {
+            if (err) {
+                return alert.error(err)
+            } else {
+                console.log(data)
+                const blob = new Blob([data.Body], { type: 'application/pdf' });
+                const report_url = URL.createObjectURL(blob);
+                const pdfName = sample.SAMPLE_NAME;
+                console.log(sample.SAMPLE_NAME)
+                window.open(report_url,"_blank");
+            }
+        });
+
+        // const token = Cookies.get('token');
+        // const config = {
+        //   headers: {
+        //     'Content-Type': 'application/pdf',
+        //     'Authorization': `Bearer ${token}`,
+        //   },
+        //   responseType: 'arraybuffer',
+        // };
       
-        try {
+        // try {
         //   const response = await axios.get(`${url}/api/v1/cov/report?id_text=${sample.ID_TEXT}&name=${sample.SAMPLE_NAME}`,config);
       
         //   const blob = new Blob([response.data], { type: 'application/pdf' });
         //   const report_url = URL.createObjectURL(blob);
-        const report_url = `https://ipc-frontend.s3.us-west-2.amazonaws.com/lims_cov/${sample.ID_TEXT}-${sample.SAMPLE_NAME}.pdf`
-      
-          window.open(report_url, '_blank');
-        } catch (error) {
-            console.log(error)
-          alert.error('Error downloading report:', error.message);
-        }
+
+        // } catch (error) {
+        //     console.log(error)
+        //   alert.error('Error downloading report:', error.message);
+        // }
       }
 
 

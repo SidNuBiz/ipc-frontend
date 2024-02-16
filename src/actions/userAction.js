@@ -222,7 +222,7 @@ export const updateStatus = (status,id) => async (dispatch) => {
         
     const config = { headers:{'Authorization': `Bearer ${token}` }}
     const { data } = await axios.put(`${api}/api/v1/update/status/${id}`,{status},config);
-    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+    dispatch({ type: ALL_USERS_SUCCESS, payload: { users:data.users, totalUser:data.totalUser } });
   } catch (error) {
     console.log(error)
    
@@ -236,7 +236,7 @@ export const updateTaxCode = (taxCode,id) => async (dispatch) => {
         
     const config = { headers:{'Authorization': `Bearer ${token}` }}
     const { data } = await axios.put(`${api}/api/v1/update/tax/${id}`,{taxCode},config);
-    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+    dispatch({ type: ALL_USERS_SUCCESS, payload: { users:data.users, totalUser:data.totalUser } });
   } catch (error) {
     console.log(error)
    

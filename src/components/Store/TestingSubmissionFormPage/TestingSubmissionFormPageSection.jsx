@@ -40,17 +40,17 @@ const TestingSubmissionFormPageSection = () => {
                 closeSubmit = false
             }
 
-            const isValidName = /^[A-Z_\- ]{1,30}$/.test(sample.sampleName);
+            const isValidName = /^[A-Za-z0-9_\- ]{1,30}$/.test(sample.sampleName);
             
             if(!isValidName){
-                alert.error("Sample name should be (A-Z letter. 30 characters max. Special characters: space, underscore, hyphen only)")
+                alert.error("Sample name should be (30 characters max. Special characters: space, underscore, hyphen only)")
                 closeSubmit = false
             }
 
-            const isValidBatch = /^[A-Z_\- ]{1,30}$/.test(sample.sampleBatch);
+            const isValidBatch = /^[A-Za-z0-9_\- ]{1,30}$/.test(sample.sampleBatch);
 
             if(!isValidBatch){
-                alert.error("Batch/Lot name should be (A-Z letter. 30 characters max. Special characters: space, underscore, hyphen only)")
+                alert.error("Batch/Lot name should be (30 characters max. Special characters: space, underscore, hyphen only)")
                 closeSubmit = false
             }
 
