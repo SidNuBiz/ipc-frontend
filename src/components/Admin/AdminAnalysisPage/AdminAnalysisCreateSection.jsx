@@ -17,7 +17,7 @@ const AdminAnalysisCreateSection = () => {
     const [name, setName] = useState("");
     const [testingCode, setTestingCode] = useState("");
     const [categories, setCategories] = useState("");
-    const [type, setType] = useState("");
+    const [typeField, setTypeField] = useState([]);
     const [componentList, setComponentList] = useState("")
     const [matrixForm, setMatrixForm] = useState([]);
     const [description, setDescription] = useState("");
@@ -47,6 +47,28 @@ const AdminAnalysisCreateSection = () => {
   
     const deleteMatrixFromAnalysis = (id) => {
       setMatrixForm([...matrixForm.filter((matrix)=>matrix._id != id)])
+    }
+
+    // Adding type to analysis states and functions
+    const [typeSearchKey, setTypeSearchKey] = useState("")
+    const [typeArr,setTypeArr] = useState([])
+
+    const addTypeToAnalysis = (type) => {
+      let con = true
+
+      typeField.forEach((item)=>{
+        if(item._id === type._id){
+          alert.error(type.name +' is already included')
+          con = false
+        }
+      })
+      if(con){
+        setTypeField([...typeField,type])
+      }
+    }
+  
+    const deleteTypeFromAnalysis = (id) => {
+      setTypeField([...typeField.filter((type)=>type._id != id)])
     }
 
     //Adding methods to analysis states and functions
@@ -86,7 +108,7 @@ const AdminAnalysisCreateSection = () => {
 
     const addThisAnalysis = () => {
 
-      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || type.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || unit.trim() == ""){
+      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || unit.trim() == ""){
         return alert.error("All required fields must be filled")
       }
 
@@ -98,11 +120,15 @@ const AdminAnalysisCreateSection = () => {
         return alert.error("At least one matrix is required")
       }
 
+      if(typeArr.length == 0){
+        return alert.error("At least one type is required")
+      }
+
       const analysis = {
        name,
        testingCode,
        categories,
-       type,
+       type:typeField,
        componentList:componentList == "" ? null : componentList,
        matrixForm,
        description,
@@ -118,8 +144,14 @@ const AdminAnalysisCreateSection = () => {
     }
 
     async function fetchData(){
-      const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
-      setMatrixArr(data.matrix)
+      try{
+        const {data:dataMatrix} =  await axios.get(`${url}/api/v1/matrix/all`)
+        setMatrixArr(dataMatrix.matrix)
+        const {data:dataType} =  await axios.get(`${url}/api/v1/type/all`)
+        setTypeArr(dataType.type)
+      }catch(error){
+        alert.error(error.response.data.message)
+      }
     }
   
     useEffect(() => {
@@ -165,14 +197,43 @@ const AdminAnalysisCreateSection = () => {
             </div>
 
             {/* Analysis Type */}
-            <div className='mb-10'>
-              <label htmlFor="analysis-type" className='text-2xl text-[#397f77] font-semibold'>Type<span className="text-[red]" >*</span></label>
 
-              <input id='analysis-type' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
+
+            {/* Analysis Type Form */}
+            <div className='mb-10'>
+              <label htmlFor="analysis-matrix-list" className='text-2xl text-[#397f77] font-semibold'>Added Type<span className="text-[red]" >*</span></label>
             </div>
+  
+            {typeField.map((type,idx)=>(
+              <div className='m-5 flex'>
+                <span className='pr-2'>&#8226;</span>
+                <h2>{type.name}</h2>
+                <button onClick={() => deleteTypeFromAnalysis(type._id)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
+
+              </div>
+            ))}
+
+            <div className="col-span-3 mt-10 sm:order-2">
+              
+              <label htmlFor="analysis-type" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Type</label>
+              <input type="text" id='analysis-type' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={typeSearchKey} onChange={(e)=>setTypeSearchKey(e.target.value)} />
+
+            </div>
+            
+            {typeArr && typeArr.filter( type => type.name.toLowerCase().includes(typeSearchKey.toLowerCase())).map((type,idx) => (
+
+              typeSearchKey.length > 0 ?<>
+                <div className='m-5 flex'>
+                  <span className='pr-2'>&#8226;</span>
+                  <h2>{type.name}</h2>
+                  <button onClick={() => addTypeToAnalysis(type)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
+                </div>
+              </>:<></>
+
+            ))}
 
             {/* Analysis Component List */}
-            <div className='mb-10'>
+            <div className='my-10'>
               <label htmlFor="analysis-component" className='text-2xl text-[#397f77] font-semibold'>Component List<span className="text-[red]" >*</span></label>
 
               <input id='analysis-component' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>

@@ -24,16 +24,6 @@ import {
      
         const {data} = await axios.get(`${api}/api/v1/package/all`)
 
-        data.packages = data.packages.map(packageData => {
-          if(packageData.type !== undefined){
-            let editType =packageData.type.split(", ")
-            packageData.type = editType
-          }
-        
-          return packageData
-        
-        })
-
         dispatch({type:ALL_PACKAGE_SUCCESS,payload:data})
     }catch(error){
         dispatch({

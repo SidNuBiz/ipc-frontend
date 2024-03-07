@@ -17,8 +17,8 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const [name, setName] = useState(thisAnalysis.name);
     const [testingCode, setTestingCode] = useState(thisAnalysis.testingCode);
     const [categories, setCategories] = useState(thisAnalysis.categories);
-    const [type, setType] = useState(thisAnalysis.type.toString());
-    const [componentList, setComponentList] = useState(thisAnalysis.componentList)
+    const [typeField, setTypeField] = useState(thisAnalysis.type);
+    const [componentList, setComponentList] = useState(thisAnalysis.componentList == null ? '' : thisAnalysis.componentList)
     const [matrixForm, setMatrixForm] = useState(thisAnalysis.matrixForm);
     const [description, setDescription] = useState(thisAnalysis.description);
     const [uspNotUsedHeldDescOnly, setUspNotUsedHeldDescOnly] = useState(thisAnalysis.uspNotUsedHeldDescOnly == "" ? null : thisAnalysis.uspNotUsedHeldDescOnly);
@@ -34,7 +34,7 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     const addMatrixToAnalysis = (matrix) => {
       let con = true
       matrixForm.forEach((item)=>{
-        if(item._id === matrix._id){
+        if(item.name === matrix.name){
           alert.error(matrix.name +' is already included')
           con = false
         }
@@ -46,6 +46,28 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
   
     const deleteMatrixFromAnalysis = (id) => {
       setMatrixForm([...matrixForm.filter((matrix)=>matrix.phraseId != id)])
+    }
+
+    // Adding type to analysis states and functions
+    const [typeSearchKey, setTypeSearchKey] = useState("")
+    const [typeArr,setTypeArr] = useState([])
+
+    const addTypeToAnalysis = (type) => {
+      let con = true
+
+      typeField.forEach((item)=>{
+        if(item.name === type.name){
+          alert.error(type.name +' is already included')
+          con = false
+        }
+      })
+      if(con){
+        setTypeField([...typeField,type])
+      }
+    }
+  
+    const deleteTypeFromAnalysis = (name) => {
+      setTypeField([...typeField.filter((type)=>type.name != name)])
     }
 
     //Adding methods to analysis states and functions
@@ -84,7 +106,7 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
 
     const updateThisAnalysis = () => {
 
-      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || type.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || unit.trim() == ""){
+      if(name.trim() == "" || testingCode.trim() == "" || categories.trim() == "" || componentList.trim() == "" || description.trim() == "" || uspNotUsedHeldDescOnly.trim() == "" || unit.trim() == ""){
         return alert.error("All required fields must be filled")
       }
 
@@ -100,7 +122,7 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
         name,
         testingCode,
         categories,
-        type,
+        type:typeField,
         componentList:componentList == "" ? null : componentList,
         matrixForm,
         description,
@@ -116,8 +138,10 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
     }
     async function fetchData(){
       try{
-        const {data} =  await axios.get(`${url}/api/v1/matrix/all`)
-        setMatrixArr(data.matrix)
+        const {data:dataMatrix} =  await axios.get(`${url}/api/v1/matrix/all`)
+        setMatrixArr(dataMatrix.matrix)
+        const {data:dataType} =  await axios.get(`${url}/api/v1/type/all`)
+        setTypeArr(dataType.type)
       }catch(error){
         alert.error(error.response.data.message)
       }
@@ -166,13 +190,39 @@ const AdminAnalysisEditSection = ({thisAnalysis}) => {
 
             {/* Analysis Type Edit */}
             <div className='mb-10'>
-              <label htmlFor="analysis-type-edit" className='text-2xl text-[#397f77] font-semibold'>Type</label>
-
-              <input id='analysis-type-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={type} onChange={(e)=>setType(e.target.value)} required/>
+              <label htmlFor="analysis-matrix-list" className='text-2xl text-[#397f77] font-semibold'>Added Type<span className="text-[red]" >*</span></label>
             </div>
+  
+            {typeField.map((type,idx)=>(
+              <div className='m-5 flex'>
+                <span className='pr-2'>&#8226;</span>
+                <h2>{type.name}</h2>
+                <button onClick={() => deleteTypeFromAnalysis(type.name)} className=' bg-[#D70040] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#C41E3A] duration-300'>Delete</button>
+
+              </div>
+            ))}
+
+            <div className="col-span-3 mt-10 sm:order-2">
+              
+              <label htmlFor="analysis-type" className='text-2xl text-[#397f77] mb-2 font-semibold'>Search Type</label>
+              <input type="text" id='analysis-type' placeholder="Search Tests" className="bg-white shadow-lg rounded-2xl p-3 w-full focus:outline-none" value={typeSearchKey} onChange={(e)=>setTypeSearchKey(e.target.value)} />
+
+            </div>
+            
+            {typeArr && typeArr.filter( type => type.name.toLowerCase().includes(typeSearchKey.toLowerCase())).map((type,idx) => (
+
+              typeSearchKey.length > 0 ?<>
+                <div className='m-5 flex'>
+                  <span className='pr-2'>&#8226;</span>
+                  <h2>{type.name}</h2>
+                  <button onClick={() => addTypeToAnalysis(type)} className=' bg-[#397f77] text-white ml-5 px-1 py-1 text-sm rounded-sm font-semibold hover:bg-[#18debb] duration-300'>Add</button>
+                </div>
+              </>:<></>
+
+            ))}
 
             {/* Analysis Component List Edit */}
-            <div className='mb-10'>
+            <div className='my-10'>
               <label htmlFor="analysis-component-edit" className='text-2xl text-[#397f77] font-semibold'>Component List</label>
 
               <input id='analysis-component-edit' type="text" className='w-full bg-transparent mt-5 px-5 py-3 border-gray-300 border-[1px] focus:outline-none' defaultValue={componentList} onChange={(e)=>setComponentList(e.target.value)} required/>

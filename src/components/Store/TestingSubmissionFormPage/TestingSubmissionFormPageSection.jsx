@@ -72,6 +72,12 @@ const TestingSubmissionFormPageSection = () => {
         })
 
         sampleFormData.forEach(sample => {
+            if(sample.selectedTurnaround == undefined){
+                alert.error("Please Select a turnaround Time for "+sample.sampleName)
+                closeSubmit = false
+                return
+            }
+           
             sample.testFormData.forEach((test,idx) => {
                 console.log(sample.testFormData[idx].test.packageTests !== undefined)
                 if(sample.testFormData[idx].method == null){

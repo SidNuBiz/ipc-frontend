@@ -23,16 +23,6 @@ import {
         dispatch({type:ALL_ANALYSIS_REQUEST})
      
         const {data} = await axios.get(`${api}/api/v1/analysis/all`)
-
-        data.analyses = data.analyses.map(data => {
-          if(data.type !== undefined){
-            let editType =data.type.split(",")
-            data.type = editType
-          }
-        
-          return data
-        
-        })
   
         dispatch({type:ALL_ANALYSIS_SUCCESS,payload:data})
 

@@ -115,7 +115,7 @@ const ServiceView = () => {
                                         <tbody>
 
                                             {analyses &&
-                                                analyses.filter(data => (data.type !== undefined ? data.type.includes(thisService.codeName):false)).filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
+                                                analyses.filter(data => (data.type.some(type => type.name === thisService.codeName))).filter( tests => tests.name.toLowerCase().includes(searchKey.toLowerCase())).map((test, index) => (
                                                     <tr
                                                         key={index}
                                                         className="border-b-2 border-gray-300">

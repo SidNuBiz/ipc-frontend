@@ -2,7 +2,7 @@
 
     //Business Info Page
 
-
+    // phone codes
     export const phoneCodes = [
 
         {

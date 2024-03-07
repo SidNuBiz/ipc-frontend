@@ -69,6 +69,7 @@ const AdminLegalPageEdit = lazy(() => import('./pages/Admin/AdminLegalPageEdit')
 const AdminFaqPageEdit = lazy(() => import('./pages/Admin/AdminFaqPageEdit'));
 const AdminServiceHoverBoxPage = lazy(() => import('./pages/Admin/AdminServices/AdminServiceHoverBoxPage'));
 const AdminMatrixEdit = lazy(() => import('./pages/Admin/AdminMatrixEdit'));
+const AdminTypeEdit = lazy(() => import('./pages/Admin/AdminTypeEdit'));
 const VerifyEmail = lazy(() => import('./pages/VerifyEmail'));
 
 
@@ -166,6 +167,8 @@ function App() {
           <Route path="/IPC-admin-portal/members"  element={<AdminMembersPage />} />
 
           <Route path="/IPC-admin-portal/matrix"  element={<AdminMatrixEdit />} />
+
+          <Route path="/IPC-admin-portal/type"  element={<AdminTypeEdit />} />
 
           <Route path="/IPC-admin-portal/order/samples/:id"  element={<AdminOrderSamplesPage />} />
 

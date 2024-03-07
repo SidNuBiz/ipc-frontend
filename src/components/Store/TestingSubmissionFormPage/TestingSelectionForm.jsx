@@ -4,7 +4,6 @@ import { useState } from 'react'
 import {useSelector} from "react-redux"
 
 
-
 let typeTests
 let matrixFormTests
 
@@ -41,7 +40,6 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
     
 
     function handleTypeChange(e) {
-        
         setMatrixForm(null);
         setMatrixFormList([])
         setCategory(null)
@@ -54,12 +52,12 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         setIsAddOn(false)
         setAddOns([])
         setTestList([testList[0]])
-        setType(e.value)
+        setType(e.label)
         setTestingMethod(null)
         setTestingMethodList([])
         setTest(null)
         let matrixArr = []
-        typeTests = analyses && packages &&  [...analyses,...packages].filter(data => (data.type !== undefined ? data.type.includes(e.value):false))
+        typeTests = analyses && packages &&  [...analyses,...packages].filter(data => (data.type !== undefined ? data.type.some(item => item.name == e.label):false))
         typeTests.forEach(data => data.matrixForm !== undefined ? matrixArr.push(...data.matrixForm):false)
         const uniqueObjects = {};
         const result = matrixArr.filter(obj => {
@@ -245,9 +243,15 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         packages && packages.forEach(test => {
             typeArr.push(...test.type)
         })
+        const uniqueObjects = {};
+        const result = typeArr.filter(obj => {
+            const key = JSON.stringify(obj);
+            return uniqueObjects.hasOwnProperty(key) ? false : (uniqueObjects[key] = true);
+        });
         setTypeFormList(
-            removeDuplicate(typeArr).map((data) => {
-                return {label:data,value:data}
+            
+            result.map((data) => {
+                return {label:data.name,value:data.componentList}
             })
         )
     },[analyses,packages])
