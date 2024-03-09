@@ -117,7 +117,7 @@ const AdminOrderView = () => {
                         <div className="mb-10">
                             <h2 className=" text-xl">
                                 <b>Order #</b>
-                                {order && order._id}
+                                {order && order.job_web_id}
                             </h2>
                         </div>
 

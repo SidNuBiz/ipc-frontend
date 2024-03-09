@@ -35,7 +35,7 @@ const OrderDetails = ({order,oId}) => {
         {/* Order Id */}
 
         <div className="mb-10">
-          <h2 className=" text-xl"><b>Order #</b>{order._id}</h2>
+          <h2 className=" text-xl"><b>Order #</b>{order.job_web_id}</h2>
         </div>
 
         {/* Info */}

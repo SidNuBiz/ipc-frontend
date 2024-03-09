@@ -6,7 +6,6 @@ import { useAlert } from "react-alert";
 import axios from "axios";
 import Cookies from "js-cookie";
 import url from "../../../utils/baseApi";
-import s3 from "../../../utils/s3"
 
 const SampleDetails = ({ sample }) => {
 
@@ -23,46 +22,26 @@ const SampleDetails = ({ sample }) => {
 
     async function downloadReport() {
 
-
-        console.log('lims_cov/'+sample.ID_TEXT+'-'+sample.SAMPLE_NAME)
-        const params = {
-            Bucket: 'ipc-frontend',
-            Key: 'lims_cov/'+sample.ID_TEXT+'-'+sample.SAMPLE_NAME+'.pdf'
-            // Key: 'lims_cov/000301-1-ls-2024-01.pdf'
+        const token = Cookies.get('token');
+        const config = {
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Authorization': `Bearer ${token}`,
+          },
+          responseType: 'arraybuffer',
         };
-
-        s3.getObject(params, (err, data) => {
-            if (err) {
-                return alert.error(err)
-            } else {
-                console.log(data)
-                const blob = new Blob([data.Body], { type: 'application/pdf' });
-                const report_url = URL.createObjectURL(blob);
-                const pdfName = sample.SAMPLE_NAME;
-                console.log(sample.SAMPLE_NAME)
-                window.open(report_url,"_blank");
-            }
-        });
-
-        // const token = Cookies.get('token');
-        // const config = {
-        //   headers: {
-        //     'Content-Type': 'application/pdf',
-        //     'Authorization': `Bearer ${token}`,
-        //   },
-        //   responseType: 'arraybuffer',
-        // };
       
-        // try {
-        //   const response = await axios.get(`${url}/api/v1/cov/report?id_text=${sample.ID_TEXT}&name=${sample.SAMPLE_NAME}`,config);
+        try {
+          const response = await axios.get(`${url}/api/v1/cov/report?id_text=${sample.ID_TEXT}&name=${sample.SAMPLE_NAME}`,config);
       
-        //   const blob = new Blob([response.data], { type: 'application/pdf' });
-        //   const report_url = URL.createObjectURL(blob);
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+          const report_url = URL.createObjectURL(blob);
+          window.open(report_url,"_blank");
 
-        // } catch (error) {
-        //     console.log(error)
-        //   alert.error('Error downloading report:', error.message);
-        // }
+        } catch (error) {
+            console.log(error)
+          alert.error('Error downloading report:', error.message);
+        }
       }
 
 
@@ -196,9 +175,7 @@ const SampleDetails = ({ sample }) => {
                                     <th scope="col" className="px-6 py-3">
                                         Analysis
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Component Name
-                                    </th>
+                                
                                     <th scope="col" className="px-6 py-3">
                                         Status
                                     </th>
@@ -208,24 +185,22 @@ const SampleDetails = ({ sample }) => {
                             <tbody>
                                 <tr className="bg-white border-b dark:bg-white-800 dark:border-gray-700">
                                     <th scope="row" className="px-6 py-4 font-medium text-black-900 whitespace-nowrap dark:text-black">
-                                        {result.analysis_id}
-                                    </th>
-                                    <td className="px-6 py-4">
                                         {result.name}
-                                    </td>
+                                    </th>
+                                    
                                    
                                     <td className="px-6 py-4">
                                         {
-                                            result.TEST_STATUS === 'V' ? 'Available' :
-                                            result.TEST_STATUS === 'P' ? 'In Progress' :
-                                            result.TEST_STATUS === 'C' ? 'Complete' :
-                                            result.TEST_STATUS === 'U' ? 'Unavailable' :
-                                            result.TEST_STATUS === 'W' ? 'Waiting for Preparation' :
-                                            result.TEST_STATUS === 'X' ? 'Cancelled' :
-                                            result.TEST_STATUS === 'I' ? 'Inspection' :
-                                            result.TEST_STATUS === 'A' ? 'Authorised' :
-                                            result.TEST_STATUS === 'S' ? 'Suspended' :
-                                            result.TEST_STATUS === 'R' ? 'Rejected' :
+                                            result.test_status === 'V' ? 'Available' :
+                                            result.test_status === 'P' ? 'In Progress' :
+                                            result.test_status === 'C' ? 'Complete' :
+                                            result.test_status === 'U' ? 'Unavailable' :
+                                            result.test_status === 'W' ? 'Waiting for Preparation' :
+                                            result.test_status === 'X' ? 'Cancelled' :
+                                            result.test_status === 'I' ? 'Inspection' :
+                                            result.test_status === 'A' ? 'Authorised' :
+                                            result.test_status === 'S' ? 'Suspended' :
+                                            result.test_status === 'R' ? 'Rejected' :
                                             "Status Unavailable "
      
                                         }

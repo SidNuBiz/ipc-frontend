@@ -29,7 +29,7 @@ const OrderList = () => {
 
                                     <div className="">
                                         <b>Order ID</b> <br />
-                                        {order._id}
+                                        {order.job_web_id}
                                     </div>
 
                                 </div>
