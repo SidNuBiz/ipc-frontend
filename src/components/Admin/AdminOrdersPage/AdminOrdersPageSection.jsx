@@ -43,11 +43,12 @@ const AdminOrdersPageSection = () => {
   }
 
   useEffect(()=>{
-      
+    dispatch(getAllOrders(page))
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   },[dispatch,page])
 
   useEffect(() => {
-    dispatch(getAllOrders(1))
+    
   }, [newLoading]);
 
   return (

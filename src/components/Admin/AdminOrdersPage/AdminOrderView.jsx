@@ -7,6 +7,9 @@ import SideBar from "../Misc/SideBar";
 import { getOrderDetails,createOrder} from "../../../actions/orderAction";
 import { Link } from 'react-router-dom'
 import { useAlert } from "react-alert";
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import url from '../../../utils/baseApi';
 
 
 const AdminOrderView = () => {
@@ -15,8 +18,34 @@ const AdminOrderView = () => {
     const alert = useAlert();
     const navigate = useNavigate();
     const orderId = useParams().id;
-
     const [order,setOrder] = useState(null)
+    const [orderStatus,setOrderStatus] = useState("")
+
+    const options = [
+        {
+          label: "Placed",
+          value: "Placed",
+        },
+        {
+          label: "In Progress",
+          value: "In Progress",
+        },
+        {
+          label: "On Hold",
+          value: "On Hold",
+        },
+        {
+          label: "Complete",
+          value: "Complete",
+        },
+        {
+            label: "Cancel",
+            value: "Canceled",
+          },
+       
+    ];
+
+    
 
     const { order:orderDetails,loading } = useSelector(
         (state) => state.orderDetails
@@ -47,10 +76,34 @@ const AdminOrderView = () => {
         
     }
 
+    const updateOrderStatus = async (e) => {
+        
+        setOrderStatus(e.target.value)
+
+        try {
+            const token = Cookies.get('token')
+
+            const config = {
+                headers: { "Content-Type": "application/json",'Authorization': `Bearer ${token}` },
+            }
+           
+            const {data} = await axios.put(`${url}/api/v1/admin/order/status/${orderId}`,{status:e.target.value},config)
+            
+            if(data.success){
+              alert.success("Successfully Updated status")
+            }
+            
+        } catch (error) {
+            alert.error(error.response.data.error)
+        }
+
+        
+    }
+
     useEffect(() => {
 
         // 👇️ scroll to top on page load
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         dispatch(getOrderDetails(orderId))
 
     }, [dispatch,orderId]);
@@ -58,6 +111,7 @@ const AdminOrderView = () => {
     useEffect(() => {
        
         setOrder(orderDetails)
+        setOrderStatus(orderDetails && orderDetails.status)
 
     }, [orderDetails]);
 
@@ -75,7 +129,6 @@ const AdminOrderView = () => {
                 <div className="col-span-4 md:px-5 sm:px-5 z-30 relative lg:pt-10 md:pt-32 sm:pt-32 animate-crossfade bg-gradient-to-br from-[#eaf8f5] to-transparent min-h-screen pb-20 overflow-y-clip">
                     
                 <div>
-
 
                     {/* Go Back Button */}
 
@@ -145,7 +198,12 @@ const AdminOrderView = () => {
 
                                 <div>
                                     <h2 className=" text-md">
-                                        <b>Order Status:</b> {order && order.status}
+                                        <b>Order Status: </b> 
+                                        <select className=" border-[2px]" value={orderStatus} onChange={(e)=>updateOrderStatus(e)}>
+                                        {options.map((option) => (
+                                        <option value={option.value}>{option.label}</option>
+                                        ))}
+                                        </select>
                                     </h2>
                                 </div>
                             </div>

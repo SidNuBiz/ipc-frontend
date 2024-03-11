@@ -243,6 +243,7 @@ const TestingSelectionForm = ({testList, setTestList, idx, categoryList, setCate
         packages && packages.forEach(test => {
             typeArr.push(...test.type)
         })
+       
         const uniqueObjects = {};
         const result = typeArr.filter(obj => {
             const key = JSON.stringify(obj);

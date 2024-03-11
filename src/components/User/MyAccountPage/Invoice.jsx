@@ -181,8 +181,8 @@ const Invoice = () => {
                           <Text style={styles.strong}>Invoice No:</Text> {invoice.invoice_number}
                           {'\n'}
                           <Text style={styles.strong}>Date:</Text> {invoice.invoice_date}
-                          {'\n'}
-                          <Text style={styles.strong}>GST No:</Text> 356324635632
+                          {/* {'\n'} */}
+                          {/* <Text style={styles.strong}>GST No:</Text> 356324635632 */}
                           {'\n'}
                           <Text style={styles.strong}>Email:</Text> {orders[orderId].email}
                       </Text>

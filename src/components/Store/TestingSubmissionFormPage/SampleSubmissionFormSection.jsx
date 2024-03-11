@@ -82,7 +82,7 @@ const SampleSubmissionFormSection = ({id,sampleList,setSampleList}) => {
         setSelectedTurnaround(sTurnaround)
         setStorageType(sStorageType)
         const updateSampleData = thisSampleFormData.map(sample => {
-            console.log(sample.id,sampleData.id)
+            
             if(sample.id===sampleData.id){
                 return {
                     id:sample.id,

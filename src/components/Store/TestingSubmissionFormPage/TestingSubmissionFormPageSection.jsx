@@ -150,7 +150,10 @@ const TestingSubmissionFormPageSection = () => {
                 {/* Heading */}
 
                 <div className="w-full mb-5">
-                    <h2 className="w-full border-b-2 border-b-gray-200 text-2xl text-gray-600 font-semibold pb-3">Samples</h2>
+                    <div className=" border-b-2 border-b-gray-200 flex">
+                    <h2 className="  text-2xl text-gray-600 font-semibold pb-3 mr-2">Samples  </h2>
+                    <p className=' text-md text-[red] '  >[ You can not submit more than 100 samples a day. ] </p>
+                    </div>    
                 </div>
                 {sampleList.map((item)=>(
                     <div key={item.id} className="mb-10">
