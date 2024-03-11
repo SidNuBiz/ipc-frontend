@@ -199,11 +199,17 @@ const AdminOrderView = () => {
                                 <div>
                                     <h2 className=" text-md">
                                         <b>Order Status: </b> 
-                                        <select className=" border-[2px]" value={orderStatus} onChange={(e)=>updateOrderStatus(e)}>
-                                        {options.map((option) => (
-                                        <option value={option.value}>{option.label}</option>
-                                        ))}
-                                        </select>
+                                        {
+                                            order && order.status == "Dynamic" ?
+                                            order.status
+                                            :
+                                            <select className=" border-[2px]" value={orderStatus} onChange={(e)=>updateOrderStatus(e)}>
+                                            {options.map((option) => (
+                                            <option value={option.value}>{option.label}</option>
+                                            ))}
+                                            </select>
+                                        }
+                                        
                                     </h2>
                                 </div>
                             </div>

@@ -44,6 +44,10 @@ const SampleDetails = ({ sample }) => {
         }
       }
 
+    const reportNotAvailable = ()=>{
+        alert.error("You can see the report after status is completed or authorized.")
+    }
+
 
     useEffect(()=>{
         dispatch(mySampleResult(sample.ID_NUMERIC))
@@ -72,7 +76,14 @@ const SampleDetails = ({ sample }) => {
 
                 <div className=" w-fit ml-auto">
 
-                    <button  id="add-to-cart-btn" onClick={downloadReport} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>   
+                {
+                    sample.STATUS === 'C' || sample.STATUS === 'A' ? 
+                    <button  id="add-to-cart-btn" onClick={downloadReport} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>
+                    :
+                    <button  id="add-to-cart-btn" onClick={reportNotAvailable} className="bg-[#397f77] px-10 py-3 text-white rounded-lg hover:bg-[#18debb] duration-500  ">View Report</button>
+                }
+
+                       
    
                 </div>
 
@@ -135,6 +146,7 @@ const SampleDetails = ({ sample }) => {
                                 <h2 className=" text-md">
                                     <b>Sample Name: </b>
                                     {sample.SAMPLE_NAME}
+                                    
                                 </h2>
                             </div>
 
@@ -143,7 +155,19 @@ const SampleDetails = ({ sample }) => {
                             <div>
                                 <h2 className=" text-md">
                                     <b>Sample Status: </b>
-                                    {sample.STATUS}
+                                    {
+                                        sample.STATUS === 'V' ? 'Available' :
+                                        sample.STATUS === 'P' ? 'In Progress' :
+                                        sample.STATUS === 'C' ? 'Complete' :
+                                        sample.STATUS === 'U' ? 'Unavailable' :
+                                        sample.STATUS === 'W' ? 'Waiting for Preparation' :
+                                        sample.STATUS === 'X' ? 'Cancelled' :
+                                        sample.STATUS === 'I' ? 'Inspection' :
+                                        sample.STATUS === 'A' ? 'Authorised' :
+                                        sample.STATUS === 'S' ? 'Suspended' :
+                                        sample.STATUS === 'R' ? 'Rejected' :
+                                        "Status Unavailable "
+                                    }
                                 </h2>
                             </div>
 
