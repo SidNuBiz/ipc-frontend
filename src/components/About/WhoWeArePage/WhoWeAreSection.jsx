@@ -1,7 +1,6 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import GrayLogo from "../../../assets/logo-gray.png";
-import InvpBuilding from "../../../assets/invp-building.png";
 
 
 const WhoWeAreSection = ({whoWeAreSlides}) => {
@@ -53,7 +52,7 @@ return (
 
             <div className="w-full-h-screen">
                 
-                <img src={InvpBuilding} alt="" className="w-full h-full object-cover" />
+                <img src="https://ipc-frontend.s3.us-west-2.amazonaws.com/website-images/invp-building.png" alt="" className="w-full h-full object-cover" />
 
             </div>
 
